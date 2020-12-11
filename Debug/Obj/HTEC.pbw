@@ -1,0 +1,16 @@
+[
+  {
+    "ID": "c:@F@main",
+    "What": "Function",
+    "defdec": "Def",
+    "display": "int main(void)",
+    "location": {
+      "column": "5",
+      "line": "2",
+      "path": "D:\\OneDrive - pusan.ac.kr\\\uad50\uacfc\\\uc784\ubca0\ub514\ub4dc\uc2dc\uc2a4\ud15c\uc124\uacc4\ubc0f\uc2e4\ud5d8\\H-TEC\\main.c"
+    },
+    "name": "main",
+    "origin": "project_file",
+    "scope": null
+  }
+]

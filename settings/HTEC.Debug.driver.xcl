@@ -1,0 +1,19 @@
+"--endian=little" 
+
+"--cpu=Cortex-M3" 
+
+"--fpu=None" 
+
+"-p" 
+
+"D:\Develop\IAR Systems\arm\CONFIG\debugger\ST\STM32F100RB.ddf" 
+
+"--semihosting" 
+
+"--device=STM32F100RB" 
+
+"--multicore_nr_of_cores=1" 
+
+
+
+

@@ -1,0 +1,13 @@
+"D:\Develop\IAR Systems\arm\bin\armproc.dll" 
+
+"D:\Develop\IAR Systems\arm\bin\armsim2.dll" 
+
+"D:\OneDrive - pusan.ac.kr\교과\임베디드시스템설계및실험\H-TEC\Debug\Exe\HTEC.out" 
+
+--plugin="D:\Develop\IAR Systems\arm\bin\armbat.dll" 
+
+--device_macro="D:\Develop\IAR Systems\arm\config\debugger\ST\STM32F1xx.dmac" 
+
+
+
+
