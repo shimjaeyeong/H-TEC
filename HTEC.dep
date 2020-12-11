@@ -13,16 +13,17 @@
             <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
             <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
             <file>$PROJ_DIR$\Debug\List\HTEC.map</file>
-            <file>$TOOLKIT_DIR$\config\generic_cortex.icf</file>
             <file>$TOOLKIT_DIR$\lib\m7M_tl.a</file>
             <file>$PROJ_DIR$\Debug\Obj\main.xcl</file>
+            <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
+            <file>$TOOLKIT_DIR$\config\linker\ST\stm32f100xB.icf</file>
         </outputs>
         <file>
             <name>[ROOT_NODE]</name>
             <outputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 7 2</file>
+                    <file> 2 7</file>
                 </tool>
             </outputs>
         </file>
@@ -37,7 +38,7 @@
             <inputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 8 4 6 1 9 5</file>
+                    <file> 11 4 6 1 8 5</file>
                 </tool>
             </inputs>
         </file>
@@ -50,6 +51,10 @@
                 </tool>
                 <tool>
                     <name>BICOMP</name>
+                    <file> 9</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
                     <file> 10</file>
                 </tool>
             </outputs>
