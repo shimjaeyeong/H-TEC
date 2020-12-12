@@ -20,8 +20,9 @@ rule browsedata
 
 
 #Build steps
+build app_vect_v5.pbi : index app_vect_v5.xcl
 build main.pbi : index main.xcl
-build HTEC.pbd : link main.pbi
+build HTEC.pbd : link app_vect_v5.pbi main.pbi
 build HTEC.pbw : browsedata HTEC.pbd
 
 

@@ -1,15 +1,15 @@
-"D:\OneDrive - pusan.ac.kr\교과\임베디드시스템설계및실험\H-TEC\main.c"
+"D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC\main.c"
 -std=c11
 -ferror-limit=0
 -fbracket-depth=512
 -funsigned-char
 -MD
 -MF
-D:\OneDrive - pusan.ac.kr\교과\임베디드시스템설계및실험\H-TEC\Debug\Obj\main.pbi.dep
+D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC\Debug\Obj\main.pbi.dep
 -o
 main.pbi
 -I
-D:\OneDrive - pusan.ac.kr\교과\임베디드시스템설계및실험\H-TEC
+D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC
 -I
 D:\Develop\IAR Systems\arm\inc
 -I
