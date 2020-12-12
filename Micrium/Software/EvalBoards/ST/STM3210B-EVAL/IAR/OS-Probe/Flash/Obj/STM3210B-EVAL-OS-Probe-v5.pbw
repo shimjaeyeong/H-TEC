@@ -19710,7 +19710,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@4429@F@main@os_err",
+    "ID": "c:app.c@4404@F@main@os_err",
     "What": "Variable",
     "defdec": "Def",
     "display": "os_err",
@@ -19738,7 +19738,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@6653@F@App_TaskStart@i",
+    "ID": "c:app.c@6628@F@App_TaskStart@i",
     "What": "Variable",
     "defdec": "Def",
     "display": "i",
@@ -19752,7 +19752,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@6669@F@App_TaskStart@j",
+    "ID": "c:app.c@6644@F@App_TaskStart@j",
     "What": "Variable",
     "defdec": "Def",
     "display": "j",
@@ -19766,7 +19766,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@6685@F@App_TaskStart@dly",
+    "ID": "c:app.c@6660@F@App_TaskStart@dly",
     "What": "Variable",
     "defdec": "Def",
     "display": "dly",
@@ -19794,7 +19794,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@8992@F@App_EventCreate@os_err",
+    "ID": "c:app.c@8967@F@App_EventCreate@os_err",
     "What": "Variable",
     "defdec": "Def",
     "display": "os_err",
@@ -19822,7 +19822,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@9926@F@App_TaskCreate@os_err",
+    "ID": "c:app.c@9901@F@App_TaskCreate@os_err",
     "What": "Variable",
     "defdec": "Def",
     "display": "os_err",
@@ -19850,7 +19850,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@11670@F@App_TaskKbd@b1_prev",
+    "ID": "c:app.c@11645@F@App_TaskKbd@b1_prev",
     "What": "Variable",
     "defdec": "Def",
     "display": "b1_prev",
@@ -19864,7 +19864,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@11693@F@App_TaskKbd@b1",
+    "ID": "c:app.c@11668@F@App_TaskKbd@b1",
     "What": "Variable",
     "defdec": "Def",
     "display": "b1",
@@ -19878,7 +19878,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@11711@F@App_TaskKbd@key",
+    "ID": "c:app.c@11686@F@App_TaskKbd@key",
     "What": "Variable",
     "defdec": "Def",
     "display": "key",
@@ -19906,7 +19906,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@12712@F@App_TaskUserIF@msg",
+    "ID": "c:app.c@12687@F@App_TaskUserIF@msg",
     "What": "Variable",
     "defdec": "Def",
     "display": "msg",
@@ -19920,7 +19920,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@12732@F@App_TaskUserIF@err",
+    "ID": "c:app.c@12707@F@App_TaskUserIF@err",
     "What": "Variable",
     "defdec": "Def",
     "display": "err",
@@ -19934,7 +19934,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@12750@F@App_TaskUserIF@nstate",
+    "ID": "c:app.c@12725@F@App_TaskUserIF@nstate",
     "What": "Variable",
     "defdec": "Def",
     "display": "nstate",
@@ -19948,7 +19948,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@12771@F@App_TaskUserIF@pstate",
+    "ID": "c:app.c@12746@F@App_TaskUserIF@pstate",
     "What": "Variable",
     "defdec": "Def",
     "display": "pstate",
@@ -20018,7 +20018,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@16202@F@App_ProbeCallback@ctr_curr",
+    "ID": "c:app.c@16177@F@App_ProbeCallback@ctr_curr",
     "What": "Variable",
     "defdec": "Def",
     "display": "ctr_curr",
@@ -20032,7 +20032,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@16225@F@App_ProbeCallback@rxpkt_curr",
+    "ID": "c:app.c@16200@F@App_ProbeCallback@rxpkt_curr",
     "What": "Variable",
     "defdec": "Def",
     "display": "rxpkt_curr",
@@ -20046,7 +20046,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@16250@F@App_ProbeCallback@txpkt_curr",
+    "ID": "c:app.c@16225@F@App_ProbeCallback@txpkt_curr",
     "What": "Variable",
     "defdec": "Def",
     "display": "txpkt_curr",
@@ -20060,7 +20060,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@16275@F@App_ProbeCallback@sym_curr",
+    "ID": "c:app.c@16250@F@App_ProbeCallback@sym_curr",
     "What": "Variable",
     "defdec": "Def",
     "display": "sym_curr",
@@ -20074,7 +20074,7 @@
     "scope": null
   },
   {
-    "ID": "c:app.c@16298@F@App_ProbeCallback@symbyte_curr",
+    "ID": "c:app.c@16273@F@App_ProbeCallback@symbyte_curr",
     "What": "Variable",
     "defdec": "Def",
     "display": "symbyte_curr",

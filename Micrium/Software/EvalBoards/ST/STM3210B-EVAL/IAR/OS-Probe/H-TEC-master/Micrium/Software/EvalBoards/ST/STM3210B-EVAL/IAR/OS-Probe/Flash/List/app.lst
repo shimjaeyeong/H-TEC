@@ -1,0 +1,1312 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V8.50.6.265/W32 for ARM         12/Dec/2020  12:16:27
+# Copyright 1999-2020 IAR Systems AB.
+#
+#    Cpu mode                        
+#    Endian                       =  little
+#    Source file                  =
+#        D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
+#    Command line                 =
+#        -f C:\Users\fabi8\AppData\Local\Temp\EW2B25.tmp ("D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c"
+#        -lCN "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List"
+#        -o "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj"
+#        --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config
+#        "D:\Develop\IAR Systems\arm\inc\c\DLib_Config_Normal.h" -I
+#        "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\\"
+#        -I "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\ports\arm-cortex-m3\generic\iar\\"
+#        -I "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\\"
+#        -I "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\\"
+#        -I "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\\"
+#        -I "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\\"
+#        -I "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\\"
+#        -I "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\BSP\\"
+#        -I "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Source\\"
+#        -I "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Ports\ST\STM32\\"
+#        -I "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\\"
+#        -I "D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\\"
+#        -Ohz --use_c++_inline)
+#    Locale                       =  C
+#    List file                    =
+#        D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List\app.lst
+#    Object file                  =
+#        D:\OneDrive -
+#        pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj\app.o
+#    Runtime model:                  
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  0
+#      __dlib_full_locale_support =  0
+#      __dlib_version             =  6
+#      __size_limit               =  32768|ARM.EW.LINKER
+#
+###############################################################################
+
+D:\OneDrive - pusan.ac.kr\@@\@@@@@@@\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
+      1          /*
+      2           *********************************************************************************************************
+      3           *                                              EXAMPLE CODE
+      4           *
+      5           *                          (c) Copyright 2003-2006; Micrium, Inc.; Weston, FL
+      6           *
+      7           *               All rights reserved.  Protected by international copyright laws.
+      8           *               Knowledge of the source code may NOT be used to develop a similar product.
+      9           *               Please help us continue to provide the Embedded community with the finest
+     10           *               software available.  Your honesty is greatly appreciated.
+     11           *********************************************************************************************************
+     12           */
+     13          
+     14          /*
+     15           *********************************************************************************************************
+     16           *
+     17           *                                            EXAMPLE CODE
+     18           *
+     19           *                                     ST Microelectronics STM32
+     20           *                                              with the
+     21           *                                   STM3210B-EVAL Evaluation Board
+     22           *
+     23           * Filename      : app.c
+     24           * Version       : V1.10
+     25           * Programmer(s) : BAN
+     26           *********************************************************************************************************
+     27           */
+     28          
+     29          
+     30          /*
+     31           *********************************************************************************************************
+     32           *                                             INCLUDE FILES
+     33           *********************************************************************************************************
+     34           */
+     35          
+     36          #include <includes.h>
+     37          
+     38          
+     39          /*
+     40           *********************************************************************************************************
+     41           *                                            LOCAL DEFINES
+     42           *********************************************************************************************************
+     43           */
+     44          
+     45          /*
+     46           *********************************************************************************************************
+     47           *                                       LOCAL GLOBAL VARIABLES
+     48           *********************************************************************************************************
+     49           */
+     50          
+
+   \                                 In section .bss, align 4
+     51          static OS_STK App_TaskStartStk[APP_TASK_START_STK_SIZE];
+   \                     App_TaskStartStk:
+   \        0x0                      DS8 512
+
+   \                                 In section .bss, align 4
+     52          static OS_STK App_TaskUserIFStk[APP_TASK_USER_IF_STK_SIZE];
+     53          static OS_STK App_TaskKbdStk[APP_TASK_KBD_STK_SIZE];
+     54          
+     55          static OS_EVENT      *App_UserIFMbox;
+   \                     App_UserIFMbox:
+   \        0x0                      DS8 4
+   \        0x4                      DS8 1'024
+   \      0x404                      DS8 512
+     56          
+     57          
+     58          #if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
+     59          	(APP_PROBE_COM_EN == DEF_ENABLED) && \
+     60          	(PROBE_COM_STAT_EN == DEF_ENABLED))
+
+   \                                 In section .bss, align 4
+   \        0x0                      DS8 4
+     61          static CPU_FP32 App_ProbeComRxPktSpd;
+
+   \                                 In section .bss, align 4
+   \        0x0                      DS8 4
+     62          static CPU_FP32 App_ProbeComTxPktSpd;
+
+   \                                 In section .bss, align 4
+   \        0x0                      DS8 4
+     63          static CPU_FP32 App_ProbeComTxSymSpd;
+
+   \                                 In section .bss, align 4
+   \        0x0                      DS8 4
+     64          static CPU_FP32 App_ProbeComTxSymByteSpd;
+     65          
+
+   \                                 In section .bss, align 4
+     66          static CPU_INT32U App_ProbeComRxPktLast;
+   \                     App_ProbeComRxPktLast:
+   \        0x0                      DS8 4
+   \        0x4                      DS8 4
+   \        0x8                      DS8 4
+   \        0xC                      DS8 4
+   \       0x10                      DS8 4
+   \       0x14                      DS8 4
+     67          static CPU_INT32U App_ProbeComTxPktLast;
+     68          static CPU_INT32U App_ProbeComTxSymLast;
+     69          static CPU_INT32U App_ProbeComTxSymByteLast;
+     70          
+     71          static CPU_INT32U App_ProbeComCtrLast;
+     72          #endif
+     73          
+     74          #if (APP_OS_PROBE_EN == DEF_ENABLED)
+     75          static CPU_INT32U App_ProbeCounts;
+
+   \                                 In section .bss, align 1
+   \        0x0                      DS8 1
+     76          static CPU_BOOLEAN App_ProbeB1;
+     77          
+     78          #endif
+     79          
+     80          
+     81          /*
+     82           *********************************************************************************************************
+     83           *                                      LOCAL FUNCTION PROTOTYPES
+     84           *********************************************************************************************************
+     85           */
+     86          
+     87          static void  App_TaskCreate(void);
+     88          static void  App_EventCreate(void);
+     89          
+     90          static void  App_TaskStart(void        *p_arg);
+     91          static void  App_TaskUserIF(void        *p_arg);
+     92          static void  App_TaskKbd(void        *p_arg);
+     93          
+     94          static void  App_DispScr_SignOn(void);
+     95          static void  App_DispScr_TaskNames(void);
+     96          
+     97          #if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+     98          	(APP_OS_PROBE_EN == DEF_ENABLED))
+     99          static void  App_InitProbe(void);
+    100          #endif
+    101          
+    102          #if (APP_OS_PROBE_EN == DEF_ENABLED)
+    103          static void  App_ProbeCallback(void);
+    104          #endif
+    105          
+    106          
+    107          
+    108          
+    109          /*
+    110           *********************************************************************************************************
+    111           *                                                main()
+    112           *
+    113           * Description : This is the standard entry point for C code.  It is assumed that your code will call
+    114           *               main() once you have performed all necessary initialization.
+    115           *
+    116           * Argument(s) : none.
+    117           *
+    118           * Return(s)   : none.
+    119           *********************************************************************************************************
+    120           */
+    121          
+
+   \                                 In section .text, align 4, keep-with-next
+    122          int  main(void)
+    123          {
+   \                     main: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0xB086             SUB      SP,SP,#+24
+    124          	CPU_INT08U os_err;
+    125          
+    126          	/* Disable all ints until we are ready to accept them.  */
+    127          	BSP_IntDisAll();
+   \        0x4   0x....'....        BL       BSP_IntDisAll
+    128          
+    129          
+    130          	/* Initialize "uC/OS-II, The Real-Time Kernel".         */
+    131          	/* IDLE Task와 Statistics Task 생성                      */
+    132          	OSInit();
+   \        0x8   0x....'....        BL       OSInit
+    133          
+    134          	/* Create the start task.                               */
+    135          	/* OSTaskCreatExt()                                     */
+    136          	/* OSTaskCreate()와 다르게 Stack을 검사할수 있는 기능을 가짐 */
+    137          	os_err = OSTaskCreateExt((void (*)(void *))App_TaskStart, // Task가 수행할 함수
+    138          				 (void* )0,                     // Task로 넘겨줄 인자
+    139          				 (OS_STK* )&App_TaskStartStk[APP_TASK_START_STK_SIZE - 1],     // Task가 할당될 Stack의 Top을 가리키는 주소
+    140          				 (INT8U           )APP_TASK_START_PRIO,// Task의 우선 순위
+    141          				 (INT16U          )APP_TASK_START_PRIO,// Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
+    142          				 (OS_STK* )&App_TaskStartStk[0],     // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
+    143          				 (INT32U          )APP_TASK_START_STK_SIZE,// Task Stack의 크기를 의미
+    144          				 (void* )0,       // Task Control Block 활용시 사용
+    145          				 (INT16U          )(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));// Task 생성 옵션 - 초기화 시 Stack을 0으로 채울 것인지, 부동 소수점 연산 장치 사용할 것인지 등 설정
+   \        0xC   0x2200             MOVS     R2,#+0
+   \        0xE   0x....             LDR.N    R0,??DataTable8
+   \       0x10   0x9203             STR      R2,[SP, #+12]
+   \       0x12   0x2103             MOVS     R1,#+3
+   \       0x14   0x2380             MOVS     R3,#+128
+   \       0x16   0x9104             STR      R1,[SP, #+16]
+   \       0x18   0x9302             STR      R3,[SP, #+8]
+   \       0x1A   0x9001             STR      R0,[SP, #+4]
+   \       0x1C   0x2403             MOVS     R4,#+3
+   \       0x1E   0xF500 0x72FE      ADD      R2,R0,#+508
+   \       0x22   0x9400             STR      R4,[SP, #+0]
+   \       0x24   0x2303             MOVS     R3,#+3
+   \       0x26   0x2100             MOVS     R1,#+0
+   \       0x28   0x....'....        ADR.W    R0,App_TaskStart
+   \       0x2C   0x....'....        BL       OSTaskCreateExt
+   \       0x30   0xF88D 0x0014      STRB     R0,[SP, #+20]
+    146          
+    147          #if (OS_TASK_NAME_SIZE >= 11)
+    148          	OSTaskNameSet(APP_TASK_START_PRIO, (CPU_INT08U*)"Start Task", &os_err);
+   \       0x34   0xF10D 0x0214      ADD.W    R2,SP,#+20
+   \       0x38   0x....             ADR.N    R1,?_0
+   \       0x3A   0x2003             MOVS     R0,#+3
+   \       0x3C   0x....'....        BL       OSTaskNameSet
+    149          #endif
+    150          
+    151          	OSStart();                                              /* Start multitasking (i.e. give control to uC/OS-II).  */
+   \       0x40   0x....'....        BL       OSStart
+    152          
+    153          	return(0);
+   \       0x44   0x2000             MOVS     R0,#+0
+   \       0x46   0xB006             ADD      SP,SP,#+24
+   \       0x48   0xBD10             POP      {R4,PC}          ;; return
+    154          }
+    155          
+    156          
+    157          /*
+    158           *********************************************************************************************************
+    159           *                                          App_TaskStart()
+    160           *
+    161           * Description : The startup task.  The uC/OS-II ticker should only be initialize once multitasking starts.
+    162           *
+    163           * Argument(s) : p_arg       Argument passed to 'App_TaskStart()' by 'OSTaskCreate()'.
+    164           *
+    165           * Return(s)   : none.
+    166           *
+    167           * Caller(s)   : This is a task.
+    168           *
+    169           * Note(s)     : none.
+    170           *********************************************************************************************************
+    171           */
+    172          // LED 동작을 위한 Task
+
+   \                                 In section .text, align 4, keep-with-next
+    173          static void  App_TaskStart(void *p_arg)
+    174          {
+   \                     App_TaskStart: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0xB086             SUB      SP,SP,#+24
+    175          	CPU_INT32U i;
+    176          	CPU_INT32U j;
+    177          	CPU_INT32U dly;
+    178          
+    179          
+    180          	(void)p_arg;
+    181          
+    182          	BSP_Init();                                             /* Initialize BSP functions.                            */
+   \        0x4   0x....'....        BL       BSP_Init
+    183          	OS_CPU_SysTickInit();                                   /* Initialize the SysTick.                              */
+   \        0x8   0x....'....        BL       OS_CPU_SysTickInit
+    184          
+    185          #if (OS_TASK_STAT_EN > 0)
+    186          	OSStatInit();                                           /* Determine CPU capacity.                              */
+   \        0xC   0x....'....        BL       OSStatInit
+    187          #endif
+    188          
+    189          #if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+    190          	(APP_OS_PROBE_EN == DEF_ENABLED))
+    191          	App_InitProbe();
+   \       0x10   0x....'....        BL       OSProbe_Init
+   \       0x14   0x....'....        ADR.W    R0,App_ProbeCallback
+   \       0x18   0x....             LDR.N    R4,??DataTable8_1
+   \       0x1A   0x....'....        BL       OSProbe_SetCallback
+   \       0x1E   0x20FA             MOVS     R0,#+250
+   \       0x20   0x....'....        BL       OSProbe_SetDelay
+   \       0x24   0x....'....        BL       ProbeCom_Init
+    192          #endif
+    193          	/* Create application events.                           */
+    194          	/* Task간 통신을 위한 MailBox 생성                        */
+    195          	App_EventCreate();
+   \       0x28   0x2000             MOVS     R0,#+0
+   \       0x2A   0x....'....        BL       OSMboxCreate
+   \       0x2E   0x6020             STR      R0,[R4, #+0]
+   \       0x30   0xEA4F 0x020D      MOV.W    R2,SP
+   \       0x34   0x....             ADR.N    R1,?_1
+   \       0x36   0x....'....        BL       OSEventNameSet
+    196          
+    197          	/* Create application tasks.                            */
+    198          	/* LCD 갱신 Task, 키보드 입력 Task 생성                    */
+    199          	App_TaskCreate();
+   \       0x3A   0x2003             MOVS     R0,#+3
+   \       0x3C   0x9004             STR      R0,[SP, #+16]
+   \       0x3E   0xF44F 0x7280      MOV      R2,#+256
+   \       0x42   0x1D23             ADDS     R3,R4,#+4
+   \       0x44   0x200C             MOVS     R0,#+12
+   \       0x46   0x....'....        BL       ?Subroutine2
+   \                     ??CrossCallReturnLabel_13: (+1)
+   \       0x4A   0x230C             MOVS     R3,#+12
+   \       0x4C   0xF504 0x6280      ADD      R2,R4,#+1024
+   \       0x50   0x....'....        ADR.W    R0,App_TaskUserIF
+   \       0x54   0x....'....        BL       OSTaskCreateExt
+   \       0x58   0xF88D 0x0014      STRB     R0,[SP, #+20]
+   \       0x5C   0xF10D 0x0214      ADD.W    R2,SP,#+20
+   \       0x60   0x....             ADR.N    R1,?_2
+   \       0x62   0x200C             MOVS     R0,#+12
+   \       0x64   0x....'....        BL       OSTaskNameSet
+   \       0x68   0x2003             MOVS     R0,#+3
+   \       0x6A   0x9004             STR      R0,[SP, #+16]
+   \       0x6C   0x2280             MOVS     R2,#+128
+   \       0x6E   0xF204 0x4304      ADDW     R3,R4,#+1028
+   \       0x72   0x2004             MOVS     R0,#+4
+   \       0x74   0x....'....        BL       ?Subroutine2
+   \                     ??CrossCallReturnLabel_14: (+1)
+   \       0x78   0x2304             MOVS     R3,#+4
+   \       0x7A   0xF504 0x62C0      ADD      R2,R4,#+1536
+   \       0x7E   0x....'....        ADR.W    R0,App_TaskKbd
+   \       0x82   0x....'....        BL       OSTaskCreateExt
+   \       0x86   0xF88D 0x0014      STRB     R0,[SP, #+20]
+   \       0x8A   0xAA05             ADD      R2,SP,#+20
+   \       0x8C   0x....             ADR.N    R1,?_3
+   \       0x8E   0x2004             MOVS     R0,#+4
+   \       0x90   0x....'....        BL       OSTaskNameSet
+    200          
+    201          	/* Task body, always written as an infinite loop.       */
+    202          	while (DEF_TRUE) {
+    203          		for (j = 0; j < 4; j++) {
+   \                     ??App_TaskStart_0: (+1)
+   \       0x94   0x2404             MOVS     R4,#+4
+    204          			for (i = 1; i <= 4; i++) {
+   \                     ??App_TaskStart_1: (+1)
+   \       0x96   0x2501             MOVS     R5,#+1
+    205          				BSP_LED_On(i); // LED ON
+   \                     ??App_TaskStart_2: (+1)
+   \       0x98   0xB2E8             UXTB     R0,R5
+   \       0x9A   0x....'....        BL       BSP_LED_On
+    206          				dly = (BSP_ADC_GetStatus(1) >> 4) + 2; // ADC 값을 받아와 Delay 크기 지정
+   \       0x9E   0x....'....        BL       ?Subroutine1
+    207          				OSTimeDlyHMSM(0, 0, 0, dly); // Delay만큼 다른 Task의 동작을 위해 자원 양보
+   \                     ??CrossCallReturnLabel_12: (+1)
+   \       0xA2   0x....'....        BL       ?Subroutine0
+    208          				BSP_LED_Off(i); // LED OFF
+   \                     ??CrossCallReturnLabel_6: (+1)
+   \       0xA6   0xB2E8             UXTB     R0,R5
+   \       0xA8   0x....'....        BL       BSP_LED_Off
+    209          				dly = (BSP_ADC_GetStatus(1) >> 4) + 2;
+   \       0xAC   0x....'....        BL       ?Subroutine1
+    210          				OSTimeDlyHMSM(0, 0, 0, dly);
+   \                     ??CrossCallReturnLabel_11: (+1)
+   \       0xB0   0x....'....        BL       ?Subroutine0
+    211          			}
+   \                     ??CrossCallReturnLabel_5: (+1)
+   \       0xB4   0x1C6D             ADDS     R5,R5,#+1
+   \       0xB6   0x2D04             CMP      R5,#+4
+   \       0xB8   0xD9EE             BLS.N    ??App_TaskStart_2
+    212          
+    213          			for (i = 3; i >= 2; i--) {
+   \       0xBA   0x2503             MOVS     R5,#+3
+    214          				BSP_LED_On(i);
+   \                     ??App_TaskStart_3: (+1)
+   \       0xBC   0xB2E8             UXTB     R0,R5
+   \       0xBE   0x....'....        BL       BSP_LED_On
+    215          				dly = (BSP_ADC_GetStatus(1) >> 4) + 2;
+   \       0xC2   0x....'....        BL       ?Subroutine1
+    216          				OSTimeDlyHMSM(0, 0, 0, dly);
+   \                     ??CrossCallReturnLabel_10: (+1)
+   \       0xC6   0x....'....        BL       ?Subroutine0
+    217          				BSP_LED_Off(i);
+   \                     ??CrossCallReturnLabel_4: (+1)
+   \       0xCA   0xB2E8             UXTB     R0,R5
+   \       0xCC   0x....'....        BL       BSP_LED_Off
+    218          				dly = (BSP_ADC_GetStatus(1) >> 4) + 2;
+   \       0xD0   0x....'....        BL       ?Subroutine1
+    219          				OSTimeDlyHMSM(0, 0, 0, dly);
+   \                     ??CrossCallReturnLabel_9: (+1)
+   \       0xD4   0x....'....        BL       ?Subroutine0
+    220          			}
+   \                     ??CrossCallReturnLabel_3: (+1)
+   \       0xD8   0x1E6D             SUBS     R5,R5,#+1
+   \       0xDA   0x2D01             CMP      R5,#+1
+   \       0xDC   0xD8EE             BHI.N    ??App_TaskStart_3
+    221          		}
+   \       0xDE   0x1E64             SUBS     R4,R4,#+1
+   \       0xE0   0xD1D9             BNE.N    ??App_TaskStart_1
+    222          
+    223          		for (i = 0; i < 4; i++) {
+   \       0xE2   0x2404             MOVS     R4,#+4
+    224          			BSP_LED_On(0);
+   \                     ??App_TaskStart_4: (+1)
+   \       0xE4   0x2000             MOVS     R0,#+0
+   \       0xE6   0x....'....        BL       BSP_LED_On
+    225          			dly = (BSP_ADC_GetStatus(1) >> 4) + 2;
+   \       0xEA   0x....'....        BL       ?Subroutine1
+    226          			OSTimeDlyHMSM(0, 0, 0, dly * 3);
+   \                     ??CrossCallReturnLabel_8: (+1)
+   \       0xEE   0x0903             LSRS     R3,R0,#+4
+   \       0xF0   0x1C9B             ADDS     R3,R3,#+2
+   \       0xF2   0xEB03 0x0343      ADD      R3,R3,R3, LSL #+1
+   \       0xF6   0xB29B             UXTH     R3,R3
+   \       0xF8   0x....'....        BL       ??Subroutine0_1
+    227          			BSP_LED_Off(0);
+   \                     ??CrossCallReturnLabel_1: (+1)
+   \       0xFC   0x2000             MOVS     R0,#+0
+   \       0xFE   0x....'....        BL       BSP_LED_Off
+    228          			dly = (BSP_ADC_GetStatus(1) >> 4) + 2;
+   \      0x102   0x....'....        BL       ?Subroutine1
+    229          			OSTimeDlyHMSM(0, 0, 0, dly * 3);
+   \                     ??CrossCallReturnLabel_7: (+1)
+   \      0x106   0x0900             LSRS     R0,R0,#+4
+   \      0x108   0x1C80             ADDS     R0,R0,#+2
+   \      0x10A   0xEB00 0x0040      ADD      R0,R0,R0, LSL #+1
+   \      0x10E   0x....'....        BL       ??Subroutine0_0
+    230          		}
+   \                     ??CrossCallReturnLabel_2: (+1)
+   \      0x112   0x1E64             SUBS     R4,R4,#+1
+   \      0x114   0xD1E6             BNE.N    ??App_TaskStart_4
+   \      0x116   0xE7BD             B.N      ??App_TaskStart_0
+    231          	}
+    232          }
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine1: (+1)
+   \        0x0   0x2001             MOVS     R0,#+1
+   \        0x2   0x....'....        B.W      BSP_ADC_GetStatus
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine0: (+1)
+   \        0x0   0x0900             LSRS     R0,R0,#+4
+   \        0x2   0x1C80             ADDS     R0,R0,#+2
+   \                     ??Subroutine0_0: (+1)
+   \        0x4   0xB283             UXTH     R3,R0
+   \                     ??Subroutine0_1: (+1)
+   \        0x6   0x2200             MOVS     R2,#+0
+   \        0x8   0x2100             MOVS     R1,#+0
+   \        0xA   0x2000             MOVS     R0,#+0
+   \        0xC   0x....'....        B.W      OSTimeDlyHMSM
+    233          
+    234          
+    235          
+    236          /*
+    237           *********************************************************************************************************
+    238           *                                             App_EventCreate()
+    239           *
+    240           * Description : Create the application events.
+    241           *
+    242           * Argument(s) : none.
+    243           *
+    244           * Return(s)   : none.
+    245           *
+    246           * Caller(s)   : App_TaskStart().
+    247           *
+    248           * Note(s)     : none.
+    249           *********************************************************************************************************
+    250           */
+    251          
+    252          static void  App_EventCreate(void)
+    253          {
+    254          #if (OS_EVENT_NAME_SIZE > 12)
+    255          	CPU_INT08U os_err;
+    256          #endif
+    257          
+    258          	/* Create MBOX for communication between Kbd and UserIF.*/
+    259          	/* Mail Box 생성                                         */
+    260          	/* 포인터 크기의 변수를 Task나 Interrupt Service Routine   */
+    261          	/* 에서 다른 Task 전달할 때 사용함                         */
+    262          	App_UserIFMbox = OSMboxCreate((void*)0);
+    263          #if (OS_EVENT_NAME_SIZE > 12)
+    264          	OSEventNameSet(App_UserIFMbox, "User IF Mbox", &os_err);
+    265          #endif
+    266          }
+    267          
+    268          
+    269          /*
+    270           *********************************************************************************************************
+    271           *                                            App_TaskCreate()
+    272           *
+    273           * Description : Create the application tasks.
+    274           *
+    275           * Argument(s) : none.
+    276           *
+    277           * Return(s)   : none.
+    278           *
+    279           * Caller(s)   : App_TaskStart().
+    280           *
+    281           * Note(s)     : none.
+    282           *********************************************************************************************************
+    283           */
+    284          
+    285          static void  App_TaskCreate(void)
+    286          {
+    287          	CPU_INT08U os_err;
+    288          
+    289          	// LCD를 갱신시키는 Task 생성
+    290          	os_err = OSTaskCreateExt((void (*)(void *))App_TaskUserIF,
+    291          				 (void* )0,
+    292          				 (OS_STK* )&App_TaskUserIFStk[APP_TASK_USER_IF_STK_SIZE - 1],
+    293          				 (INT8U           )APP_TASK_USER_IF_PRIO,
+    294          				 (INT16U          )APP_TASK_USER_IF_PRIO,
+    295          				 (OS_STK* )&App_TaskUserIFStk[0],
+    296          				 (INT32U          )APP_TASK_USER_IF_STK_SIZE,
+    297          				 (void* )0,
+    298          				 (INT16U          )(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+    299          
+    300          #if (OS_TASK_NAME_SIZE >= 9)
+    301          	OSTaskNameSet(APP_TASK_USER_IF_PRIO, "User I/F", &os_err);
+    302          #endif
+    303          	// Keyboard 입력을 받는 Task 생성
+    304          	os_err = OSTaskCreateExt((void (*)(void *))App_TaskKbd,
+    305          				 (void* )0,
+    306          				 (OS_STK* )&App_TaskKbdStk[APP_TASK_KBD_STK_SIZE - 1],
+    307          				 (INT8U           )APP_TASK_KBD_PRIO,
+    308          				 (INT16U          )APP_TASK_KBD_PRIO,
+    309          				 (OS_STK* )&App_TaskKbdStk[0],
+    310          				 (INT32U          )APP_TASK_KBD_STK_SIZE,
+    311          				 (void* )0,
+    312          				 (INT16U          )(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+    313          #if (OS_TASK_NAME_SIZE >= 9)
+    314          	OSTaskNameSet(APP_TASK_KBD_PRIO, "Keyboard", &os_err);
+    315          #endif
+    316          }
+    317          
+    318          
+    319          /*
+    320           *********************************************************************************************************
+    321           *                                            App_TaskKbd()
+    322           *
+    323           * Description : Monitor the state of the push buttons and passes messages to AppTaskUserIF()
+    324           *
+    325           * Argument(s) : p_arg       Argument passed to 'App_TaskKbd()' by 'OSTaskCreate()'.
+    326           *
+    327           * Return(s)   : none.
+    328           *
+    329           * Caller(s)   : This is a task.
+    330           *
+    331           * Note(s)     : none.
+    332           *********************************************************************************************************
+    333           */
+    334          
+    335          // Keyboard 입력을 받는 Task
+
+   \                                 In section .text, align 4, keep-with-next
+    336          static void  App_TaskKbd(void *p_arg)
+    337          {
+   \                     App_TaskKbd: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+    338          	CPU_BOOLEAN b1_prev;
+    339          	CPU_BOOLEAN b1;
+    340          	CPU_INT08U key;
+    341          
+    342          
+    343          	(void)p_arg;
+    344          
+    345          	b1_prev = DEF_FALSE;
+   \        0x2   0x2400             MOVS     R4,#+0
+    346          	key = 1;
+   \        0x4   0x2501             MOVS     R5,#+1
+   \        0x6   0x....             LDR.N    R6,??DataTable8_1
+    347          
+    348          	while (DEF_TRUE) {
+    349          		b1 = BSP_PB_GetStatus(BSP_PB_ID_KEY);
+   \                     ??App_TaskKbd_0: (+1)
+   \        0x8   0x2001             MOVS     R0,#+1
+   \        0xA   0x....'....        BL       BSP_PB_GetStatus
+    350          
+    351          		if ((b1 == DEF_TRUE) && (b1_prev == DEF_FALSE)) {
+   \        0xE   0x2801             CMP      R0,#+1
+   \       0x10   0xBF08             IT       EQ
+   \       0x12   0x2C00             CMPEQ    R4,#+0
+   \       0x14   0x4607             MOV      R7,R0
+   \       0x16   0xD108             BNE.N    ??App_TaskKbd_1
+    352          			if (key == 2) {
+   \       0x18   0xB2E8             UXTB     R0,R5
+   \       0x1A   0x2802             CMP      R0,#+2
+   \       0x1C   0xBF14             ITE      NE
+   \       0x1E   0x1C6D             ADDNE    R5,R5,#+1
+   \       0x20   0x2501             MOVEQ    R5,#+1
+    353          				key = 1;
+    354          			} else {
+    355          				key++;
+    356          			}
+    357          			// MailBox에 Task에서 입력받은 값 Key를 전달
+    358          			OSMboxPost(App_UserIFMbox, (void*)key);
+   \       0x22   0x6830             LDR      R0,[R6, #+0]
+   \       0x24   0xB2E9             UXTB     R1,R5
+   \       0x26   0x....'....        BL       OSMboxPost
+    359          		}
+    360          
+    361          		b1_prev = b1;
+    362          
+    363          		OSTimeDlyHMSM(0, 0, 0, 20);
+   \                     ??App_TaskKbd_1: (+1)
+   \       0x2A   0x2314             MOVS     R3,#+20
+   \       0x2C   0x....'....        BL       ??Subroutine0_1
+    364          	}
+   \                     ??CrossCallReturnLabel_0: (+1)
+   \       0x30   0x463C             MOV      R4,R7
+   \       0x32   0xE7E9             B.N      ??App_TaskKbd_0
+    365          }
+    366          
+    367          
+    368          /*
+    369           *********************************************************************************************************
+    370           *                                            App_TaskUserIF()
+    371           *
+    372           * Description : Updates LCD.
+    373           *
+    374           * Argument(s) : p_arg       Argument passed to 'App_TaskUserIF()' by 'OSTaskCreate()'.
+    375           *
+    376           * Return(s)   : none.
+    377           *
+    378           * Caller(s)   : This is a task.
+    379           *
+    380           * Note(s)     : none.
+    381           *********************************************************************************************************
+    382           */
+    383          
+    384          // LCD 갱신을 위한 Task
+
+   \                                 In section .text, align 4, keep-with-next
+    385          static void  App_TaskUserIF(void *p_arg)
+    386          {
+   \                     App_TaskUserIF: (+1)
+   \        0x0   0xB51C             PUSH     {R2-R4,LR}
+    387          	CPU_INT08U  *msg;
+    388          	CPU_INT08U err;
+    389          	CPU_INT32U nstate;
+    390          	CPU_INT32U pstate;
+    391          
+    392          
+    393          	(void)p_arg;
+    394          
+    395          
+    396          	App_DispScr_SignOn();
+    397          	OSTimeDlyHMSM(0, 0, 1, 0);
+   \        0x2   0x2300             MOVS     R3,#+0
+   \        0x4   0x2201             MOVS     R2,#+1
+   \        0x6   0x2100             MOVS     R1,#+0
+   \        0x8   0x2000             MOVS     R0,#+0
+   \        0xA   0x....'....        BL       OSTimeDlyHMSM
+    398          	nstate = 1;
+    399          	pstate = 1;
+   \        0xE   0x....             LDR.N    R4,??DataTable8_1
+    400          
+    401          
+    402          	while (DEF_TRUE) {
+    403          		// 다른 Task에서 Mailbox에 전달한 저장된 값을 받음
+    404          		msg = (CPU_INT08U*)(OSMboxPend(App_UserIFMbox, OS_TICKS_PER_SEC / 10, &err));
+   \                     ??App_TaskUserIF_0: (+1)
+   \       0x10   0x6820             LDR      R0,[R4, #+0]
+   \       0x12   0x466A             MOV      R2,SP
+   \       0x14   0x2164             MOVS     R1,#+100
+   \       0x16   0x....'....        BL       OSMboxPend
+    405          		if (err == OS_NO_ERR) {
+   \       0x1A   0xE7F9             B.N      ??App_TaskUserIF_0
+    406          			nstate = (CPU_INT32U)msg;
+    407          		}
+    408          
+    409          		if (nstate != pstate) {
+    410          			pstate = nstate;
+    411          		}
+    412          
+    413          		switch (nstate) {
+    414          		case 2:
+    415          			App_DispScr_TaskNames();
+    416          			break;
+    417          
+    418          		case 1:
+    419          		default:
+    420          			App_DispScr_SignOn();
+    421          			break;
+    422          		}
+    423          	}
+    424          }
+    425          
+    426          
+    427          /*
+    428           *********************************************************************************************************
+    429           *                                          App_DispScr_SignOn()
+    430           *
+    431           * Description : Display uC/OS-II system information on the LCD.
+    432           *
+    433           * Argument(s) : none.
+    434           *
+    435           * Return(s)   : none.
+    436           *
+    437           * Caller(s)   : App_TaskUserIF().
+    438           *
+    439           * Note(s)     : none.
+    440           *********************************************************************************************************
+    441           */
+    442          
+    443          static void  App_DispScr_SignOn(void)
+    444          {
+    445          }
+    446          
+    447          
+    448          
+    449          /*
+    450           *********************************************************************************************************
+    451           *                                          App_DispScr_SignOn()
+    452           *
+    453           * Description : Display uC/OS-II system information on the LCD.
+    454           *
+    455           * Argument(s) : none.
+    456           *
+    457           * Return(s)   : none.
+    458           *
+    459           * Caller(s)   : App_TaskUserIF().
+    460           *
+    461           * Note(s)     : none.
+    462           *********************************************************************************************************
+    463           */
+    464          
+    465          static void  App_DispScr_TaskNames(void)
+    466          {
+    467          }
+    468          
+    469          
+    470          /*
+    471           *********************************************************************************************************
+    472           *                                             App_InitProbe()
+    473           *
+    474           * Description : Initialize uC/Probe target code.
+    475           *
+    476           * Argument(s) : none.
+    477           *
+    478           * Return(s)   : none.
+    479           *
+    480           * Caller(s)   : App_TaskStart().
+    481           *
+    482           * Note(s)     : none.
+    483           *********************************************************************************************************
+    484           */
+    485          
+    486          #if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+    487          	(APP_OS_PROBE_EN == DEF_ENABLED))
+    488          static void  App_InitProbe(void)
+    489          {
+    490          #if (APP_OS_PROBE_EN == DEF_ENABLED)
+    491          	(void)App_ProbeCounts;
+    492          	(void)App_ProbeB1;
+    493          
+    494          
+    495          #if ((APP_PROBE_COM_EN == DEF_ENABLED) && \
+    496          	(PROBE_COM_STAT_EN == DEF_ENABLED))
+    497          	(void)App_ProbeComRxPktSpd;
+    498          	(void)App_ProbeComTxPktSpd;
+    499          	(void)App_ProbeComTxSymSpd;
+    500          	(void)App_ProbeComTxSymByteSpd;
+    501          #endif
+    502          
+    503          	OSProbe_Init();
+    504          	OSProbe_SetCallback(App_ProbeCallback);
+    505          	OSProbe_SetDelay(250);
+    506          #endif
+    507          
+    508          #if (APP_PROBE_COM_EN == DEF_ENABLED)
+    509          	ProbeCom_Init();                                        /* Initialize the uC/Probe communications module.       */
+    510          #endif
+    511          }
+    512          #endif
+    513          
+    514          
+    515          /*
+    516           *********************************************************************************************************
+    517           *                                         AppProbeCallback()
+    518           *
+    519           * Description : uC/Probe OS plugin callback.
+    520           *
+    521           * Argument(s) : none.
+    522           *
+    523           * Return(s)   : none.
+    524           *
+    525           * Caller(s)   : uC/Probe OS plugin task.
+    526           *
+    527           * Note(s)     : none.
+    528           *********************************************************************************************************
+    529           */
+    530          
+    531          #if (APP_OS_PROBE_EN == DEF_ENABLED)
+
+   \                                 In section .text, align 4, keep-with-next
+    532          static void  App_ProbeCallback(void)
+    533          {
+   \                     App_ProbeCallback: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    534          #if ((APP_PROBE_COM_EN == DEF_ENABLED) && \
+    535          	(PROBE_COM_STAT_EN == DEF_ENABLED))
+    536          	CPU_INT32U ctr_curr;
+    537          	CPU_INT32U rxpkt_curr;
+    538          	CPU_INT32U txpkt_curr;
+    539          	CPU_INT32U sym_curr;
+    540          	CPU_INT32U symbyte_curr;
+    541          #endif
+    542          
+    543          
+    544          
+    545          	App_ProbeCounts++;
+   \        0x2   0x....             LDR.N    R4,??DataTable8_2
+   \        0x4   0x6961             LDR      R1,[R4, #+20]
+   \        0x6   0x1C49             ADDS     R1,R1,#+1
+   \        0x8   0x6161             STR      R1,[R4, #+20]
+    546          
+    547          	App_ProbeB1 = BSP_PB_GetStatus(1);
+   \        0xA   0x2001             MOVS     R0,#+1
+   \        0xC   0x....'....        BL       BSP_PB_GetStatus
+    548          
+    549          
+    550          
+    551          
+    552          #if ((APP_PROBE_COM_EN == DEF_ENABLED) && \
+    553          	(PROBE_COM_STAT_EN == DEF_ENABLED))
+    554          	ctr_curr = OSTime;
+   \       0x10   0x....             LDR.N    R1,??DataTable8_3
+   \       0x12   0x6808             LDR      R0,[R1, #+0]
+    555          	rxpkt_curr = ProbeCom_RxPktCtr;
+    556          	txpkt_curr = ProbeCom_TxPktCtr;
+    557          	sym_curr = ProbeCom_TxSymCtr;
+    558          	symbyte_curr = ProbeCom_TxSymByteCtr;
+    559          
+    560          	if ((ctr_curr - App_ProbeComCtrLast) >= OS_TICKS_PER_SEC) {
+   \       0x14   0x6922             LDR      R2,[R4, #+16]
+   \       0x16   0x1A82             SUBS     R2,R0,R2
+   \       0x18   0xF5B2 0x7F7A      CMP      R2,#+1000
+   \       0x1C   0xD30C             BCC.N    ??App_ProbeCallback_0
+    561          		App_ProbeComRxPktSpd = ((CPU_FP32)(rxpkt_curr - App_ProbeComRxPktLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    562          		App_ProbeComTxPktSpd = ((CPU_FP32)(txpkt_curr - App_ProbeComTxPktLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    563          		App_ProbeComTxSymSpd = ((CPU_FP32)(sym_curr - App_ProbeComTxSymLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    564          		App_ProbeComTxSymByteSpd = ((CPU_FP32)(symbyte_curr - App_ProbeComTxSymByteLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    565          
+    566          		App_ProbeComCtrLast = ctr_curr;
+   \       0x1E   0x6120             STR      R0,[R4, #+16]
+    567          		App_ProbeComRxPktLast = rxpkt_curr;
+    568          		App_ProbeComTxPktLast = txpkt_curr;
+   \       0x20   0x....             LDR.N    R2,??DataTable8_4
+   \       0x22   0x....             LDR.N    R0,??DataTable8_5
+   \       0x24   0x6801             LDR      R1,[R0, #+0]
+    569          		App_ProbeComTxSymLast = sym_curr;
+   \       0x26   0x....             LDR.N    R0,??DataTable8_6
+   \       0x28   0x6021             STR      R1,[R4, #+0]
+   \       0x2A   0x6813             LDR      R3,[R2, #+0]
+    570          		App_ProbeComTxSymByteLast = symbyte_curr;
+   \       0x2C   0x....             LDR.N    R2,??DataTable8_7
+   \       0x2E   0x6063             STR      R3,[R4, #+4]
+   \       0x30   0x6801             LDR      R1,[R0, #+0]
+   \       0x32   0x60A1             STR      R1,[R4, #+8]
+   \       0x34   0x6810             LDR      R0,[R2, #+0]
+   \       0x36   0x60E0             STR      R0,[R4, #+12]
+    571          	}
+    572          #endif
+    573          }
+   \                     ??App_ProbeCallback_0: (+1)
+   \       0x38   0xBD10             POP      {R4,PC}          ;; return
+    574          #endif
+    575          
+    576          
+    577          /*
+    578           *********************************************************************************************************
+    579           *                                      App_FormatDec()
+    580           *
+    581           * Description : Convert a decimal value to ASCII (without leading zeros).
+    582           *
+    583           * Argument(s) : pstr            Pointer to the destination ASCII string.
+    584           *
+    585           *               value           Value to convert (assumes an unsigned value).
+    586           *
+    587           *               digits          The desired number of digits.
+    588           *
+    589           * Return(s)   : none.
+    590           *
+    591           * Caller(s)   : various.
+    592           *
+    593           * Note(s)     : none.
+    594           *********************************************************************************************************
+    595           */
+    596          
+    597          
+    598          /*
+    599           *********************************************************************************************************
+    600           *********************************************************************************************************
+    601           *                                          uC/OS-II APP HOOKS
+    602           *********************************************************************************************************
+    603           *********************************************************************************************************
+    604           */
+    605          
+    606          #if (OS_APP_HOOKS_EN > 0)
+    607          /*
+    608           *********************************************************************************************************
+    609           *                                      TASK CREATION HOOK (APPLICATION)
+    610           *
+    611           * Description : This function is cal when a task is created.
+    612           *
+    613           * Argument(s) : ptcb   is a pointer to the task control block of the task being created.
+    614           *
+    615           * Note(s)     : (1) Interrupts are disabled during this call.
+    616           *********************************************************************************************************
+    617           */
+    618          
+
+   \                                 In section .text, align 2, keep-with-next
+    619          void  App_TaskCreateHook(OS_TCB *ptcb)
+    620          {
+    621          #if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
+    622          	(OS_PROBE_HOOKS_EN == DEF_ENABLED))
+    623          	OSProbe_TaskCreateHook(ptcb);
+   \                     App_TaskCreateHook: (+1)
+   \        0x0   0x....'....        B.W      OSProbe_TaskCreateHook
+    624          #endif
+    625          }
+    626          
+    627          /*
+    628           *********************************************************************************************************
+    629           *                                    TASK DELETION HOOK (APPLICATION)
+    630           *
+    631           * Description : This function is called when a task is deleted.
+    632           *
+    633           * Argument(s) : ptcb   is a pointer to the task control block of the task being deleted.
+    634           *
+    635           * Note(s)     : (1) Interrupts are disabled during this call.
+    636           *********************************************************************************************************
+    637           */
+    638          
+
+   \                                 In section .text, align 2, keep-with-next
+    639          void  App_TaskDelHook(OS_TCB *ptcb)
+    640          {
+    641          	(void)ptcb;
+    642          }
+   \                     App_TaskDelHook: (+1)
+   \        0x0   0x4770             BX       LR               ;; return
+    643          
+    644          /*
+    645           *********************************************************************************************************
+    646           *                                      IDLE TASK HOOK (APPLICATION)
+    647           *
+    648           * Description : This function is called by OSTaskIdleHook(), which is called by the idle task.  This hook
+    649           *               has been added to allow you to do such things as STOP the CPU to conserve power.
+    650           *
+    651           * Argument(s) : none.
+    652           *
+    653           * Note(s)     : (1) Interrupts are enabled during this call.
+    654           *********************************************************************************************************
+    655           */
+    656          
+    657          #if OS_VERSION >= 251
+
+   \                                 In section .text, align 2, keep-with-next
+    658          void  App_TaskIdleHook(void)
+    659          {
+    660          }
+   \                     App_TaskIdleHook: (+1)
+   \        0x0   0x4770             BX       LR               ;; return
+    661          #endif
+    662          
+    663          /*
+    664           *********************************************************************************************************
+    665           *                                        STATISTIC TASK HOOK (APPLICATION)
+    666           *
+    667           * Description : This function is called by OSTaskStatHook(), which is called every second by uC/OS-II's
+    668           *               statistics task.  This allows your application to add functionality to the statistics task.
+    669           *
+    670           * Argument(s) : none.
+    671           *********************************************************************************************************
+    672           */
+    673          
+
+   \                                 In section .text, align 2, keep-with-next
+    674          void  App_TaskStatHook(void)
+    675          {
+    676          }
+   \                     App_TaskStatHook: (+1)
+   \        0x0   0x4770             BX       LR               ;; return
+    677          
+    678          /*
+    679           *********************************************************************************************************
+    680           *                                        TASK SWITCH HOOK (APPLICATION)
+    681           *
+    682           * Description : This function is called when a task switch is performed.  This allows you to perform other
+    683           *               operations during a context switch.
+    684           *
+    685           * Argument(s) : none.
+    686           *
+    687           * Note(s)     : (1) Interrupts are disabled during this call.
+    688           *
+    689           *               (2) It is assumed that the global pointer 'OSTCBHighRdy' points to the TCB of the task that
+    690           *                   will be 'switched in' (i.e. the highest priority task) and, 'OSTCBCur' points to the
+    691           *                  task being switched out (i.e. the preempted task).
+    692           *********************************************************************************************************
+    693           */
+    694          
+    695          #if OS_TASK_SW_HOOK_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
+    696          void  App_TaskSwHook(void)
+    697          {
+    698          #if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
+    699          	(OS_PROBE_HOOKS_EN == DEF_ENABLED))
+    700          	OSProbe_TaskSwHook();
+   \                     App_TaskSwHook: (+1)
+   \        0x0   0x....'....        B.W      OSProbe_TaskSwHook
+    701          #endif
+    702          }
+    703          #endif
+    704          
+    705          /*
+    706           *********************************************************************************************************
+    707           *                                     OS_TCBInit() HOOK (APPLICATION)
+    708           *
+    709           * Description : This function is called by OSTCBInitHook(), which is called by OS_TCBInit() after setting
+    710           *               up most of the TCB.
+    711           *
+    712           * Argument(s) : ptcb    is a pointer to the TCB of the task being created.
+    713           *
+    714           * Note(s)     : (1) Interrupts may or may not be ENABLED during this call.
+    715           *********************************************************************************************************
+    716           */
+    717          
+    718          #if OS_VERSION >= 204
+
+   \                                 In section .text, align 2, keep-with-next
+    719          void  App_TCBInitHook(OS_TCB *ptcb)
+    720          {
+    721          	(void)ptcb;
+    722          }
+   \                     App_TCBInitHook: (+1)
+   \        0x0   0x4770             BX       LR               ;; return
+    723          #endif
+    724          
+    725          /*
+    726           *********************************************************************************************************
+    727           *                                        TICK HOOK (APPLICATION)
+    728           *
+    729           * Description : This function is called every tick.
+    730           *
+    731           * Argument(s) : none.
+    732           *
+    733           * Note(s)     : (1) Interrupts may or may not be ENABLED during this call.
+    734           *********************************************************************************************************
+    735           */
+    736          
+    737          #if OS_TIME_TICK_HOOK_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
+    738          void  App_TimeTickHook(void)
+    739          {
+    740          #if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
+    741          	(OS_PROBE_HOOKS_EN == DEF_ENABLED))
+    742          	OSProbe_TickHook();
+   \                     App_TimeTickHook: (+1)
+   \        0x0   0x....'....        B.W      OSProbe_TickHook
+    743          #endif
+    744          }
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine2: (+1)
+   \        0x0   0x2100             MOVS     R1,#+0
+   \        0x2   0x9202             STR      R2,[SP, #+8]
+   \        0x4   0x9301             STR      R3,[SP, #+4]
+   \        0x6   0x9000             STR      R0,[SP, #+0]
+   \        0x8   0x9103             STR      R1,[SP, #+12]
+   \        0xA   0x4770             BX       LR
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8:
+   \        0x0   0x....'....        DC32     App_TaskStartStk
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_1:
+   \        0x0   0x....'....        DC32     App_UserIFMbox
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_2:
+   \        0x0   0x....'....        DC32     App_ProbeComRxPktLast
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_3:
+   \        0x0   0x....'....        DC32     OSTime
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_4:
+   \        0x0   0x....'....        DC32     ProbeCom_TxPktCtr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_5:
+   \        0x0   0x....'....        DC32     ProbeCom_RxPktCtr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_6:
+   \        0x0   0x....'....        DC32     ProbeCom_TxSymCtr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_7:
+   \        0x0   0x....'....        DC32     ProbeCom_TxSymByteCtr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ?_0:
+   \        0x0   0x53 0x74          DC8 "Start Task"
+
+   \              0x61 0x72    
+
+   \              0x74 0x20    
+
+   \              0x54 0x61    
+
+   \              0x73 0x6B    
+
+   \              0x00
+   \        0xB                      DS8 1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ?_1:
+   \        0x0   0x55 0x73          DC8 "User IF Mbox"
+
+   \              0x65 0x72    
+
+   \              0x20 0x49    
+
+   \              0x46 0x20    
+
+   \              0x4D 0x62    
+
+   \              0x6F 0x78    
+
+   \              0x00
+   \        0xD                      DS8 3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ?_2:
+   \        0x0   0x55 0x73          DC8 "User I/F"
+
+   \              0x65 0x72    
+
+   \              0x20 0x49    
+
+   \              0x2F 0x46    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ?_3:
+   \        0x0   0x4B 0x65          DC8 "Keyboard"
+
+   \              0x79 0x62    
+
+   \              0x6F 0x61    
+
+   \              0x72 0x64    
+
+   \              0x00
+   \        0x9                      DS8 3
+    745          #endif
+    746          #endif
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   App_ProbeCallback
+         8   -> BSP_PB_GetStatus
+       0   App_TCBInitHook
+       0   App_TaskCreateHook
+         0   -> OSProbe_TaskCreateHook
+       0   App_TaskDelHook
+       0   App_TaskIdleHook
+      24   App_TaskKbd
+        24   -> BSP_PB_GetStatus
+        24   -> OSMboxPost
+        24   -> OSTimeDlyHMSM
+      40   App_TaskStart
+        40   -> BSP_ADC_GetStatus
+        40   -> BSP_Init
+        40   -> BSP_LED_Off
+        40   -> BSP_LED_On
+        40   -> OSEventNameSet
+        40   -> OSMboxCreate
+        40   -> OSProbe_Init
+        40   -> OSProbe_SetCallback
+        40   -> OSProbe_SetDelay
+        40   -> OSStatInit
+        40   -> OSTaskCreateExt
+        40   -> OSTaskNameSet
+        40   -> OSTimeDlyHMSM
+        40   -> OS_CPU_SysTickInit
+        40   -> ProbeCom_Init
+       0   App_TaskStatHook
+       0   App_TaskSwHook
+         0   -> OSProbe_TaskSwHook
+      16   App_TaskUserIF
+        16   -> OSMboxPend
+        16   -> OSTimeDlyHMSM
+       0   App_TimeTickHook
+         0   -> OSProbe_TickHook
+      32   main
+        32   -> BSP_IntDisAll
+        32   -> OSInit
+        32   -> OSStart
+        32   -> OSTaskCreateExt
+        32   -> OSTaskNameSet
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable8
+       4  ??DataTable8_1
+       4  ??DataTable8_2
+       4  ??DataTable8_3
+       4  ??DataTable8_4
+       4  ??DataTable8_5
+       4  ??DataTable8_6
+       4  ??DataTable8_7
+      16  ?Subroutine0
+       6  ?Subroutine1
+      12  ?Subroutine2
+      12  ?_0
+      16  ?_1
+      12  ?_2
+      12  ?_3
+       1  App_ProbeB1
+      58  App_ProbeCallback
+      24  App_ProbeComRxPktLast
+          App_ProbeComTxPktLast
+          App_ProbeComTxSymLast
+          App_ProbeComTxSymByteLast
+          App_ProbeComCtrLast
+          App_ProbeCounts
+       4  App_ProbeComRxPktSpd
+       4  App_ProbeComTxPktSpd
+       4  App_ProbeComTxSymByteSpd
+       4  App_ProbeComTxSymSpd
+       2  App_TCBInitHook
+       4  App_TaskCreateHook
+       2  App_TaskDelHook
+       2  App_TaskIdleHook
+      52  App_TaskKbd
+     280  App_TaskStart
+     512  App_TaskStartStk
+       2  App_TaskStatHook
+       4  App_TaskSwHook
+      28  App_TaskUserIF
+       4  App_TimeTickHook
+   1'540  App_UserIFMbox
+          App_TaskUserIFStk
+          App_TaskKbdStk
+      74  main
+
+ 
+ 2'093 bytes in section .bss
+   630 bytes in section .text
+ 
+   630 bytes of CODE memory
+ 2'093 bytes of DATA memory
+
+Errors: none
+Warnings: none

@@ -23,7 +23,7 @@
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>3875706111</Checksum>
+        <Checksum>3636990519</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -65,6 +65,15 @@
     <CallStackStripe>
         <ShowTiming>1</ShowTiming>
     </CallStackStripe>
+    <TermIOLog>
+        <LoggingEnabled>_ 0</LoggingEnabled>
+        <LogFile>_ ""</LogFile>
+    </TermIOLog>
+    <LogFile>
+        <LoggingEnabled>_ 0</LoggingEnabled>
+        <LogFile>_ ""</LogFile>
+        <Category>_ 0</Category>
+    </LogFile>
     <InterruptLog>
         <LogEnabled>0</LogEnabled>
         <GraphEnabled>0</GraphEnabled>
@@ -95,15 +104,6 @@
         <FreqHi>0</FreqHi>
         <MultiCoreRunAll>1</MultiCoreRunAll>
     </Simulator>
-    <TermIOLog>
-        <LoggingEnabled>_ 0</LoggingEnabled>
-        <LogFile>_ ""</LogFile>
-    </TermIOLog>
-    <LogFile>
-        <LoggingEnabled>_ 0</LoggingEnabled>
-        <LogFile>_ ""</LogFile>
-        <Category>_ 0</Category>
-    </LogFile>
     <DisassembleMode>
         <mode>0</mode>
     </DisassembleMode>
@@ -111,11 +111,10 @@
         <Count>0</Count>
     </Breakpoints2>
     <Aliases>
-        <A0>_ "C:\Users\19eslab1\Desktop\Micrium\Software\CPU\ST\STM32\src\stm32f10x_adc.c" "D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC\Micrium\Software\CPU\ST\STM32\src\stm32f10x_adc.c"</A0>
-        <A1>_ "C:\stm32f100\Micrium\Software\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_dbg.c" ""</A1>
-        <A2>_ "C:\stm32f100\Micrium\Software\uCOS-II\Source\os_task.c" ""</A2>
-        <A3>_ "C:\stm32f100\Micrium\Software\uCOS-II\Source\os_time.c" ""</A3>
-        <Count>4</Count>
+        <A0>_ "C:\stm32f100\Micrium\Software\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_dbg.c" ""</A0>
+        <A1>_ "C:\stm32f100\Micrium\Software\uCOS-II\Source\os_task.c" ""</A1>
+        <A2>_ "C:\stm32f100\Micrium\Software\uCOS-II\Source\os_time.c" ""</A2>
+        <Count>3</Count>
         <SuppressDialog>0</SuppressDialog>
     </Aliases>
 </settings>
