@@ -73504,7 +73504,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@752@F@matrix_print@i",
+    "ID": "c:matrix.c@774@F@matrix_print@i",
     "What": "Variable",
     "defdec": "Def",
     "display": "i",
@@ -73518,7 +73518,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@752@F@matrix_print@j",
+    "ID": "c:matrix.c@774@F@matrix_print@j",
     "What": "Variable",
     "defdec": "Dec",
     "display": "j",
@@ -73546,7 +73546,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@1031@F@matrix_print_part@j",
+    "ID": "c:matrix.c@1069@F@matrix_print_part@j",
     "What": "Variable",
     "defdec": "Def",
     "display": "j",
@@ -73560,7 +73560,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@1031@F@matrix_print_part@i",
+    "ID": "c:matrix.c@1069@F@matrix_print_part@i",
     "What": "Variable",
     "defdec": "Dec",
     "display": "i",
@@ -73588,7 +73588,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@1288@F@matrix_fill@i",
+    "ID": "c:matrix.c@1339@F@matrix_fill@i",
     "What": "Variable",
     "defdec": "Def",
     "display": "i",
@@ -73602,7 +73602,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@1288@F@matrix_fill@j",
+    "ID": "c:matrix.c@1339@F@matrix_fill@j",
     "What": "Variable",
     "defdec": "Dec",
     "display": "j",
@@ -73630,7 +73630,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@1569@F@matrix_callalloc@result",
+    "ID": "c:matrix.c@1634@F@matrix_callalloc@result",
     "What": "Variable",
     "defdec": "Def",
     "display": "result",
@@ -73644,7 +73644,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@1627@F@matrix_callalloc@i",
+    "ID": "c:matrix.c@1693@F@matrix_callalloc@i",
     "What": "Variable",
     "defdec": "Def",
     "display": "i",
@@ -73658,7 +73658,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@1627@F@matrix_callalloc@j",
+    "ID": "c:matrix.c@1693@F@matrix_callalloc@j",
     "What": "Variable",
     "defdec": "Dec",
     "display": "j",
@@ -73686,7 +73686,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@1921@F@matrix_alloc@j",
+    "ID": "c:matrix.c@2010@F@matrix_alloc@j",
     "What": "Variable",
     "defdec": "Def",
     "display": "j",
@@ -73700,7 +73700,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@1929@F@matrix_alloc@new_matrix",
+    "ID": "c:matrix.c@2019@F@matrix_alloc@new_matrix",
     "What": "Variable",
     "defdec": "Def",
     "display": "new_matrix",
@@ -73728,7 +73728,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@2411@F@matrix_copy@i",
+    "ID": "c:matrix.c@2518@F@matrix_copy@i",
     "What": "Variable",
     "defdec": "Def",
     "display": "i",
@@ -73742,7 +73742,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@2411@F@matrix_copy@j",
+    "ID": "c:matrix.c@2518@F@matrix_copy@j",
     "What": "Variable",
     "defdec": "Dec",
     "display": "j",
@@ -73770,7 +73770,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@2663@F@matrix_multiply@i",
+    "ID": "c:matrix.c@2783@F@matrix_multiply@i",
     "What": "Variable",
     "defdec": "Def",
     "display": "i",
@@ -73784,7 +73784,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@2663@F@matrix_multiply@j",
+    "ID": "c:matrix.c@2783@F@matrix_multiply@j",
     "What": "Variable",
     "defdec": "Dec",
     "display": "j",
@@ -73798,7 +73798,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@2663@F@matrix_multiply@k",
+    "ID": "c:matrix.c@2783@F@matrix_multiply@k",
     "What": "Variable",
     "defdec": "Dec",
     "display": "k",
@@ -73812,7 +73812,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@2663@F@matrix_multiply@sum",
+    "ID": "c:matrix.c@2783@F@matrix_multiply@sum",
     "What": "Variable",
     "defdec": "Dec",
     "display": "sum",
@@ -73826,7 +73826,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@2823@F@matrix_multiply@result",
+    "ID": "c:matrix.c@2948@F@matrix_multiply@result",
     "What": "Variable",
     "defdec": "Def",
     "display": "result",
@@ -73854,7 +73854,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@3275@F@matrix_pow@result",
+    "ID": "c:matrix.c@3422@F@matrix_pow@result",
     "What": "Variable",
     "defdec": "Def",
     "display": "result",
@@ -73868,7 +73868,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@3410@F@matrix_pow@i",
+    "ID": "c:matrix.c@3564@F@matrix_pow@i",
     "What": "Variable",
     "defdec": "Def",
     "display": "i",
@@ -73882,7 +73882,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@3410@F@matrix_pow@j",
+    "ID": "c:matrix.c@3564@F@matrix_pow@j",
     "What": "Variable",
     "defdec": "Dec",
     "display": "j",
@@ -73896,7 +73896,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@3410@F@matrix_pow@k",
+    "ID": "c:matrix.c@3564@F@matrix_pow@k",
     "What": "Variable",
     "defdec": "Dec",
     "display": "k",
@@ -73910,7 +73910,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@3410@F@matrix_pow@l",
+    "ID": "c:matrix.c@3564@F@matrix_pow@l",
     "What": "Variable",
     "defdec": "Dec",
     "display": "l",
@@ -73924,7 +73924,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@3410@F@matrix_pow@sum",
+    "ID": "c:matrix.c@3564@F@matrix_pow@sum",
     "What": "Variable",
     "defdec": "Dec",
     "display": "sum",
@@ -73938,7 +73938,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@3410@F@matrix_pow@count",
+    "ID": "c:matrix.c@3564@F@matrix_pow@count",
     "What": "Variable",
     "defdec": "Dec",
     "display": "count",
@@ -73952,7 +73952,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@3439@F@matrix_pow@temp",
+    "ID": "c:matrix.c@3595@F@matrix_pow@temp",
     "What": "Variable",
     "defdec": "Def",
     "display": "temp",
@@ -73966,7 +73966,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@3549@F@matrix_pow@result",
+    "ID": "c:matrix.c@3706@F@matrix_pow@result",
     "What": "Variable",
     "defdec": "Def",
     "display": "result",
@@ -73980,7 +73980,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@4362@F@matrix_pow@result_final",
+    "ID": "c:matrix.c@4558@F@matrix_pow@result_final",
     "What": "Variable",
     "defdec": "Def",
     "display": "result_final",
@@ -73994,7 +73994,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@4525@F@matrix_pow@temp",
+    "ID": "c:matrix.c@4730@F@matrix_pow@temp",
     "What": "Variable",
     "defdec": "Def",
     "display": "temp",
@@ -74008,7 +74008,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@4576@F@matrix_pow@result_final",
+    "ID": "c:matrix.c@4782@F@matrix_pow@result_final",
     "What": "Variable",
     "defdec": "Def",
     "display": "result_final",
@@ -74036,7 +74036,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@4850@F@matrix_free@j",
+    "ID": "c:matrix.c@5071@F@matrix_free@j",
     "What": "Variable",
     "defdec": "Def",
     "display": "j",
@@ -74064,7 +74064,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@5115@F@row_divide@j",
+    "ID": "c:matrix.c@5350@F@row_divide@j",
     "What": "Variable",
     "defdec": "Def",
     "display": "j",
@@ -74078,7 +74078,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@5126@F@row_divide@divisor",
+    "ID": "c:matrix.c@5362@F@row_divide@divisor",
     "What": "Variable",
     "defdec": "Def",
     "display": "divisor",
@@ -74092,7 +74092,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@5126@F@row_divide@result",
+    "ID": "c:matrix.c@5362@F@row_divide@result",
     "What": "Variable",
     "defdec": "Dec",
     "display": "result",
@@ -74120,7 +74120,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@5524@F@row_operation@j",
+    "ID": "c:matrix.c@5774@F@row_operation@j",
     "What": "Variable",
     "defdec": "Def",
     "display": "j",
@@ -74134,7 +74134,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@5535@F@row_operation@multiplier",
+    "ID": "c:matrix.c@5786@F@row_operation@multiplier",
     "What": "Variable",
     "defdec": "Def",
     "display": "multiplier",
@@ -74162,7 +74162,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@6034@F@matrix_row_reduce@pivot",
+    "ID": "c:matrix.c@6301@F@matrix_row_reduce@pivot",
     "What": "Variable",
     "defdec": "Def",
     "display": "pivot",
@@ -74176,7 +74176,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@6034@F@matrix_row_reduce@row_index",
+    "ID": "c:matrix.c@6301@F@matrix_row_reduce@row_index",
     "What": "Variable",
     "defdec": "Dec",
     "display": "row_index",
@@ -74190,7 +74190,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@6060@F@matrix_row_reduce@multiplier",
+    "ID": "c:matrix.c@6328@F@matrix_row_reduce@multiplier",
     "What": "Variable",
     "defdec": "Def",
     "display": "multiplier",
@@ -74218,7 +74218,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@6857@F@LU_decompose@pivot",
+    "ID": "c:matrix.c@7155@F@LU_decompose@pivot",
     "What": "Variable",
     "defdec": "Def",
     "display": "pivot",
@@ -74232,7 +74232,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@6857@F@LU_decompose@row_index",
+    "ID": "c:matrix.c@7155@F@LU_decompose@row_index",
     "What": "Variable",
     "defdec": "Dec",
     "display": "row_index",
@@ -74246,7 +74246,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@6883@F@LU_decompose@multiplier",
+    "ID": "c:matrix.c@7182@F@LU_decompose@multiplier",
     "What": "Variable",
     "defdec": "Def",
     "display": "multiplier",
@@ -74274,7 +74274,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@7447@F@matrix_subtract@i",
+    "ID": "c:matrix.c@7765@F@matrix_subtract@i",
     "What": "Variable",
     "defdec": "Def",
     "display": "i",
@@ -74288,7 +74288,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@7447@F@matrix_subtract@j",
+    "ID": "c:matrix.c@7765@F@matrix_subtract@j",
     "What": "Variable",
     "defdec": "Dec",
     "display": "j",
@@ -74316,7 +74316,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@7917@F@matrix_add@i",
+    "ID": "c:matrix.c@8254@F@matrix_add@i",
     "What": "Variable",
     "defdec": "Def",
     "display": "i",
@@ -74330,7 +74330,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@7917@F@matrix_add@j",
+    "ID": "c:matrix.c@8254@F@matrix_add@j",
     "What": "Variable",
     "defdec": "Dec",
     "display": "j",
@@ -74358,7 +74358,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@8360@F@matrix_invert@j",
+    "ID": "c:matrix.c@8714@F@matrix_invert@j",
     "What": "Variable",
     "defdec": "Def",
     "display": "j",
@@ -74372,7 +74372,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@8360@F@matrix_invert@k",
+    "ID": "c:matrix.c@8714@F@matrix_invert@k",
     "What": "Variable",
     "defdec": "Dec",
     "display": "k",
@@ -74386,7 +74386,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@8416@F@matrix_invert@temp_matrix",
+    "ID": "c:matrix.c@8772@F@matrix_invert@temp_matrix",
     "What": "Variable",
     "defdec": "Def",
     "display": "temp_matrix",
@@ -74428,7 +74428,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@9573@F@error_zeros@i",
+    "ID": "c:matrix.c@9976@F@error_zeros@i",
     "What": "Variable",
     "defdec": "Def",
     "display": "i",
@@ -74442,7 +74442,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@9573@F@error_zeros@j",
+    "ID": "c:matrix.c@9976@F@error_zeros@j",
     "What": "Variable",
     "defdec": "Dec",
     "display": "j",
@@ -74456,7 +74456,7 @@
     "scope": null
   },
   {
-    "ID": "c:matrix.c@9573@F@error_zeros@count",
+    "ID": "c:matrix.c@9976@F@error_zeros@count",
     "What": "Variable",
     "defdec": "Dec",
     "display": "count",
@@ -75484,7 +75484,7 @@
     "display": "_Matrix",
     "location": {
       "column": "8",
-      "line": "66",
+      "line": "65",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "members": [
@@ -75495,7 +75495,7 @@
         "display": "row_size",
         "location": {
           "column": "7",
-          "line": "69",
+          "line": "68",
           "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
         },
         "name": "row_size",
@@ -75509,7 +75509,7 @@
         "display": "col_size",
         "location": {
           "column": "7",
-          "line": "72",
+          "line": "71",
           "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
         },
         "name": "col_size",
@@ -75523,7 +75523,7 @@
         "display": "matrix_entry",
         "location": {
           "column": "11",
-          "line": "75",
+          "line": "74",
           "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
         },
         "name": "matrix_entry",
@@ -75542,7 +75542,7 @@
     "display": "struct _Matrix",
     "location": {
       "column": "24",
-      "line": "86",
+      "line": "85",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "Matrix",
@@ -75556,7 +75556,7 @@
     "display": "void matrix_print(Matrix *)",
     "location": {
       "column": "6",
-      "line": "94",
+      "line": "93",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_print",
@@ -75570,7 +75570,7 @@
     "display": "void matrix_print_part(Matrix *, int)",
     "location": {
       "column": "6",
-      "line": "103",
+      "line": "102",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_print_part",
@@ -75584,7 +75584,7 @@
     "display": "void matrix_fill(Matrix *)",
     "location": {
       "column": "6",
-      "line": "114",
+      "line": "113",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_fill",
@@ -75598,7 +75598,7 @@
     "display": "Matrix * matrix_callalloc(int)",
     "location": {
       "column": "10",
-      "line": "126",
+      "line": "125",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_callalloc",
@@ -75612,7 +75612,7 @@
     "display": "Matrix * matrix_alloc(int, int)",
     "location": {
       "column": "9",
-      "line": "137",
+      "line": "136",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_alloc",
@@ -75626,7 +75626,7 @@
     "display": "void matrix_copy(Matrix *, Matrix *)",
     "location": {
       "column": "6",
-      "line": "147",
+      "line": "146",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_copy",
@@ -75640,7 +75640,7 @@
     "display": "Matrix * matrix_multiply(const Matrix *, const Matrix *)",
     "location": {
       "column": "9",
-      "line": "157",
+      "line": "156",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_multiply",
@@ -75654,7 +75654,7 @@
     "display": "Matrix * matrix_pow(Matrix *, int)",
     "location": {
       "column": "10",
-      "line": "169",
+      "line": "168",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_pow",
@@ -75668,7 +75668,7 @@
     "display": "void matrix_free(Matrix *)",
     "location": {
       "column": "6",
-      "line": "176",
+      "line": "175",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_free",
@@ -75682,7 +75682,7 @@
     "display": "void row_divide(Matrix *, int)",
     "location": {
       "column": "6",
-      "line": "185",
+      "line": "184",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "row_divide",
@@ -75696,7 +75696,7 @@
     "display": "void row_operation(Matrix *, Matrix *, int, int)",
     "location": {
       "column": "6",
-      "line": "198",
+      "line": "197",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "row_operation",
@@ -75710,7 +75710,7 @@
     "display": "void matrix_row_reduce(Matrix *, int)",
     "location": {
       "column": "6",
-      "line": "208",
+      "line": "207",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_row_reduce",
@@ -75724,7 +75724,7 @@
     "display": "void LU_decompose(Matrix *, Matrix *)",
     "location": {
       "column": "6",
-      "line": "219",
+      "line": "218",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "LU_decompose",
@@ -75738,7 +75738,7 @@
     "display": "void matrix_subtract(Matrix *, Matrix *, Matrix *)",
     "location": {
       "column": "6",
-      "line": "229",
+      "line": "228",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_subtract",
@@ -75752,7 +75752,7 @@
     "display": "void matrix_add(Matrix *, Matrix *, Matrix *)",
     "location": {
       "column": "6",
-      "line": "239",
+      "line": "238",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_add",
@@ -75766,7 +75766,7 @@
     "display": "void matrix_invert(Matrix *)",
     "location": {
       "column": "6",
-      "line": "246",
+      "line": "245",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_invert",
@@ -75780,7 +75780,7 @@
     "display": "int matrix_equal_size(Matrix *, Matrix *)",
     "location": {
       "column": "5",
-      "line": "257",
+      "line": "256",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "matrix_equal_size",
@@ -75794,7 +75794,7 @@
     "display": "void error_zeros(Matrix *, int)",
     "location": {
       "column": "6",
-      "line": "266",
+      "line": "265",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "error_zeros",
@@ -75808,7 +75808,7 @@
     "display": "void terminate(char *)",
     "location": {
       "column": "6",
-      "line": "273",
+      "line": "272",
       "path": "C:\\Users\\shimjaeyeong\\H-TEC\\Micrium\\Software\\EvalBoards\\ST\\STM3210B-EVAL\\IAR\\OS-Probe\\matrix\\matrix.h"
     },
     "name": "terminate",

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         12/Dec/2020  20:53:25
+# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         12/Dec/2020  21:03:51
 # Copyright 1999-2020 IAR Systems AB.
 #
 #    Cpu mode                        
@@ -8,7 +8,7 @@
 #    Source file                  =
 #        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\matrix\matrix.c
 #    Command line                 =
-#        -f C:\Users\SHIMJA~1\AppData\Local\Temp\EW1F71.tmp
+#        -f C:\Users\SHIMJA~1\AppData\Local\Temp\EWA9B3.tmp
 #        (C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\matrix\matrix.c
 #        -lCN
 #        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
@@ -51,6 +51,8 @@
 #      __dlib_file_descriptor     =  0
 #      __dlib_full_locale_support =  0
 #      __dlib_version             =  6
+#      __iar_require _Printf      =  floats,widths
+#      __iar_require _Scanf       =  floats
 #      __size_limit               =  32768|ARM.EW.LINKER
 #
 ###############################################################################
@@ -76,59 +78,195 @@ C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-
      18          
      19          #include "matrix.h"
      20          
+
+   \                                 In section .text, align 2, keep-with-next
      21          void matrix_print (Matrix *matrix)
      22          {
+   \                     matrix_print: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0x4605             MOV      R5,R0
      23          	int i,j;
      24          	printf("\n");
+   \        0x6   0x....             ADR.N    R4,??DataTable8  ;; "\n"
+   \        0x8   0x4620             MOV      R0,R4
+   \        0xA   0x....'....        BL       printf
      25          	for(i = 0; i < matrix->row_size;i++)
+   \        0xE   0x2600             MOVS     R6,#+0
+   \       0x10   0x....'....        ADR.W    R8,?_4
+   \       0x14   0x....'....        ADR.W    R9,??DataTable8_1  ;; 0x09, 0x09, 0x00, 0x00
+   \       0x18   0xE00B             B.N      ??matrix_print_0
      26          	{
      27          		printf("\t\t");
      28          		for(j = 0; j < matrix->col_size;j++)
      29          		{
      30          			printf("%9.2f", matrix->matrix_entry[i][j]);
+   \                     ??matrix_print_1: (+1)
+   \       0x1A   0x....'....        BL       ?Subroutine1
      31          		}
+   \                     ??CrossCallReturnLabel_0: (+1)
+   \       0x1E   0x....'....        BL       ?Subroutine2
+   \                     ??CrossCallReturnLabel_3: (+1)
+   \       0x22   0x1C7F             ADDS     R7,R7,#+1
+   \                     ??matrix_print_2: (+1)
+   \       0x24   0x6868             LDR      R0,[R5, #+4]
+   \       0x26   0x4287             CMP      R7,R0
+   \       0x28   0xDBF7             BLT.N    ??matrix_print_1
      32             	printf("\n");
+   \       0x2A   0x4620             MOV      R0,R4
+   \       0x2C   0x....'....        BL       printf
+   \       0x30   0x1C76             ADDS     R6,R6,#+1
+   \                     ??matrix_print_0: (+1)
+   \       0x32   0x6828             LDR      R0,[R5, #+0]
+   \       0x34   0x4286             CMP      R6,R0
+   \       0x36   0xDA04             BGE.N    ??matrix_print_3
+   \       0x38   0x4648             MOV      R0,R9
+   \       0x3A   0x....'....        BL       printf
+   \       0x3E   0x2700             MOVS     R7,#+0
+   \       0x40   0xE7F0             B.N      ??matrix_print_2
      33          	}
      34          	printf("\n");
+   \                     ??matrix_print_3: (+1)
+   \       0x42   0x4620             MOV      R0,R4
+   \       0x44   0xE8BD 0x43F2      POP      {R1,R4-R9,LR}
+   \       0x48   0x....'....        B.W      printf
      35          }
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine2: (+1)
+   \        0x0   0x4602             MOV      R2,R0
+   \        0x2   0x460B             MOV      R3,R1
+   \        0x4   0x4640             MOV      R0,R8
+   \        0x6   0x....'....        B.W      printf
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine1: (+1)
+   \        0x0   0x68A8             LDR      R0,[R5, #+8]
+   \        0x2   0xF850 0x1026      LDR      R1,[R0, R6, LSL #+2]
+   \        0x6   0xF851 0x0027      LDR      R0,[R1, R7, LSL #+2]
+   \        0xA   0x....'....        B.W      __aeabi_f2d
      36          
+
+   \                                 In section .text, align 2, keep-with-next
      37          void matrix_print_part(Matrix *matrix, int start_index)
      38          {
+   \                     matrix_print_part: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0x4605             MOV      R5,R0
+   \        0x6   0x4689             MOV      R9,R1
      39              int j,i;
      40              for (i = 0; i < matrix->row_size; ++i)\
+   \        0x8   0x2600             MOVS     R6,#+0
+   \        0xA   0x....             ADR.N    R4,??DataTable8  ;; "\n"
+   \        0xC   0x....'....        ADR.W    R8,?_5
+   \       0x10   0xE00B             B.N      ??matrix_print_part_0
      41              {
      42                  for (j = start_index; j < matrix->col_size; ++j)
      43                  {
      44                      printf("\t\t%9.2f", matrix->matrix_entry[i][j]);
+   \                     ??matrix_print_part_1: (+1)
+   \       0x12   0x....'....        BL       ?Subroutine1
      45                  }
+   \                     ??CrossCallReturnLabel_1: (+1)
+   \       0x16   0x....'....        BL       ?Subroutine2
+   \                     ??CrossCallReturnLabel_2: (+1)
+   \       0x1A   0x1C7F             ADDS     R7,R7,#+1
+   \                     ??matrix_print_part_2: (+1)
+   \       0x1C   0x6868             LDR      R0,[R5, #+4]
+   \       0x1E   0x4287             CMP      R7,R0
+   \       0x20   0xDBF7             BLT.N    ??matrix_print_part_1
      46          	printf("\n");
+   \       0x22   0x4620             MOV      R0,R4
+   \       0x24   0x....'....        BL       printf
+   \       0x28   0x1C76             ADDS     R6,R6,#+1
+   \                     ??matrix_print_part_0: (+1)
+   \       0x2A   0x6828             LDR      R0,[R5, #+0]
+   \       0x2C   0x4286             CMP      R6,R0
+   \       0x2E   0xBFB8             IT       LT
+   \       0x30   0x464F             MOVLT    R7,R9
+   \       0x32   0xDBF3             BLT.N    ??matrix_print_part_2
      47              }
      48          }
+   \       0x34   0xE8BD 0x83F1      POP      {R0,R4-R9,PC}    ;; return
      49          
+
+   \                                 In section .text, align 2, keep-with-next
      50          void matrix_fill(Matrix *matrix)
      51          {
+   \                     matrix_fill: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x4604             MOV      R4,R0
      52          	int i,j;
      53          	printf("Enter the contents of the matrix:\n");
+   \        0x4   0x....             LDR.N    R0,??DataTable8_3
+   \        0x6   0x....'....        BL       printf
      54          	for(i=0; i < matrix->row_size; i++)
+   \        0xA   0x2500             MOVS     R5,#+0
+   \        0xC   0x....             ADR.N    R6,??DataTable8_2  ;; 0x25, 0x66, 0x00, 0x00
+   \        0xE   0xE00C             B.N      ??matrix_fill_0
      55          	{
      56          		for(j=0;j < matrix->col_size; j++)
      57          		{
      58          			scanf("%f",&matrix->matrix_entry[i][j]);
+   \                     ??matrix_fill_1: (+1)
+   \       0x10   0x68A0             LDR      R0,[R4, #+8]
+   \       0x12   0xF850 0x1025      LDR      R1,[R0, R5, LSL #+2]
+   \       0x16   0xEB01 0x0187      ADD      R1,R1,R7, LSL #+2
+   \       0x1A   0x4630             MOV      R0,R6
+   \       0x1C   0x....'....        BL       scanf
      59          		}
+   \       0x20   0x1C7F             ADDS     R7,R7,#+1
+   \                     ??matrix_fill_2: (+1)
+   \       0x22   0x6860             LDR      R0,[R4, #+4]
+   \       0x24   0x4287             CMP      R7,R0
+   \       0x26   0xDBF3             BLT.N    ??matrix_fill_1
+   \       0x28   0x1C6D             ADDS     R5,R5,#+1
+   \                     ??matrix_fill_0: (+1)
+   \       0x2A   0x6820             LDR      R0,[R4, #+0]
+   \       0x2C   0x4285             CMP      R5,R0
+   \       0x2E   0xBFB8             IT       LT
+   \       0x30   0x2700             MOVLT    R7,#+0
+   \       0x32   0xDBF6             BLT.N    ??matrix_fill_2
      60          	}
      61          }
+   \       0x34   0xBDF1             POP      {R0,R4-R7,PC}    ;; return
      62          
      63          /*Function to create an identity matrix	*/
+
+   \                                 In section .text, align 2, keep-with-next
      64          Matrix * matrix_callalloc(int matrix_size)
      65          {
+   \                     matrix_callalloc: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x4604             MOV      R4,R0
      66          	Matrix *result = matrix_alloc(matrix_size, matrix_size);
+   \        0x4   0x4621             MOV      R1,R4
+   \        0x6   0x....'....        BL       matrix_alloc
      67          	int i,j;
      68          	
      69          	for (i = 0; i < matrix_size; i += 1)
+   \        0xA   0x2100             MOVS     R1,#+0
+   \        0xC   0x2500             MOVS     R5,#+0
+   \        0xE   0xF04F 0x567E      MOV      R6,#+1065353216
+   \       0x12   0xE000             B.N      ??matrix_callalloc_0
+   \                     ??matrix_callalloc_1: (+1)
+   \       0x14   0x1C49             ADDS     R1,R1,#+1
+   \                     ??matrix_callalloc_0: (+1)
+   \       0x16   0x42A1             CMP      R1,R4
+   \       0x18   0xDA0D             BGE.N    ??matrix_callalloc_2
      70          	{
      71          		for (j = 0; j < matrix_size; j += 1)
+   \       0x1A   0x2200             MOVS     R2,#+0
+   \                     ??matrix_callalloc_3: (+1)
+   \       0x1C   0x42A2             CMP      R2,R4
+   \       0x1E   0xDAF9             BGE.N    ??matrix_callalloc_1
      72          		{
      73          			if (j == i)
+   \       0x20   0x6883             LDR      R3,[R0, #+8]
+   \       0x22   0xF853 0x3021      LDR      R3,[R3, R1, LSL #+2]
+   \       0x26   0x428A             CMP      R2,R1
+   \       0x28   0xBF14             ITE      NE
+   \       0x2A   0xF843 0x5022      STRNE    R5,[R3, R2, LSL #+2]
+   \       0x2E   0xF843 0x6022      STREQ    R6,[R3, R2, LSL #+2]
      74          			{
      75          				result->matrix_entry[i][j] = 1;
      76          			}
@@ -138,74 +276,209 @@ C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-
      80          				result->matrix_entry[i][j] = 0;
      81          			}
      82          		}
+   \       0x32   0x1C52             ADDS     R2,R2,#+1
+   \       0x34   0xE7F2             B.N      ??matrix_callalloc_3
      83          	}
      84          	
      85          	return result;
+   \                     ??matrix_callalloc_2: (+1)
+   \       0x36   0xBD70             POP      {R4-R6,PC}       ;; return
      86          }
      87          
+
+   \                                 In section .text, align 2, keep-with-next
      88          Matrix *matrix_alloc(int row_size, int col_size)
      89          {
+   \                     matrix_alloc: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x4604             MOV      R4,R0
+   \        0x4   0x460D             MOV      R5,R1
      90          	int j;
      91          	Matrix *new_matrix = malloc(sizeof(Matrix)); 
+   \        0x6   0x200C             MOVS     R0,#+12
+   \        0x8   0x....'....        BL       malloc
+   \        0xC   0x4606             MOV      R6,R0
      92          
      93          	//Allocating memory for the new matrix structure
      94          	new_matrix->row_size = row_size;
+   \        0xE   0x6034             STR      R4,[R6, #+0]
      95          	new_matrix->col_size = col_size;
+   \       0x10   0x6075             STR      R5,[R6, #+4]
      96          	new_matrix->matrix_entry = malloc( new_matrix->row_size *sizeof(float *));
+   \       0x12   0x2400             MOVS     R4,#+0
+   \       0x14   0x6830             LDR      R0,[R6, #+0]
+   \       0x16   0x0080             LSLS     R0,R0,#+2
+   \       0x18   0x....'....        BL       malloc
+   \       0x1C   0x60B0             STR      R0,[R6, #+8]
      97          	for(j = 0 ; j < new_matrix->row_size ; j++)
+   \       0x1E   0xE007             B.N      ??matrix_alloc_0
      98          	{
      99          		new_matrix->matrix_entry[j] = malloc( new_matrix->col_size*sizeof(float) );
+   \                     ??matrix_alloc_1: (+1)
+   \       0x20   0x6870             LDR      R0,[R6, #+4]
+   \       0x22   0x0080             LSLS     R0,R0,#+2
+   \       0x24   0x....'....        BL       malloc
+   \       0x28   0x68B1             LDR      R1,[R6, #+8]
+   \       0x2A   0xF841 0x0024      STR      R0,[R1, R4, LSL #+2]
     100          	}
+   \       0x2E   0x1C64             ADDS     R4,R4,#+1
+   \                     ??matrix_alloc_0: (+1)
+   \       0x30   0x6830             LDR      R0,[R6, #+0]
+   \       0x32   0x4284             CMP      R4,R0
+   \       0x34   0xDBF4             BLT.N    ??matrix_alloc_1
     101          	
     102          	return new_matrix;
+   \       0x36   0x4630             MOV      R0,R6
+   \       0x38   0xBD70             POP      {R4-R6,PC}       ;; return
     103          }
     104          
     105          /*Copies Matrix1 into matrix2 */
+
+   \                                 In section .text, align 2, keep-with-next
     106          void matrix_copy(Matrix *matrix1, Matrix *matrix2)
     107          {
+   \                     matrix_copy: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
     108          	int i, j;
     109          	for (i = 0; i < matrix1->row_size; i += 1)
+   \        0x2   0x2200             MOVS     R2,#+0
+   \        0x4   0xE00E             B.N      ??matrix_copy_0
     110          	{
     111          		for (j = 0; j < matrix1->col_size; j += 1)
     112          		{
     113          			matrix2->matrix_entry[i][j] = matrix1->matrix_entry[i][j];
+   \                     ??matrix_copy_1: (+1)
+   \        0x6   0x688C             LDR      R4,[R1, #+8]
+   \        0x8   0xF854 0x5022      LDR      R5,[R4, R2, LSL #+2]
+   \        0xC   0x6884             LDR      R4,[R0, #+8]
+   \        0xE   0xF854 0x6022      LDR      R6,[R4, R2, LSL #+2]
+   \       0x12   0xF856 0x4023      LDR      R4,[R6, R3, LSL #+2]
+   \       0x16   0xF845 0x4023      STR      R4,[R5, R3, LSL #+2]
     114          		}
+   \       0x1A   0x1C5B             ADDS     R3,R3,#+1
+   \                     ??matrix_copy_2: (+1)
+   \       0x1C   0x6844             LDR      R4,[R0, #+4]
+   \       0x1E   0x42A3             CMP      R3,R4
+   \       0x20   0xDBF1             BLT.N    ??matrix_copy_1
+   \       0x22   0x1C52             ADDS     R2,R2,#+1
+   \                     ??matrix_copy_0: (+1)
+   \       0x24   0x6803             LDR      R3,[R0, #+0]
+   \       0x26   0x429A             CMP      R2,R3
+   \       0x28   0xBFB8             IT       LT
+   \       0x2A   0x2300             MOVLT    R3,#+0
+   \       0x2C   0xDBF6             BLT.N    ??matrix_copy_2
     115          	}
     116          }
+   \       0x2E   0xBD70             POP      {R4-R6,PC}       ;; return
     117          
     118          
+
+   \                                 In section .text, align 2, keep-with-next
     119          Matrix *matrix_multiply(const Matrix *matrix1, const Matrix *matrix2)
     120          {
+   \                     matrix_multiply: (+1)
+   \        0x0   0xE92D 0x47F0      PUSH     {R4-R10,LR}
+   \        0x4   0x4606             MOV      R6,R0
+   \        0x6   0x460F             MOV      R7,R1
     121          	int i, j,k, sum;
     122          	if (matrix1->col_size != matrix2->row_size)
+   \        0x8   0x6871             LDR      R1,[R6, #+4]
+   \        0xA   0x683A             LDR      R2,[R7, #+0]
+   \        0xC   0x4291             CMP      R1,R2
+   \        0xE   0xBF1C             ITT      NE
     123          	  {
     124          	    terminate("ERROR: The number columns of matrix1  != number of rows in matrix2!");
+   \       0x10   0x....             LDRNE.N  R0,??DataTable8_4
+   \       0x12   0x....'....        BLNE     terminate
     125          	  }
     126          	Matrix *result = matrix_alloc( matrix1->row_size,matrix2->col_size);
+   \       0x16   0x6879             LDR      R1,[R7, #+4]
+   \       0x18   0x6830             LDR      R0,[R6, #+0]
+   \       0x1A   0x....'....        BL       matrix_alloc
+   \       0x1E   0x4680             MOV      R8,R0
     127          	for (i = 0; i < matrix1->row_size; i += 1)
+   \       0x20   0x2400             MOVS     R4,#+0
+   \       0x22   0xE000             B.N      ??matrix_multiply_0
+   \                     ??matrix_multiply_1: (+1)
+   \       0x24   0x1C64             ADDS     R4,R4,#+1
+   \                     ??matrix_multiply_0: (+1)
+   \       0x26   0x6830             LDR      R0,[R6, #+0]
+   \       0x28   0x4284             CMP      R4,R0
+   \       0x2A   0xDA27             BGE.N    ??matrix_multiply_2
     128          	{
     129          		for (k = 0; k < matrix2->col_size; k += 1)
+   \       0x2C   0x2500             MOVS     R5,#+0
+   \       0x2E   0xE01F             B.N      ??matrix_multiply_3
     130          		{
     131          			sum = 0;
     132          			
     133          			for (j = 0; j < matrix1->col_size; j += 1)
     134          			{
     135          				sum += matrix1->matrix_entry[i][j] * matrix2->matrix_entry[j][k];
+   \                     ??matrix_multiply_4: (+1)
+   \       0x30   0x68B0             LDR      R0,[R6, #+8]
+   \       0x32   0xF850 0x1024      LDR      R1,[R0, R4, LSL #+2]
+   \       0x36   0xF851 0x002A      LDR      R0,[R1, R10, LSL #+2]
+   \       0x3A   0x68B9             LDR      R1,[R7, #+8]
+   \       0x3C   0xF851 0x202A      LDR      R2,[R1, R10, LSL #+2]
+   \       0x40   0xF852 0x1025      LDR      R1,[R2, R5, LSL #+2]
+   \       0x44   0x....'....        BL       __aeabi_fmul
+   \       0x48   0x4649             MOV      R1,R9
+   \       0x4A   0x....'....        BL       __aeabi_fadd
+   \       0x4E   0x....'....        BL       __aeabi_f2iz
     136          			}
+   \       0x52   0xF10A 0x0A01      ADD      R10,R10,#+1
+   \                     ??matrix_multiply_5: (+1)
+   \       0x56   0x....'....        BL       __aeabi_i2f
+   \       0x5A   0x4681             MOV      R9,R0
+   \       0x5C   0x6870             LDR      R0,[R6, #+4]
+   \       0x5E   0x4582             CMP      R10,R0
+   \       0x60   0xDBE6             BLT.N    ??matrix_multiply_4
     137          			
     138          			result->matrix_entry[i][k] = sum;
+   \       0x62   0xF8D8 0x1008      LDR      R1,[R8, #+8]
+   \       0x66   0xF851 0x0024      LDR      R0,[R1, R4, LSL #+2]
+   \       0x6A   0xF840 0x9025      STR      R9,[R0, R5, LSL #+2]
+   \       0x6E   0x1C6D             ADDS     R5,R5,#+1
+   \                     ??matrix_multiply_3: (+1)
+   \       0x70   0x6878             LDR      R0,[R7, #+4]
+   \       0x72   0x4285             CMP      R5,R0
+   \       0x74   0xDAD6             BGE.N    ??matrix_multiply_1
+   \       0x76   0x2000             MOVS     R0,#+0
+   \       0x78   0x4682             MOV      R10,R0
+   \       0x7A   0xE7EC             B.N      ??matrix_multiply_5
     139          		}
     140          	}
     141                 return result;
+   \                     ??matrix_multiply_2: (+1)
+   \       0x7C   0x4640             MOV      R0,R8
+   \       0x7E   0xE8BD 0x87F0      POP      {R4-R10,PC}      ;; return
     142          }
     143          
+
+   \                                 In section .text, align 2, keep-with-next
     144          Matrix  * matrix_pow(Matrix *matrix, int index)
     145          {
+   \                     matrix_pow: (+1)
+   \        0x0   0xE92D 0x4FF2      PUSH     {R1,R4-R11,LR}
+   \        0x4   0x4606             MOV      R6,R0
+   \        0x6   0xB082             SUB      SP,SP,#+8
     146          	if(index == 1)
+   \        0x8   0x9A02             LDR      R2,[SP, #+8]
+   \        0xA   0x6871             LDR      R1,[R6, #+4]
+   \        0xC   0x6830             LDR      R0,[R6, #+0]
+   \        0xE   0x2A01             CMP      R2,#+1
+   \       0x10   0xD107             BNE.N    ??matrix_pow_0
     147          	{
     148          	  Matrix  *result = matrix_alloc (matrix->row_size, matrix->col_size);
+   \       0x12   0x....'....        BL       matrix_alloc
+   \       0x16   0x4604             MOV      R4,R0
     149          	  matrix_copy(matrix, result);
+   \       0x18   0x4621             MOV      R1,R4
+   \       0x1A   0x4630             MOV      R0,R6
+   \       0x1C   0x....'....        BL       matrix_copy
     150          	  return result;
+   \       0x20   0xE060             B.N      ??matrix_pow_1
     151          	}
     152          	else
     153          	{
@@ -213,119 +486,309 @@ C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-
     155          		int i, j,k,l,sum,count;
     156          		
     157          		Matrix  *temp = matrix_alloc (matrix->row_size, matrix->col_size); //Allocating space for a temporal matrix
+   \                     ??matrix_pow_0: (+1)
+   \       0x22   0x....'....        BL       matrix_alloc
+   \       0x26   0x4682             MOV      R10,R0
     158          		Matrix  *result = matrix_alloc (matrix->row_size, matrix->col_size); //Allocating space for the result matrix
+   \       0x28   0x6871             LDR      R1,[R6, #+4]
+   \       0x2A   0x6830             LDR      R0,[R6, #+0]
+   \       0x2C   0x....'....        BL       matrix_alloc
+   \       0x30   0x4607             MOV      R7,R0
     159          	
     160          		matrix_copy(matrix, temp);
+   \       0x32   0x4651             MOV      R1,R10
+   \       0x34   0x4630             MOV      R0,R6
+   \       0x36   0x....'....        BL       matrix_copy
     161          		
     162          		count = index/2 -1;
+   \       0x3A   0x9802             LDR      R0,[SP, #+8]
+   \       0x3C   0xEB00 0x71D0      ADD      R1,R0,R0, LSR #+31
+   \       0x40   0x1049             ASRS     R1,R1,#+1
+   \       0x42   0x1E48             SUBS     R0,R1,#+1
     163          		if (count < 1)
+   \       0x44   0x2800             CMP      R0,#+0
+   \       0x46   0x9101             STR      R1,[SP, #+4]
+   \       0x48   0xDC04             BGT.N    ??matrix_pow_2
     164          		{
     165          			matrix_copy(matrix, result);
+   \       0x4A   0x4639             MOV      R1,R7
+   \       0x4C   0x4630             MOV      R0,R6
+   \       0x4E   0x....'....        BL       matrix_copy
+   \       0x52   0xE037             B.N      ??matrix_pow_3
     166          		}
     167          		
     168          		else
     169          		{
     170          			for (l = 0; l < count; l += 1)
+   \                     ??matrix_pow_2: (+1)
+   \       0x54   0x9000             STR      R0,[SP, #+0]
     171          			{
     172          				for (i = 0; i < matrix->row_size; i += 1)
+   \                     ??matrix_pow_4: (+1)
+   \       0x56   0x2400             MOVS     R4,#+0
+   \       0x58   0xE000             B.N      ??matrix_pow_5
+   \                     ??matrix_pow_6: (+1)
+   \       0x5A   0x1C64             ADDS     R4,R4,#+1
+   \                     ??matrix_pow_5: (+1)
+   \       0x5C   0x6830             LDR      R0,[R6, #+0]
+   \       0x5E   0x4284             CMP      R4,R0
+   \       0x60   0xDA28             BGE.N    ??matrix_pow_7
     173          				{
     174          					for (k = 0; k < matrix->col_size; k += 1)
+   \       0x62   0x2500             MOVS     R5,#+0
+   \       0x64   0xE01F             B.N      ??matrix_pow_8
     175          					{
     176          						sum = 0;
     177          			
     178          						for (j = 0; j < matrix->col_size; j += 1)
     179          						{
     180          							sum += (temp->matrix_entry[i][j] * matrix->matrix_entry[j][k]);
+   \                     ??matrix_pow_9: (+1)
+   \       0x66   0xF8DA 0x0008      LDR      R0,[R10, #+8]
+   \       0x6A   0xF850 0x1024      LDR      R1,[R0, R4, LSL #+2]
+   \       0x6E   0x68B0             LDR      R0,[R6, #+8]
+   \       0x70   0xF850 0x202B      LDR      R2,[R0, R11, LSL #+2]
+   \       0x74   0xF851 0x102B      LDR      R1,[R1, R11, LSL #+2]
+   \       0x78   0xF852 0x0025      LDR      R0,[R2, R5, LSL #+2]
+   \       0x7C   0x....'....        BL       __aeabi_fmul
+   \       0x80   0x4601             MOV      R1,R0
+   \       0x82   0x4640             MOV      R0,R8
+   \       0x84   0x....'....        BL       __aeabi_fadd
+   \       0x88   0x....'....        BL       __aeabi_f2iz
     181          						}
+   \       0x8C   0xF10B 0x0B01      ADD      R11,R11,#+1
+   \                     ??matrix_pow_10: (+1)
+   \       0x90   0x....'....        BL       __aeabi_i2f
+   \       0x94   0x45CB             CMP      R11,R9
+   \       0x96   0x4680             MOV      R8,R0
+   \       0x98   0xDBE5             BLT.N    ??matrix_pow_9
     182          					
     183          						result->matrix_entry[i][k] = sum;
+   \       0x9A   0x68B8             LDR      R0,[R7, #+8]
+   \       0x9C   0xF850 0x1024      LDR      R1,[R0, R4, LSL #+2]
+   \       0xA0   0xF841 0x8025      STR      R8,[R1, R5, LSL #+2]
+   \       0xA4   0x1C6D             ADDS     R5,R5,#+1
+   \                     ??matrix_pow_8: (+1)
+   \       0xA6   0xF8D6 0x9004      LDR      R9,[R6, #+4]
+   \       0xAA   0x454D             CMP      R5,R9
+   \       0xAC   0xDAD5             BGE.N    ??matrix_pow_6
+   \       0xAE   0x2000             MOVS     R0,#+0
+   \       0xB0   0x4683             MOV      R11,R0
+   \       0xB2   0xE7ED             B.N      ??matrix_pow_10
     184          					}
     185          				}
     186          			
     187          				/* Copying the result matrix into the temp matrix for further 
     188          				 * multiplication */
     189          				matrix_copy(result, temp);
+   \                     ??matrix_pow_7: (+1)
+   \       0xB4   0x4651             MOV      R1,R10
+   \       0xB6   0x4638             MOV      R0,R7
+   \       0xB8   0x....'....        BL       matrix_copy
     190          			}
+   \       0xBC   0x9800             LDR      R0,[SP, #+0]
+   \       0xBE   0x1E40             SUBS     R0,R0,#+1
+   \       0xC0   0x9000             STR      R0,[SP, #+0]
+   \       0xC2   0xD1C8             BNE.N    ??matrix_pow_4
     191          		}
     192          
     193          		/*	Freeing the temp matrix		*/
     194          		matrix_free(temp);
+   \                     ??matrix_pow_3: (+1)
+   \       0xC4   0x4650             MOV      R0,R10
+   \       0xC6   0x....'....        BL       matrix_free
     195          		if (index%2 == 0)
+   \       0xCA   0x9802             LDR      R0,[SP, #+8]
+   \       0xCC   0x9901             LDR      R1,[SP, #+4]
+   \       0xCE   0xEBB0 0x0041      SUBS     R0,R0,R1, LSL #+1
+   \       0xD2   0x4639             MOV      R1,R7
+   \       0xD4   0xD108             BNE.N    ??matrix_pow_11
     196          		{
     197          			Matrix *result_final = matrix_multiply(result, result);
+   \       0xD6   0x4638             MOV      R0,R7
+   \       0xD8   0x....'....        BL       matrix_multiply
+   \       0xDC   0x4604             MOV      R4,R0
     198          			/* Freeing the result Matrix	*/
     199          			matrix_free(result);
+   \       0xDE   0x4638             MOV      R0,R7
+   \       0xE0   0x....'....        BL       matrix_free
     200          		
     201          			return result_final;
+   \                     ??matrix_pow_1: (+1)
+   \       0xE4   0x4620             MOV      R0,R4
+   \       0xE6   0xE00E             B.N      ??matrix_pow_12
     202          		}
     203          		
     204          		else
     205          		{
     206          			Matrix *temp = matrix_multiply(matrix, result);
+   \                     ??matrix_pow_11: (+1)
+   \       0xE8   0x4630             MOV      R0,R6
+   \       0xEA   0x....'....        BL       matrix_multiply
+   \       0xEE   0x4604             MOV      R4,R0
     207          			Matrix *result_final = matrix_multiply(temp, result);
+   \       0xF0   0x4639             MOV      R1,R7
+   \       0xF2   0x....'....        BL       matrix_multiply
+   \       0xF6   0x4605             MOV      R5,R0
     208          			
     209          			/* Freeing the temp matrix		*/
     210          			matrix_free(temp);
+   \       0xF8   0x4620             MOV      R0,R4
+   \       0xFA   0x....'....        BL       matrix_free
     211          			
     212          			/* Freeing the result Matrix	*/
     213          			matrix_free(result);
+   \       0xFE   0x4638             MOV      R0,R7
+   \      0x100   0x....'....        BL       matrix_free
     214          		
     215          			return result_final;
+   \      0x104   0x4628             MOV      R0,R5
+   \                     ??matrix_pow_12: (+1)
+   \      0x106   0xE8BD 0x8FFE      POP      {R1-R11,PC}      ;; return
     216          		}//End of else statement
     217          	}
     218          }
     219          
+
+   \                                 In section .text, align 2, keep-with-next
     220          void matrix_free( Matrix *matrix)
     221          {
+   \                     matrix_free: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x4604             MOV      R4,R0
     222          	int j;
     223          	for(j = 0 ; j < matrix->row_size ; j++)
+   \        0x4   0x2500             MOVS     R5,#+0
+   \        0x6   0xE004             B.N      ??matrix_free_0
     224          	  {
     225          		free(matrix->matrix_entry[j]); 
+   \                     ??matrix_free_1: (+1)
+   \        0x8   0xF850 0x0025      LDR      R0,[R0, R5, LSL #+2]
+   \        0xC   0x....'....        BL       free
     226          	  }
+   \       0x10   0x1C6D             ADDS     R5,R5,#+1
+   \                     ??matrix_free_0: (+1)
+   \       0x12   0x6821             LDR      R1,[R4, #+0]
+   \       0x14   0x68A0             LDR      R0,[R4, #+8]
+   \       0x16   0x428D             CMP      R5,R1
+   \       0x18   0xDBF6             BLT.N    ??matrix_free_1
     227          	free(matrix->matrix_entry);
+   \       0x1A   0x....'....        BL       free
     228          	free(matrix);
+   \       0x1E   0x4620             MOV      R0,R4
+   \       0x20   0xE8BD 0x4032      POP      {R1,R4,R5,LR}
+   \       0x24   0x....'....        B.W      free
     229          }
     230          
     231          
     232          
     233          /*Function which divides all row entries by the value of a the diagonal */
+
+   \                                 In section .text, align 2, keep-with-next
     234          void row_divide(Matrix *matrix, int pivot)
     235          {
+   \                     row_divide: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0x4604             MOV      R4,R0
+   \        0x6   0x460D             MOV      R5,R1
     236              int j;
     237              float 	divisor = matrix->matrix_entry[pivot][pivot], 
+   \        0x8   0x68A6             LDR      R6,[R4, #+8]
+   \        0xA   0xF856 0x0025      LDR      R0,[R6, R5, LSL #+2]
+   \        0xE   0xF850 0x8025      LDR      R8,[R0, R5, LSL #+2]
     238                        result;
     239          
     240              for(j = pivot; j < matrix->col_size; j++)
+   \       0x12   0x462F             MOV      R7,R5
+   \       0x14   0xE009             B.N      ??row_divide_0
     241              {
     242                        result = (matrix->matrix_entry[pivot][j]  /  divisor);
     243                        matrix->matrix_entry[pivot][j] = result;
+   \                     ??row_divide_1: (+1)
+   \       0x16   0xF856 0x9025      LDR      R9,[R6, R5, LSL #+2]
+   \       0x1A   0xF859 0x0027      LDR      R0,[R9, R7, LSL #+2]
+   \       0x1E   0x4641             MOV      R1,R8
+   \       0x20   0x....'....        BL       __aeabi_fdiv
+   \       0x24   0xF849 0x0027      STR      R0,[R9, R7, LSL #+2]
     244              }
+   \       0x28   0x1C7F             ADDS     R7,R7,#+1
+   \                     ??row_divide_0: (+1)
+   \       0x2A   0x6860             LDR      R0,[R4, #+4]
+   \       0x2C   0x4287             CMP      R7,R0
+   \       0x2E   0xDBF2             BLT.N    ??row_divide_1
     245          
     246          }
+   \       0x30   0xE8BD 0x83F1      POP      {R0,R4-R9,PC}    ;; return
     247          
     248           /*Function to carry out row operations*/
+
+   \                                 In section .text, align 2, keep-with-next
     249          void row_operation(Matrix *multiplier_matrix,Matrix *matrix, int pivot, int row_index)
     250          {
+   \                     row_operation: (+1)
+   \        0x0   0xE92D 0x47F0      PUSH     {R4-R10,LR}
+   \        0x4   0x460D             MOV      R5,R1
+   \        0x6   0x4698             MOV      R8,R3
     251              int j;
     252              float multiplier = (matrix->matrix_entry[row_index][pivot] / matrix->matrix_entry[pivot][pivot]);
+   \        0x8   0x68AF             LDR      R7,[R5, #+8]
+   \        0xA   0xF857 0x1028      LDR      R1,[R7, R8, LSL #+2]
+   \        0xE   0x4606             MOV      R6,R0
+   \       0x10   0x4691             MOV      R9,R2
+   \       0x12   0xF857 0x4029      LDR      R4,[R7, R9, LSL #+2]
+   \       0x16   0xF851 0x0029      LDR      R0,[R1, R9, LSL #+2]
+   \       0x1A   0xF854 0x1029      LDR      R1,[R4, R9, LSL #+2]
+   \       0x1E   0x....'....        BL       __aeabi_fdiv
+   \       0x22   0x4604             MOV      R4,R0
     253              //Loop which checks if matrix is provided to store the multiplier
     254              if(multiplier_matrix != NULL)
+   \       0x24   0xB126             CBZ.N    R6,??row_operation_0
     255                {
     256          	multiplier_matrix ->matrix_entry[row_index][pivot] = multiplier;
+   \       0x26   0x68B0             LDR      R0,[R6, #+8]
+   \       0x28   0xF850 0x1028      LDR      R1,[R0, R8, LSL #+2]
+   \       0x2C   0xF841 0x4029      STR      R4,[R1, R9, LSL #+2]
     257                }
     258          
     259              
     260              for(j=0; j < matrix->col_size; j++)
+   \                     ??row_operation_0: (+1)
+   \       0x30   0x2600             MOVS     R6,#+0
+   \       0x32   0xE010             B.N      ??row_operation_1
     261              {
     262          	    matrix->matrix_entry[row_index][j] -=  multiplier * matrix->matrix_entry[pivot][j];
+   \                     ??row_operation_2: (+1)
+   \       0x34   0xF857 0x0029      LDR      R0,[R7, R9, LSL #+2]
+   \       0x38   0xF857 0xA028      LDR      R10,[R7, R8, LSL #+2]
+   \       0x3C   0xF850 0x0026      LDR      R0,[R0, R6, LSL #+2]
+   \       0x40   0x4621             MOV      R1,R4
+   \       0x42   0x....'....        BL       __aeabi_fmul
+   \       0x46   0x4601             MOV      R1,R0
+   \       0x48   0xF85A 0x0026      LDR      R0,[R10, R6, LSL #+2]
+   \       0x4C   0x....'....        BL       __aeabi_fsub
+   \       0x50   0xF84A 0x0026      STR      R0,[R10, R6, LSL #+2]
     263              }
+   \       0x54   0x1C76             ADDS     R6,R6,#+1
+   \                     ??row_operation_1: (+1)
+   \       0x56   0x6868             LDR      R0,[R5, #+4]
+   \       0x58   0x4286             CMP      R6,R0
+   \       0x5A   0xDBEB             BLT.N    ??row_operation_2
     264          }
+   \       0x5C   0xE8BD 0x87F0      POP      {R4-R10,PC}      ;; return
     265          
+
+   \                                 In section .text, align 2, keep-with-next
     266          void matrix_row_reduce( Matrix *matrix, int zero_control )
     267          {
+   \                     matrix_row_reduce: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x4605             MOV      R5,R0
+   \        0x6   0x4688             MOV      R8,R1
     268              int pivot, row_index;
     269              float multiplier;
     270              for( pivot = 0; pivot < matrix->row_size ; pivot++)
+   \        0x8   0x2600             MOVS     R6,#+0
+   \        0xA   0xE009             B.N      ??matrix_row_reduce_0
     271              {
     272                   
     273                error_zeros(matrix, zero_control); //Function checks if there are too many zeros in a single row
@@ -345,83 +808,332 @@ C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-
     287          		for(row_index = pivot-1; row_index >=0; row_index --)
     288          		{
     289          			if (matrix->matrix_entry[pivot][pivot] != 0)
+   \                     ??matrix_row_reduce_1: (+1)
+   \        0xC   0x68A8             LDR      R0,[R5, #+8]
+   \        0xE   0x....'....        BL       ?Subroutine5
+   \                     ??CrossCallReturnLabel_15: (+1)
+   \       0x12   0xD001             BEQ.N    ??CrossCallReturnLabel_11
     290          			{
     291          			  row_operation(NULL,matrix, pivot, row_index);
+   \       0x14   0x....'....        BL       ?Subroutine7
     292          			}
     293          		}
+   \                     ??CrossCallReturnLabel_11: (+1)
+   \       0x18   0x1E64             SUBS     R4,R4,#+1
+   \                     ??matrix_row_reduce_2: (+1)
+   \       0x1A   0x2C00             CMP      R4,#+0
+   \       0x1C   0xD5F6             BPL.N    ??matrix_row_reduce_1
+   \       0x1E   0x463E             MOV      R6,R7
+   \                     ??matrix_row_reduce_0: (+1)
+   \       0x20   0x6828             LDR      R0,[R5, #+0]
+   \       0x22   0x4286             CMP      R6,R0
+   \       0x24   0xDA21             BGE.N    ??matrix_row_reduce_3
+   \       0x26   0x4641             MOV      R1,R8
+   \       0x28   0x4628             MOV      R0,R5
+   \       0x2A   0x....'....        BL       error_zeros
+   \       0x2E   0x....'....        BL       ?Subroutine3
+   \                     ??CrossCallReturnLabel_4: (+1)
+   \       0x32   0xF04F 0x517E      MOV      R1,#+1065353216
+   \       0x36   0x....'....        BL       __aeabi_cfcmpeq
+   \       0x3A   0xD006             BEQ.N    ??matrix_row_reduce_4
+   \       0x3C   0x....'....        BL       ??Subroutine8_0
+   \                     ??CrossCallReturnLabel_12: (+1)
+   \       0x40   0xD003             BEQ.N    ??matrix_row_reduce_4
+   \       0x42   0x4631             MOV      R1,R6
+   \       0x44   0x4628             MOV      R0,R5
+   \       0x46   0x....'....        BL       row_divide
+   \                     ??matrix_row_reduce_4: (+1)
+   \       0x4A   0x1C77             ADDS     R7,R6,#+1
+   \       0x4C   0x463C             MOV      R4,R7
+   \       0x4E   0xE007             B.N      ??matrix_row_reduce_5
+   \                     ??matrix_row_reduce_6: (+1)
+   \       0x50   0x....'....        BL       ?Subroutine3
+   \                     ??CrossCallReturnLabel_5: (+1)
+   \       0x54   0x....'....        BL       ??Subroutine8_0
+   \                     ??CrossCallReturnLabel_13: (+1)
+   \       0x58   0xD001             BEQ.N    ??CrossCallReturnLabel_10
+   \       0x5A   0x....'....        BL       ?Subroutine7
+   \                     ??CrossCallReturnLabel_10: (+1)
+   \       0x5E   0x1C64             ADDS     R4,R4,#+1
+   \                     ??matrix_row_reduce_5: (+1)
+   \       0x60   0x6828             LDR      R0,[R5, #+0]
+   \       0x62   0x4284             CMP      R4,R0
+   \       0x64   0xDBF4             BLT.N    ??matrix_row_reduce_6
+   \       0x66   0x1E74             SUBS     R4,R6,#+1
+   \       0x68   0xE7D7             B.N      ??matrix_row_reduce_2
     294          	}
     295          }
+   \                     ??matrix_row_reduce_3: (+1)
+   \       0x6A   0xE8BD 0x81F0      POP      {R4-R8,PC}       ;; return
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine7: (+1)
+   \        0x0   0x4623             MOV      R3,R4
+   \        0x2   0x4632             MOV      R2,R6
+   \        0x4   0x4629             MOV      R1,R5
+   \        0x6   0x2000             MOVS     R0,#+0
+   \        0x8   0x....             B.N      row_operation
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine3: (+1)
+   \        0x0   0x68A8             LDR      R0,[R5, #+8]
+   \        0x2   0xF850 0x1026      LDR      R1,[R0, R6, LSL #+2]
+   \        0x6   0xF851 0x0026      LDR      R0,[R1, R6, LSL #+2]
+   \        0xA   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine5: (+1)
+   \        0x0   0xF850 0x2026      LDR      R2,[R0, R6, LSL #+2]
+   \        0x4   0xF852 0x0026      LDR      R0,[R2, R6, LSL #+2]
+   \        0x8                      REQUIRE ??Subroutine8_0
+   \        0x8                      ;; // Fall through to label ??Subroutine8_0
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ??Subroutine8_0: (+1)
+   \        0x0   0x2100             MOVS     R1,#+0
+   \        0x2   0x....'....        B.W      __aeabi_cfcmpeq
     296          
+
+   \                                 In section .text, align 2, keep-with-next
     297          void LU_decompose(Matrix *upper_triangular, Matrix *lower_triangular)
     298          {
+   \                     LU_decompose: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x4604             MOV      R4,R0
+   \        0x6   0x4688             MOV      R8,R1
     299           int pivot, row_index;
     300              float multiplier;
     301              for( pivot = 0; pivot < upper_triangular->row_size ; pivot++)
+   \        0x8   0x2600             MOVS     R6,#+0
+   \        0xA   0xE00E             B.N      ??LU_decompose_0
     302              {
     303                   
     304                error_zeros(upper_triangular, upper_triangular->col_size); //Function checks if there are too many zeros in a single row
     305          	    for (row_index = pivot+1; row_index < upper_triangular->row_size; row_index++)
     306          	    {
     307          		    if ( upper_triangular->matrix_entry[pivot][pivot] != 0)
+   \                     ??LU_decompose_1: (+1)
+   \        0xC   0x68A0             LDR      R0,[R4, #+8]
+   \        0xE   0x....'....        BL       ?Subroutine5
+   \                     ??CrossCallReturnLabel_16: (+1)
+   \       0x12   0xD005             BEQ.N    ??LU_decompose_2
     308          		    {
     309          
     310          		      row_operation(lower_triangular,upper_triangular, pivot, row_index);
+   \       0x14   0x463B             MOV      R3,R7
+   \       0x16   0x4632             MOV      R2,R6
+   \       0x18   0x4621             MOV      R1,R4
+   \       0x1A   0x4640             MOV      R0,R8
+   \       0x1C   0x....'....        BL       row_operation
     311          		    }
     312          	    }
+   \                     ??LU_decompose_2: (+1)
+   \       0x20   0x1C7F             ADDS     R7,R7,#+1
+   \                     ??LU_decompose_3: (+1)
+   \       0x22   0x6820             LDR      R0,[R4, #+0]
+   \       0x24   0x4287             CMP      R7,R0
+   \       0x26   0xDBF1             BLT.N    ??LU_decompose_1
+   \       0x28   0x462E             MOV      R6,R5
+   \                     ??LU_decompose_0: (+1)
+   \       0x2A   0x6821             LDR      R1,[R4, #+0]
+   \       0x2C   0x428E             CMP      R6,R1
+   \       0x2E   0xDA06             BGE.N    ??LU_decompose_4
+   \       0x30   0x6861             LDR      R1,[R4, #+4]
+   \       0x32   0x4620             MOV      R0,R4
+   \       0x34   0x....'....        BL       error_zeros
+   \       0x38   0x1C75             ADDS     R5,R6,#+1
+   \       0x3A   0x462F             MOV      R7,R5
+   \       0x3C   0xE7F1             B.N      ??LU_decompose_3
     313              }
     314          }
+   \                     ??LU_decompose_4: (+1)
+   \       0x3E   0xE8BD 0x81F0      POP      {R4-R8,PC}       ;; return
     315          
     316          
+
+   \                                 In section .text, align 2, keep-with-next
     317          void matrix_subtract(Matrix *result, Matrix *matrix1, Matrix *matrix2)
     318          {
+   \                     matrix_subtract: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0x....'....        BL       ?Subroutine4
     319          	int i, j;
     320          
     321          	if ( !(matrix_equal_size(matrix1, matrix2 )) || \
     322          	     !(matrix_equal_size(matrix2, result)))
+   \                     ??CrossCallReturnLabel_7: (+1)
+   \        0x8   0xB120             CBZ.N    R0,??matrix_subtract_0
+   \        0xA   0x4621             MOV      R1,R4
+   \        0xC   0x4640             MOV      R0,R8
+   \        0xE   0x....'....        BL       matrix_equal_size
+   \       0x12   0xB900             CBNZ.N   R0,??matrix_subtract_1
     323          	  {
     324          	    terminate("ERROR: The matrices you are trying to subtract have different sizes");
+   \                     ??matrix_subtract_0: (+1)
+   \       0x14   0x....             B.N      ?Subroutine0
     325          	  }
     326          
     327           for(i = 0; i < matrix1->row_size; i += 1)
+   \                     ??matrix_subtract_1: (+1)
+   \       0x16   0x2700             MOVS     R7,#+0
+   \       0x18   0xE012             B.N      ??matrix_subtract_2
     328          	{
     329          		for (j = 0; j < matrix1->col_size; j += 1)
     330          		{
     331          			result->matrix_entry[i][j] = matrix1->matrix_entry[i][j] - matrix2->matrix_entry[i][j];
+   \                     ??matrix_subtract_3: (+1)
+   \       0x1A   0x....'....        BL       ?Subroutine6
     332          		}
+   \                     ??CrossCallReturnLabel_8: (+1)
+   \       0x1E   0xF851 0x0026      LDR      R0,[R1, R6, LSL #+2]
+   \       0x22   0xF8D8 0x1008      LDR      R1,[R8, #+8]
+   \       0x26   0xF851 0x2027      LDR      R2,[R1, R7, LSL #+2]
+   \       0x2A   0xF852 0x1026      LDR      R1,[R2, R6, LSL #+2]
+   \       0x2E   0x....'....        BL       __aeabi_fsub
+   \       0x32   0xF849 0x0026      STR      R0,[R9, R6, LSL #+2]
+   \       0x36   0x1C76             ADDS     R6,R6,#+1
+   \                     ??matrix_subtract_4: (+1)
+   \       0x38   0x6868             LDR      R0,[R5, #+4]
+   \       0x3A   0x4286             CMP      R6,R0
+   \       0x3C   0xDBED             BLT.N    ??matrix_subtract_3
+   \       0x3E   0x1C7F             ADDS     R7,R7,#+1
+   \                     ??matrix_subtract_2: (+1)
+   \       0x40   0x6828             LDR      R0,[R5, #+0]
+   \       0x42   0x4287             CMP      R7,R0
+   \       0x44   0xBFB8             IT       LT
+   \       0x46   0x2600             MOVLT    R6,#+0
+   \       0x48   0xDBF6             BLT.N    ??matrix_subtract_4
     333          	}
     334          }
+   \       0x4A   0xE8BD 0x83F1      POP      {R0,R4-R9,PC}    ;; return
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine6: (+1)
+   \        0x0   0x68A0             LDR      R0,[R4, #+8]
+   \        0x2   0xF850 0x9027      LDR      R9,[R0, R7, LSL #+2]
+   \        0x6   0x68A8             LDR      R0,[R5, #+8]
+   \        0x8   0xF850 0x1027      LDR      R1,[R0, R7, LSL #+2]
+   \        0xC   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine4: (+1)
+   \        0x0   0x4604             MOV      R4,R0
+   \        0x2   0x460D             MOV      R5,R1
+   \        0x4   0x4690             MOV      R8,R2
+   \        0x6   0x4641             MOV      R1,R8
+   \        0x8   0x4628             MOV      R0,R5
+   \        0xA   0x....             B.N      matrix_equal_size
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine0: (+1)
+   \        0x0   0xF04F 0x30FF      MOV      R0,#-1
+   \        0x4   0x....'....        BL       exit
+   \        0x8   0xBF00             Nop
     335          
+
+   \                                 In section .text, align 2, keep-with-next
     336          void matrix_add(Matrix *result, Matrix *matrix1, Matrix *matrix2)
     337          {
+   \                     matrix_add: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0x....'....        BL       ?Subroutine4
     338          	int i, j;
     339          	if ( !(matrix_equal_size(matrix1, matrix2 )) || \
     340          	     !(matrix_equal_size(matrix2, result)))
+   \                     ??CrossCallReturnLabel_6: (+1)
+   \        0x8   0xB120             CBZ.N    R0,??matrix_add_0
+   \        0xA   0x4621             MOV      R1,R4
+   \        0xC   0x4640             MOV      R0,R8
+   \        0xE   0x....'....        BL       matrix_equal_size
+   \       0x12   0xB900             CBNZ.N   R0,??matrix_add_1
     341          	  {
     342          	    terminate("ERROR: The matrices you are trying to add  have different sizes");
+   \                     ??matrix_add_0: (+1)
+   \       0x14   0x....             B.N      ?Subroutine0
     343          	  }
     344          	for (i = 0; i < matrix1->row_size; i += 1)
+   \                     ??matrix_add_1: (+1)
+   \       0x16   0x2700             MOVS     R7,#+0
+   \       0x18   0xE012             B.N      ??matrix_add_2
     345          	{
     346          		for (j = 0; j < matrix1->col_size; j += 1)
     347          		{
     348          			result->matrix_entry[i][j] = matrix1->matrix_entry[i][j] + matrix2->matrix_entry[i][j];
+   \                     ??matrix_add_3: (+1)
+   \       0x1A   0x....'....        BL       ?Subroutine6
     349          		}
+   \                     ??CrossCallReturnLabel_9: (+1)
+   \       0x1E   0xF8D8 0x0008      LDR      R0,[R8, #+8]
+   \       0x22   0xF850 0x2027      LDR      R2,[R0, R7, LSL #+2]
+   \       0x26   0xF851 0x1026      LDR      R1,[R1, R6, LSL #+2]
+   \       0x2A   0xF852 0x0026      LDR      R0,[R2, R6, LSL #+2]
+   \       0x2E   0x....'....        BL       __aeabi_fadd
+   \       0x32   0xF849 0x0026      STR      R0,[R9, R6, LSL #+2]
+   \       0x36   0x1C76             ADDS     R6,R6,#+1
+   \                     ??matrix_add_4: (+1)
+   \       0x38   0x6868             LDR      R0,[R5, #+4]
+   \       0x3A   0x4286             CMP      R6,R0
+   \       0x3C   0xDBED             BLT.N    ??matrix_add_3
+   \       0x3E   0x1C7F             ADDS     R7,R7,#+1
+   \                     ??matrix_add_2: (+1)
+   \       0x40   0x6828             LDR      R0,[R5, #+0]
+   \       0x42   0x4287             CMP      R7,R0
+   \       0x44   0xBFB8             IT       LT
+   \       0x46   0x2600             MOVLT    R6,#+0
+   \       0x48   0xDBF6             BLT.N    ??matrix_add_4
     350          	}
     351          }
+   \       0x4A   0xE8BD 0x83F1      POP      {R0,R4-R9,PC}    ;; return
     352          
+
+   \                                 In section .text, align 2, keep-with-next
     353          void matrix_invert(Matrix *inverse_matrix)
     354          {
+   \                     matrix_invert: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x4604             MOV      R4,R0
     355            int j,k;
     356            /*Temporal matrix used in this function */
     357            Matrix *temp_matrix = matrix_alloc(inverse_matrix->row_size, inverse_matrix->col_size *2); 
+   \        0x4   0x6861             LDR      R1,[R4, #+4]
+   \        0x6   0x6820             LDR      R0,[R4, #+0]
+   \        0x8   0x0049             LSLS     R1,R1,#+1
+   \        0xA   0x....'....        BL       matrix_alloc
+   \        0xE   0x4605             MOV      R5,R0
     358          
     359            matrix_copy(inverse_matrix, temp_matrix);
+   \       0x10   0x4629             MOV      R1,R5
+   \       0x12   0x4620             MOV      R0,R4
+   \       0x14   0x....'....        BL       matrix_copy
     360          
     361           /* Adding an identity matrix at the end of the temporal matrix */
     362            for(j = 0; j< temp_matrix->row_size; j++)
+   \       0x18   0x2000             MOVS     R0,#+0
+   \       0x1A   0xE000             B.N      ??matrix_invert_0
+   \                     ??matrix_invert_1: (+1)
+   \       0x1C   0x1C40             ADDS     R0,R0,#+1
+   \                     ??matrix_invert_0: (+1)
+   \       0x1E   0x6829             LDR      R1,[R5, #+0]
+   \       0x20   0x4288             CMP      R0,R1
+   \       0x22   0xDA12             BGE.N    ??matrix_invert_2
     363              {
     364                for(k = 3; k < temp_matrix->col_size; k++)
+   \       0x24   0x2103             MOVS     R1,#+3
+   \                     ??matrix_invert_3: (+1)
+   \       0x26   0x686A             LDR      R2,[R5, #+4]
+   \       0x28   0x4291             CMP      R1,R2
+   \       0x2A   0xDAF7             BGE.N    ??matrix_invert_1
     365                {
     366          	if( j+3  == k)
+   \       0x2C   0x68AB             LDR      R3,[R5, #+8]
+   \       0x2E   0xF853 0x2020      LDR      R2,[R3, R0, LSL #+2]
+   \       0x32   0x1CC6             ADDS     R6,R0,#+3
+   \       0x34   0x428E             CMP      R6,R1
+   \       0x36   0xBF19             ITTEE    NE
+   \       0x38   0x2300             MOVNE    R3,#+0
+   \       0x3A   0xF842 0x3021      STRNE    R3,[R2, R1, LSL #+2]
+   \       0x3E   0xF04F 0x567E      MOVEQ    R6,#+1065353216
+   \       0x42   0xF842 0x6021      STREQ    R6,[R2, R1, LSL #+2]
     367          	  {
     368          	    temp_matrix->matrix_entry[j][k] = 1; 
     369          	  }
@@ -430,66 +1142,447 @@ C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-
     372          	    temp_matrix->matrix_entry[j][k] = 0;
     373          	  }
     374                }
+   \       0x46   0x1C49             ADDS     R1,R1,#+1
+   \       0x48   0xE7ED             B.N      ??matrix_invert_3
     375              }
     376          
     377            matrix_row_reduce(temp_matrix, temp_matrix->row_size);
+   \                     ??matrix_invert_2: (+1)
+   \       0x4A   0x4628             MOV      R0,R5
+   \       0x4C   0x....'....        BL       matrix_row_reduce
     378          
     379            /* Copying the inverse matrix from the temp_matrix to the  invse_matrix */
     380            for(j = 0; j< temp_matrix->row_size; j++)
+   \       0x50   0x2000             MOVS     R0,#+0
+   \       0x52   0xE010             B.N      ??matrix_invert_4
     381              {
     382                for(k = 3; k < temp_matrix->col_size; k++)
     383                {
     384          	inverse_matrix->matrix_entry[j][k-3] = temp_matrix->matrix_entry[j][k];
+   \                     ??matrix_invert_5: (+1)
+   \       0x54   0x68A2             LDR      R2,[R4, #+8]
+   \       0x56   0xF852 0x3020      LDR      R3,[R2, R0, LSL #+2]
+   \       0x5A   0x68AA             LDR      R2,[R5, #+8]
+   \       0x5C   0xEB03 0x0681      ADD      R6,R3,R1, LSL #+2
+   \       0x60   0xF852 0x3020      LDR      R3,[R2, R0, LSL #+2]
+   \       0x64   0xF853 0x2021      LDR      R2,[R3, R1, LSL #+2]
+   \       0x68   0xF846 0x2C0C      STR      R2,[R6, #-12]
     385                }
+   \       0x6C   0x1C49             ADDS     R1,R1,#+1
+   \                     ??matrix_invert_6: (+1)
+   \       0x6E   0x686A             LDR      R2,[R5, #+4]
+   \       0x70   0x4291             CMP      R1,R2
+   \       0x72   0xDBEF             BLT.N    ??matrix_invert_5
+   \       0x74   0x1C40             ADDS     R0,R0,#+1
+   \                     ??matrix_invert_4: (+1)
+   \       0x76   0x6829             LDR      R1,[R5, #+0]
+   \       0x78   0x4288             CMP      R0,R1
+   \       0x7A   0xBFB8             IT       LT
+   \       0x7C   0x2103             MOVLT    R1,#+3
+   \       0x7E   0xDBF6             BLT.N    ??matrix_invert_6
     386              }
     387            
     388            matrix_free(temp_matrix);
+   \       0x80   0x4628             MOV      R0,R5
+   \       0x82   0xE8BD 0x4070      POP      {R4-R6,LR}
+   \       0x86   0x....             B.N      matrix_free
     389          }
     390          
+
+   \                                 In section .text, align 2, keep-with-next
     391          int matrix_equal_size( Matrix *matrix1, Matrix *matrix2)
     392          {
     393          
     394            return (matrix1->row_size == matrix2->row_size && \
     395          	      matrix1->col_size == matrix2->col_size);
+   \                     matrix_equal_size: (+1)
+   \        0x0   0x6802             LDR      R2,[R0, #+0]
+   \        0x2   0x680B             LDR      R3,[R1, #+0]
+   \        0x4   0x429A             CMP      R2,R3
+   \        0x6   0xBF02             ITTT     EQ
+   \        0x8   0x6840             LDREQ    R0,[R0, #+4]
+   \        0xA   0x6849             LDREQ    R1,[R1, #+4]
+   \        0xC   0x4288             CMPEQ    R0,R1
+   \        0xE   0xD101             BNE.N    ??matrix_equal_size_0
+   \       0x10   0x2001             MOVS     R0,#+1
+   \       0x12   0x4770             BX       LR
+   \                     ??matrix_equal_size_0: (+1)
+   \       0x14   0x2000             MOVS     R0,#+0
+   \       0x16   0x4770             BX       LR               ;; return
     396          }
     397          
     398          /*
     399            This function checks if there is a line containing too many zero's and it exits
     400            if such a line is found
     401          */
+
+   \                                 In section .text, align 2, keep-with-next
     402          void error_zeros( Matrix *matrix, int control_index)
     403          {
+   \                     error_zeros: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x4602             MOV      R2,R0
+   \        0x4   0x460B             MOV      R3,R1
     404                int i,j,count;
     405                for(i=0; i<matrix->row_size; i++)
+   \        0x6   0x2400             MOVS     R4,#+0
+   \        0x8   0xE000             B.N      ??error_zeros_0
+   \                     ??error_zeros_1: (+1)
+   \        0xA   0x1C64             ADDS     R4,R4,#+1
+   \                     ??error_zeros_0: (+1)
+   \        0xC   0x6810             LDR      R0,[R2, #+0]
+   \        0xE   0x4284             CMP      R4,R0
+   \       0x10   0xDA17             BGE.N    ??error_zeros_2
     406                {
     407          	    count=0;
+   \       0x12   0x2500             MOVS     R5,#+0
     408          	    for(j = 0;  j < matrix->col_size; j++)
+   \       0x14   0x2600             MOVS     R6,#+0
+   \       0x16   0xE000             B.N      ??error_zeros_3
+   \                     ??error_zeros_4: (+1)
+   \       0x18   0x1C76             ADDS     R6,R6,#+1
+   \                     ??error_zeros_3: (+1)
+   \       0x1A   0x6850             LDR      R0,[R2, #+4]
+   \       0x1C   0x4286             CMP      R6,R0
+   \       0x1E   0xDAF4             BGE.N    ??error_zeros_1
     409          	    {
     410          	      if( matrix->matrix_entry[i][j] == 0)
+   \       0x20   0x6891             LDR      R1,[R2, #+8]
+   \       0x22   0xF851 0x7024      LDR      R7,[R1, R4, LSL #+2]
+   \       0x26   0xF857 0x0026      LDR      R0,[R7, R6, LSL #+2]
+   \       0x2A   0x....'....        BL       ??Subroutine8_0
+   \                     ??CrossCallReturnLabel_14: (+1)
+   \       0x2E   0xD108             BNE.N    ??error_zeros_2
     411          	      {
     412          		count++;     
+   \       0x30   0x1C6D             ADDS     R5,R5,#+1
     413          	      }
     414          	      else
     415          	      {
     416          		return;
     417          	      }
     418          	      if(count == control_index)
+   \       0x32   0x429D             CMP      R5,R3
+   \       0x34   0xD1F0             BNE.N    ??error_zeros_4
     419          	      {
-    420          		fprintf(stdout,"\nProcess fail because row %d contains %d  zeros\n",i+1,control_index);
+    420          		//fprintf(stdout,"\nProcess fail because row %d contains %d  zeros\n",i+1,control_index);
     421          		matrix_print(matrix);
+   \       0x36   0x4610             MOV      R0,R2
+   \       0x38   0x....'....        BL       matrix_print
     422          		exit(1);
+   \       0x3C   0x2001             MOVS     R0,#+1
+   \       0x3E   0x....'....        BL       exit
     423          	      }
     424          	    }
     425          	  }
     426          }  
+   \                     ??error_zeros_2: (+1)
+   \       0x42   0xBDF1             POP      {R0,R4-R7,PC}    ;; return
     427          
     428          
+
+   \                                 In section .text, align 4, keep-with-next
     429          void terminate (char * string)
     430          {
-    431            fprintf(stdout,"\n%s\n",string);
-    432            fprintf(stdout,"The program is exiting now. . . .\n\n");
+    431            //fprintf(stdout,"\n%s\n",string);
+    432            //fprintf(stdout,"The program is exiting now. . . .\n\n");
     433            exit(-1);
+   \                     terminate: (+1)
+   \        0x0   0xBF00             Nop
+   \        0x2                      REQUIRE ?Subroutine0
+   \        0x2                      ;; // Fall through to label ?Subroutine0
     434          }
 
-Errors: 2
-Warnings: 4
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8:
+   \        0x0   0x0A 0x00          DC8      "\n",0x0,0x0
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_1:
+   \        0x0   0x09 0x09          DC8      0x09, 0x09, 0x00, 0x00
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_2:
+   \        0x0   0x25 0x66          DC8      0x25, 0x66, 0x00, 0x00
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_3:
+   \        0x0   0x....'....        DC32     ?_0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_4:
+   \        0x0   0x....'....        DC32     ?_1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ?_4:
+   \        0x0   0x25 0x39          DC8 "%9.2f"
+
+   \              0x2E 0x32    
+
+   \              0x66 0x00
+   \        0x6                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \        0x0   0x45 0x6E          DC8 "Enter the contents of the matrix:\012"
+
+   \              0x74 0x65    
+
+   \              0x72 0x20    
+
+   \              0x74 0x68    
+
+   \              0x65 0x20    
+
+   \              0x63 0x6F    
+
+   \              0x6E 0x74    
+
+   \              0x65 0x6E    
+
+   \              0x74 0x73    
+
+   \              0x20 0x6F    
+
+   \              0x66 0x20    
+
+   \              0x74 0x68    
+
+   \              0x65 0x20    
+
+   \              0x6D 0x61    
+
+   \              0x74 0x72    
+
+   \              0x69 0x78    
+
+   \              0x3A 0x0A    
+
+   \              0x00
+   \       0x23                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_1:
+   \        0x0   0x45 0x52          DC8 0x45, 0x52, 0x52, 0x4F, 0x52, 0x3A, 0x20, 0x54
+
+   \              0x52 0x4F    
+
+   \              0x52 0x3A    
+
+   \              0x20 0x54
+   \        0x8   0x68 0x65          DC8 0x68, 0x65, 0x20, 0x6E, 0x75, 0x6D, 0x62, 0x65
+
+   \              0x20 0x6E    
+
+   \              0x75 0x6D    
+
+   \              0x62 0x65
+   \       0x10   0x72 0x20          DC8 0x72, 0x20, 0x63, 0x6F, 0x6C, 0x75, 0x6D, 0x6E
+
+   \              0x63 0x6F    
+
+   \              0x6C 0x75    
+
+   \              0x6D 0x6E
+   \       0x18   0x73 0x20          DC8 0x73, 0x20, 0x6F, 0x66, 0x20, 0x6D, 0x61, 0x74
+
+   \              0x6F 0x66    
+
+   \              0x20 0x6D    
+
+   \              0x61 0x74
+   \       0x20   0x72 0x69          DC8 0x72, 0x69, 0x78, 0x31, 0x20, 0x20, 0x21, 0x3D
+
+   \              0x78 0x31    
+
+   \              0x20 0x20    
+
+   \              0x21 0x3D
+   \       0x28   0x20 0x6E          DC8 0x20, 0x6E, 0x75, 0x6D, 0x62, 0x65, 0x72, 0x20
+
+   \              0x75 0x6D    
+
+   \              0x62 0x65    
+
+   \              0x72 0x20
+   \       0x30   0x6F 0x66          DC8 0x6F, 0x66, 0x20, 0x72, 0x6F, 0x77, 0x73, 0x20
+
+   \              0x20 0x72    
+
+   \              0x6F 0x77    
+
+   \              0x73 0x20
+   \       0x38   0x69 0x6E          DC8 0x69, 0x6E, 0x20, 0x6D, 0x61, 0x74, 0x72, 0x69
+
+   \              0x20 0x6D    
+
+   \              0x61 0x74    
+
+   \              0x72 0x69
+   \       0x40   0x78 0x32          DC8 0x78, 0x32, 0x21, 0
+
+   \              0x21 0x00
+
+   \                                 In section .rodata, align 2, keep-with-next
+   \                     ?_2:
+   \        0x0   0x0A 0x00          DC8 "\012"
+
+   \                                 In section .rodata, align 4, keep-with-next
+   \                     ?_3:
+   \        0x0   0x09 0x09          DC8 "\t\t"
+
+   \              0x00
+   \        0x3                      DS8 1
+
+   \                                 In section .rodata, align 4, keep-with-next
+   \                     ?_6:
+   \        0x0   0x25 0x66          DC8 "%f"
+
+   \              0x00
+   \        0x3                      DS8 1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ?_5:
+   \        0x0   0x09 0x09          DC8 "\t\t%9.2f"
+
+   \              0x25 0x39    
+
+   \              0x2E 0x32    
+
+   \              0x66 0x00
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      24   LU_decompose
+        24   -> error_zeros
+        24   -> row_operation
+        24 __aeabi_cfcmpeq
+      24   error_zeros
+        24   -> exit
+        24   -> matrix_print
+        24 __aeabi_cfcmpeq
+      32   matrix_add
+        32   -> __aeabi_fadd
+        32   -> exit
+        32   -> matrix_equal_size
+      16   matrix_alloc
+        16   -> malloc
+      16   matrix_callalloc
+        16   -> matrix_alloc
+      16   matrix_copy
+       0   matrix_equal_size
+      24   matrix_fill
+        24   -> printf
+        24   -> scanf
+      16   matrix_free
+         0   -> free
+        16   -> free
+      16   matrix_invert
+        16   -> matrix_alloc
+        16   -> matrix_copy
+         0   -> matrix_free
+        16   -> matrix_row_reduce
+      32   matrix_multiply
+        32   -> __aeabi_f2iz
+        32   -> __aeabi_fadd
+        32   -> __aeabi_fmul
+        32   -> __aeabi_i2f
+        32   -> matrix_alloc
+        32   -> terminate
+      48   matrix_pow
+        48   -> __aeabi_f2iz
+        48   -> __aeabi_fadd
+        48   -> __aeabi_fmul
+        48   -> __aeabi_i2f
+        48   -> matrix_alloc
+        48   -> matrix_copy
+        48   -> matrix_free
+        48   -> matrix_multiply
+      32   matrix_print
+        32   -> __aeabi_f2d
+         0   -> printf
+        32   -> printf
+      32   matrix_print_part
+        32   -> __aeabi_f2d
+        32   -> printf
+      24   matrix_row_reduce
+        24   -> error_zeros
+        24   -> row_divide
+        24   -> row_operation
+        24 __aeabi_cfcmpeq
+      32   matrix_subtract
+        32   -> __aeabi_fsub
+        32   -> exit
+        32   -> matrix_equal_size
+      32   row_divide
+        32   -> __aeabi_fdiv
+      32   row_operation
+        32   -> __aeabi_fdiv
+        32   -> __aeabi_fmul
+        32   -> __aeabi_fsub
+       0   terminate
+         0   -> exit
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable8
+       4  ??DataTable8_1
+       4  ??DataTable8_2
+       4  ??DataTable8_3
+       4  ??DataTable8_4
+       6  ??Subroutine8_0
+      10  ?Subroutine0
+      14  ?Subroutine1
+      10  ?Subroutine2
+      12  ?Subroutine3
+      12  ?Subroutine4
+       8  ?Subroutine5
+      14  ?Subroutine6
+      10  ?Subroutine7
+      36  ?_0
+      68  ?_1
+       2  ?_2
+       4  ?_3
+       8  ?_4
+       8  ?_5
+       4  ?_6
+      66  LU_decompose
+      68  error_zeros
+      78  matrix_add
+      58  matrix_alloc
+      56  matrix_callalloc
+      48  matrix_copy
+      24  matrix_equal_size
+      54  matrix_fill
+      40  matrix_free
+     136  matrix_invert
+     130  matrix_multiply
+     266  matrix_pow
+      76  matrix_print
+      56  matrix_print_part
+     110  matrix_row_reduce
+      78  matrix_subtract
+      52  row_divide
+      96  row_operation
+       2  terminate
+
+ 
+   114 bytes in section .rodata
+ 1'626 bytes in section .text
+ 
+ 1'626 bytes of CODE  memory
+   114 bytes of CONST memory
+
+Errors: none
+Warnings: 2

@@ -417,7 +417,7 @@ void error_zeros( Matrix *matrix, int control_index)
 	      }
 	      if(count == control_index)
 	      {
-		fprintf(stdout,"\nProcess fail because row %d contains %d  zeros\n",i+1,control_index);
+		//fprintf(stdout,"\nProcess fail because row %d contains %d  zeros\n",i+1,control_index);
 		matrix_print(matrix);
 		exit(1);
 	      }
@@ -428,7 +428,7 @@ void error_zeros( Matrix *matrix, int control_index)
 
 void terminate (char * string)
 {
-  fprintf(stdout,"\n%s\n",string);
-  fprintf(stdout,"The program is exiting now. . . .\n\n");
+  //fprintf(stdout,"\n%s\n",string);
+  //fprintf(stdout,"The program is exiting now. . . .\n\n");
   exit(-1);
 }
