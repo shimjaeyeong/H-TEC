@@ -5,384 +5,221 @@
     <configuration>
         <name>Flash</name>
         <outputs>
-<<<<<<< HEAD
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_rtc.h</file>
-            <file>$PROJ_DIR$\..\BSP\bsp.h</file>
-            <file>$PROJ_DIR$\..\BSP\bsp_periph.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_map.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_spi.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_tim.h</file>
+            <file>$PROJ_DIR$\app.c</file>
+            <file>$PROJ_DIR$\app_cfg.h</file>
+            <file>$PROJ_DIR$\app_vect_v5.c</file>
+            <file>$PROJ_DIR$\includes.h</file>
+            <file>$PROJ_DIR$\os_cfg.h</file>
             <file>$PROJ_DIR$\probe_com_cfg.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_type.h</file>
-            <file>$PROJ_DIR$\..\BSP\STM32_Flash.icf</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_usart.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_lib.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_systick.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_flash.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_gpio.h</file>
+            <file>$PROJ_DIR$\..\BSP\bsp.c</file>
             <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_adc.c</file>
-            <file>$PROJ_DIR$\..\BSP\bsp_int.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_bkp.h</file>
             <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_bkp.c</file>
-            <file>$PROJ_DIR$\stm32f10x_conf.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\cortexm3_macro.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_adc.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_exti.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_nvic.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_pwr.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_i2c.h</file>
-            <file>$PROJ_DIR$\..\BSP\bsp.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_rcc.h</file>
-            <file>$PROJ_DIR$\app_vect_v5.c</file>
-            <file>$PROJ_DIR$\includes.h</file>
-            <file>$PROJ_DIR$\app_cfg.h</file>
-            <file>$PROJ_DIR$\os_cfg.h</file>
-            <file>$PROJ_DIR$\app.c</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx_buf.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mutex.o</file>
-            <file>$PROJ_DIR$\Flash\List\matrix.lst</file>
-            <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mbox.xcl</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mbox.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_mem.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_gpio.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\app.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_str.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mem.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_dbg.xcl</file>
-=======
-            <file>$PROJ_DIR$\app.c</file>
-            <file>$PROJ_DIR$\app_cfg.h</file>
-            <file>$PROJ_DIR$\..\BSP\STM32_Flash.icf</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_flash.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_gpio.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_bkp.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_exti.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_lib.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_map.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_nvic.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_pwr.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_tim.h</file>
-            <file>$PROJ_DIR$\os_cfg.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_type.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_adc.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_i2c.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_usart.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_rtc.h</file>
             <file>$PROJ_DIR$\..\BSP\bsp_int.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_rcc.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_spi.h</file>
             <file>$PROJ_DIR$\..\BSP\bsp_periph.c</file>
-            <file>$PROJ_DIR$\probe_com_cfg.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\cortexm3_macro.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\inc\stm32f10x_systick.h</file>
-            <file>$PROJ_DIR$\app_vect_v5.c</file>
-            <file>$PROJ_DIR$\includes.h</file>
-            <file>$PROJ_DIR$\..\BSP\bsp.c</file>
-            <file>$PROJ_DIR$\..\BSP\bsp.h</file>
-            <file>$PROJ_DIR$\stm32f10x_conf.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_exti.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp_periph.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\app_vect_v5.o</file>
-            <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mem.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_usart.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_systick.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_time.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_gpio.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mbox.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_dbg.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_str.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_q.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\app.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_core.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\app_vect_v5.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx_pix.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_cpu_c.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mutex.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mbox.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_flash.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_mem_a.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_dbg.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_mem.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_gpio.xcl</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_nvic.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_usart.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_probe.o</file>
-<<<<<<< HEAD
-            <file>$PROJ_DIR$\Flash\Obj\os_time.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp_periph.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx_pix.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\app_vect_v5.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_usart.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_flash.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_exti.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp_periph.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_core.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_mem_a.o</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_rcc.lst</file>
-            <file>$PROJ_DIR$\Flash\List\bsp_periph.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_systick.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\os_core.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_dbg.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_gpio.xcl</file>
-            <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_probe.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\max7219.xcl</file>
-            <file>$PROJ_DIR$\matrix\MD_MAX72xx_font.cpp</file>
-=======
-            <file>$PROJ_DIR$\Flash\Obj\bsp_periph.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\matrix.lst</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_usart.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_systick.o</file>
-            <file>$PROJ_DIR$\matrix\max7219.c</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_nvic.xcl</file>
-            <file>$PROJ_DIR$\matrix\max7219.h</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_i2c.lst</file>
-            <file>$PROJ_DIR$\Flash\List\os_core.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx_buf.xcl</file>
-            <file>$TOOLKIT_DIR$\inc\c\stdio.h</file>
-            <file>$PROJ_DIR$\matrix\MD_MAX72xx_font.cpp</file>
-            <file>$PROJ_DIR$\Flash\Obj\MAX7219_Matrix.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_spi.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_str.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\lib_mem.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_probe.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx_font.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\probe_com.lst</file>
-            <file>$PROJ_DIR$\Flash\List\bsp_periph.lst</file>
-            <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_tim.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mem.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\probe_com.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\os_flag.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_mem.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_time.o</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_rcc.lst</file>
-            <file>$PROJ_DIR$\matrix\MAX7219_Matrix.c</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_adc.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\max7219.xcl</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_adc.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_i2c.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_cpu_c.o</file>
-            <file>$PROJ_DIR$\Flash\List\os_flag.lst</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_tim.lst</file>
-            <file>$PROJ_DIR$\Flash\List\lib_mem.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_time.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_spi.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mbox.o</file>
-<<<<<<< HEAD
-            <file>$PROJ_DIR$\Flash\Obj\bsp.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_str.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_mem.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\MAX7219_Matrix.xcl</file>
-            <file>$TOOLKIT_DIR$\inc\c\stdio.h</file>
-            <file>$PROJ_DIR$\Flash\List\os_q.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx_font.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\probe_com.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_systick.o</file>
-            <file>$PROJ_DIR$\matrix\max7219.c</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_nvic.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\cpu_c.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_adc.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mem.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\probe_com.lst</file>
-            <file>$PROJ_DIR$\matrix\MAX7219_Matrix.c</file>
-            <file>$PROJ_DIR$\matrix\max7219.h</file>
-            <file>$PROJ_DIR$\Flash\List\os_dbg.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_exti.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_task.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_flash.lst</file>
-            <file>$PROJ_DIR$\matrix\MAX7219_Matrix.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_str.o</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_pwr.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_systick.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\bsp.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\probe_com_os.xcl</file>
-            <file>$TOOLKIT_DIR$\lib\m7M_tl.a</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_bkp.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_tim.o</file>
-            <file>$TOOLKIT_DIR$\inc\c\ctype.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_nvic.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_flag.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_q.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp.o</file>
-            <file>$PROJ_DIR$\Flash\List\os_cpu_c.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_pwr.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp_int.o</file>
-            <file>$PROJ_DIR$\matrix\MD_MAX72xx_pix.cpp</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx_font.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_probe.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rtc.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_adc.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_tmr.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp_periph.o</file>
-            <file>$PROJ_DIR$\matrix\MD_MAX72xx_buf.cpp</file>
-            <file>$PROJ_DIR$\Flash\List\os_mbox.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mem.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mutex.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\inc\c\stdarg.h</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_spi.lst</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_flag.xcl</file>
             <file>$PROJ_DIR$\Flash\Obj\STM3210B-EVAL-OS-Probe-v5.pbd</file>
-            <file>$PROJ_DIR$\Flash\List\app.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_cpu_c.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_rtc.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_i2c.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\probe_com_os.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_core.o</file>
-            <file>$PROJ_DIR$\Flash\List\lib_str.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_usart.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_spi.xcl</file>
             <file>$PROJ_DIR$\Flash\Obj\os_sem.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\os_time.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\app_vect_v5.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_exti.__cstat.et</file>
-            <file>$PROJ_DIR$\matrix\MD_MAX72xx.cpp</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_sem.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_time.xcl</file>
-            <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_spi.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_pwr.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_task.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_gpio.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\cpu_c.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx_buf.__cstat.et</file>
+            <file>$PROJ_DIR$\Flash\Obj\probe_com_os.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\matrix.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_task.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_nvic.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_i2c.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\app_vect_v5.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rtc.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\lib_mem.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_cpu_c.xcl</file>
             <file>$PROJ_DIR$\Flash\Obj\os_q.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_gpio.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp_int.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\os_tmr.lst</file>
-            <file>$TOOLKIT_DIR$\inc\c\string.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_lib.lst</file>
-            <file>$PROJ_DIR$\Flash\List\os_mem.lst</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_probe.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_mutex.xcl</file>
+            <file>$PROJ_DIR$\Flash\Exe\STM3210B-EVAL-OS-Probe-v5.out</file>
+            <file>$PROJ_DIR$\Flash\Obj\lib_str.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_systick.o</file>
+            <file>$PROJ_DIR$\Flash\Exe\STM3210B-EVAL-OS-Probe-v5.bin</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_time.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\cpu_c.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_usart.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_core.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rtc.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\lib_mem.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\lib_str.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_tim.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\cpu_c.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_dbg.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_adc.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_mem.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_mbox.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_spi.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_tmr.xcl</file>
             <file>$PROJ_DIR$\Flash\Obj\stm32f10x_usart.xcl</file>
             <file>$PROJ_DIR$\Flash\Obj\probe_com.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp_int.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\matrix.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_tim.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\os_task.lst</file>
-            <file>$PROJ_DIR$\Flash\List\os_sem.lst</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Product_stdlib.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\cpu_c.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_exti.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rcc.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_tmr.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_bkp.o</file>
-            <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_tim.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_lib.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rcc.o</file>
-            <file>$PROJ_DIR$\Flash\List\bsp_int.lst</file>
-            <file>$PROJ_DIR$\Flash\List\probe_com_os.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\matrix.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_lib.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\probe_com_os.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_bkp.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\cpu_a.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_flash.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_systick.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\lib_mem_a.o</file>
             <file>$PROJ_DIR$\Flash\Obj\stm32f10x_lib.xcl</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_flash.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\inc\c\errno.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rtc.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_nvic.lst</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_systick.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rcc.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_adc.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_sem.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Product_string.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\app.o</file>
-            <file>$PROJ_DIR$\Flash\List\os_probe.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_core.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_i2c.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_flag.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_i2c.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rtc.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_spi.xcl</file>
-            <file>$PROJ_DIR$\Flash\Exe\STM3210B-EVAL-OS-Probe-v5.out</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_dbg.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_tmr.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_bkp.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\STM3210B-EVAL-OS-Probe-v5.map</file>
-            <file>$PROJ_DIR$\Flash\Obj\app.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\cpu_c.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\probe_com.o</file>
-            <file>$PROJ_DIR$\Flash\Exe\STM3210B-EVAL-OS-Probe-v5.bin</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_cpu_c.xcl</file>
-            <file>$TOOLKIT_DIR$\inc\c\limits.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mutex.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\os_probe.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_sem.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_core.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\OS\uCOS-II\probe_com_os.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\os_probe.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\ucos_ii.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_dbg.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\probe_com.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mem.c</file>
-            <file>$PROJ_DIR$\Flash\List\os_mutex.lst</file>
             <file>$PROJ_DIR$\Flash\Obj\os_cpu_a.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_task.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_mem.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\app_vect_v5.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mutex.xcl</file>
-            <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_q.__cstat.et</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_tmr.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mbox.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_flag.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_task.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_time.c</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx_pix.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\matrix.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_mutex.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rcc.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\bsp_periph.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_probe.o</file>
             <file>$PROJ_DIR$\Flash\Obj\stm32f10x_pwr.xcl</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_q.c</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_exti.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_gpio.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_flash.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\bsp.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_time.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_mbox.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_sem.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\bsp_periph.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_tim.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\bsp_int.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_cpu_c.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_lib.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rcc.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\app.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_pwr.o</file>
             <file>$PROJ_DIR$\Flash\Obj\os_flag.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\bsp.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_nvic.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_bkp.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_i2c.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_gpio.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_tmr.o</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mutex.c</file>
+            <file>$PROJ_DIR$\Flash\Obj\app_vect_v5.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_core.o</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_core.c</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_exti.xcl</file>
+            <file>$PROJ_DIR$\Flash\Obj\probe_com_os.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_q.o</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mbox.c</file>
             <file>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\probe_com.c</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\app_vect_v5.o</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_i2c.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_lib.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_nvic.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_rtc.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_usart.c</file>
-            <file>$PROJ_DIR$\matrix\matrix.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_mem.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-CPU\cpu_def.h</file>
+            <file>$PROJ_DIR$\Flash\Obj\bsp_int.xcl</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_q.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_sem.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_time.c</file>
+            <file>$PROJ_DIR$\Flash\Obj\app.xcl</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mem.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_dbg.c</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_dbg.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_bkp.xcl</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\os_probe.c</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_flash.xcl</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_flag.c</file>
+            <file>$PROJ_DIR$\Flash\Obj\probe_com.o</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_tmr.c</file>
+            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_adc.xcl</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\OS\uCOS-II\probe_com_os.c</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_mem.o</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_task.c</file>
+            <file>$PROJ_DIR$\Flash\Obj\os_task.o</file>
+            <file>$PROJ_DIR$\Flash\Obj\cpu_a.o</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_spi.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_mem.c</file>
             <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_a.asm</file>
             <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_tim.c</file>
             <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_c.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_exti.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_flash.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_str.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_gpio.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_rcc.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_spi.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_def.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_str.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu.h</file>
             <file>$PROJ_DIR$\matrix\matrix.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu_a.asm</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu_c.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex-M3\IAR\lib_mem_a.asm</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_mem.c</file>
             <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_pwr.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu_c.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_gpio.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_nvic.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_usart.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_lib.c</file>
             <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_systick.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_exti.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_str.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_rtc.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_i2c.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu_a.asm</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_rcc.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_flash.c</file>
+            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex-M3\IAR\lib_mem_a.asm</file>
         </outputs>
         <file>
             <name>[ROOT_NODE]</name>
             <outputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 207 211</file>
+                    <file> 27</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\app.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 71</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 93</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\app_vect_v5.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 20</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 81</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\BSP\bsp.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 74</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 61</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_adc.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 41</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 103</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_bkp.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 76</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 97</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\BSP\bsp_int.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 67</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 89</file>
                 </tool>
             </outputs>
         </file>
@@ -391,580 +228,11 @@
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 59 121</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 49</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
                     <file> 55</file>
                 </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 1 254 256 266 255 29 267 169 146 234 37 189 246 35 168 107 191 217 81 18 7 10 3 19 20 16 21 12 13 22 23 26 0 4 11 5 9 224 30 268 219</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_adc.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 196 89</file>
-                </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 68</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 119</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 20 3 18 7 19 26</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\BSP\bsp_int.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 180 114</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 155</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 163</file>
-=======
-            <file>$PROJ_DIR$\Flash\List\os_q.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_q.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\cpu_c.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_q.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_usart.o</file>
-            <file>$PROJ_DIR$\Flash\List\os_time.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_i2c.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_core.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_sem.o</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_gpio.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp_int.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_task.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_spi.o</file>
-            <file>$TOOLKIT_DIR$\inc\c\stdarg.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mutex.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\os_tmr.lst</file>
-            <file>$PROJ_DIR$\Flash\List\lib_str.lst</file>
-            <file>$TOOLKIT_DIR$\inc\c\string.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\app_vect_v5.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_gpio.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_tim.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx_buf.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_sem.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_bkp.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_pwr.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_time.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_exti.__cstat.et</file>
-            <file>$PROJ_DIR$\matrix\MD_MAX72xx.cpp</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_spi.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\STM3210B-EVAL-OS-Probe-v5.pbd</file>
-            <file>$PROJ_DIR$\Flash\Obj\probe_com_os.xcl</file>
-            <file>$TOOLKIT_DIR$\lib\m7M_tl.a</file>
-            <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mem.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_probe.xcl</file>
-            <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_task.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_cpu_c.o</file>
-            <file>$TOOLKIT_DIR$\inc\c\ctype.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_systick.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_str.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_adc.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\os_mbox.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp_periph.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_exti.o</file>
-            <file>$PROJ_DIR$\Flash\List\bsp.lst</file>
-            <file>$PROJ_DIR$\matrix\MAX7219_Matrix.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp.xcl</file>
-            <file>$PROJ_DIR$\matrix\MD_MAX72xx_pix.cpp</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp_int.o</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_flash.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\cpu_c.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx_font.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_flag.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\os_dbg.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\os_cpu_c.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rtc.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_pwr.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_nvic.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_tmr.o</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_pwr.lst</file>
-            <file>$PROJ_DIR$\matrix\MD_MAX72xx_buf.cpp</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_lib.o</file>
-            <file>$PROJ_DIR$\Flash\List\os_sem.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\probe_com_os.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rcc.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_tim.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\bsp_int.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_tim.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\cpu_c.xcl</file>
-            <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
-            <file>$PROJ_DIR$\Flash\Obj\matrix.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\matrix.o</file>
-            <file>$PROJ_DIR$\Flash\List\probe_com_os.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_bkp.o</file>
-            <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\probe_com.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rcc.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_flash.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_flash.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_usart.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_exti.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_tmr.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\os_task.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\bsp_int.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\os_mem.lst</file>
-            <file>$PROJ_DIR$\Flash\Exe\STM3210B-EVAL-OS-Probe-v5.bin</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_lib.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Product_stdlib.h</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_lib.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\app.o</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_nvic.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_bkp.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_dbg.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_rtc.lst</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_adc.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_bkp.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_cpu_c.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_sem.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_core.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\probe_com.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rtc.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\inc\c\errno.h</file>
-            <file>$PROJ_DIR$\Flash\List\STM3210B-EVAL-OS-Probe-v5.map</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_flag.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\cpu_a.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rtc.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_lib.xcl</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_i2c.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_tmr.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\List\cpu_c.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_i2c.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\app.__cstat.et</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_spi.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\app.lst</file>
-            <file>$PROJ_DIR$\Flash\List\stm32f10x_systick.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\probe_com_os.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_rcc.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Product_string.h</file>
-            <file>$PROJ_DIR$\Flash\Exe\STM3210B-EVAL-OS-Probe-v5.out</file>
-            <file>$PROJ_DIR$\Flash\List\os_probe.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_flag.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_task.o</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_mutex.xcl</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\lib_mem.__cstat.et</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_q.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_dbg.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\probe_com.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\arm-cortex-m3\Generic\IAR\os_cpu.h</file>
-            <file>$PROJ_DIR$\Flash\Obj\MD_MAX72xx_pix.xcl</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\os_probe.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_a.asm</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_c.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\probe_com.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\limits.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mem.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_str.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_task.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_time.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\ucos_ii.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mbox.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_core.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\OS\uCOS-II\probe_com_os.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\os_probe.c</file>
-            <file>$PROJ_DIR$\Flash\Obj\stm32f10x_pwr.xcl</file>
-            <file>$PROJ_DIR$\Flash\List\os_mutex.lst</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_sem.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_flag.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mutex.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_tmr.c</file>
-            <file>$PROJ_DIR$\Flash\List\app_vect_v5.lst</file>
-            <file>$PROJ_DIR$\Flash\Obj\os_cpu_a.o</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_nvic.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu_a.asm</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex-M3\IAR\lib_mem_a.asm</file>
-            <file>$PROJ_DIR$\matrix\matrix.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-CPU\cpu_def.h</file>
-            <file>$PROJ_DIR$\matrix\matrix.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_rtc.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu_c.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_gpio.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_lib.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_bkp.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_rcc.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_spi.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_systick.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_def.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_exti.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_flash.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_mem.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_usart.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_mem.h</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_pwr.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_str.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_tim.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_i2c.c</file>
-            <file>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_adc.c</file>
-        </outputs>
-        <file>
-            <name>[ROOT_NODE]</name>
-            <outputs>
-                <tool>
-                    <name>ILINK</name>
-                    <file> 216 200</file>
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\app.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 211 187</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 209</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 45</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 1 254 256 266 255 29 267 169 146 234 37 189 246 35 168 107 191 217 81 18 7 10 3 19 20 16 21 12 13 22 23 26 0 4 11 5 9 224 30 268 219</file>
-=======
-                    <file> 26 69 124 33 38 156 221 41 109 215 130 171 185 105 237 1 12 226 250 255 265 270 234 199 232 29 13 7 8 23 14 5 6 3 4 9 10 19 17 20 24 11 16 28 228 231 22</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\BSP\bsp_int.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 105 175</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 210</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 185</file>
-=======
-                    <file> 162 142</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 181</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 102</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 16 3 18 7 19 26</file>
-=======
-                    <file> 28 250 255 265 270 1 234 171 124 33 38 156 221 41 185 130 199 232 69 29 13 7 8 23 14 5 6 3 4 9 10 19 17 20 24 11 16 237 12 226 228</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\BSP\bsp.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 102 111</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 77</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 158</file>
-=======
-                    <file> 78 135</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 31</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 59</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 1 254 256 266 255 29 267 169 146 234 37 189 246 35 168 107 191 217 81 18 7 10 3 19 20 16 21 12 13 22 23 26 0 4 11 5 9 224 30 268 219</file>
-=======
-                    <file> 28 250 255 265 270 1 234 171 124 33 38 156 221 41 185 130 199 232 69 29 13 7 8 23 14 5 6 3 4 9 10 19 17 20 24 11 16 237 12 226 228</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\app_vect_v5.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 232 247</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 141</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 51</file>
-=======
-                    <file> 248 32</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 47</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 110</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 28 81 146 234 37 189 246 35 157 198 107 169 168 128 224 29 30 268 254 256 266 255 267 191 217 18 7 10 3 19 20 16 21 12 13 22 23 26 0 4 11 5 9 1 219 226 6</file>
-=======
-                    <file> 26 69 124 33 38 156 221 41 109 215 130 171 185 105 237 1 12 226 250 255 265 270 234 199 232 29 13 7 8 23 14 5 6 3 4 9 10 19 17 20 24 11 16 28 228 231 22</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\app.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 131 199</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 41</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 212</file>
-=======
-            <name>$PROJ_DIR$\..\BSP\bsp.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 138 136</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 167</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 140</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 28 81 146 234 37 189 246 35 157 198 107 169 168 128 224 29 30 268 254 256 266 255 267 191 217 18 7 10 3 19 20 16 21 12 13 22 23 26 0 4 11 5 9 1 219 226 6</file>
-=======
-                    <file> 28 250 255 265 270 1 234 171 124 33 38 156 221 41 185 130 199 232 69 29 13 7 8 23 14 5 6 3 4 9 10 19 17 20 24 11 16 237 12 226 228</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\matrix\MD_MAX72xx_font.cpp</name>
-            <outputs>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 116</file>
-=======
-            <name>$PROJ_DIR$\matrix\max7219.c</name>
-            <outputs>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 89</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-                <tool>
-<<<<<<< HEAD
-                    <name>__cstat</name>
-                    <file> 83</file>
-=======
-                    <name>ICCARM</name>
                     <file> 65</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\matrix\max7219.c</name>
-            <outputs>
-                <tool>
-<<<<<<< HEAD
-                    <name>BICOMP</name>
-                    <file> 66</file>
-=======
-                    <name>__cstat</name>
-                    <file> 76</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 145</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 93</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\matrix\MAX7219_Matrix.c</name>
-            <outputs>
-                <tool>
-                    <name>BICOMP</name>
-<<<<<<< HEAD
-                    <file> 80</file>
-=======
-                    <file> 71</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 98</file>
-=======
-                    <file> 139</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\matrix\MD_MAX72xx.cpp</name>
-            <outputs>
-                <tool>
-<<<<<<< HEAD
-                    <name>BICOMP</name>
-                    <file> 241</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 50</file>
-=======
-                    <name>__cstat</name>
-                    <file> 148</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 176</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\matrix\MD_MAX72xx_pix.cpp</name>
-            <outputs>
-                <tool>
-<<<<<<< HEAD
-                    <name>BICOMP</name>
-                    <file> 32</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 152</file>
-=======
-                    <name>__cstat</name>
-                    <file> 48</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 227</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\matrix\MD_MAX72xx_buf.cpp</name>
-            <outputs>
-                <tool>
-<<<<<<< HEAD
-                    <name>BICOMP</name>
-                    <file> 173</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 124</file>
-=======
-                    <name>__cstat</name>
-                    <file> 113</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 68</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
                 </tool>
             </outputs>
         </file>
@@ -972,935 +240,225 @@
             <name>$PROJ_DIR$\Flash\Exe\STM3210B-EVAL-OS-Probe-v5.out</name>
             <outputs>
                 <tool>
-<<<<<<< HEAD
-                    <name>ILINK</name>
-                    <file> 211</file>
-                </tool>
-                <tool>
                     <name>OBJCOPY</name>
-                    <file> 215</file>
-=======
-                    <name>OBJCOPY</name>
-                    <file> 183</file>
-                </tool>
-                <tool>
-                    <name>ILINK</name>
-                    <file> 200</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 30</file>
                 </tool>
             </outputs>
-            <inputs>
-                <tool>
-                    <name>ILINK</name>
-<<<<<<< HEAD
-                    <file> 8 199 247 111 114 121 186 151 39 57 99 182 136 229 70 62 244 76 126 33 47 110 144 230 74 120 214 135 89 175 95 187 150 204 183 108 148 179 118 147 85 106 138 125 176 104 64</file>
-=======
-                    <file> 2 187 32 136 142 135 202 94 55 53 132 168 99 249 129 42 218 91 125 50 58 95 100 219 85 153 197 213 88 170 137 175 111 205 157 152 116 160 150 104 62 112 96 127 165 123 79</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
         </file>
         <file>
-<<<<<<< HEAD
             <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mutex.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 228 33</file>
+                    <file> 53</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 233</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 127</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_q.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 92 95</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 44</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 93</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 26</file>
                 </tool>
             </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 224 29 30 268</file>
-=======
-                    <file> 237 1 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
         </file>
         <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_sem.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 167 144</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 139</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 197</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_dbg.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 147 42</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 190</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 54</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 224 29 30 268</file>
-=======
-                    <file> 237 1 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
             <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_core.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 61 136</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 56</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 201</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\probe_com.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 77 197</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
                     <file> 82</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 172</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 224 29 30 268</file>
-=======
-                    <file> 231 250 255 265 270 1 22</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\OS\uCOS-II\probe_com_os.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 181 135</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 103</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 184</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_a.asm</name>
-            <outputs>
-                <tool>
-                    <name>AARM</name>
-                    <file> 249</file>
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_c.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 149 129</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 194</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 49</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 226 254 256 266 255 29 6 224 30 268</file>
-=======
-                    <file> 237 1 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\os_probe.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 200 47</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 117</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 65</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mem.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 182 125</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
                     <file> 34</file>
                 </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 81</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
             </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 219 29 224 30 268</file>
-=======
-                    <file> 237 1 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
         </file>
         <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_dbg.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mbox.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 94 62</file>
+                    <file> 63</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 44</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 208</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_task.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 180 219</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 103</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 128</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 224 29 30 268</file>
-=======
-                    <file> 237 1 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mem.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 160 126</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 90</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
                     <file> 43</file>
-=======
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\probe_com.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 101</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 47</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_q.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 86</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 24</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_sem.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 64</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 14</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
             <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_time.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 97 85</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 37</file>
+                    <file> 62</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 117</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 31</file>
                 </tool>
             </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 224 29 30 268</file>
-=======
-                    <file> 237 1 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
         </file>
         <file>
-<<<<<<< HEAD
+            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mem.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 105</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 42</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_dbg.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 96</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 40</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\os_probe.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 56</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 25</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_flag.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 73</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 11</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
             <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_tmr.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 156 120</file>
+                    <file> 79</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 174</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 209</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mbox.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 134 91</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 40</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 51</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 45</file>
                 </tool>
             </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 224 29 30 268</file>
-=======
-                    <file> 237 1 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
         </file>
         <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mbox.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\OS\uCOS-II\probe_com_os.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 123 76</file>
+                    <file> 85</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 15</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_task.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 107</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 17</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_spi.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 44</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 13</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_mem.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 22</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
                     <file> 36</file>
                 </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 38</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_core.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 67 99</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 196</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 46</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 224 29 30 268</file>
-=======
-                    <file> 237 1 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_flag.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 71 244</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 203</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 109</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\OS\uCOS-II\probe_com_os.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 169 213</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 159</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 122</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 224 29 30 268</file>
-=======
-                    <file> 231 250 255 265 270 1 22 237 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_task.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 166 230</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 96</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 149</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\os_probe.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 217 58</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 75</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 126</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 224 29 30 268</file>
-=======
-                    <file> 228 1 237 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_time.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 140 74</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 145</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 48</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_sem.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 158 100</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 195</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 114</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 224 29 30 268</file>
-=======
-                    <file> 237 1 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_q.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 82 110</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 153</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 235</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_flag.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 83 218</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 146</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 201</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 224 29 30 268</file>
-=======
-                    <file> 237 1 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\probe_com.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 91 214</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 162</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 84</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_mutex.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 243 50</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 106</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 220</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 237 1 12 226</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Source\os_tmr.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 107 153</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 206</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 179</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 226 254 256 266 255 29 6</file>
-=======
-                    <file> 237 1 12 226</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_i2c.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 69 204</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 134</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 202</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_nvic.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 188 152</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 57</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 64</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 24 3 18 7 19 26</file>
-=======
-                    <file> 9 8 29 13 23</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_lib.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 159 183</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu_a.asm</name>
-            <outputs>
-                <tool>
-                    <name>AARM</name>
-                    <file> 202</file>
-                </tool>
             </outputs>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex-M3\IAR\lib_mem_a.asm</name>
-            <outputs>
-                <tool>
-                    <name>AARM</name>
-                    <file> 53</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\matrix\matrix.c</name>
-            <outputs>
-                <tool>
-<<<<<<< HEAD
-                    <name>BICOMP</name>
-                    <file> 188</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 178</file>
-=======
-                    <name>ICCARM</name>
-                    <file> 60 168</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 166</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 10 3 18 7 19 20 16 21 12 13 22 23 26 0 4 11 5 9</file>
-=======
-                    <file> 254 69 124 33 38 156 221 41 171 185</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_nvic.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 193 108</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 87</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 45</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_rtc.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 191 150</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 198</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 203</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 17 8 29 13 23</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu_c.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 207 94</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 144</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 164</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 22 3 18 7 19</file>
-=======
-                    <file> 250 255 265</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_rtc.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 133 118</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 205</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 192</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_gpio.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 101 111</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 39</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 56</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 0 3 18 7 19</file>
-=======
-                    <file> 4 8 29 13 23 19</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_usart.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 52 138</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 161</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 46</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_lib.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 186 157</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 184</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 204</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 9 3 18 7 19 26</file>
-=======
-                    <file> 7 8 29 13 23 14 5 6 3 4 9 10 19 17 20 24 11 16</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
             <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_a.asm</name>
             <outputs>
                 <tool>
                     <name>AARM</name>
-                    <file> 229</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_bkp.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 115 170</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 51</file>
                 </tool>
             </outputs>
         </file>
@@ -1908,569 +466,231 @@
             <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_tim.c</name>
             <outputs>
                 <tool>
-<<<<<<< HEAD
                     <name>ICCARM</name>
-                    <file> 72 106</file>
+                    <file> 66</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 165</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 177</file>
-=======
-                    <name>__cstat</name>
-                    <file> 193</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 189</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 38</file>
                 </tool>
             </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 5 3 18 7 19 26</file>
-=======
-                    <file> 5 8 29 13 23 19</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
         </file>
         <file>
-<<<<<<< HEAD
             <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_c.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 112 70</file>
+                    <file> 68</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 216</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 132</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_rcc.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 86 160</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 214</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 173</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 23</file>
                 </tool>
             </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 224 29 30 268</file>
-=======
-                    <file> 19 8 29 13 23</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
         </file>
         <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_exti.c</name>
+            <name>$PROJ_DIR$\matrix\matrix.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 171 95</file>
+                    <file> 52</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 54</file>
+                    <file> 16</file>
                 </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 142</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_spi.c</name>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_pwr.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 120 104</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
                     <file> 72</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 210</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 57</file>
                 </tool>
             </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 21 3 18 7 19</file>
-=======
-                    <file> 20 8 29 13 23 19</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
         </file>
         <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_flash.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu_c.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 97 187</file>
+                    <file> 32</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 53</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 190</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_systick.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 212 62</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 36</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 131</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 39</file>
                 </tool>
             </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 12 3 18 7 19</file>
-=======
-                    <file> 24 8 29 13 23</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
         </file>
         <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_str.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_gpio.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 137 99</file>
+                    <file> 59</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
                     <file> 78</file>
                 </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 42</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_exti.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 178 137</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 118</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 30</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
             </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 267 254 256 266 29 169 146 234 37 189 246 35 168 107 191 217 81</file>
-=======
-                    <file> 6 8 29 13 23</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
         </file>
         <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_gpio.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_nvic.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 154 150</file>
+                    <file> 18</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 63</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 40</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_flash.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 143 175</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 174</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 52</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 13 3 18 7 19 26</file>
-=======
-                    <file> 3 8 29 13 23</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_rcc.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 58 179</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 172</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 195</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_mem.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 74 55</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 222</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 84</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 26 3 18 7 19</file>
-=======
-                    <file> 270 250 255 265 1</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_spi.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 129 147</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 206</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
                     <file> 75</file>
-=======
+                </tool>
+            </outputs>
+        </file>
+        <file>
             <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_usart.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 61 96</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 35</file>
+                    <file> 33</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 177</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 4 3 18 7 19 26</file>
-=======
-                    <file> 16 8 29 13 23 19</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\matrix\matrix.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 34 182</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 164</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_pwr.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 154 116</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 151</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 242</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 253 81 146 234 37 189 246 35 169 168</file>
-=======
-                    <file> 10 8 29 13 23 19</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu_a.asm</name>
-            <outputs>
-                <tool>
-                    <name>AARM</name>
-                    <file> 186</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_str.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 108 132</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 46</file>
                 </tool>
             </outputs>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu_c.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_lib.c</name>
             <outputs>
                 <tool>
-<<<<<<< HEAD
                     <name>ICCARM</name>
-                    <file> 213 151</file>
+                    <file> 69</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 170</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 88</file>
-=======
-                    <name>__cstat</name>
-                    <file> 43</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 73</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 254 256 266</file>
-=======
-                    <file> 234 250 255 265 1 171 124 33 38 156 221 41 185 130 199 232 69</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex-M3\IAR\lib_mem_a.asm</name>
-            <outputs>
-                <tool>
-                    <name>AARM</name>
-                    <file> 57</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_tim.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 80 112</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 50</file>
                 </tool>
             </outputs>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_mem.c</name>
-            <outputs>
-                <tool>
-<<<<<<< HEAD
-                    <name>ICCARM</name>
-                    <file> 73 39</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 79</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 231</file>
-=======
-                    <name>__cstat</name>
-                    <file> 161</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 163</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 255 254 256 266 29</file>
-=======
-                    <file> 11 8 29 13 23 19</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_pwr.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 100 148</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 242</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 113</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_i2c.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 66 205</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 208</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 98</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 23 3 18 7 19 26</file>
-=======
-                    <file> 15 8 29 13 23 19</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
-                </tool>
-            </inputs>
-        </file>
-        <file>
-<<<<<<< HEAD
             <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_systick.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 194 85</file>
+                    <file> 29</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 101</file>
+                    <file> 48</file>
                 </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 60</file>
-=======
-            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_adc.c</name>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_exti.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 192 88</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 133</file>
+                    <file> 58</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 90</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 84</file>
                 </tool>
             </outputs>
-            <inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\uC-LIB\lib_str.c</name>
+            <outputs>
                 <tool>
                     <name>ICCARM</name>
-<<<<<<< HEAD
-                    <file> 11 3 18 7 19</file>
-=======
-                    <file> 14 8 29 13 23 19</file>
->>>>>>> 4c13e24eda870a2c8d7053f94bd65d523bbdf1ef
+                    <file> 37</file>
                 </tool>
-            </inputs>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 28</file>
+                </tool>
+            </outputs>
         </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_rtc.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 21</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 35</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_i2c.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 19</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 77</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu_a.asm</name>
+            <outputs>
+                <tool>
+                    <name>AARM</name>
+                    <file> 108</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_rcc.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 54</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 70</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\CPU\ST\STM32\src\stm32f10x_flash.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 60</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 99</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex-M3\IAR\lib_mem_a.asm</name>
+            <outputs>
+                <tool>
+                    <name>AARM</name>
+                    <file> 49</file>
+                </tool>
+            </outputs>
+        </file>
+        <forcedrebuild>
+            <name>[MULTI_TOOL]</name>
+            <tool>ILINK</tool>
+        </forcedrebuild>
     </configuration>
 </project>
