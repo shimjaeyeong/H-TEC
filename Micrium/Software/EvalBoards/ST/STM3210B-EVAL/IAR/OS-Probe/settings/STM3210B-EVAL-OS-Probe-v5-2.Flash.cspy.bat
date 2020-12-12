@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "C:\stm32f100\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5-2.Flash.general.xcl" --backend -f "C:\stm32f100\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5-2.Flash.driver.xcl" 
+"D:\Develop\IAR Systems\common\bin\cspybat" -f "D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5-2.Flash.general.xcl" --backend -f "D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5-2.Flash.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "C:\stm32f100\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5-2.Flash.general.xcl" "--debug_file=%~1" --backend -f "C:\stm32f100\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5-2.Flash.driver.xcl" 
+"D:\Develop\IAR Systems\common\bin\cspybat" -f "D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5-2.Flash.general.xcl" "--debug_file=%~1" --backend -f "D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5-2.Flash.driver.xcl" 
 
 @echo off 
 :end

@@ -1,14 +1,14 @@
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armproc.dll" 
+"D:\Develop\IAR Systems\arm\bin\armproc.dll" 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armstlink2.dll" 
+"D:\Develop\IAR Systems\arm\bin\armstlink2.dll" 
 
-"C:\stm32f100\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Exe\STM3210B-EVAL-OS-Probe-v5.out" 
+"D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Exe\STM3210B-EVAL-OS-Probe-v5.out" 
 
---plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armbat.dll" 
+--plugin="D:\Develop\IAR Systems\arm\bin\armbat.dll" 
 
---device_macro "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\config\debugger\ST\STM32F1xx.dmac" 
+--device_macro="D:\Develop\IAR Systems\arm\config\debugger\ST\STM32F1xx.dmac" 
 
---flash_loader "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\config\flashloader\ST\FlashSTM32F100xB.board" 
+--flash_loader="D:\Develop\IAR Systems\arm\config\flashloader\ST\FlashSTM32F100xB.board" 
 
 
 

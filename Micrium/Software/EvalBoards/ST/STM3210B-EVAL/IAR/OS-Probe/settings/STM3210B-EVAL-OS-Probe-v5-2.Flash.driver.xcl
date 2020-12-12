@@ -6,13 +6,13 @@
 
 "-p" 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\CONFIG\debugger\ST\STM32F100xB.ddf" 
+"D:\Develop\IAR Systems\arm\CONFIG\debugger\ST\STM32F100VB.ddf" 
 
 "--drv_verify_download" 
 
 "--semihosting" 
 
-"--device=STM32F100xB" 
+"--device=STM32F100VB" 
 
 "--drv_interface=SWD" 
 
@@ -21,6 +21,8 @@
 "--drv_swo_clock_setup=72000000,0,2000000" 
 
 "--drv_catch_exceptions=0x000" 
+
+"--drv_debug_ap=0" 
 
 
 

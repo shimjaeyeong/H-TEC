@@ -34,6 +34,12 @@
  */
 
 #include <includes.h>
+#include  <stm32f10x_tim.h>
+#include  <stm32f10x_gpio.h>
+#include  <stm32f10x_rcc.h>
+#include  <stm32f10x_adc.h>
+#include  <stm32f10x_i2c.h>
+#include  <stm32f10x_spi.h>
 
 
 /*
@@ -51,8 +57,19 @@
 static OS_STK App_TaskStartStk[APP_TASK_START_STK_SIZE];
 static OS_STK App_TaskUserIFStk[APP_TASK_USER_IF_STK_SIZE];
 static OS_STK App_TaskKbdStk[APP_TASK_KBD_STK_SIZE];
+// stack (size = ATSSS:128)
+static OS_STK tempTaskStartStk[APP_TASK_START_STK_SIZE];
+static OS_STK detectTaskStartStk[APP_TASK_START_STK_SIZE];
+static OS_STK matrixTaskStartStk[APP_TASK_START_STK_SIZE];
+static OS_STK piezoTaskStartStk[APP_TASK_START_STK_SIZE];
+static OS_STK motorTaskStartStk[APP_TASK_START_STK_SIZE];
 
 static OS_EVENT      *App_UserIFMbox;
+volatile static int tempVal = 0;
+volatile static int detactVal = 0;
+volatile static int matrix;
+volatile static int piezoVal = 0;
+volatile static int motorVal = 0;
 
 
 #if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
@@ -93,6 +110,16 @@ static void  App_TaskKbd(void        *p_arg);
 
 static void  App_DispScr_SignOn(void);
 static void  App_DispScr_TaskNames(void);
+// INIT
+static void RCC_Configure(void);
+static void GPIO_Configure(void);
+static void ADC_Configure(void);
+// TASK
+static void tempTask(void *p);
+static void detectTask(void *p);
+static void matrixTask(void *p);
+static void piezoTask(void *p);
+static void motorTask(void *p);
 
 #if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
 	(APP_OS_PROBE_EN == DEF_ENABLED))
@@ -128,21 +155,18 @@ int  main(void)
 
 
 	/* Initialize "uC/OS-II, The Real-Time Kernel".         */
-	/* IDLE Task¿Í Statistics Task »ý¼º                      */
 	OSInit();
 
 	/* Create the start task.                               */
 	/* OSTaskCreatExt()                                     */
-	/* OSTaskCreate()¿Í ´Ù¸£°Ô StackÀ» °Ë»çÇÒ¼ö ÀÖ´Â ±â´ÉÀ» °¡Áü */
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskStart, // Task°¡ ¼öÇàÇÒ ÇÔ¼ö
-				 (void* )0,                     // Task·Î ³Ñ°ÜÁÙ ÀÎÀÚ
-				 (OS_STK* )&App_TaskStartStk[APP_TASK_START_STK_SIZE - 1],     // Task°¡ ÇÒ´çµÉ StackÀÇ TopÀ» °¡¸®Å°´Â ÁÖ¼Ò
-				 (INT8U           )APP_TASK_START_PRIO,// TaskÀÇ ¿ì¼± ¼øÀ§
-				 (INT16U          )APP_TASK_START_PRIO,// Task¸¦ ÁöÄªÇÏ´Â À¯ÀÏÇÑ ½Äº°ÀÚ, Task °¹¼öÀÇ ±Øº¹À» À§ÇØ¼­ »ç¿ëÇÒ ¿¹Á¤, ÇöÀç´Â ¿ì¼± ¼øÀ§¿Í °°°Ô²û ¼³Á¤
-				 (OS_STK* )&App_TaskStartStk[0],     // Task°¡ ÇÒ´çµÉ StackÀÇ ¸¶Áö¸·À» °¡¸®Å°´Â ÁÖ¼Ò, Stack °Ë»ç¿ëÀ¸·Î »ç¿ë
-				 (INT32U          )APP_TASK_START_STK_SIZE,// Task StackÀÇ Å©±â¸¦ ÀÇ¹Ì
-				 (void* )0,       // Task Control Block È°¿ë½Ã »ç¿ë
-				 (INT16U          )(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));// Task »ý¼º ¿É¼Ç - ÃÊ±âÈ­ ½Ã StackÀ» 0À¸·Î Ã¤¿ï °ÍÀÎÁö, ºÎµ¿ ¼Ò¼öÁ¡ ¿¬»ê ÀåÄ¡ »ç¿ëÇÒ °ÍÀÎÁö µî ¼³Á¤
+	os_err = OSTaskCreateExt((void (*)(void *))App_TaskStart, 
+				 (void* )0,                     
+				 (OS_STK* )&App_TaskStartStk[APP_TASK_START_STK_SIZE - 1],     
+				 (INT8U           )APP_TASK_START_PRIO,
+				 (INT16U          )APP_TASK_START_PRIO,
+				 (OS_STK* )&App_TaskStartStk[0],
+				 (INT32U          )APP_TASK_START_STK_SIZE,
+				 (INT16U          )(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
 #if (OS_TASK_NAME_SIZE >= 11)
 	OSTaskNameSet(APP_TASK_START_PRIO, (CPU_INT08U*)"Start Task", &os_err);
@@ -169,7 +193,6 @@ int  main(void)
  * Note(s)     : none.
  *********************************************************************************************************
  */
-// LED µ¿ÀÛÀ» À§ÇÑ Task
 static void  App_TaskStart(void *p_arg)
 {
 	CPU_INT32U i;
@@ -191,11 +214,11 @@ static void  App_TaskStart(void *p_arg)
 	App_InitProbe();
 #endif
 	/* Create application events.                           */
-	/* Task°£ Åë½ÅÀ» À§ÇÑ MailBox »ý¼º                        */
+	/* Taskï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ MailBox ï¿½ï¿½ï¿½ï¿½                        */
 	App_EventCreate();
 
 	/* Create application tasks.                            */
-	/* LCD °»½Å Task, Å°º¸µå ÀÔ·Â Task »ý¼º                    */
+	/* LCD ï¿½ï¿½ï¿½ï¿½ Task, Å°ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ Task ï¿½ï¿½ï¿½ï¿½                    */
 	App_TaskCreate();
 
 	/* Task body, always written as an infinite loop.       */
@@ -203,8 +226,8 @@ static void  App_TaskStart(void *p_arg)
 		for (j = 0; j < 4; j++) {
 			for (i = 1; i <= 4; i++) {
 				BSP_LED_On(i); // LED ON
-				dly = (BSP_ADC_GetStatus(1) >> 4) + 2; // ADC °ªÀ» ¹Þ¾Æ¿Í Delay Å©±â ÁöÁ¤
-				OSTimeDlyHMSM(0, 0, 0, dly); // Delay¸¸Å­ ´Ù¸¥ TaskÀÇ µ¿ÀÛÀ» À§ÇØ ÀÚ¿ø ¾çº¸
+				dly = (BSP_ADC_GetStatus(1) >> 4) + 2; // ADC ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ Delay Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+				OSTimeDlyHMSM(0, 0, 0, dly); // Delayï¿½ï¿½Å­ ï¿½Ù¸ï¿½ Taskï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¿ï¿½ ï¿½çº¸
 				BSP_LED_Off(i); // LED OFF
 				dly = (BSP_ADC_GetStatus(1) >> 4) + 2;
 				OSTimeDlyHMSM(0, 0, 0, dly);
@@ -256,9 +279,9 @@ static void  App_EventCreate(void)
 #endif
 
 	/* Create MBOX for communication between Kbd and UserIF.*/
-	/* Mail Box »ý¼º                                         */
-	/* Æ÷ÀÎÅÍ Å©±âÀÇ º¯¼ö¸¦ Task³ª Interrupt Service Routine   */
-	/* ¿¡¼­ ´Ù¸¥ Task Àü´ÞÇÒ ¶§ »ç¿ëÇÔ                         */
+	/* Mail Box ï¿½ï¿½ï¿½ï¿½                                         */
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Taskï¿½ï¿½ Interrupt Service Routine   */
+	/* ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ Task ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½                         */
 	App_UserIFMbox = OSMboxCreate((void*)0);
 #if (OS_EVENT_NAME_SIZE > 12)
 	OSEventNameSet(App_UserIFMbox, "User IF Mbox", &os_err);
@@ -286,7 +309,7 @@ static void  App_TaskCreate(void)
 {
 	CPU_INT08U os_err;
 
-	// LCD¸¦ °»½Å½ÃÅ°´Â Task »ý¼º
+	// LCDï¿½ï¿½ ï¿½ï¿½ï¿½Å½ï¿½Å°ï¿½ï¿½ Task ï¿½ï¿½ï¿½ï¿½
 	os_err = OSTaskCreateExt((void (*)(void *))App_TaskUserIF,
 				 (void* )0,
 				 (OS_STK* )&App_TaskUserIFStk[APP_TASK_USER_IF_STK_SIZE - 1],
@@ -300,7 +323,7 @@ static void  App_TaskCreate(void)
 #if (OS_TASK_NAME_SIZE >= 9)
 	OSTaskNameSet(APP_TASK_USER_IF_PRIO, "User I/F", &os_err);
 #endif
-	// Keyboard ÀÔ·ÂÀ» ¹Þ´Â Task »ý¼º
+	// Keyboard ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ Task ï¿½ï¿½ï¿½ï¿½
 	os_err = OSTaskCreateExt((void (*)(void *))App_TaskKbd,
 				 (void* )0,
 				 (OS_STK* )&App_TaskKbdStk[APP_TASK_KBD_STK_SIZE - 1],
@@ -332,7 +355,7 @@ static void  App_TaskCreate(void)
  *********************************************************************************************************
  */
 
-// Keyboard ÀÔ·ÂÀ» ¹Þ´Â Task
+// Keyboard ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ Task
 static void  App_TaskKbd(void *p_arg)
 {
 	CPU_BOOLEAN b1_prev;
@@ -354,7 +377,7 @@ static void  App_TaskKbd(void *p_arg)
 			} else {
 				key++;
 			}
-			// MailBox¿¡ Task¿¡¼­ ÀÔ·Â¹ÞÀº °ª Key¸¦ Àü´Þ
+			// MailBoxï¿½ï¿½ Taskï¿½ï¿½ï¿½ï¿½ ï¿½Ô·Â¹ï¿½ï¿½ï¿½ ï¿½ï¿½ Keyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			OSMboxPost(App_UserIFMbox, (void*)key);
 		}
 
@@ -381,7 +404,7 @@ static void  App_TaskKbd(void *p_arg)
  *********************************************************************************************************
  */
 
-// LCD °»½ÅÀ» À§ÇÑ Task
+// LCD ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Task
 static void  App_TaskUserIF(void *p_arg)
 {
 	CPU_INT08U  *msg;
@@ -400,7 +423,7 @@ static void  App_TaskUserIF(void *p_arg)
 
 
 	while (DEF_TRUE) {
-		// ´Ù¸¥ Task¿¡¼­ Mailbox¿¡ Àü´ÞÇÑ ÀúÀåµÈ °ªÀ» ¹ÞÀ½
+		// ï¿½Ù¸ï¿½ Taskï¿½ï¿½ï¿½ï¿½ Mailboxï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		msg = (CPU_INT08U*)(OSMboxPend(App_UserIFMbox, OS_TICKS_PER_SEC / 10, &err));
 		if (err == OS_NO_ERR) {
 			nstate = (CPU_INT32U)msg;
