@@ -1,6 +1,0 @@
-lib_mem.pbi: C:\Users\19eslab1\Desktop\Micrium\Software\uC-LIB\lib_mem.c \
-  C:\Users\19eslab1\Desktop\Micrium\Software\uC-LIB\lib_mem.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\cpu.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\cpu_def.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\uC-LIB\lib_def.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app_cfg.h

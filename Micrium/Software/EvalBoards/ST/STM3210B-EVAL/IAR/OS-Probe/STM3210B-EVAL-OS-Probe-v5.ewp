@@ -1279,6 +1279,15 @@
         </group>
     </group>
     <group>
+        <name>matrix</name>
+        <file>
+            <name>$PROJ_DIR$\matrix\matrix.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\matrix\matrix.h</name>
+        </file>
+    </group>
+    <group>
         <name>uC/CPU</name>
         <file>
             <name>$PROJ_DIR$\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR\cpu.h</name>

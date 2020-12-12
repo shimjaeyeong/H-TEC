@@ -1,55 +1,58 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V8.40.1.212/W32 for ARM         23/Sep/2019  21:46:19
-# Copyright 1999-2019 IAR Systems AB.
+# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         12/Dec/2020  19:48:36
+# Copyright 1999-2020 IAR Systems AB.
 #
-#    Cpu mode     =  
-#    Endian       =  little
-#    Source file  =
-#        C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
-#    Command line =
-#        -f C:\Users\19eslab1\AppData\Local\Temp\EWA4E5.tmp
-#        (C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
+#    Cpu mode             
+#    Endian            =  little
+#    Source file       =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uCOS-II\Source\os_task.c
+#    Command line      =
+#        -f C:\Users\SHIMJA~1\AppData\Local\Temp\EWC68B.tmp
+#        (C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uCOS-II\Source\os_task.c
 #        -lCN
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
 #        -o
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj
 #        --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config
 #        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
-#        8.3\arm\inc\c\DLib_Config_Normal.h" -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\
+#        8.4\arm\inc\c\DLib_Config_Normal.h" -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\ports\arm-cortex-m3\generic\iar\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\ports\arm-cortex-m3\generic\iar\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\BSP\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\BSP\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Source\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Source\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Ports\ST\STM32\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Ports\ST\STM32\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\\
 #        -Ohz --use_c++_inline)
-#    Locale       =  C
-#    List file    =
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List\os_task.lst
-#    Object file  =
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj\os_task.o
+#    Locale            =  C
+#    List file         =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List\os_task.lst
+#    Object file       =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj\os_task.o
+#    Runtime model:       
+#      __SystemLibrary =  DLib
+#      __size_limit    =  32768|ARM.EW.LINKER
 #
 ###############################################################################
 
-C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
+C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uCOS-II\Source\os_task.c
       1          /*
       2          *********************************************************************************************************
       3          *                                                uC/OS-II
@@ -106,8 +109,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
      52          {
    \                     OSTaskChangePrio: (+1)
    \        0x0   0xE92D 0x4FF8      PUSH     {R3-R11,LR}
-   \        0x4   0x4605             MOV      R5,R0
-   \        0x6   0x4689             MOV      R9,R1
+   \        0x4   0xB084             SUB      SP,SP,#+16
+   \        0x6   0x4681             MOV      R9,R0
+   \        0x8   0x4688             MOV      R8,R1
      53          #if (OS_EVENT_EN)
      54              OS_EVENT  *pevent;
      55          #if (OS_EVENT_MULTI_EN > 0)
@@ -146,45 +150,52 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
      88              }
      89          #endif
      90              OS_ENTER_CRITICAL();
-   \        0x8   0x....'....        BL       OS_CPU_SR_Save
+   \        0xA   0x....'....        BL       OS_CPU_SR_Save
+   \        0xE   0x9002             STR      R0,[SP, #+8]
      91              if (OSTCBPrioTbl[newprio] != (OS_TCB *)0) {             /* New priority must not already exist     */
-   \        0xC   0x....'....        LDR.W    R4,??DataTable12
-   \       0x10   0x46CB             MOV      R11,R9
-   \       0x12   0xF854 0x102B      LDR      R1,[R4, R11, LSL #+2]
-   \       0x16   0xB119             CBZ.N    R1,??OSTaskChangePrio_0
+   \       0x10   0x4645             MOV      R5,R8
+   \       0x12   0x....'....        LDR.W    R10,??DataTable11
+   \       0x16   0xF85A 0x0025      LDR      R0,[R10, R5, LSL #+2]
+   \       0x1A   0xB118             CBZ.N    R0,??OSTaskChangePrio_0
      92                  OS_EXIT_CRITICAL();
-   \       0x18   0x....'....        BL       OS_CPU_SR_Restore
+   \       0x1C   0x....'....        BL       ?Subroutine2
      93                  return (OS_ERR_PRIO_EXIST);
-   \       0x1C   0x2028             MOVS     R0,#+40
-   \       0x1E   0xE099             B.N      ??OSTaskChangePrio_1
+   \                     ??CrossCallReturnLabel_3: (+1)
+   \       0x20   0x2028             MOVS     R0,#+40
+   \       0x22   0xE0A4             B.N      ??OSTaskChangePrio_1
      94              }
      95              if (oldprio == OS_PRIO_SELF) {                          /* See if changing self                    */
    \                     ??OSTaskChangePrio_0: (+1)
-   \       0x20   0x....'....        BL       ?Subroutine1
+   \       0x24   0xF1B9 0x0FFF      CMP      R9,#+255
+   \       0x28   0xD104             BNE.N    ??OSTaskChangePrio_2
      96                  oldprio = OSTCBCur->OSTCBPrio;                      /* Yes, get priority                       */
+   \       0x2A   0x....'....        LDR.W    R0,??DataTable11_1
+   \       0x2E   0x6801             LDR      R1,[R0, #+0]
+   \       0x30   0xF891 0x9032      LDRB     R9,[R1, #+50]
      97              }
      98              ptcb = OSTCBPrioTbl[oldprio];
-   \                     ??CrossCallReturnLabel_0: (+1)
-   \       0x24   0x4629             MOV      R1,R5
-   \       0x26   0xF854 0x8021      LDR      R8,[R4, R1, LSL #+2]
+   \                     ??OSTaskChangePrio_2: (+1)
+   \       0x34   0x46CC             MOV      R12,R9
+   \       0x36   0xF85A 0x002C      LDR      R0,[R10, R12, LSL #+2]
      99              if (ptcb == (OS_TCB *)0) {                              /* Does task to change exist?              */
-   \       0x2A   0xF1B8 0x0F00      CMP      R8,#+0
-   \       0x2E   0xD103             BNE.N    ??OSTaskChangePrio_2
+   \       0x3A   0xB918             CBNZ.N   R0,??OSTaskChangePrio_3
     100                  OS_EXIT_CRITICAL();                                 /* No, can't change its priority!          */
-   \       0x30   0x....'....        BL       OS_CPU_SR_Restore
+   \       0x3C   0x....'....        BL       ?Subroutine2
     101                  return (OS_ERR_PRIO);
-   \       0x34   0x2029             MOVS     R0,#+41
-   \       0x36   0xE08D             B.N      ??OSTaskChangePrio_1
+   \                     ??CrossCallReturnLabel_2: (+1)
+   \       0x40   0x2029             MOVS     R0,#+41
+   \       0x42   0xE094             B.N      ??OSTaskChangePrio_1
     102              }
     103              if (ptcb == OS_TCB_RESERVED) {                          /* Is task assigned to Mutex               */
-   \                     ??OSTaskChangePrio_2: (+1)
-   \       0x38   0xF1B8 0x0F01      CMP      R8,#+1
-   \       0x3C   0xD103             BNE.N    ??OSTaskChangePrio_3
+   \                     ??OSTaskChangePrio_3: (+1)
+   \       0x44   0x2801             CMP      R0,#+1
+   \       0x46   0xD103             BNE.N    ??OSTaskChangePrio_4
     104                  OS_EXIT_CRITICAL();                                 /* No, can't change its priority!          */
-   \       0x3E   0x....'....        BL       OS_CPU_SR_Restore
+   \       0x48   0x....'....        BL       ?Subroutine2
     105                  return (OS_ERR_TASK_NOT_EXIST);
-   \       0x42   0x2043             MOVS     R0,#+67
-   \       0x44   0xE086             B.N      ??OSTaskChangePrio_1
+   \                     ??CrossCallReturnLabel_1: (+1)
+   \       0x4C   0x2043             MOVS     R0,#+67
+   \       0x4E   0xE08E             B.N      ??OSTaskChangePrio_1
     106              }
     107          #if OS_LOWEST_PRIO <= 63
     108              y_new                 = (INT8U)(newprio >> 3);          /* Yes, compute new TCB fields             */
@@ -199,170 +210,178 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     117          #endif
     118          
     119              OSTCBPrioTbl[oldprio] = (OS_TCB *)0;                    /* Remove TCB from old priority            */
-   \                     ??OSTaskChangePrio_3: (+1)
-   \       0x46   0x2600             MOVS     R6,#+0
-   \       0x48   0xF844 0x6021      STR      R6,[R4, R1, LSL #+2]
+   \                     ??OSTaskChangePrio_4: (+1)
+   \       0x50   0xF04F 0x0E00      MOV      LR,#+0
+   \       0x54   0x....'....        LDR.W    R4,??DataTable11_2
     120              OSTCBPrioTbl[newprio] =  ptcb;                          /* Place pointer to TCB @ new priority     */
-   \       0x4C   0xF844 0x802B      STR      R8,[R4, R11, LSL #+2]
-   \       0x50   0xEA4F 0x02D9      LSR      R2,R9,#+3
     121              y_old                 =  ptcb->OSTCBY;
     122              bity_old              =  ptcb->OSTCBBitY;
     123              bitx_old              =  ptcb->OSTCBBitX;
     124              if ((OSRdyTbl[y_old] &   bitx_old) != 0) {              /* If task is ready make it not            */
-   \       0x54   0x....'....        LDR.W    R6,??DataTable12_1
-   \       0x58   0x2501             MOVS     R5,#+1
-   \       0x5A   0xF00B 0x0A07      AND      R10,R11,#0x7
-   \       0x5E   0xF108 0x0B32      ADD      R11,R8,#+50
-   \       0x62   0xFA05 0xF302      LSL      R3,R5,R2
-   \       0x66   0xF89B 0x1004      LDRB     R1,[R11, #+4]
-   \       0x6A   0xF89B 0xE002      LDRB     LR,[R11, #+2]
-   \       0x6E   0xF89B 0x7003      LDRB     R7,[R11, #+3]
-   \       0x72   0x43C9             MVNS     R1,R1
-   \       0x74   0xF88D 0x1000      STRB     R1,[SP, #+0]
-   \       0x78   0xFA05 0xF50A      LSL      R5,R5,R10
-   \       0x7C   0xF816 0x400E      LDRB     R4,[R6, LR]
-   \       0x80   0x423C             TST      R4,R7
-   \       0x82   0xEA6F 0x0C07      MVN      R12,R7
-   \       0x86   0xD011             BEQ.N    ??OSTaskChangePrio_4
+   \       0x58   0x....'....        LDR.W    R11,??DataTable11_3
+   \       0x5C   0x7826             LDRB     R6,[R4, #+0]
+   \       0x5E   0xF84A 0xE02C      STR      LR,[R10, R12, LSL #+2]
+   \       0x62   0xF84A 0x0025      STR      R0,[R10, R5, LSL #+2]
+   \       0x66   0xF100 0x0A32      ADD      R10,R0,#+50
+   \       0x6A   0xEA4F 0x01D8      LSR      R1,R8,#+3
+   \       0x6E   0x2301             MOVS     R3,#+1
+   \       0x70   0xF005 0x0907      AND      R9,R5,#0x7
+   \       0x74   0xF89A 0x5002      LDRB     R5,[R10, #+2]
+   \       0x78   0x9501             STR      R5,[SP, #+4]
+   \       0x7A   0xFA03 0xF201      LSL      R2,R3,R1
+   \       0x7E   0xF89A 0x5004      LDRB     R5,[R10, #+4]
+   \       0x82   0x9503             STR      R5,[SP, #+12]
+   \       0x84   0x4637             MOV      R7,R6
+   \       0x86   0xF89A 0xE003      LDRB     LR,[R10, #+3]
+   \       0x8A   0xEA6F 0x050E      MVN      R5,LR
+   \       0x8E   0xF88D 0x5001      STRB     R5,[SP, #+1]
+   \       0x92   0xFA03 0xF309      LSL      R3,R3,R9
+   \       0x96   0x9D01             LDR      R5,[SP, #+4]
+   \       0x98   0xF81B 0x5005      LDRB     R5,[R11, R5]
+   \       0x9C   0xF88D 0x5000      STRB     R5,[SP, #+0]
+   \       0xA0   0xEA15 0x0F0E      TST      R5,LR
+   \       0xA4   0xD011             BEQ.N    ??OSTaskChangePrio_5
     125                   OSRdyTbl[y_old] &= ~bitx_old;
-   \       0x88   0xEA1C 0x0404      ANDS     R4,R12,R4
-   \       0x8C   0xF806 0x400E      STRB     R4,[R6, LR]
+   \       0xA6   0x46AC             MOV      R12,R5
+   \       0xA8   0xF89D 0x5001      LDRB     R5,[SP, #+1]
+   \       0xAC   0xEA15 0x0C0C      ANDS     R12,R5,R12
+   \       0xB0   0x9D01             LDR      R5,[SP, #+4]
+   \       0xB2   0xF80B 0xC005      STRB     R12,[R11, R5]
     126                   if (OSRdyTbl[y_old] == 0) {
-   \       0x90   0x....'....        LDR.W    R7,??DataTable12_2
-   \       0x94   0xD104             BNE.N    ??OSTaskChangePrio_5
+   \       0xB6   0xBF04             ITT      EQ
+   \       0xB8   0x9D03             LDREQ    R5,[SP, #+12]
+   \       0xBA   0xEA26 0x0705      BICEQ    R7,R6,R5
     127                       OSRdyGrp &= ~bity_old;
-   \       0x96   0x783C             LDRB     R4,[R7, #+0]
-   \       0x98   0xF89D 0x1000      LDRB     R1,[SP, #+0]
-   \       0x9C   0x400C             ANDS     R4,R1,R4
-   \       0x9E   0x703C             STRB     R4,[R7, #+0]
     128                   }
     129                   OSRdyGrp        |= bity_new;                       /* Make new priority ready to run          */
-   \                     ??OSTaskChangePrio_5: (+1)
-   \       0xA0   0x783C             LDRB     R4,[R7, #+0]
-   \       0xA2   0x431C             ORRS     R4,R3,R4
-   \       0xA4   0x703C             STRB     R4,[R7, #+0]
     130                   OSRdyTbl[y_new] |= bitx_new;
-   \       0xA6   0x5CB7             LDRB     R7,[R6, R2]
-   \       0xA8   0x432F             ORRS     R7,R5,R7
-   \       0xAA   0x54B7             STRB     R7,[R6, R2]
+   \       0xBE   0xF81B 0x5001      LDRB     R5,[R11, R1]
+   \       0xC2   0x431D             ORRS     R5,R3,R5
+   \       0xC4   0xF80B 0x5001      STRB     R5,[R11, R1]
+   \       0xC8   0x4317             ORRS     R7,R2,R7
+   \                     ??OSTaskChangePrio_5: (+1)
+   \       0xCA   0x7027             STRB     R7,[R4, #+0]
     131              }
     132          
     133          #if (OS_EVENT_EN)
     134              pevent = ptcb->OSTCBEventPtr;
-   \                     ??OSTaskChangePrio_4: (+1)
-   \       0xAC   0xF8D8 0x101C      LDR      R1,[R8, #+28]
     135              if (pevent != (OS_EVENT *)0) {
-   \       0xB0   0xB1C1             CBZ.N    R1,??OSTaskChangePrio_6
+   \       0xCC   0x9C03             LDR      R4,[SP, #+12]
+   \       0xCE   0x69C5             LDR      R5,[R0, #+28]
+   \       0xD0   0xEA6F 0x0C04      MVN      R12,R4
+   \       0xD4   0xB1C5             CBZ.N    R5,??OSTaskChangePrio_6
     136                  pevent->OSEventTbl[y_old] &= ~bitx_old;             /* Remove old task prio from wait list     */
-   \       0xB2   0xF101 0x040B      ADD      R4,R1,#+11
-   \       0xB6   0xF101 0x060B      ADD      R6,R1,#+11
-   \       0xBA   0xF814 0x400E      LDRB     R4,[R4, LR]
-   \       0xBE   0xEA1C 0x0404      ANDS     R4,R12,R4
-   \       0xC2   0xF806 0x400E      STRB     R4,[R6, LR]
+   \       0xD6   0x9E01             LDR      R6,[SP, #+4]
+   \       0xD8   0xF105 0x040B      ADD      R4,R5,#+11
+   \       0xDC   0xF105 0x070B      ADD      R7,R5,#+11
+   \       0xE0   0x5DA6             LDRB     R6,[R4, R6]
+   \       0xE2   0xF89D 0x4001      LDRB     R4,[SP, #+1]
+   \       0xE6   0x4026             ANDS     R6,R4,R6
+   \       0xE8   0x9C01             LDR      R4,[SP, #+4]
+   \       0xEA   0x553E             STRB     R6,[R7, R4]
     137                  if (pevent->OSEventTbl[y_old] == 0) {
-   \       0xC6   0xD104             BNE.N    ??OSTaskChangePrio_7
+   \       0xEC   0xD103             BNE.N    ??OSTaskChangePrio_7
     138                      pevent->OSEventGrp    &= ~bity_old;
-   \       0xC8   0x7A8E             LDRB     R6,[R1, #+10]
-   \       0xCA   0xF89D 0x4000      LDRB     R4,[SP, #+0]
-   \       0xCE   0x4026             ANDS     R6,R4,R6
-   \       0xD0   0x728E             STRB     R6,[R1, #+10]
+   \       0xEE   0x7AAC             LDRB     R4,[R5, #+10]
+   \       0xF0   0xEA0C 0x0404      AND      R4,R12,R4
+   \       0xF4   0x72AC             STRB     R4,[R5, #+10]
     139                  }
     140                  pevent->OSEventGrp        |= bity_new;              /* Add    new task prio to   wait list     */
     141                  pevent->OSEventTbl[y_new] |= bitx_new;
    \                     ??OSTaskChangePrio_7: (+1)
-   \       0xD2   0xF101 0x060B      ADD      R6,R1,#+11
-   \       0xD6   0x7A8C             LDRB     R4,[R1, #+10]
-   \       0xD8   0x431C             ORRS     R4,R3,R4
-   \       0xDA   0x728C             STRB     R4,[R1, #+10]
-   \       0xDC   0x310B             ADDS     R1,R1,#+11
-   \       0xDE   0x5CB7             LDRB     R7,[R6, R2]
-   \       0xE0   0x432F             ORRS     R7,R5,R7
-   \       0xE2   0x548F             STRB     R7,[R1, R2]
+   \       0xF6   0xF105 0x060B      ADD      R6,R5,#+11
+   \       0xFA   0x7AAC             LDRB     R4,[R5, #+10]
+   \       0xFC   0x4314             ORRS     R4,R2,R4
+   \       0xFE   0x72AC             STRB     R4,[R5, #+10]
+   \      0x100   0x350B             ADDS     R5,R5,#+11
+   \      0x102   0x5C77             LDRB     R7,[R6, R1]
+   \      0x104   0x431F             ORRS     R7,R3,R7
+   \      0x106   0x546F             STRB     R7,[R5, R1]
     142              }
     143          #if (OS_EVENT_MULTI_EN > 0)
     144              if (ptcb->OSTCBEventMultiPtr != (OS_EVENT **)0) {
    \                     ??OSTaskChangePrio_6: (+1)
-   \       0xE4   0xF8D8 0x1020      LDR      R1,[R8, #+32]
-   \       0xE8   0xB301             CBZ.N    R1,??OSTaskChangePrio_8
+   \      0x108   0x6A05             LDR      R5,[R0, #+32]
+   \      0x10A   0xB1E5             CBZ.N    R5,??OSTaskChangePrio_8
     145                  pevents =  ptcb->OSTCBEventMultiPtr;
-   \       0xEA   0x4688             MOV      R8,R1
     146                  pevent  = *pevents;
-   \       0xEC   0xF8D8 0x1000      LDR      R1,[R8, #+0]
-   \       0xF0   0xE01A             B.N      ??OSTaskChangePrio_9
+   \      0x10C   0x6828             LDR      R0,[R5, #+0]
+   \      0x10E   0x9C01             LDR      R4,[SP, #+4]
+   \      0x110   0xEA6F 0x0E0E      MVN      LR,LR
+   \      0x114   0xE015             B.N      ??OSTaskChangePrio_9
     147                  while (pevent != (OS_EVENT *)0) {
     148                      pevent->OSEventTbl[y_old] &= ~bitx_old;         /* Remove old task prio from wait lists    */
    \                     ??OSTaskChangePrio_10: (+1)
-   \       0xF2   0xF101 0x040B      ADD      R4,R1,#+11
-   \       0xF6   0xF101 0x060B      ADD      R6,R1,#+11
-   \       0xFA   0xF814 0x400E      LDRB     R4,[R4, LR]
-   \       0xFE   0xEA1C 0x0404      ANDS     R4,R12,R4
-   \      0x102   0xF806 0x400E      STRB     R4,[R6, LR]
+   \      0x116   0xF100 0x060B      ADD      R6,R0,#+11
+   \      0x11A   0xF100 0x070B      ADD      R7,R0,#+11
+   \      0x11E   0x5D36             LDRB     R6,[R6, R4]
+   \      0x120   0xEA1E 0x0606      ANDS     R6,LR,R6
+   \      0x124   0x553E             STRB     R6,[R7, R4]
     149                      if (pevent->OSEventTbl[y_old] == 0) {
-   \      0x106   0xD104             BNE.N    ??OSTaskChangePrio_11
+   \      0x126   0xD103             BNE.N    ??OSTaskChangePrio_11
     150                          pevent->OSEventGrp    &= ~bity_old;
-   \      0x108   0x7A8C             LDRB     R4,[R1, #+10]
-   \      0x10A   0xF89D 0x6000      LDRB     R6,[SP, #+0]
-   \      0x10E   0x4034             ANDS     R4,R6,R4
-   \      0x110   0x728C             STRB     R4,[R1, #+10]
+   \      0x128   0x7A86             LDRB     R6,[R0, #+10]
+   \      0x12A   0xEA0C 0x0606      AND      R6,R12,R6
+   \      0x12E   0x7286             STRB     R6,[R0, #+10]
     151                      }
     152                      pevent->OSEventGrp        |= bity_new;          /* Add    new task prio to   wait lists    */
-    153                      pevent->OSEventTbl[y_new] |= bitx_new;
    \                     ??OSTaskChangePrio_11: (+1)
-   \      0x112   0xF101 0x060B      ADD      R6,R1,#+11
-   \      0x116   0x7A8C             LDRB     R4,[R1, #+10]
-   \      0x118   0x431C             ORRS     R4,R3,R4
-   \      0x11A   0x728C             STRB     R4,[R1, #+10]
-   \      0x11C   0x310B             ADDS     R1,R1,#+11
-   \      0x11E   0x5CB7             LDRB     R7,[R6, R2]
-   \      0x120   0x432F             ORRS     R7,R5,R7
-   \      0x122   0x548F             STRB     R7,[R1, R2]
+   \      0x130   0x7A86             LDRB     R6,[R0, #+10]
+   \      0x132   0x4316             ORRS     R6,R2,R6
+   \      0x134   0x7286             STRB     R6,[R0, #+10]
+    153                      pevent->OSEventTbl[y_new] |= bitx_new;
+   \      0x136   0x300B             ADDS     R0,R0,#+11
+   \      0x138   0x5C7E             LDRB     R6,[R7, R1]
+   \      0x13A   0x431E             ORRS     R6,R3,R6
+   \      0x13C   0x5446             STRB     R6,[R0, R1]
     154                      pevents++;
     155                      pevent                     = *pevents;
-   \      0x124   0xF858 0x1F04      LDR      R1,[R8, #+4]!
+   \      0x13E   0xF855 0x0F04      LDR      R0,[R5, #+4]!
     156                  }
    \                     ??OSTaskChangePrio_9: (+1)
-   \      0x128   0x2900             CMP      R1,#+0
-   \      0x12A   0xD1E2             BNE.N    ??OSTaskChangePrio_10
+   \      0x142   0x2800             CMP      R0,#+0
+   \      0x144   0xD1E7             BNE.N    ??OSTaskChangePrio_10
     157              }
     158          #endif
     159          #endif
     160          
     161              ptcb->OSTCBPrio = newprio;                              /* Set new task priority                   */
-    162              ptcb->OSTCBY    = y_new;
    \                     ??OSTaskChangePrio_8: (+1)
-   \      0x12C   0xF88B 0x2002      STRB     R2,[R11, #+2]
+   \      0x146   0xF88A 0x8000      STRB     R8,[R10, #+0]
+    162              ptcb->OSTCBY    = y_new;
+   \      0x14A   0xF88A 0x1002      STRB     R1,[R10, #+2]
     163              ptcb->OSTCBX    = x_new;
+   \      0x14E   0xF88A 0x9001      STRB     R9,[R10, #+1]
     164              ptcb->OSTCBBitY = bity_new;
-   \      0x130   0xF88B 0x3004      STRB     R3,[R11, #+4]
-   \      0x134   0xF88B 0x9000      STRB     R9,[R11, #+0]
-   \      0x138   0xF88B 0xA001      STRB     R10,[R11, #+1]
+   \      0x152   0xF88A 0x2004      STRB     R2,[R10, #+4]
     165              ptcb->OSTCBBitX = bitx_new;
-   \      0x13C   0xF88B 0x5003      STRB     R5,[R11, #+3]
+   \      0x156   0xF88A 0x3003      STRB     R3,[R10, #+3]
     166              OS_EXIT_CRITICAL();
-   \      0x140   0x....'....        BL       OS_CPU_SR_Restore
+   \      0x15A   0x....'....        BL       ?Subroutine2
     167              if (OSRunning == OS_TRUE) {
-   \      0x144   0x....'....        LDR.W    R0,??DataTable12_3
-   \      0x148   0x7801             LDRB     R1,[R0, #+0]
-   \      0x14A   0x2901             CMP      R1,#+1
-   \      0x14C   0xBF08             IT       EQ 
+   \                     ??CrossCallReturnLabel_0: (+1)
+   \      0x15E   0x....'....        LDR.W    R0,??DataTable11_4
+   \      0x162   0x7801             LDRB     R1,[R0, #+0]
+   \      0x164   0x2901             CMP      R1,#+1
+   \      0x166   0xBF08             IT       EQ
     168                  OS_Sched();                                         /* Find new highest priority task          */
-   \      0x14E   0x....'....        BLEQ     OS_Sched
+   \      0x168   0x....'....        BLEQ     OS_Sched
     169              }
     170              return (OS_ERR_NONE);
-   \      0x152   0x2000             MOVS     R0,#+0
+   \      0x16C   0x2000             MOVS     R0,#+0
    \                     ??OSTaskChangePrio_1: (+1)
-   \      0x154   0xE8BD 0x8FF2      POP      {R1,R4-R11,PC}   ;; return
+   \      0x16E   0x....             B.N      ?Subroutine0
     171          }
 
    \                                 In section .text, align 2, keep-with-next
-   \                     ?Subroutine1: (+1)
-   \        0x0   0x2DFF             CMP      R5,#+255
-   \        0x2   0xD103             BNE.N    ??Subroutine1_0
-   \        0x4   0x....             LDR.N    R1,??DataTable12_5
-   \        0x6   0x680A             LDR      R2,[R1, #+0]
-   \        0x8   0xF892 0x5032      LDRB     R5,[R2, #+50]
-   \                     ??Subroutine1_0: (+1)
-   \        0xC   0x4770             BX       LR
+   \                     ?Subroutine2: (+1)
+   \        0x0   0x9802             LDR      R0,[SP, #+8]
+   \        0x2   0x....'....        B.W      OS_CPU_SR_Restore
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine0: (+1)
+   \        0x0   0xB005             ADD      SP,SP,#+20
+   \        0x2   0xE8BD 0x8FF0      POP      {R4-R11,PC}      ;; return
     172          #endif
     173          /*$PAGE*/
     174          /*
@@ -432,7 +451,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     230              OS_ENTER_CRITICAL();
    \        0xC   0x....'....        BL       OS_CPU_SR_Save
     231              if (OSIntNesting > 0) {                  /* Make sure we don't create the task from within an ISR  */
-   \       0x10   0x....'....        LDR.W    R2,??DataTable12_4
+   \       0x10   0x....'....        LDR.W    R2,??DataTable11_5
    \       0x14   0x7811             LDRB     R1,[R2, #+0]
    \       0x16   0xB119             CBZ.N    R1,??OSTaskCreate_0
     232                  OS_EXIT_CRITICAL();
@@ -443,7 +462,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     234              }
     235              if (OSTCBPrioTbl[prio] == (OS_TCB *)0) { /* Make sure task doesn't already exist at this priority  */
    \                     ??OSTaskCreate_0: (+1)
-   \       0x20   0x....'....        LDR.W    R6,??DataTable12
+   \       0x20   0x....'....        LDR.W    R6,??DataTable11
    \       0x24   0x4625             MOV      R5,R4
    \       0x26   0xF856 0x1025      LDR      R1,[R6, R5, LSL #+2]
    \       0x2A   0xBB29             CBNZ.N   R1,??OSTaskCreate_2
@@ -473,8 +492,8 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     241                  if (err == OS_ERR_NONE) {
    \       0x58   0xD105             BNE.N    ??OSTaskCreate_3
     242                      if (OSRunning == OS_TRUE) {      /* Find highest priority task if multitasking has started */
-   \       0x5A   0x....'....        BL       ?Subroutine5
-   \                     ??CrossCallReturnLabel_12: (+1)
+   \       0x5A   0x....'....        BL       ?Subroutine6
+   \                     ??CrossCallReturnLabel_14: (+1)
    \       0x5E   0xD109             BNE.N    ??OSTaskCreate_4
     243                          OS_Sched();
    \       0x60   0x....'....        BL       OS_Sched
@@ -505,8 +524,8 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     254          }
 
    \                                 In section .text, align 2, keep-with-next
-   \                     ?Subroutine5: (+1)
-   \        0x0   0x....'....        LDR.W    R0,??DataTable12_3
+   \                     ?Subroutine6: (+1)
+   \        0x0   0x....'....        LDR.W    R0,??DataTable11_4
    \        0x4   0x7801             LDRB     R1,[R0, #+0]
    \        0x6   0x2901             CMP      R1,#+1
    \        0x8   0x4770             BX       LR
@@ -618,7 +637,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     351              OS_ENTER_CRITICAL();
    \        0xE   0x....'....        BL       OS_CPU_SR_Save
     352              if (OSIntNesting > 0) {                  /* Make sure we don't create the task from within an ISR  */
-   \       0x12   0x....'....        LDR.W    R2,??DataTable12_4
+   \       0x12   0x....'....        LDR.W    R2,??DataTable11_5
    \       0x16   0x7811             LDRB     R1,[R2, #+0]
    \       0x18   0xB119             CBZ.N    R1,??OSTaskCreateExt_0
     353                  OS_EXIT_CRITICAL();
@@ -629,7 +648,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     355              }
     356              if (OSTCBPrioTbl[prio] == (OS_TCB *)0) { /* Make sure task doesn't already exist at this priority  */
    \                     ??OSTaskCreateExt_0: (+1)
-   \       0x22   0x....'....        LDR.W    R9,??DataTable12
+   \       0x22   0x....'....        LDR.W    R9,??DataTable11
    \       0x26   0xF88D 0x400C      STRB     R4,[SP, #+12]
    \       0x2A   0x46A0             MOV      R8,R4
    \       0x2C   0xF859 0x1028      LDR      R1,[R9, R8, LSL #+2]
@@ -672,8 +691,8 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     367                  if (err == OS_ERR_NONE) {
    \       0x72   0xD105             BNE.N    ??OSTaskCreateExt_3
     368                      if (OSRunning == OS_TRUE) {                        /* Find HPT if multitasking has started */
-   \       0x74   0x....'....        BL       ?Subroutine5
-   \                     ??CrossCallReturnLabel_13: (+1)
+   \       0x74   0x....'....        BL       ?Subroutine6
+   \                     ??CrossCallReturnLabel_15: (+1)
    \       0x78   0xD109             BNE.N    ??OSTaskCreateExt_4
     369                          OS_Sched();
    \       0x7A   0x....'....        BL       OS_Sched
@@ -700,8 +719,8 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     379              return (OS_ERR_PRIO_EXIST);
    \       0x96   0x2028             MOVS     R0,#+40
    \                     ??OSTaskCreateExt_1: (+1)
-   \       0x98   0xB005             ADD      SP,SP,#+20
-   \       0x9A   0xE8BD 0x8FF0      POP      {R4-R11,PC}      ;; return
+   \       0x98                      REQUIRE ?Subroutine0
+   \       0x98                      ;; // Fall through to label ?Subroutine0
     380          }
     381          #endif
     382          /*$PAGE*/
@@ -759,7 +778,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     430          
     431          
     432              if (OSIntNesting > 0) {                             /* See if trying to delete from ISR            */
-   \        0x4   0x....'....        LDR.W    R1,??DataTable12_4
+   \        0x4   0x....'....        LDR.W    R1,??DataTable11_5
    \        0x8   0x4606             MOV      R6,R0
    \        0xA   0x7808             LDRB     R0,[R1, #+0]
    \        0xC   0xB108             CBZ.N    R0,??OSTaskDel_0
@@ -770,7 +789,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     435              if (prio == OS_TASK_IDLE_PRIO) {                    /* Not allowed to delete idle task             */
    \                     ??OSTaskDel_0: (+1)
    \       0x12   0x2E1F             CMP      R6,#+31
-   \       0x14   0xBF08             IT       EQ 
+   \       0x14   0xBF08             IT       EQ
    \       0x16   0x203E             MOVEQ    R0,#+62
     436                  return (OS_ERR_TASK_DEL_IDLE);
    \       0x18   0xD074             BEQ.N    ??OSTaskDel_1
@@ -791,20 +810,20 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0x20   0x4680             MOV      R8,R0
    \       0x22   0xD104             BNE.N    ??OSTaskDel_2
     449                  prio = OSTCBCur->OSTCBPrio;                     /* Set priority to delete to current           */
-   \       0x24   0x....'....        LDR.W    R0,??DataTable12_5
+   \       0x24   0x....'....        LDR.W    R0,??DataTable11_1
    \       0x28   0x6801             LDR      R1,[R0, #+0]
    \       0x2A   0xF891 0x6032      LDRB     R6,[R1, #+50]
     450              }
     451              ptcb = OSTCBPrioTbl[prio];
    \                     ??OSTaskDel_2: (+1)
-   \       0x2E   0x....'....        LDR.W    R9,??DataTable12
+   \       0x2E   0x....'....        LDR.W    R9,??DataTable11
    \       0x32   0xF859 0x4026      LDR      R4,[R9, R6, LSL #+2]
     452              if (ptcb == (OS_TCB *)0) {                          /* Task to delete must exist                   */
    \       0x36   0xB91C             CBNZ.N   R4,??OSTaskDel_3
     453                  OS_EXIT_CRITICAL();
-   \       0x38   0x....'....        BL       ?Subroutine2
+   \       0x38   0x....'....        BL       ?Subroutine3
     454                  return (OS_ERR_TASK_NOT_EXIST);
-   \                     ??CrossCallReturnLabel_5: (+1)
+   \                     ??CrossCallReturnLabel_7: (+1)
    \       0x3C   0x2043             MOVS     R0,#+67
    \       0x3E   0xE061             B.N      ??OSTaskDel_1
     455              }
@@ -813,9 +832,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0x40   0x2C01             CMP      R4,#+1
    \       0x42   0xD103             BNE.N    ??OSTaskDel_4
     457                  OS_EXIT_CRITICAL();
-   \       0x44   0x....'....        BL       ?Subroutine2
+   \       0x44   0x....'....        BL       ?Subroutine3
     458                  return (OS_ERR_TASK_DEL);
-   \                     ??CrossCallReturnLabel_4: (+1)
+   \                     ??CrossCallReturnLabel_6: (+1)
    \       0x48   0x203D             MOVS     R0,#+61
    \       0x4A   0xE05B             B.N      ??OSTaskDel_1
     459              }
@@ -823,7 +842,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     461              OSRdyTbl[ptcb->OSTCBY] &= ~ptcb->OSTCBBitX;
    \                     ??OSTaskDel_4: (+1)
    \       0x4C   0xF104 0x0530      ADD      R5,R4,#+48
-   \       0x50   0x....'....        LDR.W    R2,??DataTable12_1
+   \       0x50   0x....'....        LDR.W    R2,??DataTable11_3
    \       0x54   0x7928             LDRB     R0,[R5, #+4]
    \       0x56   0x7969             LDRB     R1,[R5, #+5]
    \       0x58   0x5C13             LDRB     R3,[R2, R0]
@@ -834,7 +853,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0x60   0x5CD0             LDRB     R0,[R2, R3]
    \       0x62   0xB928             CBNZ.N   R0,??OSTaskDel_5
     463                  OSRdyGrp           &= ~ptcb->OSTCBBitY;
-   \       0x64   0x....'....        LDR.W    R1,??DataTable12_2
+   \       0x64   0x....'....        LDR.W    R1,??DataTable11_2
    \       0x68   0x79A8             LDRB     R0,[R5, #+6]
    \       0x6A   0x780A             LDRB     R2,[R1, #+0]
    \       0x6C   0x4382             BICS     R2,R2,R0
@@ -882,18 +901,18 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     486              ptcb->OSTCBStatPend = OS_STAT_PEND_OK;
    \       0x92   0x7068             STRB     R0,[R5, #+1]
     487              if (OSLockNesting < 255u) {                         /* Make sure we don't context switch           */
-   \       0x94   0x....             LDR.N    R7,??DataTable12_6
+   \       0x94   0x....             LDR.N    R7,??DataTable11_6
    \       0x96   0x7838             LDRB     R0,[R7, #+0]
    \       0x98   0x28FF             CMP      R0,#+255
-   \       0x9A   0xBF1C             ITT      NE 
+   \       0x9A   0xBF1C             ITT      NE
    \       0x9C   0x1C40             ADDNE    R0,R0,#+1
    \       0x9E   0x7038             STRBNE   R0,[R7, #+0]
     488                  OSLockNesting++;
     489              }
     490              OS_EXIT_CRITICAL();                                 /* Enabling INT. ignores next instruc.         */
-   \       0xA0   0x....'....        BL       ?Subroutine2
+   \       0xA0   0x....'....        BL       ?Subroutine3
     491              OS_Dummy();                                         /* ... Dummy ensures that INTs will be         */
-   \                     ??CrossCallReturnLabel_3: (+1)
+   \                     ??CrossCallReturnLabel_5: (+1)
    \       0xA4   0x....'....        BL       OS_Dummy
     492              OS_ENTER_CRITICAL();                                /* ... disabled HERE!                          */
    \       0xA8   0x....'....        BL       OS_CPU_SR_Save
@@ -910,7 +929,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0xB6   0x4620             MOV      R0,R4
    \       0xB8   0x....'....        BL       OSTaskDelHook
     497              OSTaskCtr--;                                        /* One less task being managed                 */
-   \       0xBC   0x....             LDR.N    R0,??DataTable12_7
+   \       0xBC   0x....             LDR.N    R0,??DataTable11_7
    \       0xBE   0x7801             LDRB     R1,[R0, #+0]
    \       0xC0   0x1E4A             SUBS     R2,R1,#+1
    \       0xC2   0x7002             STRB     R2,[R0, #+0]
@@ -925,7 +944,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0xD0   0x6188             STR      R0,[R1, #+24]
     501                  OSTCBList                  = ptcb->OSTCBNext;
    \       0xD2   0x6961             LDR      R1,[R4, #+20]
-   \       0xD4   0x....             LDR.N    R0,??DataTable12_8
+   \       0xD4   0x....             LDR.N    R0,??DataTable11_8
    \       0xD6   0x6001             STR      R1,[R0, #+0]
    \       0xD8   0xE003             B.N      ??OSTaskDel_11
     502              } else {
@@ -939,7 +958,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     505              }
     506              ptcb->OSTCBNext   = OSTCBFreeList;                  /* Return TCB to free TCB list                 */
    \                     ??OSTaskDel_11: (+1)
-   \       0xE2   0x....             LDR.N    R0,??DataTable12_9
+   \       0xE2   0x....             LDR.N    R0,??DataTable11_9
    \       0xE4   0x6801             LDR      R1,[R0, #+0]
    \       0xE6   0x6161             STR      R1,[R4, #+20]
     507              OSTCBFreeList     = ptcb;
@@ -953,13 +972,13 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0xF0   0x7769             STRB     R1,[R5, #+29]
     511          #endif
     512              OS_EXIT_CRITICAL();
-   \       0xF2   0x....'....        BL       ?Subroutine2
+   \       0xF2   0x....'....        BL       ?Subroutine3
     513              if (OSRunning == OS_TRUE) {
-   \                     ??CrossCallReturnLabel_2: (+1)
-   \       0xF6   0x....             LDR.N    R0,??DataTable12_3
+   \                     ??CrossCallReturnLabel_4: (+1)
+   \       0xF6   0x....             LDR.N    R0,??DataTable11_4
    \       0xF8   0x7801             LDRB     R1,[R0, #+0]
    \       0xFA   0x2901             CMP      R1,#+1
-   \       0xFC   0xBF08             IT       EQ 
+   \       0xFC   0xBF08             IT       EQ
     514                  OS_Sched();                                     /* Find new highest priority task              */
    \       0xFE   0x....'....        BLEQ     OS_Sched
     515              }
@@ -970,7 +989,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     517          }
 
    \                                 In section .text, align 2, keep-with-next
-   \                     ?Subroutine2: (+1)
+   \                     ?Subroutine3: (+1)
    \        0x0   0x4640             MOV      R0,R8
    \        0x2   0x....'....        B.W      OS_CPU_SR_Restore
     518          #endif
@@ -1058,7 +1077,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     588                  OS_ENTER_CRITICAL();                                    /* ... this task to delete itself      */
    \       0x10   0x....'....        BL       OS_CPU_SR_Save
     589                  stat = OSTCBCur->OSTCBDelReq;                           /* Return request status to caller     */
-   \       0x14   0x....             LDR.N    R1,??DataTable12_5
+   \       0x14   0x....             LDR.N    R1,??DataTable11_1
    \       0x16   0x680A             LDR      R2,[R1, #+0]
    \       0x18   0xF892 0x4037      LDRB     R4,[R2, #+55]
     590                  OS_EXIT_CRITICAL();
@@ -1071,7 +1090,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \                     ??OSTaskDelReq_1: (+1)
    \       0x24   0x....'....        BL       OS_CPU_SR_Save
     594              ptcb = OSTCBPrioTbl[prio];
-   \       0x28   0x....             LDR.N    R1,??DataTable12
+   \       0x28   0x....             LDR.N    R1,??DataTable11
    \       0x2A   0xF851 0x1024      LDR      R1,[R1, R4, LSL #+2]
     595              if (ptcb == (OS_TCB *)0) {                                  /* Task to delete must exist           */
    \       0x2E   0xB919             CBNZ.N   R1,??OSTaskDelReq_2
@@ -1160,7 +1179,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     658              }
     659          #endif
     660              if (OSIntNesting > 0) {                              /* See if trying to call from an ISR          */
-   \        0x4   0x....             LDR.N    R1,??DataTable12_4
+   \        0x4   0x....             LDR.N    R1,??DataTable11_5
    \        0x6   0x4607             MOV      R7,R0
    \        0x8   0x7808             LDRB     R0,[R1, #+0]
    \        0xA   0x4614             MOV      R4,R2
@@ -1179,17 +1198,17 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0x1A   0x4606             MOV      R6,R0
    \       0x1C   0xD103             BNE.N    ??OSTaskNameGet_2
     666                  prio = OSTCBCur->OSTCBPrio;
-   \       0x1E   0x....             LDR.N    R0,??DataTable12_5
+   \       0x1E   0x....             LDR.N    R0,??DataTable11_1
    \       0x20   0x6801             LDR      R1,[R0, #+0]
    \       0x22   0xF891 0x7032      LDRB     R7,[R1, #+50]
     667              }
     668              ptcb = OSTCBPrioTbl[prio];
    \                     ??OSTaskNameGet_2: (+1)
-   \       0x26   0x....             LDR.N    R0,??DataTable12
+   \       0x26   0x....             LDR.N    R0,??DataTable11
    \       0x28   0xF850 0x0027      LDR      R0,[R0, R7, LSL #+2]
     669              if (ptcb == (OS_TCB *)0) {                           /* Does task exist?                           */
    \       0x2C   0x2800             CMP      R0,#+0
-   \       0x2E   0xBF18             IT       NE 
+   \       0x2E   0xBF18             IT       NE
    \       0x30   0x2801             CMPNE    R0,#+1
     670                  OS_EXIT_CRITICAL();                              /* No                                         */
     671                  *perr = OS_ERR_TASK_NOT_EXIST;
@@ -1198,9 +1217,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     674              if (ptcb == OS_TCB_RESERVED) {                       /* Task assigned to a Mutex?                  */
    \       0x32   0xD105             BNE.N    ??OSTaskNameGet_3
     675                  OS_EXIT_CRITICAL();                              /* Yes                                        */
-   \       0x34   0x....'....        BL       ?Subroutine3
+   \       0x34   0x....'....        BL       ?Subroutine4
     676                  *perr = OS_ERR_TASK_NOT_EXIST;
-   \                     ??CrossCallReturnLabel_9: (+1)
+   \                     ??CrossCallReturnLabel_11: (+1)
    \       0x38   0x2043             MOVS     R0,#+67
    \       0x3A   0x7020             STRB     R0,[R4, #+0]
     677                  return (0);
@@ -1215,9 +1234,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0x46   0x....'....        BL       OS_StrCopy
    \       0x4A   0x4605             MOV      R5,R0
     680              OS_EXIT_CRITICAL();
-   \       0x4C   0x....'....        BL       ?Subroutine3
+   \       0x4C   0x....'....        BL       ?Subroutine4
     681              *perr = OS_ERR_NONE;
-   \                     ??CrossCallReturnLabel_8: (+1)
+   \                     ??CrossCallReturnLabel_10: (+1)
    \       0x50   0x2000             MOVS     R0,#+0
    \       0x52   0x7020             STRB     R0,[R4, #+0]
     682              return (len);
@@ -1226,7 +1245,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     683          }
 
    \                                 In section .text, align 2, keep-with-next
-   \                     ?Subroutine3: (+1)
+   \                     ?Subroutine4: (+1)
    \        0x0   0x4630             MOV      R0,R6
    \        0x2   0x....'....        B.W      OS_CPU_SR_Restore
     684          #endif
@@ -1290,7 +1309,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     737              }
     738          #endif
     739              if (OSIntNesting > 0) {                          /* See if trying to call from an ISR              */
-   \        0x4   0x....             LDR.N    R1,??DataTable12_4
+   \        0x4   0x....             LDR.N    R1,??DataTable11_5
    \        0x6   0x4604             MOV      R4,R0
    \        0x8   0x7808             LDRB     R0,[R1, #+0]
    \        0xA   0x4615             MOV      R5,R2
@@ -1307,15 +1326,15 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     744              if (prio == OS_PRIO_SELF) {                      /* See if caller desires to set it's own name     */
    \       0x18   0x2CFF             CMP      R4,#+255
    \       0x1A   0x4607             MOV      R7,R0
-   \       0x1C   0x....'....        BL       ?Subroutine4
+   \       0x1C   0x....'....        BL       ?Subroutine5
     745                  prio = OSTCBCur->OSTCBPrio;
     746              }
     747              ptcb = OSTCBPrioTbl[prio];
-   \                     ??CrossCallReturnLabel_10: (+1)
+   \                     ??CrossCallReturnLabel_12: (+1)
    \       0x20   0xF850 0x4024      LDR      R4,[R0, R4, LSL #+2]
     748              if (ptcb == (OS_TCB *)0) {                       /* Does task exist?                               */
    \       0x24   0x2C00             CMP      R4,#+0
-   \       0x26   0xBF18             IT       NE 
+   \       0x26   0xBF18             IT       NE
    \       0x28   0x2C01             CMPNE    R4,#+1
     749                  OS_EXIT_CRITICAL();                          /* No                                             */
     750                  *perr = OS_ERR_TASK_NOT_EXIST;
@@ -1362,13 +1381,13 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0x5E   0xBDF1             POP      {R0,R4-R7,PC}    ;; return
 
    \                                 In section .text, align 2, keep-with-next
-   \                     ?Subroutine4: (+1)
-   \        0x0   0xD103             BNE.N    ??Subroutine4_0
-   \        0x2   0x....             LDR.N    R0,??DataTable12_5
+   \                     ?Subroutine5: (+1)
+   \        0x0   0xD103             BNE.N    ??Subroutine5_0
+   \        0x2   0x....             LDR.N    R0,??DataTable11_1
    \        0x4   0x6801             LDR      R1,[R0, #+0]
    \        0x6   0xF891 0x4032      LDRB     R4,[R1, #+50]
-   \                     ??Subroutine4_0: (+1)
-   \        0xA   0x....             LDR.N    R0,??DataTable12
+   \                     ??Subroutine5_0: (+1)
+   \        0xA   0x....             LDR.N    R0,??DataTable11
    \        0xC   0x4770             BX       LR
     768          #endif
     769          
@@ -1414,7 +1433,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     804              OS_ENTER_CRITICAL();
    \        0x4   0x....'....        BL       OS_CPU_SR_Save
     805              ptcb = OSTCBPrioTbl[prio];
-   \        0x8   0x....             LDR.N    R1,??DataTable12
+   \        0x8   0x....             LDR.N    R1,??DataTable11
    \        0xA   0xF851 0x1024      LDR      R1,[R1, R4, LSL #+2]
     806              if (ptcb == (OS_TCB *)0) {                                /* Task to suspend must exist            */
    \        0xE   0xB919             CBNZ.N   R1,??OSTaskResume_0
@@ -1444,20 +1463,20 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0x2E   0xF011 0x01F7      ANDS     R1,R1,#0xF7
    \       0x32   0x7091             STRB     R1,[R2, #+2]
     816                  if (ptcb->OSTCBStat == OS_STAT_RDY) {                 /* See if task is now ready              */
-   \       0x34   0xBF04             ITT      EQ 
+   \       0x34   0xBF04             ITT      EQ
    \       0x36   0x8811             LDRHEQ   R1,[R2, #+0]
    \       0x38   0x2900             CMPEQ    R1,#+0
     817                      if (ptcb->OSTCBDly == 0) {
    \       0x3A   0xD112             BNE.N    ??OSTaskResume_3
     818                          OSRdyGrp               |= ptcb->OSTCBBitY;    /* Yes, Make task ready to run           */
-   \       0x3C   0x....             LDR.N    R3,??DataTable12_2
+   \       0x3C   0x....             LDR.N    R3,??DataTable11_2
    \       0x3E   0x7A11             LDRB     R1,[R2, #+8]
    \       0x40   0x781C             LDRB     R4,[R3, #+0]
    \       0x42   0x430C             ORRS     R4,R1,R4
    \       0x44   0x701C             STRB     R4,[R3, #+0]
     819                          OSRdyTbl[ptcb->OSTCBY] |= ptcb->OSTCBBitX;
    \       0x46   0x7993             LDRB     R3,[R2, #+6]
-   \       0x48   0x....             LDR.N    R4,??DataTable12_1
+   \       0x48   0x....             LDR.N    R4,??DataTable11_3
    \       0x4A   0x79D1             LDRB     R1,[R2, #+7]
    \       0x4C   0x5CE5             LDRB     R5,[R4, R3]
    \       0x4E   0x430D             ORRS     R5,R1,R5
@@ -1465,8 +1484,8 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     820                          OS_EXIT_CRITICAL();
    \       0x52   0x....'....        BL       OS_CPU_SR_Restore
     821                          if (OSRunning == OS_TRUE) {
-   \       0x56   0x....'....        BL       ?Subroutine5
-   \                     ??CrossCallReturnLabel_14: (+1)
+   \       0x56   0x....'....        BL       ?Subroutine6
+   \                     ??CrossCallReturnLabel_16: (+1)
    \       0x5A   0xD104             BNE.N    ??OSTaskResume_4
     822                              OS_Sched();                               /* Find new highest priority task        */
    \       0x5C   0x....'....        BL       OS_Sched
@@ -1550,74 +1569,78 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     881              OS_ENTER_CRITICAL();
    \        0xC   0x....'....        BL       OS_CPU_SR_Save
     882              if (prio == OS_PRIO_SELF) {                        /* See if check for SELF                        */
-   \       0x10   0x....'....        BL       ?Subroutine1
+   \       0x10   0x2DFF             CMP      R5,#+255
+   \       0x12   0xD103             BNE.N    ??OSTaskStkChk_0
     883                  prio = OSTCBCur->OSTCBPrio;
+   \       0x14   0x....             LDR.N    R1,??DataTable11_1
+   \       0x16   0x680A             LDR      R2,[R1, #+0]
+   \       0x18   0xF892 0x5032      LDRB     R5,[R2, #+50]
     884              }
     885              ptcb = OSTCBPrioTbl[prio];
-   \                     ??CrossCallReturnLabel_1: (+1)
-   \       0x14   0x....             LDR.N    R1,??DataTable12
-   \       0x16   0xF851 0x1025      LDR      R1,[R1, R5, LSL #+2]
+   \                     ??OSTaskStkChk_0: (+1)
+   \       0x1C   0x....             LDR.N    R1,??DataTable11
+   \       0x1E   0xF851 0x1025      LDR      R1,[R1, R5, LSL #+2]
     886              if (ptcb == (OS_TCB *)0) {                         /* Make sure task exist                         */
-   \       0x1A   0x2900             CMP      R1,#+0
-   \       0x1C   0xBF18             IT       NE 
-   \       0x1E   0x2901             CMPNE    R1,#+1
+   \       0x22   0x2900             CMP      R1,#+0
+   \       0x24   0xBF18             IT       NE
+   \       0x26   0x2901             CMPNE    R1,#+1
     887                  OS_EXIT_CRITICAL();
     888                  return (OS_ERR_TASK_NOT_EXIST);
     889              }
     890              if (ptcb == OS_TCB_RESERVED) {
-   \       0x20   0xD103             BNE.N    ??OSTaskStkChk_0
+   \       0x28   0xD103             BNE.N    ??OSTaskStkChk_1
     891                  OS_EXIT_CRITICAL();
-   \       0x22   0x....'....        BL       OS_CPU_SR_Restore
+   \       0x2A   0x....'....        BL       OS_CPU_SR_Restore
     892                  return (OS_ERR_TASK_NOT_EXIST);
-   \       0x26   0x2043             MOVS     R0,#+67
-   \       0x28   0xBDF2             POP      {R1,R4-R7,PC}
+   \       0x2E   0x2043             MOVS     R0,#+67
+   \       0x30   0xBDF2             POP      {R1,R4-R7,PC}
     893              }
     894              if ((ptcb->OSTCBOpt & OS_TASK_OPT_STK_CHK) == 0) { /* Make sure stack checking option is set       */
-   \                     ??OSTaskStkChk_0: (+1)
-   \       0x2A   0x7C0A             LDRB     R2,[R1, #+16]
-   \       0x2C   0x07D3             LSLS     R3,R2,#+31
-   \       0x2E   0xD403             BMI.N    ??OSTaskStkChk_1
+   \                     ??OSTaskStkChk_1: (+1)
+   \       0x32   0x7C0A             LDRB     R2,[R1, #+16]
+   \       0x34   0x07D3             LSLS     R3,R2,#+31
+   \       0x36   0xD403             BMI.N    ??OSTaskStkChk_2
     895                  OS_EXIT_CRITICAL();
-   \       0x30   0x....'....        BL       OS_CPU_SR_Restore
+   \       0x38   0x....'....        BL       OS_CPU_SR_Restore
     896                  return (OS_ERR_TASK_OPT);
-   \       0x34   0x2045             MOVS     R0,#+69
-   \       0x36   0xBDF2             POP      {R1,R4-R7,PC}
+   \       0x3C   0x2045             MOVS     R0,#+69
+   \       0x3E   0xBDF2             POP      {R1,R4-R7,PC}
     897              }
     898              nfree = 0;
     899              size  = ptcb->OSTCBStkSize;
-   \                     ??OSTaskStkChk_1: (+1)
-   \       0x38   0x68CE             LDR      R6,[R1, #+12]
+   \                     ??OSTaskStkChk_2: (+1)
+   \       0x40   0x68CE             LDR      R6,[R1, #+12]
     900              pchk  = ptcb->OSTCBStkBottom;
-   \       0x3A   0x688F             LDR      R7,[R1, #+8]
+   \       0x42   0x688F             LDR      R7,[R1, #+8]
     901              OS_EXIT_CRITICAL();
-   \       0x3C   0x....'....        BL       OS_CPU_SR_Restore
-   \       0x40   0x2500             MOVS     R5,#+0
-   \       0x42   0xE000             B.N      ??OSTaskStkChk_2
+   \       0x44   0x....'....        BL       OS_CPU_SR_Restore
+   \       0x48   0x2500             MOVS     R5,#+0
+   \       0x4A   0xE000             B.N      ??OSTaskStkChk_3
     902          #if OS_STK_GROWTH == 1
     903              while (*pchk++ == (OS_STK)0) {                    /* Compute the number of zero entries on the stk */
     904                  nfree++;
-   \                     ??OSTaskStkChk_3: (+1)
-   \       0x44   0x1C6D             ADDS     R5,R5,#+1
+   \                     ??OSTaskStkChk_4: (+1)
+   \       0x4C   0x1C6D             ADDS     R5,R5,#+1
     905              }
-   \                     ??OSTaskStkChk_2: (+1)
-   \       0x46   0xF857 0x0B04      LDR      R0,[R7], #+4
-   \       0x4A   0x2800             CMP      R0,#+0
-   \       0x4C   0xD0FA             BEQ.N    ??OSTaskStkChk_3
+   \                     ??OSTaskStkChk_3: (+1)
+   \       0x4E   0xF857 0x0B04      LDR      R0,[R7], #+4
+   \       0x52   0x2800             CMP      R0,#+0
+   \       0x54   0xD0FA             BEQ.N    ??OSTaskStkChk_4
     906          #else
     907              while (*pchk-- == (OS_STK)0) {
     908                  nfree++;
     909              }
     910          #endif
     911              p_stk_data->OSFree = nfree * sizeof(OS_STK);          /* Compute number of free bytes on the stack */
-   \       0x4E   0x00A9             LSLS     R1,R5,#+2
+   \       0x56   0x00A9             LSLS     R1,R5,#+2
     912              p_stk_data->OSUsed = (size - nfree) * sizeof(OS_STK); /* Compute number of bytes used on the stack */
-   \       0x50   0x1B75             SUBS     R5,R6,R5
-   \       0x52   0x6021             STR      R1,[R4, #+0]
-   \       0x54   0x00AD             LSLS     R5,R5,#+2
-   \       0x56   0x6065             STR      R5,[R4, #+4]
+   \       0x58   0x1B75             SUBS     R5,R6,R5
+   \       0x5A   0x6021             STR      R1,[R4, #+0]
+   \       0x5C   0x00AD             LSLS     R5,R5,#+2
+   \       0x5E   0x6065             STR      R5,[R4, #+4]
     913              return (OS_ERR_NONE);
-   \       0x58   0x2000             MOVS     R0,#+0
-   \       0x5A   0xBDF2             POP      {R1,R4-R7,PC}    ;; return
+   \       0x60   0x2000             MOVS     R0,#+0
+   \       0x62   0xBDF2             POP      {R1,R4-R7,PC}    ;; return
     914          }
     915          #endif
     916          /*$PAGE*/
@@ -1674,11 +1697,11 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     962              OS_ENTER_CRITICAL();
    \        0x4   0x....'....        BL       OS_CPU_SR_Save
     963              if (prio == OS_PRIO_SELF) {                                 /* See if suspend SELF                 */
-   \        0x8   0x....             LDR.N    R1,??DataTable12_5
+   \        0x8   0x....             LDR.N    R1,??DataTable11_1
    \        0xA   0x680A             LDR      R2,[R1, #+0]
    \        0xC   0xF892 0x1032      LDRB     R1,[R2, #+50]
    \       0x10   0x2DFF             CMP      R5,#+255
-   \       0x12   0xBF0C             ITE      EQ 
+   \       0x12   0xBF0C             ITE      EQ
    \       0x14   0x460D             MOVEQ    R5,R1
    \       0x16   0x428D             CMPNE    R5,R1
     964                  prio = OSTCBCur->OSTCBPrio;
@@ -1695,7 +1718,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     970              }
     971              ptcb = OSTCBPrioTbl[prio];
    \                     ??OSTaskSuspend_1: (+1)
-   \       0x20   0x....             LDR.N    R1,??DataTable12
+   \       0x20   0x....             LDR.N    R1,??DataTable11
    \       0x22   0xF851 0x1025      LDR      R1,[R1, R5, LSL #+2]
     972              if (ptcb == (OS_TCB *)0) {                                  /* Task to suspend must exist          */
    \       0x26   0xB919             CBNZ.N   R1,??OSTaskSuspend_2
@@ -1710,14 +1733,14 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0x30   0x2901             CMP      R1,#+1
    \       0x32   0xD100             BNE.N    ??OSTaskSuspend_3
     977                  OS_EXIT_CRITICAL();
-   \       0x34   0x....             B.N      ?Subroutine0
+   \       0x34   0x....             B.N      ?Subroutine1
     978                  return (OS_ERR_TASK_NOT_EXIST);
     979              }
     980              y            = ptcb->OSTCBY;
    \                     ??OSTaskSuspend_3: (+1)
    \       0x36   0xF101 0x0230      ADD      R2,R1,#+48
     981              OSRdyTbl[y] &= ~ptcb->OSTCBBitX;                            /* Make task not ready                 */
-   \       0x3A   0x....             LDR.N    R3,??DataTable12_1
+   \       0x3A   0x....             LDR.N    R3,??DataTable11_3
    \       0x3C   0x7911             LDRB     R1,[R2, #+4]
    \       0x3E   0x7955             LDRB     R5,[R2, #+5]
    \       0x40   0x5C5E             LDRB     R6,[R3, R1]
@@ -1726,7 +1749,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     982              if (OSRdyTbl[y] == 0) {
    \       0x48   0xD104             BNE.N    ??OSTaskSuspend_4
     983                  OSRdyGrp &= ~ptcb->OSTCBBitY;
-   \       0x4A   0x....             LDR.N    R3,??DataTable12_2
+   \       0x4A   0x....             LDR.N    R3,??DataTable11_2
    \       0x4C   0x7991             LDRB     R1,[R2, #+6]
    \       0x4E   0x781D             LDRB     R5,[R3, #+0]
    \       0x50   0x438D             BICS     R5,R5,R1
@@ -1751,7 +1774,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
     991          }
 
    \                                 In section .text, align 2, keep-with-next
-   \                     ?Subroutine0: (+1)
+   \                     ?Subroutine1: (+1)
    \        0x0   0x....'....        BL       OS_CPU_SR_Restore
    \        0x4   0x2043             MOVS     R0,#+67
    \        0x6   0xBD70             POP      {R4-R6,PC}
@@ -1807,18 +1830,18 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    1034              if (prio == OS_PRIO_SELF) {                  /* See if suspend SELF                                */
    \        0xA   0x2CFF             CMP      R4,#+255
    \        0xC   0x4606             MOV      R6,R0
-   \        0xE   0x....'....        BL       ?Subroutine4
+   \        0xE   0x....'....        BL       ?Subroutine5
    1035                  prio = OSTCBCur->OSTCBPrio;
    1036              }
    1037              ptcb = OSTCBPrioTbl[prio];
-   \                     ??CrossCallReturnLabel_11: (+1)
+   \                     ??CrossCallReturnLabel_13: (+1)
    \       0x12   0xF850 0x1024      LDR      R1,[R0, R4, LSL #+2]
    1038              if (ptcb == (OS_TCB *)0) {                   /* Task to query must exist                           */
    \       0x16   0xB919             CBNZ.N   R1,??OSTaskQuery_0
    1039                  OS_EXIT_CRITICAL();
-   \       0x18   0x....'....        BL       ?Subroutine3
+   \       0x18   0x....'....        BL       ?Subroutine4
    1040                  return (OS_ERR_PRIO);
-   \                     ??CrossCallReturnLabel_7: (+1)
+   \                     ??CrossCallReturnLabel_9: (+1)
    \       0x1C   0x2029             MOVS     R0,#+41
    \       0x1E   0xBD70             POP      {R4-R6,PC}
    1041              }
@@ -1828,7 +1851,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0x22   0xD101             BNE.N    ??OSTaskQuery_1
    1043                  OS_EXIT_CRITICAL();
    \       0x24   0x4630             MOV      R0,R6
-   \       0x26   0x....             B.N      ?Subroutine0
+   \       0x26   0x....             B.N      ?Subroutine1
    1044                  return (OS_ERR_TASK_NOT_EXIST);
    1045              }
    1046                                                           /* Copy TCB into user storage area                    */
@@ -1838,9 +1861,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0x2A   0x4628             MOV      R0,R5
    \       0x2C   0x....'....        BL       OS_MemCopy
    1048              OS_EXIT_CRITICAL();
-   \       0x30   0x....'....        BL       ?Subroutine3
+   \       0x30   0x....'....        BL       ?Subroutine4
    1049              return (OS_ERR_NONE);
-   \                     ??CrossCallReturnLabel_6: (+1)
+   \                     ??CrossCallReturnLabel_8: (+1)
    \       0x34   0x2000             MOVS     R0,#+0
    \       0x36   0xBD70             POP      {R4-R6,PC}       ;; return
    1050          }
@@ -1882,7 +1905,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    1080          #if OS_STK_GROWTH == 1
    1081                      while (size > 0) {                         /* Stack grows from HIGH to LOW memory          */
    \        0x8   0x2900             CMP      R1,#+0
-   \        0xA   0xBF1C             ITT      NE 
+   \        0xA   0xBF1C             ITT      NE
    1082                          size--;
    1083                          *pbos++ = (OS_STK)0;                   /* Clear from bottom of stack and up!           */
    \        0xC   0x0089             LSLNE    R1,R1,#+2
@@ -1901,43 +1924,43 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
    \       0x12   0x4770             BX       LR               ;; return
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12:
+   \                     ??DataTable11:
    \        0x0   0x....'....        DC32     OSTCBPrioTbl
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_1:
-   \        0x0   0x....'....        DC32     OSRdyTbl
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_2:
-   \        0x0   0x....'....        DC32     OSRdyGrp
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_3:
-   \        0x0   0x....'....        DC32     OSRunning
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_4:
-   \        0x0   0x....'....        DC32     OSIntNesting
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_5:
+   \                     ??DataTable11_1:
    \        0x0   0x....'....        DC32     OSTCBCur
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_6:
+   \                     ??DataTable11_2:
+   \        0x0   0x....'....        DC32     OSRdyGrp
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable11_3:
+   \        0x0   0x....'....        DC32     OSRdyTbl
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable11_4:
+   \        0x0   0x....'....        DC32     OSRunning
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable11_5:
+   \        0x0   0x....'....        DC32     OSIntNesting
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable11_6:
    \        0x0   0x....'....        DC32     OSLockNesting
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_7:
+   \                     ??DataTable11_7:
    \        0x0   0x....'....        DC32     OSTaskCtr
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_8:
+   \                     ??DataTable11_8:
    \        0x0   0x....'....        DC32     OSTCBList
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_9:
+   \                     ??DataTable11_9:
    \        0x0   0x....'....        DC32     OSTCBFreeList
    1094          
    1095          #endif
@@ -1946,10 +1969,10 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
 
    .cstack Function
    ------- --------
-      40   OSTaskChangePrio
-        40   -> OS_CPU_SR_Restore
-        40   -> OS_CPU_SR_Save
-        40   -> OS_Sched
+      56   OSTaskChangePrio
+        56   -> OS_CPU_SR_Restore
+        56   -> OS_CPU_SR_Save
+        56   -> OS_Sched
       40   OSTaskCreate
         40   -> OSTaskStkInit
         40   -> OS_CPU_SR_Restore
@@ -2007,39 +2030,40 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_task.c
 
    Bytes  Function/Label
    -----  --------------
-       4  ??DataTable12
-       4  ??DataTable12_1
-       4  ??DataTable12_2
-       4  ??DataTable12_3
-       4  ??DataTable12_4
-       4  ??DataTable12_5
-       4  ??DataTable12_6
-       4  ??DataTable12_7
-       4  ??DataTable12_8
-       4  ??DataTable12_9
-       8  ?Subroutine0
-      14  ?Subroutine1
+       4  ??DataTable11
+       4  ??DataTable11_1
+       4  ??DataTable11_2
+       4  ??DataTable11_3
+       4  ??DataTable11_4
+       4  ??DataTable11_5
+       4  ??DataTable11_6
+       4  ??DataTable11_7
+       4  ??DataTable11_8
+       4  ??DataTable11_9
+       6  ?Subroutine0
+       8  ?Subroutine1
        6  ?Subroutine2
        6  ?Subroutine3
-      14  ?Subroutine4
-      10  ?Subroutine5
-     344  OSTaskChangePrio
+       6  ?Subroutine4
+      14  ?Subroutine5
+      10  ?Subroutine6
+     368  OSTaskChangePrio
      130  OSTaskCreate
-     158  OSTaskCreateExt
+     152  OSTaskCreateExt
      264  OSTaskDel
       82  OSTaskDelReq
       88  OSTaskNameGet
       96  OSTaskNameSet
       56  OSTaskQuery
      114  OSTaskResume
-      92  OSTaskStkChk
+     100  OSTaskStkChk
      106  OSTaskSuspend
       20  OS_TaskStkClr
 
  
- 1'648 bytes in section .text
+ 1'672 bytes in section .text
  
- 1'648 bytes of CODE memory
+ 1'672 bytes of CODE memory
 
 Errors: none
 Warnings: none

@@ -40,6 +40,7 @@ build stm32f10x_spi.pbi : index stm32f10x_spi.xcl
 build stm32f10x_systick.pbi : index stm32f10x_systick.xcl
 build stm32f10x_tim.pbi : index stm32f10x_tim.xcl
 build stm32f10x_usart.pbi : index stm32f10x_usart.xcl
+build matrix.pbi : index matrix.xcl
 build cpu_c.pbi : index cpu_c.xcl
 build lib_mem.pbi : index lib_mem.xcl
 build lib_str.pbi : index lib_str.xcl
@@ -61,10 +62,10 @@ build os_probe.pbi : index os_probe.xcl
 build STM3210B-EVAL-OS-Probe-v5_part0.pbi : link app.pbi app_vect_v5.pbi bsp.pbi bsp_int.pbi bsp_periph.pbi stm32f10x_adc.pbi
 build STM3210B-EVAL-OS-Probe-v5_part1.pbi : link stm32f10x_bkp.pbi stm32f10x_exti.pbi stm32f10x_flash.pbi stm32f10x_gpio.pbi stm32f10x_i2c.pbi stm32f10x_lib.pbi
 build STM3210B-EVAL-OS-Probe-v5_part2.pbi : link stm32f10x_nvic.pbi stm32f10x_pwr.pbi stm32f10x_rcc.pbi stm32f10x_rtc.pbi stm32f10x_spi.pbi stm32f10x_systick.pbi
-build STM3210B-EVAL-OS-Probe-v5_part3.pbi : link stm32f10x_tim.pbi stm32f10x_usart.pbi cpu_c.pbi lib_mem.pbi lib_str.pbi os_cpu_c.pbi
-build STM3210B-EVAL-OS-Probe-v5_part4.pbi : link os_dbg.pbi os_core.pbi os_flag.pbi os_mbox.pbi os_mem.pbi os_mutex.pbi
-build STM3210B-EVAL-OS-Probe-v5_part5.pbi : link os_q.pbi os_sem.pbi os_task.pbi os_time.pbi os_tmr.pbi probe_com_os.pbi
-build STM3210B-EVAL-OS-Probe-v5_part6.pbi : link probe_com.pbi os_probe.pbi
+build STM3210B-EVAL-OS-Probe-v5_part3.pbi : link stm32f10x_tim.pbi stm32f10x_usart.pbi matrix.pbi cpu_c.pbi lib_mem.pbi lib_str.pbi
+build STM3210B-EVAL-OS-Probe-v5_part4.pbi : link os_cpu_c.pbi os_dbg.pbi os_core.pbi os_flag.pbi os_mbox.pbi os_mem.pbi
+build STM3210B-EVAL-OS-Probe-v5_part5.pbi : link os_mutex.pbi os_q.pbi os_sem.pbi os_task.pbi os_time.pbi os_tmr.pbi
+build STM3210B-EVAL-OS-Probe-v5_part6.pbi : link probe_com_os.pbi probe_com.pbi os_probe.pbi
 build STM3210B-EVAL-OS-Probe-v5.pbd : link STM3210B-EVAL-OS-Probe-v5_part0.pbi STM3210B-EVAL-OS-Probe-v5_part1.pbi STM3210B-EVAL-OS-Probe-v5_part2.pbi STM3210B-EVAL-OS-Probe-v5_part3.pbi STM3210B-EVAL-OS-Probe-v5_part4.pbi STM3210B-EVAL-OS-Probe-v5_part5.pbi STM3210B-EVAL-OS-Probe-v5_part6.pbi
 build STM3210B-EVAL-OS-Probe-v5.pbw : browsedata STM3210B-EVAL-OS-Probe-v5.pbd
 

@@ -1,0 +1,495 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         12/Dec/2020  20:53:25
+# Copyright 1999-2020 IAR Systems AB.
+#
+#    Cpu mode                        
+#    Endian                       =  little
+#    Source file                  =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\matrix\matrix.c
+#    Command line                 =
+#        -f C:\Users\SHIMJA~1\AppData\Local\Temp\EW1F71.tmp
+#        (C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\matrix\matrix.c
+#        -lCN
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
+#        -o
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj
+#        --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config
+#        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        8.4\arm\inc\c\DLib_Config_Normal.h" -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\\
+#        -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\ports\arm-cortex-m3\generic\iar\\
+#        -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\\
+#        -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\\
+#        -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\\
+#        -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\\
+#        -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\\
+#        -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\BSP\\
+#        -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Source\\
+#        -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Ports\ST\STM32\\
+#        -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\\
+#        -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\\
+#        -Ohz --use_c++_inline)
+#    Locale                       =  C
+#    List file                    =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List\matrix.lst
+#    Object file                  =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj\matrix.o
+#    Runtime model:                  
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  0
+#      __dlib_full_locale_support =  0
+#      __dlib_version             =  6
+#      __size_limit               =  32768|ARM.EW.LINKER
+#
+###############################################################################
+
+C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\matrix\matrix.c
+      1          /*
+      2           * Copyright (C) 2013- Acho Arnold
+      3           *
+      4           * This program is free software: you can redistribute it and/or modify
+      5           * it under the terms of the GNU General Public License as published by
+      6           * the Free Software Foundation, either version 3 of the License, or
+      7           * (at your option) any later version.
+      8           *
+      9           * This program is distributed in the hope that it will be useful,
+     10           * but WITHOUT ANY WARRANTY; without even the implied warranty of
+     11           * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     12           * GNU General Public License for more details.
+     13           *
+     14           * You should have received a copy of the GNU General Public License
+     15           * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+     16           */
+     17          
+     18          
+     19          #include "matrix.h"
+     20          
+     21          void matrix_print (Matrix *matrix)
+     22          {
+     23          	int i,j;
+     24          	printf("\n");
+     25          	for(i = 0; i < matrix->row_size;i++)
+     26          	{
+     27          		printf("\t\t");
+     28          		for(j = 0; j < matrix->col_size;j++)
+     29          		{
+     30          			printf("%9.2f", matrix->matrix_entry[i][j]);
+     31          		}
+     32             	printf("\n");
+     33          	}
+     34          	printf("\n");
+     35          }
+     36          
+     37          void matrix_print_part(Matrix *matrix, int start_index)
+     38          {
+     39              int j,i;
+     40              for (i = 0; i < matrix->row_size; ++i)\
+     41              {
+     42                  for (j = start_index; j < matrix->col_size; ++j)
+     43                  {
+     44                      printf("\t\t%9.2f", matrix->matrix_entry[i][j]);
+     45                  }
+     46          	printf("\n");
+     47              }
+     48          }
+     49          
+     50          void matrix_fill(Matrix *matrix)
+     51          {
+     52          	int i,j;
+     53          	printf("Enter the contents of the matrix:\n");
+     54          	for(i=0; i < matrix->row_size; i++)
+     55          	{
+     56          		for(j=0;j < matrix->col_size; j++)
+     57          		{
+     58          			scanf("%f",&matrix->matrix_entry[i][j]);
+     59          		}
+     60          	}
+     61          }
+     62          
+     63          /*Function to create an identity matrix	*/
+     64          Matrix * matrix_callalloc(int matrix_size)
+     65          {
+     66          	Matrix *result = matrix_alloc(matrix_size, matrix_size);
+     67          	int i,j;
+     68          	
+     69          	for (i = 0; i < matrix_size; i += 1)
+     70          	{
+     71          		for (j = 0; j < matrix_size; j += 1)
+     72          		{
+     73          			if (j == i)
+     74          			{
+     75          				result->matrix_entry[i][j] = 1;
+     76          			}
+     77          			
+     78          			else
+     79          			{
+     80          				result->matrix_entry[i][j] = 0;
+     81          			}
+     82          		}
+     83          	}
+     84          	
+     85          	return result;
+     86          }
+     87          
+     88          Matrix *matrix_alloc(int row_size, int col_size)
+     89          {
+     90          	int j;
+     91          	Matrix *new_matrix = malloc(sizeof(Matrix)); 
+     92          
+     93          	//Allocating memory for the new matrix structure
+     94          	new_matrix->row_size = row_size;
+     95          	new_matrix->col_size = col_size;
+     96          	new_matrix->matrix_entry = malloc( new_matrix->row_size *sizeof(float *));
+     97          	for(j = 0 ; j < new_matrix->row_size ; j++)
+     98          	{
+     99          		new_matrix->matrix_entry[j] = malloc( new_matrix->col_size*sizeof(float) );
+    100          	}
+    101          	
+    102          	return new_matrix;
+    103          }
+    104          
+    105          /*Copies Matrix1 into matrix2 */
+    106          void matrix_copy(Matrix *matrix1, Matrix *matrix2)
+    107          {
+    108          	int i, j;
+    109          	for (i = 0; i < matrix1->row_size; i += 1)
+    110          	{
+    111          		for (j = 0; j < matrix1->col_size; j += 1)
+    112          		{
+    113          			matrix2->matrix_entry[i][j] = matrix1->matrix_entry[i][j];
+    114          		}
+    115          	}
+    116          }
+    117          
+    118          
+    119          Matrix *matrix_multiply(const Matrix *matrix1, const Matrix *matrix2)
+    120          {
+    121          	int i, j,k, sum;
+    122          	if (matrix1->col_size != matrix2->row_size)
+    123          	  {
+    124          	    terminate("ERROR: The number columns of matrix1  != number of rows in matrix2!");
+    125          	  }
+    126          	Matrix *result = matrix_alloc( matrix1->row_size,matrix2->col_size);
+    127          	for (i = 0; i < matrix1->row_size; i += 1)
+    128          	{
+    129          		for (k = 0; k < matrix2->col_size; k += 1)
+    130          		{
+    131          			sum = 0;
+    132          			
+    133          			for (j = 0; j < matrix1->col_size; j += 1)
+    134          			{
+    135          				sum += matrix1->matrix_entry[i][j] * matrix2->matrix_entry[j][k];
+    136          			}
+    137          			
+    138          			result->matrix_entry[i][k] = sum;
+    139          		}
+    140          	}
+    141                 return result;
+    142          }
+    143          
+    144          Matrix  * matrix_pow(Matrix *matrix, int index)
+    145          {
+    146          	if(index == 1)
+    147          	{
+    148          	  Matrix  *result = matrix_alloc (matrix->row_size, matrix->col_size);
+    149          	  matrix_copy(matrix, result);
+    150          	  return result;
+    151          	}
+    152          	else
+    153          	{
+    154          	
+    155          		int i, j,k,l,sum,count;
+    156          		
+    157          		Matrix  *temp = matrix_alloc (matrix->row_size, matrix->col_size); //Allocating space for a temporal matrix
+    158          		Matrix  *result = matrix_alloc (matrix->row_size, matrix->col_size); //Allocating space for the result matrix
+    159          	
+    160          		matrix_copy(matrix, temp);
+    161          		
+    162          		count = index/2 -1;
+    163          		if (count < 1)
+    164          		{
+    165          			matrix_copy(matrix, result);
+    166          		}
+    167          		
+    168          		else
+    169          		{
+    170          			for (l = 0; l < count; l += 1)
+    171          			{
+    172          				for (i = 0; i < matrix->row_size; i += 1)
+    173          				{
+    174          					for (k = 0; k < matrix->col_size; k += 1)
+    175          					{
+    176          						sum = 0;
+    177          			
+    178          						for (j = 0; j < matrix->col_size; j += 1)
+    179          						{
+    180          							sum += (temp->matrix_entry[i][j] * matrix->matrix_entry[j][k]);
+    181          						}
+    182          					
+    183          						result->matrix_entry[i][k] = sum;
+    184          					}
+    185          				}
+    186          			
+    187          				/* Copying the result matrix into the temp matrix for further 
+    188          				 * multiplication */
+    189          				matrix_copy(result, temp);
+    190          			}
+    191          		}
+    192          
+    193          		/*	Freeing the temp matrix		*/
+    194          		matrix_free(temp);
+    195          		if (index%2 == 0)
+    196          		{
+    197          			Matrix *result_final = matrix_multiply(result, result);
+    198          			/* Freeing the result Matrix	*/
+    199          			matrix_free(result);
+    200          		
+    201          			return result_final;
+    202          		}
+    203          		
+    204          		else
+    205          		{
+    206          			Matrix *temp = matrix_multiply(matrix, result);
+    207          			Matrix *result_final = matrix_multiply(temp, result);
+    208          			
+    209          			/* Freeing the temp matrix		*/
+    210          			matrix_free(temp);
+    211          			
+    212          			/* Freeing the result Matrix	*/
+    213          			matrix_free(result);
+    214          		
+    215          			return result_final;
+    216          		}//End of else statement
+    217          	}
+    218          }
+    219          
+    220          void matrix_free( Matrix *matrix)
+    221          {
+    222          	int j;
+    223          	for(j = 0 ; j < matrix->row_size ; j++)
+    224          	  {
+    225          		free(matrix->matrix_entry[j]); 
+    226          	  }
+    227          	free(matrix->matrix_entry);
+    228          	free(matrix);
+    229          }
+    230          
+    231          
+    232          
+    233          /*Function which divides all row entries by the value of a the diagonal */
+    234          void row_divide(Matrix *matrix, int pivot)
+    235          {
+    236              int j;
+    237              float 	divisor = matrix->matrix_entry[pivot][pivot], 
+    238                        result;
+    239          
+    240              for(j = pivot; j < matrix->col_size; j++)
+    241              {
+    242                        result = (matrix->matrix_entry[pivot][j]  /  divisor);
+    243                        matrix->matrix_entry[pivot][j] = result;
+    244              }
+    245          
+    246          }
+    247          
+    248           /*Function to carry out row operations*/
+    249          void row_operation(Matrix *multiplier_matrix,Matrix *matrix, int pivot, int row_index)
+    250          {
+    251              int j;
+    252              float multiplier = (matrix->matrix_entry[row_index][pivot] / matrix->matrix_entry[pivot][pivot]);
+    253              //Loop which checks if matrix is provided to store the multiplier
+    254              if(multiplier_matrix != NULL)
+    255                {
+    256          	multiplier_matrix ->matrix_entry[row_index][pivot] = multiplier;
+    257                }
+    258          
+    259              
+    260              for(j=0; j < matrix->col_size; j++)
+    261              {
+    262          	    matrix->matrix_entry[row_index][j] -=  multiplier * matrix->matrix_entry[pivot][j];
+    263              }
+    264          }
+    265          
+    266          void matrix_row_reduce( Matrix *matrix, int zero_control )
+    267          {
+    268              int pivot, row_index;
+    269              float multiplier;
+    270              for( pivot = 0; pivot < matrix->row_size ; pivot++)
+    271              {
+    272                   
+    273                error_zeros(matrix, zero_control); //Function checks if there are too many zeros in a single row
+    274          	    if(	(matrix->matrix_entry[pivot][pivot] != 1) && (matrix->matrix_entry[pivot][pivot] != 0)	)
+    275          	    {
+    276          		row_divide(matrix, pivot);
+    277          	    }
+    278          
+    279          	    for (row_index = pivot+1; row_index < matrix->row_size; row_index++)
+    280          	    {
+    281          		    if (matrix->matrix_entry[pivot][pivot] != 0)
+    282          		    {
+    283          		      row_operation(NULL,matrix, pivot, row_index);
+    284          		    }
+    285          	    }
+    286          
+    287          		for(row_index = pivot-1; row_index >=0; row_index --)
+    288          		{
+    289          			if (matrix->matrix_entry[pivot][pivot] != 0)
+    290          			{
+    291          			  row_operation(NULL,matrix, pivot, row_index);
+    292          			}
+    293          		}
+    294          	}
+    295          }
+    296          
+    297          void LU_decompose(Matrix *upper_triangular, Matrix *lower_triangular)
+    298          {
+    299           int pivot, row_index;
+    300              float multiplier;
+    301              for( pivot = 0; pivot < upper_triangular->row_size ; pivot++)
+    302              {
+    303                   
+    304                error_zeros(upper_triangular, upper_triangular->col_size); //Function checks if there are too many zeros in a single row
+    305          	    for (row_index = pivot+1; row_index < upper_triangular->row_size; row_index++)
+    306          	    {
+    307          		    if ( upper_triangular->matrix_entry[pivot][pivot] != 0)
+    308          		    {
+    309          
+    310          		      row_operation(lower_triangular,upper_triangular, pivot, row_index);
+    311          		    }
+    312          	    }
+    313              }
+    314          }
+    315          
+    316          
+    317          void matrix_subtract(Matrix *result, Matrix *matrix1, Matrix *matrix2)
+    318          {
+    319          	int i, j;
+    320          
+    321          	if ( !(matrix_equal_size(matrix1, matrix2 )) || \
+    322          	     !(matrix_equal_size(matrix2, result)))
+    323          	  {
+    324          	    terminate("ERROR: The matrices you are trying to subtract have different sizes");
+    325          	  }
+    326          
+    327           for(i = 0; i < matrix1->row_size; i += 1)
+    328          	{
+    329          		for (j = 0; j < matrix1->col_size; j += 1)
+    330          		{
+    331          			result->matrix_entry[i][j] = matrix1->matrix_entry[i][j] - matrix2->matrix_entry[i][j];
+    332          		}
+    333          	}
+    334          }
+    335          
+    336          void matrix_add(Matrix *result, Matrix *matrix1, Matrix *matrix2)
+    337          {
+    338          	int i, j;
+    339          	if ( !(matrix_equal_size(matrix1, matrix2 )) || \
+    340          	     !(matrix_equal_size(matrix2, result)))
+    341          	  {
+    342          	    terminate("ERROR: The matrices you are trying to add  have different sizes");
+    343          	  }
+    344          	for (i = 0; i < matrix1->row_size; i += 1)
+    345          	{
+    346          		for (j = 0; j < matrix1->col_size; j += 1)
+    347          		{
+    348          			result->matrix_entry[i][j] = matrix1->matrix_entry[i][j] + matrix2->matrix_entry[i][j];
+    349          		}
+    350          	}
+    351          }
+    352          
+    353          void matrix_invert(Matrix *inverse_matrix)
+    354          {
+    355            int j,k;
+    356            /*Temporal matrix used in this function */
+    357            Matrix *temp_matrix = matrix_alloc(inverse_matrix->row_size, inverse_matrix->col_size *2); 
+    358          
+    359            matrix_copy(inverse_matrix, temp_matrix);
+    360          
+    361           /* Adding an identity matrix at the end of the temporal matrix */
+    362            for(j = 0; j< temp_matrix->row_size; j++)
+    363              {
+    364                for(k = 3; k < temp_matrix->col_size; k++)
+    365                {
+    366          	if( j+3  == k)
+    367          	  {
+    368          	    temp_matrix->matrix_entry[j][k] = 1; 
+    369          	  }
+    370          	else
+    371          	  {
+    372          	    temp_matrix->matrix_entry[j][k] = 0;
+    373          	  }
+    374                }
+    375              }
+    376          
+    377            matrix_row_reduce(temp_matrix, temp_matrix->row_size);
+    378          
+    379            /* Copying the inverse matrix from the temp_matrix to the  invse_matrix */
+    380            for(j = 0; j< temp_matrix->row_size; j++)
+    381              {
+    382                for(k = 3; k < temp_matrix->col_size; k++)
+    383                {
+    384          	inverse_matrix->matrix_entry[j][k-3] = temp_matrix->matrix_entry[j][k];
+    385                }
+    386              }
+    387            
+    388            matrix_free(temp_matrix);
+    389          }
+    390          
+    391          int matrix_equal_size( Matrix *matrix1, Matrix *matrix2)
+    392          {
+    393          
+    394            return (matrix1->row_size == matrix2->row_size && \
+    395          	      matrix1->col_size == matrix2->col_size);
+    396          }
+    397          
+    398          /*
+    399            This function checks if there is a line containing too many zero's and it exits
+    400            if such a line is found
+    401          */
+    402          void error_zeros( Matrix *matrix, int control_index)
+    403          {
+    404                int i,j,count;
+    405                for(i=0; i<matrix->row_size; i++)
+    406                {
+    407          	    count=0;
+    408          	    for(j = 0;  j < matrix->col_size; j++)
+    409          	    {
+    410          	      if( matrix->matrix_entry[i][j] == 0)
+    411          	      {
+    412          		count++;     
+    413          	      }
+    414          	      else
+    415          	      {
+    416          		return;
+    417          	      }
+    418          	      if(count == control_index)
+    419          	      {
+    420          		fprintf(stdout,"\nProcess fail because row %d contains %d  zeros\n",i+1,control_index);
+    421          		matrix_print(matrix);
+    422          		exit(1);
+    423          	      }
+    424          	    }
+    425          	  }
+    426          }  
+    427          
+    428          
+    429          void terminate (char * string)
+    430          {
+    431            fprintf(stdout,"\n%s\n",string);
+    432            fprintf(stdout,"The program is exiting now. . . .\n\n");
+    433            exit(-1);
+    434          }
+
+Errors: 2
+Warnings: 4

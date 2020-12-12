@@ -1,9 +1,0 @@
-stm32f10x_i2c.pbi: \
-  C:\Users\19eslab1\Desktop\Micrium\Software\CPU\ST\STM32\src\stm32f10x_i2c.c \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\stm32f10x_i2c.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc/stm32f10x_map.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\stm32f10x_conf.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\stm32f10x_type.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc/stm32f10x_type.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc/cortexm3_macro.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\stm32f10x_rcc.h

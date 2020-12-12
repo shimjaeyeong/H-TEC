@@ -1,6 +1,0 @@
-os_cpu_c.pbi: \
-  C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_c.c \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\ucos_ii.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app_cfg.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\os_cfg.h \
-  C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu.h

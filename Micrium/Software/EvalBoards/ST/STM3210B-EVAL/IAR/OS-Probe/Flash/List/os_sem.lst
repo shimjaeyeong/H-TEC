@@ -1,55 +1,58 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V8.40.1.212/W32 for ARM         23/Sep/2019  21:46:19
-# Copyright 1999-2019 IAR Systems AB.
+# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         12/Dec/2020  19:48:36
+# Copyright 1999-2020 IAR Systems AB.
 #
-#    Cpu mode     =  
-#    Endian       =  little
-#    Source file  =
-#        C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
-#    Command line =
-#        -f C:\Users\19eslab1\AppData\Local\Temp\EWA4E4.tmp
-#        (C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
+#    Cpu mode             
+#    Endian            =  little
+#    Source file       =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uCOS-II\Source\os_sem.c
+#    Command line      =
+#        -f C:\Users\SHIMJA~1\AppData\Local\Temp\EWC60D.tmp
+#        (C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uCOS-II\Source\os_sem.c
 #        -lCN
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
 #        -o
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj
 #        --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config
 #        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
-#        8.3\arm\inc\c\DLib_Config_Normal.h" -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\
+#        8.4\arm\inc\c\DLib_Config_Normal.h" -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\ports\arm-cortex-m3\generic\iar\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\ports\arm-cortex-m3\generic\iar\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\BSP\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\BSP\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Source\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Source\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Ports\ST\STM32\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Ports\ST\STM32\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\\
 #        -Ohz --use_c++_inline)
-#    Locale       =  C
-#    List file    =
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List\os_sem.lst
-#    Object file  =
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj\os_sem.o
+#    Locale            =  C
+#    List file         =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List\os_sem.lst
+#    Object file       =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj\os_sem.o
+#    Runtime model:       
+#      __SystemLibrary =  DLib
+#      __size_limit    =  32768|ARM.EW.LINKER
 #
 ###############################################################################
 
-C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
+C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uCOS-II\Source\os_sem.c
       1          /*
       2          *********************************************************************************************************
       3          *                                                uC/OS-II
@@ -132,7 +135,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
    \       0x12   0x8921             LDRH     R1,[R4, #+8]
    \       0x14   0x000D             MOVS     R5,R1
      68              if (cnt > 0) {                                    /* See if resource is available                  */
-   \       0x16   0xBF1C             ITT      NE 
+   \       0x16   0xBF1C             ITT      NE
    \       0x18   0x1E49             SUBNE    R1,R1,#+1
    \       0x1A   0x8121             STRHNE   R1,[R4, #+8]
      69                  pevent->OSEventCnt--;                         /* Yes, decrement semaphore and notify caller    */
@@ -193,7 +196,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
    \       0x14   0x6811             LDR      R1,[R2, #+0]
    \       0x16   0x000C             MOVS     R4,R1
     108              if (OSEventFreeList != (OS_EVENT *)0) {                /* See if pool of free ECB pool was empty   */
-   \       0x18   0xBF1C             ITT      NE 
+   \       0x18   0xBF1C             ITT      NE
    \       0x1A   0x6849             LDRNE    R1,[R1, #+4]
    \       0x1C   0x6011             STRNE    R1,[R2, #+0]
     109                  OSEventFreeList = (OS_EVENT *)OSEventFreeList->OSEventPtr;
@@ -272,7 +275,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
     165          {
    \                     OSSemDel: (+1)
    \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
-   \        0x4   0x4605             MOV      R5,R0
+   \        0x4   0x4606             MOV      R6,R0
    \        0x6   0x4689             MOV      R9,R1
     166              BOOLEAN    tasks_waiting;
     167              OS_EVENT  *pevent_return;
@@ -292,9 +295,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
     181              }
     182          #endif
     183              if (pevent->OSEventType != OS_EVENT_TYPE_SEM) {        /* Validate event block type                */
-   \        0x8   0x7828             LDRB     R0,[R5, #+0]
+   \        0x8   0x7830             LDRB     R0,[R6, #+0]
    \        0xA   0x2803             CMP      R0,#+3
-   \        0xC   0x4616             MOV      R6,R2
+   \        0xC   0x4615             MOV      R5,R2
    \        0xE   0xD001             BEQ.N    ??OSSemDel_0
     184                  *perr = OS_ERR_EVENT_TYPE;
    \       0x10   0x2101             MOVS     R1,#+1
@@ -309,15 +312,15 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
     188                  *perr = OS_ERR_DEL_ISR;                             /* ... can't DELETE from an ISR             */
    \       0x1A   0x210F             MOVS     R1,#+15
    \                     ??OSSemDel_1: (+1)
-   \       0x1C   0x7031             STRB     R1,[R6, #+0]
+   \       0x1C   0x7029             STRB     R1,[R5, #+0]
     189                  return (pevent);
-   \       0x1E   0xE03B             B.N      ??OSSemDel_3
+   \       0x1E   0xE03D             B.N      ??OSSemDel_3
     190              }
     191              OS_ENTER_CRITICAL();
    \                     ??OSSemDel_2: (+1)
    \       0x20   0x....'....        BL       OS_CPU_SR_Save
     192              if (pevent->OSEventGrp != 0) {                         /* See if any tasks waiting on semaphore    */
-   \       0x24   0x7AAC             LDRB     R4,[R5, #+10]
+   \       0x24   0x7AB4             LDRB     R4,[R6, #+10]
    \       0x26   0x4680             MOV      R8,R0
    \       0x28   0xB104             CBZ.N    R4,??OSSemDel_4
    \       0x2A   0x2401             MOVS     R4,#+1
@@ -331,121 +334,114 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
    \       0x30   0x....             LDR.N    R7,??DataTable3_1
    \       0x32   0xD003             BEQ.N    ??OSSemDel_5
    \       0x34   0xF1B9 0x0F01      CMP      R9,#+1
-   \       0x38   0xD015             BEQ.N    ??CrossCallReturnLabel_0
-   \       0x3A   0xE029             B.N      ??OSSemDel_6
+   \       0x38   0xD018             BEQ.N    ??OSSemDel_6
+   \       0x3A   0xE02B             B.N      ??OSSemDel_7
     198                  case OS_DEL_NO_PEND:                               /* Delete semaphore only if no task waiting */
     199                       if (tasks_waiting == OS_FALSE) {
    \                     ??OSSemDel_5: (+1)
-   \       0x3C   0xB964             CBNZ.N   R4,??OSSemDel_7
+   \       0x3C   0xB964             CBNZ.N   R4,??OSSemDel_8
     200          #if OS_EVENT_NAME_SIZE > 1
     201                           pevent->OSEventName[0] = '?';             /* Unknown name                             */
    \       0x3E   0x203F             MOVS     R0,#+63
     202                           pevent->OSEventName[1] = OS_ASCII_NUL;
    \       0x40   0x2100             MOVS     R1,#+0
-   \       0x42   0x73E8             STRB     R0,[R5, #+15]
-   \       0x44   0x7429             STRB     R1,[R5, #+16]
+   \       0x42   0x73F0             STRB     R0,[R6, #+15]
+   \       0x44   0x7431             STRB     R1,[R6, #+16]
     203          #endif
     204                           pevent->OSEventType    = OS_EVENT_TYPE_UNUSED;
-   \       0x46   0x7029             STRB     R1,[R5, #+0]
+   \       0x46   0x7031             STRB     R1,[R6, #+0]
     205                           pevent->OSEventPtr     = OSEventFreeList; /* Return Event Control Block to free list  */
     206                           pevent->OSEventCnt     = 0;
     207                           OSEventFreeList        = pevent;          /* Get next free event control block        */
     208                           OS_EXIT_CRITICAL();
    \       0x48   0x4640             MOV      R0,R8
    \       0x4A   0x683A             LDR      R2,[R7, #+0]
-   \       0x4C   0x606A             STR      R2,[R5, #+4]
-   \       0x4E   0x8129             STRH     R1,[R5, #+8]
-   \       0x50   0x603D             STR      R5,[R7, #+0]
+   \       0x4C   0x6072             STR      R2,[R6, #+4]
+   \       0x4E   0x8131             STRH     R1,[R6, #+8]
+   \       0x50   0x603E             STR      R6,[R7, #+0]
    \       0x52   0x....'....        BL       OS_CPU_SR_Restore
     209                           *perr                  = OS_ERR_NONE;
-   \       0x56   0xE017             B.N      ??OSSemDel_8
+   \       0x56   0xE01A             B.N      ??OSSemDel_9
     210                           pevent_return          = (OS_EVENT *)0;   /* Semaphore has been deleted               */
     211                       } else {
     212                           OS_EXIT_CRITICAL();
-   \                     ??OSSemDel_7: (+1)
+   \                     ??OSSemDel_8: (+1)
    \       0x58   0x....'....        BL       OS_CPU_SR_Restore
     213                           *perr                  = OS_ERR_TASK_WAITING;
    \       0x5C   0x2049             MOVS     R0,#+73
-   \       0x5E   0xE01A             B.N      ??OSSemDel_9
     214                           pevent_return          = pevent;
+   \       0x5E   0xE01C             B.N      ??OSSemDel_10
     215                       }
     216                       break;
     217          
     218                  case OS_DEL_ALWAYS:                                /* Always delete the semaphore              */
     219                       while (pevent->OSEventGrp != 0) {             /* Ready ALL tasks waiting for semaphore    */
     220                           (void)OS_EventTaskRdy(pevent, (void *)0, OS_STAT_SEM, OS_STAT_PEND_OK);
-   \                     ??OSSemDel_10: (+1)
+   \                     ??OSSemDel_11: (+1)
    \       0x60   0x2300             MOVS     R3,#+0
-   \       0x62   0x....'....        BL       ??Subroutine0_0
+   \       0x62   0x2201             MOVS     R2,#+1
+   \       0x64   0x2100             MOVS     R1,#+0
+   \       0x66   0x4630             MOV      R0,R6
+   \       0x68   0x....'....        BL       OS_EventTaskRdy
     221                       }
-   \                     ??CrossCallReturnLabel_0: (+1)
-   \       0x66   0x7AA8             LDRB     R0,[R5, #+10]
-   \       0x68   0x2800             CMP      R0,#+0
-   \       0x6A   0xD1F9             BNE.N    ??OSSemDel_10
+   \                     ??OSSemDel_6: (+1)
+   \       0x6C   0x7AB0             LDRB     R0,[R6, #+10]
+   \       0x6E   0x2800             CMP      R0,#+0
+   \       0x70   0xD1F6             BNE.N    ??OSSemDel_11
     222          #if OS_EVENT_NAME_SIZE > 1
     223                       pevent->OSEventName[0] = '?';                 /* Unknown name                             */
-   \       0x6C   0x213F             MOVS     R1,#+63
-   \       0x6E   0x73E9             STRB     R1,[R5, #+15]
+   \       0x72   0x213F             MOVS     R1,#+63
+   \       0x74   0x73F1             STRB     R1,[R6, #+15]
     224                       pevent->OSEventName[1] = OS_ASCII_NUL;
-   \       0x70   0x7428             STRB     R0,[R5, #+16]
+   \       0x76   0x7430             STRB     R0,[R6, #+16]
     225          #endif
     226                       pevent->OSEventType    = OS_EVENT_TYPE_UNUSED;
-   \       0x72   0x2100             MOVS     R1,#+0
-   \       0x74   0x7029             STRB     R1,[R5, #+0]
+   \       0x78   0x2100             MOVS     R1,#+0
+   \       0x7A   0x7031             STRB     R1,[R6, #+0]
     227                       pevent->OSEventPtr     = OSEventFreeList;     /* Return Event Control Block to free list  */
-   \       0x76   0x683A             LDR      R2,[R7, #+0]
-   \       0x78   0x606A             STR      R2,[R5, #+4]
+   \       0x7C   0x683A             LDR      R2,[R7, #+0]
+   \       0x7E   0x6072             STR      R2,[R6, #+4]
     228                       pevent->OSEventCnt     = 0;
-   \       0x7A   0x8128             STRH     R0,[R5, #+8]
+   \       0x80   0x8130             STRH     R0,[R6, #+8]
     229                       OSEventFreeList        = pevent;              /* Get next free event control block        */
-   \       0x7C   0x603D             STR      R5,[R7, #+0]
+   \       0x82   0x603E             STR      R6,[R7, #+0]
     230                       OS_EXIT_CRITICAL();
-   \       0x7E   0x....'....        BL       ?Subroutine2
+   \       0x84   0x....'....        BL       ?Subroutine1
     231                       if (tasks_waiting == OS_TRUE) {               /* Reschedule only if task(s) were waiting  */
-   \                     ??CrossCallReturnLabel_9: (+1)
-   \       0x82   0xB10C             CBZ.N    R4,??OSSemDel_8
+   \                     ??CrossCallReturnLabel_6: (+1)
+   \       0x88   0xB10C             CBZ.N    R4,??OSSemDel_9
     232                           OS_Sched();                               /* Find highest priority task ready to run  */
-   \       0x84   0x....'....        BL       OS_Sched
+   \       0x8A   0x....'....        BL       OS_Sched
     233                       }
     234                       *perr                  = OS_ERR_NONE;
-   \                     ??OSSemDel_8: (+1)
-   \       0x88   0x2000             MOVS     R0,#+0
-   \       0x8A   0x7030             STRB     R0,[R6, #+0]
+   \                     ??OSSemDel_9: (+1)
+   \       0x8E   0x2000             MOVS     R0,#+0
     235                       pevent_return          = (OS_EVENT *)0;       /* Semaphore has been deleted               */
-   \       0x8C   0x2500             MOVS     R5,#+0
+   \       0x90   0x2600             MOVS     R6,#+0
     236                       break;
-   \       0x8E   0xE003             B.N      ??OSSemDel_3
+   \       0x92   0xE002             B.N      ??OSSemDel_10
     237          
     238                  default:
     239                       OS_EXIT_CRITICAL();
-   \                     ??OSSemDel_6: (+1)
-   \       0x90   0x....'....        BL       OS_CPU_SR_Restore
+   \                     ??OSSemDel_7: (+1)
+   \       0x94   0x....'....        BL       OS_CPU_SR_Restore
     240                       *perr                  = OS_ERR_INVALID_OPT;
-   \       0x94   0x2007             MOVS     R0,#+7
-   \                     ??OSSemDel_9: (+1)
-   \       0x96   0x7030             STRB     R0,[R6, #+0]
+   \       0x98   0x2007             MOVS     R0,#+7
     241                       pevent_return          = pevent;
     242                       break;
+   \                     ??OSSemDel_10: (+1)
+   \       0x9A   0x7028             STRB     R0,[R5, #+0]
     243              }
     244              return (pevent_return);
    \                     ??OSSemDel_3: (+1)
-   \       0x98   0x4628             MOV      R0,R5
-   \       0x9A   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}    ;; return
+   \       0x9C   0x4630             MOV      R0,R6
+   \       0x9E   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}    ;; return
     245          }
 
    \                                 In section .text, align 2, keep-with-next
-   \                     ?Subroutine2: (+1)
+   \                     ?Subroutine1: (+1)
    \        0x0   0x4640             MOV      R0,R8
    \        0x2   0x....'....        B.W      OS_CPU_SR_Restore
-
-   \                                 In section .text, align 2, keep-with-next
-   \                     ?Subroutine0: (+1)
-   \        0x0   0x2302             MOVS     R3,#+2
-   \                     ??Subroutine0_0: (+1)
-   \        0x2   0x2201             MOVS     R2,#+1
-   \        0x4   0x2100             MOVS     R1,#+0
-   \        0x6   0x4628             MOV      R0,R5
-   \        0x8   0x....'....        B.W      OS_EventTaskRdy
     246          #endif
     247          
     248          /*$PAGE*/
@@ -488,7 +484,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
    \                     OSSemPend: (+1)
    \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
    \        0x4   0x4604             MOV      R4,R0
-   \        0x6   0x460E             MOV      R6,R1
+   \        0x6   0x460F             MOV      R7,R1
     283          #if OS_CRITICAL_METHOD == 3                           /* Allocate storage for CPU status register      */
     284              OS_CPU_SR  cpu_sr = 0;
     285          #endif
@@ -508,7 +504,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
    \        0x8   0x7820             LDRB     R0,[R4, #+0]
    \        0xA   0x2803             CMP      R0,#+3
    \        0xC   0x4615             MOV      R5,R2
-   \        0xE   0xBF18             IT       NE 
+   \        0xE   0xBF18             IT       NE
    \       0x10   0x2101             MOVNE    R1,#+1
     299                  *perr = OS_ERR_EVENT_TYPE;
    \       0x12   0xD108             BNE.N    ??OSSemPend_0
@@ -533,7 +529,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
    \                     ??OSSemPend_0: (+1)
    \       0x26   0x7029             STRB     R1,[R5, #+0]
     308                  return;
-   \       0x28   0xE045             B.N      ??OSSemPend_3
+   \       0x28   0xE043             B.N      ??OSSemPend_3
     309              }
     310              OS_ENTER_CRITICAL();
    \                     ??OSSemPend_2: (+1)
@@ -546,97 +542,94 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
    \       0x34   0x1E40             SUBS     R0,R0,#+1
    \       0x36   0x8120             STRH     R0,[R4, #+8]
     313                  OS_EXIT_CRITICAL();
-   \       0x38   0x....'....        BL       ?Subroutine2
+   \       0x38   0x....'....        BL       ?Subroutine1
     314                  *perr = OS_ERR_NONE;
-   \                     ??CrossCallReturnLabel_8: (+1)
+   \                     ??CrossCallReturnLabel_5: (+1)
    \       0x3C   0x2000             MOVS     R0,#+0
    \       0x3E   0x7028             STRB     R0,[R5, #+0]
     315                  return;
-   \       0x40   0xE039             B.N      ??OSSemPend_3
+   \       0x40   0xE037             B.N      ??OSSemPend_3
     316              }
     317                                                                /* Otherwise, must wait until event occurs       */
     318              OSTCBCur->OSTCBStat     |= OS_STAT_SEM;           /* Resource not available, pend on semaphore     */
    \                     ??OSSemPend_4: (+1)
-   \       0x42   0x....             LDR.N    R7,??DataTable3_3
-   \       0x44   0x6838             LDR      R0,[R7, #+0]
+   \       0x42   0x....             LDR.N    R6,??DataTable3_3
+   \       0x44   0x6830             LDR      R0,[R6, #+0]
    \       0x46   0xF890 0x1030      LDRB     R1,[R0, #+48]
    \       0x4A   0xF041 0x0101      ORR      R1,R1,#0x1
    \       0x4E   0xF880 0x1030      STRB     R1,[R0, #+48]
     319              OSTCBCur->OSTCBStatPend  = OS_STAT_PEND_OK;
    \       0x52   0x2000             MOVS     R0,#+0
-   \       0x54   0x6839             LDR      R1,[R7, #+0]
+   \       0x54   0x6831             LDR      R1,[R6, #+0]
    \       0x56   0xF881 0x0031      STRB     R0,[R1, #+49]
     320              OSTCBCur->OSTCBDly       = timeout;               /* Store pend timeout in TCB                     */
     321              OS_EventTaskWait(pevent);                         /* Suspend task until event or timeout occurs    */
    \       0x5A   0x4620             MOV      R0,R4
-   \       0x5C   0x683A             LDR      R2,[R7, #+0]
-   \       0x5E   0x85D6             STRH     R6,[R2, #+46]
+   \       0x5C   0x6832             LDR      R2,[R6, #+0]
+   \       0x5E   0x85D7             STRH     R7,[R2, #+46]
    \       0x60   0x....'....        BL       OS_EventTaskWait
     322              OS_EXIT_CRITICAL();
-   \       0x64   0x....'....        BL       ?Subroutine2
+   \       0x64   0x....'....        BL       ?Subroutine1
     323              OS_Sched();                                       /* Find next highest priority task ready         */
-   \                     ??CrossCallReturnLabel_7: (+1)
+   \                     ??CrossCallReturnLabel_4: (+1)
    \       0x68   0x....'....        BL       OS_Sched
     324              OS_ENTER_CRITICAL();
    \       0x6C   0x....'....        BL       OS_CPU_SR_Save
-   \       0x70   0x4606             MOV      R6,R0
+   \       0x70   0x4607             MOV      R7,R0
     325              switch (OSTCBCur->OSTCBStatPend) {                /* See if we timed-out or aborted                */
-   \       0x72   0x6838             LDR      R0,[R7, #+0]
+   \       0x72   0x6830             LDR      R0,[R6, #+0]
    \       0x74   0xF890 0x1031      LDRB     R1,[R0, #+49]
    \       0x78   0xB111             CBZ.N    R1,??OSSemPend_5
    \       0x7A   0x2902             CMP      R1,#+2
    \       0x7C   0xD002             BEQ.N    ??OSSemPend_6
-   \       0x7E   0xE004             B.N      ??OSSemPend_7
+   \       0x7E   0xE003             B.N      ??OSSemPend_7
     326                  case OS_STAT_PEND_OK:
     327                       *perr = OS_ERR_NONE;
    \                     ??OSSemPend_5: (+1)
    \       0x80   0x2000             MOVS     R0,#+0
-   \       0x82   0xE006             B.N      ??OSSemPend_8
     328                       break;
+   \       0x82   0xE005             B.N      ??OSSemPend_8
     329          
     330                  case OS_STAT_PEND_ABORT:
     331                       *perr = OS_ERR_PEND_ABORT;               /* Indicate that we aborted                      */
    \                     ??OSSemPend_6: (+1)
-   \       0x84   0x210E             MOVS     R1,#+14
-   \       0x86   0x7029             STRB     R1,[R5, #+0]
+   \       0x84   0x200E             MOVS     R0,#+14
     332                       break;
-   \       0x88   0xE004             B.N      ??OSSemPend_9
+   \       0x86   0xE003             B.N      ??OSSemPend_8
     333          
     334                  case OS_STAT_PEND_TO:
     335                  default:        
     336                       OS_EventTaskRemove(OSTCBCur, pevent);
    \                     ??OSSemPend_7: (+1)
-   \       0x8A   0x4621             MOV      R1,R4
-   \       0x8C   0x....'....        BL       OS_EventTaskRemove
+   \       0x88   0x4621             MOV      R1,R4
+   \       0x8A   0x....'....        BL       OS_EventTaskRemove
     337                       *perr = OS_ERR_TIMEOUT;                  /* Indicate that we didn't get event within TO   */
-   \       0x90   0x200A             MOVS     R0,#+10
-   \                     ??OSSemPend_8: (+1)
-   \       0x92   0x7028             STRB     R0,[R5, #+0]
+   \       0x8E   0x200A             MOVS     R0,#+10
     338                       break;
+   \                     ??OSSemPend_8: (+1)
+   \       0x90   0x7028             STRB     R0,[R5, #+0]
     339              }
     340              OSTCBCur->OSTCBStat          =  OS_STAT_RDY;      /* Set   task  status to ready                   */
-   \                     ??OSSemPend_9: (+1)
-   \       0x94   0x683A             LDR      R2,[R7, #+0]
-   \       0x96   0x2100             MOVS     R1,#+0
-   \       0x98   0xF882 0x1030      STRB     R1,[R2, #+48]
+   \       0x92   0x2000             MOVS     R0,#+0
+   \       0x94   0x6831             LDR      R1,[R6, #+0]
+   \       0x96   0xF881 0x0030      STRB     R0,[R1, #+48]
     341              OSTCBCur->OSTCBStatPend      =  OS_STAT_PEND_OK;  /* Clear pend  status                            */
-   \       0x9C   0x2000             MOVS     R0,#+0
-   \       0x9E   0x6839             LDR      R1,[R7, #+0]
-   \       0xA0   0xF881 0x0031      STRB     R0,[R1, #+49]
+   \       0x9A   0x2200             MOVS     R2,#+0
+   \       0x9C   0x6830             LDR      R0,[R6, #+0]
+   \       0x9E   0xF880 0x2031      STRB     R2,[R0, #+49]
     342              OSTCBCur->OSTCBEventPtr      = (OS_EVENT  *)0;    /* Clear event pointers                          */
-   \       0xA4   0x2200             MOVS     R2,#+0
-   \       0xA6   0x6838             LDR      R0,[R7, #+0]
-   \       0xA8   0x61C2             STR      R2,[R0, #+28]
+   \       0xA2   0x6830             LDR      R0,[R6, #+0]
+   \       0xA4   0x61C2             STR      R2,[R0, #+28]
     343          #if (OS_EVENT_MULTI_EN > 0)
     344              OSTCBCur->OSTCBEventMultiPtr = (OS_EVENT **)0;
-   \       0xAA   0x6202             STR      R2,[R0, #+32]
+   \       0xA6   0x6202             STR      R2,[R0, #+32]
     345          #endif
     346              OS_EXIT_CRITICAL();
-   \       0xAC   0x4630             MOV      R0,R6
-   \       0xAE   0xE8BD 0x41F0      POP      {R4-R8,LR}
-   \       0xB2   0x....'....        B.W      OS_CPU_SR_Restore
+   \       0xA8   0x4638             MOV      R0,R7
+   \       0xAA   0xE8BD 0x41F0      POP      {R4-R8,LR}
+   \       0xAE   0x....'....        B.W      OS_CPU_SR_Restore
    \                     ??OSSemPend_3: (+1)
-   \       0xB6   0xE8BD 0x81F0      POP      {R4-R8,PC}       ;; return
+   \       0xB2   0xE8BD 0x81F0      POP      {R4-R8,PC}       ;; return
     347          }
     348          
     349          /*$PAGE*/
@@ -680,7 +673,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
     385          {
    \                     OSSemPendAbort: (+1)
    \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
-   \        0x4   0x....'....        BL       ?Subroutine1
+   \        0x4   0x....'....        BL       ?Subroutine0
     386              INT8U      nbr_tasks;
     387          #if OS_CRITICAL_METHOD == 3                           /* Allocate storage for CPU status register      */
     388              OS_CPU_SR  cpu_sr = 0;
@@ -698,7 +691,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
     400              }
     401          #endif
     402              if (pevent->OSEventType != OS_EVENT_TYPE_SEM) {   /* Validate event block type                     */
-   \                     ??CrossCallReturnLabel_3: (+1)
+   \                     ??CrossCallReturnLabel_0: (+1)
    \        0x8   0xD003             BEQ.N    ??OSSemPendAbort_0
     403                  *perr = OS_ERR_EVENT_TYPE;
    \        0xA   0x2101             MOVS     R1,#+1
@@ -723,10 +716,10 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
     411                           while (pevent->OSEventGrp != 0) {    /* Yes, ready ALL tasks waiting on semaphore     */
     412                               (void)OS_EventTaskRdy(pevent, (void *)0, OS_STAT_SEM, OS_STAT_PEND_ABORT);
    \                     ??OSSemPendAbort_4: (+1)
-   \       0x22   0x....'....        BL       ?Subroutine0
+   \       0x22   0x....'....        BL       ?Subroutine2
     413                               nbr_tasks++;
     414                           }
-   \                     ??CrossCallReturnLabel_2: (+1)
+   \                     ??CrossCallReturnLabel_8: (+1)
    \       0x26   0x7AA8             LDRB     R0,[R5, #+10]
    \       0x28   0x1C7F             ADDS     R7,R7,#+1
    \       0x2A   0x2800             CMP      R0,#+0
@@ -738,17 +731,17 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
     418                      default:                                  /* No,  ready HPT       waiting on semaphore     */
     419                           (void)OS_EventTaskRdy(pevent, (void *)0, OS_STAT_SEM, OS_STAT_PEND_ABORT);
    \                     ??OSSemPendAbort_3: (+1)
-   \       0x30   0x....'....        BL       ?Subroutine0
+   \       0x30   0x....'....        BL       ?Subroutine2
     420                           nbr_tasks++;
-   \                     ??CrossCallReturnLabel_1: (+1)
+   \                     ??CrossCallReturnLabel_7: (+1)
    \       0x34   0x2701             MOVS     R7,#+1
     421                           break;
     422                  }
     423                  OS_EXIT_CRITICAL();
    \                     ??OSSemPendAbort_5: (+1)
-   \       0x36   0x....'....        BL       ?Subroutine2
+   \       0x36   0x....'....        BL       ?Subroutine1
     424                  OS_Sched();                                   /* Find HPT ready to run                         */
-   \                     ??CrossCallReturnLabel_6: (+1)
+   \                     ??CrossCallReturnLabel_3: (+1)
    \       0x3A   0x....'....        BL       OS_Sched
     425                  *perr = OS_ERR_PEND_ABORT;
    \       0x3E   0x200E             MOVS     R0,#+14
@@ -759,9 +752,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
     427              }
     428              OS_EXIT_CRITICAL();
    \                     ??OSSemPendAbort_2: (+1)
-   \       0x46   0x....'....        BL       ?Subroutine2
+   \       0x46   0x....'....        BL       ?Subroutine1
     429              *perr = OS_ERR_NONE;
-   \                     ??CrossCallReturnLabel_5: (+1)
+   \                     ??CrossCallReturnLabel_2: (+1)
    \       0x4A   0x2000             MOVS     R0,#+0
    \       0x4C   0x7020             STRB     R0,[R4, #+0]
     430              return (0);                                       /* No tasks waiting on semaphore                 */
@@ -770,7 +763,15 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
     431          }
 
    \                                 In section .text, align 2, keep-with-next
-   \                     ?Subroutine1: (+1)
+   \                     ?Subroutine2: (+1)
+   \        0x0   0x2302             MOVS     R3,#+2
+   \        0x2   0x2201             MOVS     R2,#+1
+   \        0x4   0x2100             MOVS     R1,#+0
+   \        0x6   0x4628             MOV      R0,R5
+   \        0x8   0x....'....        B.W      OS_EventTaskRdy
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine0: (+1)
    \        0x0   0x4605             MOV      R5,R0
    \        0x2   0x460E             MOV      R6,R1
    \        0x4   0x7828             LDRB     R0,[R5, #+0]
@@ -995,7 +996,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
     574          {
    \                     OSSemSet: (+1)
    \        0x0   0xB570             PUSH     {R4-R6,LR}
-   \        0x2   0x....'....        BL       ?Subroutine1
+   \        0x2   0x....'....        BL       ?Subroutine0
     575          #if OS_CRITICAL_METHOD == 3                           /* Allocate storage for CPU status register      */
     576              OS_CPU_SR  cpu_sr = 0;
     577          #endif
@@ -1012,7 +1013,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
     588              }
     589          #endif
     590              if (pevent->OSEventType != OS_EVENT_TYPE_SEM) {   /* Validate event block type                     */
-   \                     ??CrossCallReturnLabel_4: (+1)
+   \                     ??CrossCallReturnLabel_1: (+1)
    \        0x6   0xD002             BEQ.N    ??OSSemSet_0
     591                  *perr = OS_ERR_EVENT_TYPE;
    \        0x8   0x2101             MOVS     R1,#+1
@@ -1120,12 +1121,12 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_sem.c
        4  ??DataTable3_2
        4  ??DataTable3_3
       12  ?Subroutine0
-      12  ?Subroutine1
-       6  ?Subroutine2
+       6  ?Subroutine1
+      12  ?Subroutine2
       36  OSSemAccept
       62  OSSemCreate
-     158  OSSemDel
-     186  OSSemPend
+     162  OSSemDel
+     182  OSSemPend
       82  OSSemPendAbort
       82  OSSemPost
       60  OSSemQuery
