@@ -23,9 +23,9 @@
 
 if ($debugfile -eq "")
 {
-& "D:\Develop\IAR Systems\common\bin\cspybat" -f "D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5.Flash.general.xcl" --backend -f "D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5.Flash.driver.xcl" 
+& "C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5.Flash.general.xcl" --backend -f "C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5.Flash.driver.xcl" 
 }
 else
 {
-& "D:\Develop\IAR Systems\common\bin\cspybat" -f "D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5.Flash.general.xcl" --debug_file=$debugfile --backend -f "D:\OneDrive - pusan.ac.kr\교과\임베디드시스템\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5.Flash.driver.xcl" 
+& "C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5.Flash.general.xcl" --debug_file=$debugfile --backend -f "C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\settings\STM3210B-EVAL-OS-Probe-v5.Flash.driver.xcl" 
 }

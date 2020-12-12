@@ -1,55 +1,58 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V8.40.1.212/W32 for ARM         23/Sep/2019  21:46:18
-# Copyright 1999-2019 IAR Systems AB.
+# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         12/Dec/2020  15:41:51
+# Copyright 1999-2020 IAR Systems AB.
 #
-#    Cpu mode     =  
-#    Endian       =  little
-#    Source file  =
-#        C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
-#    Command line =
-#        -f C:\Users\19eslab1\AppData\Local\Temp\EWA086.tmp
-#        (C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
+#    Cpu mode             
+#    Endian            =  little
+#    Source file       =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uCOS-II\Source\os_core.c
+#    Command line      =
+#        -f C:\Users\SHIMJA~1\AppData\Local\Temp\EWDD58.tmp
+#        (C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uCOS-II\Source\os_core.c
 #        -lCN
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
 #        -o
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj
 #        --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config
 #        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
-#        8.3\arm\inc\c\DLib_Config_Normal.h" -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\
+#        8.4\arm\inc\c\DLib_Config_Normal.h" -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\ports\arm-cortex-m3\generic\iar\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\ports\arm-cortex-m3\generic\iar\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\BSP\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\BSP\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Source\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Source\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Ports\ST\STM32\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Ports\ST\STM32\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\\
 #        -Ohz --use_c++_inline)
-#    Locale       =  C
-#    List file    =
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List\os_core.lst
-#    Object file  =
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj\os_core.o
+#    Locale            =  C
+#    List file         =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List\os_core.lst
+#    Object file       =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj\os_core.o
+#    Runtime model:       
+#      __SystemLibrary =  DLib
+#      __size_limit    =  32768|ARM.EW.LINKER
 #
 ###############################################################################
 
-C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
+C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uCOS-II\Source\os_core.c
       1          /*
       2          *********************************************************************************************************
       3          *                                                uC/OS-II
@@ -185,139 +188,261 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
      38          INT8U  const  OSUnMapTbl[256] = {
    \                     OSUnMapTbl:
    \        0x0   0x00 0x00          DC8 0, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 4, 0, 1, 0, 2, 0, 1
+
    \              0x01 0x00    
+
    \              0x02 0x00    
+
    \              0x01 0x00    
+
    \              0x03 0x00    
+
    \              0x01 0x00    
+
    \              0x02 0x00    
+
    \              0x01 0x00    
+
    \              0x04 0x00    
+
    \              0x01 0x00    
+
    \              0x02 0x00    
-   \              0x01         
+
+   \              0x01
    \       0x17   0x00 0x03          DC8 0, 3, 0, 1, 0, 2, 0, 1, 0, 5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0
+
    \              0x00 0x01    
+
    \              0x00 0x02    
+
    \              0x00 0x01    
+
    \              0x00 0x05    
+
    \              0x00 0x01    
+
    \              0x00 0x02    
+
    \              0x00 0x01    
+
    \              0x00 0x03    
+
    \              0x00 0x01    
+
    \              0x00 0x02    
-   \              0x00         
+
+   \              0x00
    \       0x2E   0x01 0x00          DC8 1, 0, 4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 6, 0, 1, 0, 2
+
    \              0x04 0x00    
+
    \              0x01 0x00    
+
    \              0x02 0x00    
+
    \              0x01 0x00    
+
    \              0x03 0x00    
+
    \              0x01 0x00    
+
    \              0x02 0x00    
+
    \              0x01 0x00    
+
    \              0x06 0x00    
+
    \              0x01 0x00    
-   \              0x02         
+
+   \              0x02
    \       0x45   0x00 0x01          DC8 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0
+
    \              0x00 0x03    
+
    \              0x00 0x01    
+
    \              0x00 0x02    
+
    \              0x00 0x01    
+
    \              0x00 0x04    
+
    \              0x00 0x01    
+
    \              0x00 0x02    
+
    \              0x00 0x01    
+
    \              0x00 0x03    
+
    \              0x00 0x01    
-   \              0x00         
+
+   \              0x00
    \       0x5C   0x02 0x00          DC8 2, 0, 1, 0, 5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 4, 0, 1
+
    \              0x01 0x00    
+
    \              0x05 0x00    
+
    \              0x01 0x00    
+
    \              0x02 0x00    
+
    \              0x01 0x00    
+
    \              0x03 0x00    
+
    \              0x01 0x00    
+
    \              0x02 0x00    
+
    \              0x01 0x00    
+
    \              0x04 0x00    
-   \              0x01         
+
+   \              0x01
    \       0x73   0x00 0x02          DC8 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 7, 0, 1, 0, 2, 0, 1, 0, 3, 0
+
    \              0x00 0x01    
+
    \              0x00 0x03    
+
    \              0x00 0x01    
+
    \              0x00 0x02    
+
    \              0x00 0x01    
+
    \              0x00 0x07    
+
    \              0x00 0x01    
+
    \              0x00 0x02    
+
    \              0x00 0x01    
+
    \              0x00 0x03    
-   \              0x00         
+
+   \              0x00
    \       0x8A   0x01 0x00          DC8 1, 0, 2, 0, 1, 0, 4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 5
+
    \              0x02 0x00    
+
    \              0x01 0x00    
+
    \              0x04 0x00    
+
    \              0x01 0x00    
+
    \              0x02 0x00    
+
    \              0x01 0x00    
+
    \              0x03 0x00    
+
    \              0x01 0x00    
+
    \              0x02 0x00    
+
    \              0x01 0x00    
-   \              0x05         
+
+   \              0x05
    \       0xA1   0x00 0x01          DC8 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 4, 0, 1, 0, 2, 0, 1, 0
+
    \              0x00 0x02    
+
    \              0x00 0x01    
+
    \              0x00 0x03    
+
    \              0x00 0x01    
+
    \              0x00 0x02    
+
    \              0x00 0x01    
+
    \              0x00 0x04    
+
    \              0x00 0x01    
+
    \              0x00 0x02    
+
    \              0x00 0x01    
-   \              0x00         
+
+   \              0x00
    \       0xB8   0x03 0x00          DC8 3, 0, 1, 0, 2, 0, 1, 0, 6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1
+
    \              0x01 0x00    
+
    \              0x02 0x00    
+
    \              0x01 0x00    
+
    \              0x06 0x00    
+
    \              0x01 0x00    
+
    \              0x02 0x00    
+
    \              0x01 0x00    
+
    \              0x03 0x00    
+
    \              0x01 0x00    
+
    \              0x02 0x00    
-   \              0x01         
+
+   \              0x01
    \       0xCF   0x00 0x04          DC8 0, 4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 5, 0, 1, 0, 2, 0
+
    \              0x00 0x01    
+
    \              0x00 0x02    
+
    \              0x00 0x01    
+
    \              0x00 0x03    
+
    \              0x00 0x01    
+
    \              0x00 0x02    
+
    \              0x00 0x01    
+
    \              0x00 0x05    
+
    \              0x00 0x01    
+
    \              0x00 0x02    
-   \              0x00         
+
+   \              0x00
    \       0xE6   0x01 0x00          DC8 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2
+
    \              0x03 0x00    
+
    \              0x01 0x00    
+
    \              0x02 0x00    
+
    \              0x01 0x00    
+
    \              0x04 0x00    
+
    \              0x01 0x00    
+
    \              0x02 0x00    
+
    \              0x01 0x00    
+
    \              0x03 0x00    
+
    \              0x01 0x00    
-   \              0x02         
+
+   \              0x02
    \       0xFD   0x00 0x01          DC8 0, 1, 0
-   \              0x00         
+
+   \              0x00
      39              0, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,       /* 0x00 to 0x0F                             */
      40              4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,       /* 0x10 to 0x1F                             */
      41              5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,       /* 0x20 to 0x2F                             */
@@ -745,7 +870,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \       0x1A   0xB130             CBZ.N    R0,??OSEventPendMulti_2
    \       0x1C   0x7800             LDRB     R0,[R0, #+0]
    \       0x1E   0x2801             CMP      R0,#+1
-   \       0x20   0xBF18             IT       NE 
+   \       0x20   0xBF18             IT       NE
    \       0x22   0x2803             CMPNE    R0,#+3
    \       0x24   0xD0F7             BEQ.N    ??OSEventPendMulti_1
    \       0x26   0x2101             MOVS     R1,#+1
@@ -772,7 +897,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \       0x3C   0x7039             STRB     R1,[R7, #+0]
     375                  return (0);
    \       0x3E   0x2000             MOVS     R0,#+0
-   \       0x40   0xE0A1             B.N      ??OSEventPendMulti_6
+   \       0x40   0xE09F             B.N      ??OSEventPendMulti_6
     376              }
     377          
     378          /*$PAGE*/
@@ -906,7 +1031,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \                     ??CrossCallReturnLabel_5: (+1)
    \       0xB4   0x703C             STRB     R4,[R7, #+0]
     454                  return (events_rdy_nbr);
-   \       0xB6   0xE065             B.N      ??CrossCallReturnLabel_2
+   \       0xB6   0xE063             B.N      ??CrossCallReturnLabel_2
     455              }
     456          /*$PAGE*/
     457                                                                  /* Otherwise, must wait until any event occurs */
@@ -943,7 +1068,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \       0xEC   0xF100 0x011C      ADD      R1,R0,#+28
    \       0xF0   0x7D4A             LDRB     R2,[R1, #+21]
    \       0xF2   0x2A00             CMP      R2,#+0
-   \       0xF4   0xBF18             IT       NE 
+   \       0xF4   0xBF18             IT       NE
    \       0xF6   0x2A02             CMPNE    R2,#+2
    \       0xF8   0xD10D             BNE.N    ??OSEventPendMulti_16
     469                  case OS_STAT_PEND_OK:
@@ -991,7 +1116,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \      0x122   0xB111             CBZ.N    R1,??OSEventPendMulti_20
    \      0x124   0x2902             CMP      R1,#+2
    \      0x126   0xD014             BEQ.N    ??OSEventPendMulti_21
-   \      0x128   0xE019             B.N      ??OSEventPendMulti_22
+   \      0x128   0xE018             B.N      ??OSEventPendMulti_22
     490                  case OS_STAT_PEND_OK:
     491                       switch (pevent->OSEventType) {             /* Return event's message                      */
    \                     ??OSEventPendMulti_20: (+1)
@@ -1027,9 +1152,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
     512                                return (events_rdy_nbr);
     513                       }
     514                      *perr = OS_ERR_NONE;
-   \      0x13C   0x7039             STRB     R1,[R7, #+0]
+   \      0x13C   0x2000             MOVS     R0,#+0
     515                       break;
-   \      0x13E   0xE013             B.N      ??OSEventPendMulti_25
+   \      0x13E   0xE011             B.N      ??OSEventPendMulti_25
    \                     ??OSEventPendMulti_23: (+1)
    \      0x140   0x6800             LDR      R0,[R0, #+0]
    \      0x142   0xE7F9             B.N      ??OSEventPendMulti_24
@@ -1040,7 +1165,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \      0x14A   0x6028             STR      R0,[R5, #+0]
    \      0x14C   0x2101             MOVS     R1,#+1
    \      0x14E   0x7039             STRB     R1,[R7, #+0]
-   \      0x150   0xE018             B.N      ??CrossCallReturnLabel_2
+   \      0x150   0xE016             B.N      ??CrossCallReturnLabel_2
     516          
     517                  case OS_STAT_PEND_ABORT:
     518                      *pmsgs_rdy++ = (void *)0;                   /* NO message returned for abort               */
@@ -1049,46 +1174,44 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \      0x154   0xF849 0x2B04      STR      R2,[R9], #+4
     519                      *perr        =  OS_ERR_PEND_ABORT;          /* Indicate that event  aborted                */
    \      0x158   0x200E             MOVS     R0,#+14
-   \      0x15A   0x7038             STRB     R0,[R7, #+0]
     520                       break;
-   \      0x15C   0xE004             B.N      ??OSEventPendMulti_25
+   \      0x15A   0xE003             B.N      ??OSEventPendMulti_25
     521                                                                  
     522                  case OS_STAT_PEND_TO:                                                
     523                  default:        
     524                      *pmsgs_rdy++ = (void *)0;                   /* NO message returned for timeout             */
    \                     ??OSEventPendMulti_22: (+1)
-   \      0x15E   0x2100             MOVS     R1,#+0
-   \      0x160   0xF849 0x1B04      STR      R1,[R9], #+4
+   \      0x15C   0x2000             MOVS     R0,#+0
+   \      0x15E   0xF849 0x0B04      STR      R0,[R9], #+4
     525                      *perr        =  OS_ERR_TIMEOUT;             /* Indicate that events timed out              */
-   \      0x164   0x220A             MOVS     R2,#+10
-   \      0x166   0x703A             STRB     R2,[R7, #+0]
+   \      0x162   0x200A             MOVS     R0,#+10
     526                       break;
     527              }
     528          
     529              OSTCBCur->OSTCBStat          =  OS_STAT_RDY;        /* Set   task  status to ready                 */
    \                     ??OSEventPendMulti_25: (+1)
-   \      0x168   0x2000             MOVS     R0,#+0
-   \      0x16A   0x6A71             LDR      R1,[R6, #+36]
-   \      0x16C   0xF881 0x0030      STRB     R0,[R1, #+48]
+   \      0x164   0x7038             STRB     R0,[R7, #+0]
+   \      0x166   0x2100             MOVS     R1,#+0
+   \      0x168   0x6A70             LDR      R0,[R6, #+36]
+   \      0x16A   0xF880 0x1030      STRB     R1,[R0, #+48]
     530              OSTCBCur->OSTCBStatPend      =  OS_STAT_PEND_OK;    /* Clear pend  status                          */
-   \      0x170   0x6A71             LDR      R1,[R6, #+36]
-   \      0x172   0xF881 0x0031      STRB     R0,[R1, #+49]
+   \      0x16E   0x6A70             LDR      R0,[R6, #+36]
+   \      0x170   0xF880 0x1031      STRB     R1,[R0, #+49]
     531              OSTCBCur->OSTCBEventPtr      = (OS_EVENT  *)0;      /* Clear event pointers                        */
-   \      0x176   0x2100             MOVS     R1,#+0
-   \      0x178   0x6A70             LDR      R0,[R6, #+36]
-   \      0x17A   0x61C1             STR      R1,[R0, #+28]
+   \      0x174   0x6A70             LDR      R0,[R6, #+36]
+   \      0x176   0x61C1             STR      R1,[R0, #+28]
     532              OSTCBCur->OSTCBEventMultiPtr = (OS_EVENT **)0;
-   \      0x17C   0x6201             STR      R1,[R0, #+32]
+   \      0x178   0x6201             STR      R1,[R0, #+32]
     533              OSTCBCur->OSTCBMsg           = (void      *)0;      /* Clear task  message                         */
-   \      0x17E   0x6241             STR      R1,[R0, #+36]
+   \      0x17A   0x6241             STR      R1,[R0, #+36]
     534              OS_EXIT_CRITICAL();
-   \      0x180   0x....'....        BL       ?Subroutine3
+   \      0x17C   0x....'....        BL       ?Subroutine3
     535          
     536              return (events_rdy_nbr);
    \                     ??CrossCallReturnLabel_2: (+1)
-   \      0x184   0x4650             MOV      R0,R10
+   \      0x180   0x4650             MOV      R0,R10
    \                     ??OSEventPendMulti_6: (+1)
-   \      0x186   0xE8BD 0x8FFE      POP      {R1-R11,PC}      ;; return
+   \      0x182   0xE8BD 0x8FFE      POP      {R1-R11,PC}      ;; return
     537          }
 
    \                                 In section .text, align 2, keep-with-next
@@ -1299,7 +1422,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
     622                  if (OSIntNesting < 255u) {
    \        0xA   0x7881             LDRB     R1,[R0, #+2]
    \        0xC   0x29FF             CMP      R1,#+255
-   \        0xE   0xBF1C             ITT      NE 
+   \        0xE   0xBF1C             ITT      NE
    \       0x10   0x1C49             ADDNE    R1,R1,#+1
    \       0x12   0x7081             STRBNE   R1,[R0, #+2]
     623                      OSIntNesting++;                      /* Increment ISR nesting level                        */
@@ -1343,7 +1466,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
     655              if (OSRunning == OS_TRUE) {
    \        0x2   0x....'....        BL       ?Subroutine4
    \                     ??CrossCallReturnLabel_6: (+1)
-   \        0x6   0xD11F             BNE.N    ??OSIntExit_0
+   \        0x6   0xD11A             BNE.N    ??OSIntExit_0
     656                  OS_ENTER_CRITICAL();
    \        0x8   0x....'....        BL       OS_CPU_SR_Save
    \        0xC   0x4605             MOV      R5,R0
@@ -1360,41 +1483,38 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \       0x16   0x78A1             LDRB     R1,[R4, #+2]
    \       0x18   0x78E0             LDRB     R0,[R4, #+3]
    \       0x1A   0x4301             ORRS     R1,R0,R1
-   \       0x1C   0xD112             BNE.N    ??OSIntExit_2
+   \       0x1C   0xD10D             BNE.N    ??OSIntExit_2
     662                          OS_SchedNew();
    \       0x1E   0x....'....        BL       OS_SchedNew
     663                          if (OSPrioHighRdy != OSPrioCur) {          /* No Ctx Sw if current task is highest rdy */
    \       0x22   0x7960             LDRB     R0,[R4, #+5]
    \       0x24   0x7921             LDRB     R1,[R4, #+4]
    \       0x26   0x4288             CMP      R0,R1
-   \       0x28   0xD00C             BEQ.N    ??OSIntExit_2
+   \       0x28   0xD007             BEQ.N    ??OSIntExit_2
     664                              OSTCBHighRdy  = OSTCBPrioTbl[OSPrioHighRdy];
-   \       0x2A   0x....'....        LDR.W    R2,??DataTable20_1
-   \       0x2E   0xF852 0x0020      LDR      R0,[R2, R0, LSL #+2]
-   \       0x32   0x62E0             STR      R0,[R4, #+44]
+   \       0x2A   0x....'....        BL       ?Subroutine7
     665          #if OS_TASK_PROFILE_EN > 0
     666                              OSTCBHighRdy->OSTCBCtxSwCtr++;         /* Inc. # of context switches to this task  */
-   \       0x34   0x6B81             LDR      R1,[R0, #+56]
-   \       0x36   0x1C49             ADDS     R1,R1,#+1
-   \       0x38   0x6381             STR      R1,[R0, #+56]
     667          #endif
     668                              OSCtxSwCtr++;                          /* Keep track of the number of ctx switches */
-   \       0x3A   0x6920             LDR      R0,[R4, #+16]
-   \       0x3C   0x1C40             ADDS     R0,R0,#+1
-   \       0x3E   0x6120             STR      R0,[R4, #+16]
     669                              OSIntCtxSw();                          /* Perform interrupt level ctx switch       */
-   \       0x40   0x....'....        BL       OSIntCtxSw
+   \                     ??CrossCallReturnLabel_13: (+1)
+   \       0x2E   0x62E0             STR      R0,[R4, #+44]
+   \       0x30   0x6921             LDR      R1,[R4, #+16]
+   \       0x32   0x1C49             ADDS     R1,R1,#+1
+   \       0x34   0x6121             STR      R1,[R4, #+16]
+   \       0x36   0x....'....        BL       OSIntCtxSw
     670                          }
     671                      }
     672                  }
     673                  OS_EXIT_CRITICAL();
    \                     ??OSIntExit_2: (+1)
-   \       0x44   0x4628             MOV      R0,R5
-   \       0x46   0x....             B.N      ?Subroutine0
+   \       0x3A   0x4628             MOV      R0,R5
+   \       0x3C   0x....             B.N      ?Subroutine0
     674              }
     675          }
    \                     ??OSIntExit_0: (+1)
-   \       0x48   0xBD31             POP      {R0,R4,R5,PC}    ;; return
+   \       0x3E   0xBD31             POP      {R0,R4,R5,PC}    ;; return
 
    \                                 In section .text, align 2, keep-with-next
    \                     ?Subroutine4: (+1)
@@ -1407,6 +1527,15 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \                     ?Subroutine0: (+1)
    \        0x0   0xE8BD 0x4032      POP      {R1,R4,R5,LR}
    \        0x4   0x....'....        B.W      OS_CPU_SR_Restore
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine7: (+1)
+   \        0x0   0x....             LDR.N    R2,??DataTable20_1
+   \        0x2   0xF852 0x0020      LDR      R0,[R2, R0, LSL #+2]
+   \        0x6   0x6B81             LDR      R1,[R0, #+56]
+   \        0x8   0x1C49             ADDS     R1,R1,#+1
+   \        0xA   0x6381             STR      R1,[R0, #+56]
+   \        0xC   0x4770             BX       LR
     676          /*$PAGE*/
     677          /*
     678          *********************************************************************************************************
@@ -1449,7 +1578,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
     705                      if (OSLockNesting < 255u) {          /* Prevent OSLockNesting from wrapping back to 0      */
    \       0x10   0x78E1             LDRB     R1,[R4, #+3]
    \       0x12   0x29FF             CMP      R1,#+255
-   \       0x14   0xBF1C             ITT      NE 
+   \       0x14   0xBF1C             ITT      NE
    \       0x16   0x1C49             ADDNE    R1,R1,#+1
    \       0x18   0x70E1             STRBNE   R1,[R4, #+3]
     706                          OSLockNesting++;                 /* Increment lock nesting level                       */
@@ -1513,7 +1642,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
     743                      if (OSLockNesting == 0) {                      /* See if scheduler is enabled and ...      */
    \       0x14   0xB2C9             UXTB     R1,R1
    \       0x16   0x2900             CMP      R1,#+0
-   \       0x18   0xBF04             ITT      EQ 
+   \       0x18   0xBF04             ITT      EQ
    \       0x1A   0x78A1             LDRBEQ   R1,[R4, #+2]
    \       0x1C   0x2900             CMPEQ    R1,#+0
     744                          if (OSIntNesting == 0) {                   /* ... not in an ISR                        */
@@ -1576,13 +1705,13 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
     785                  OSPrioCur     = OSPrioHighRdy;
    \        0xE   0x7960             LDRB     R0,[R4, #+5]
     786                  OSTCBHighRdy  = OSTCBPrioTbl[OSPrioHighRdy]; /* Point to highest priority task ready to run    */
+    787                  OSTCBCur      = OSTCBHighRdy;
    \       0x10   0x....'....        LDR.W    R1,??DataTable20_1
    \       0x14   0x7120             STRB     R0,[R4, #+4]
    \       0x16   0xF851 0x0020      LDR      R0,[R1, R0, LSL #+2]
-   \       0x1A   0x62E0             STR      R0,[R4, #+44]
-    787                  OSTCBCur      = OSTCBHighRdy;
-   \       0x1C   0x6260             STR      R0,[R4, #+36]
+   \       0x1A   0x6260             STR      R0,[R4, #+36]
     788                  OSStartHighRdy();                            /* Execute target specific code to start task     */
+   \       0x1C   0x62E0             STR      R0,[R4, #+44]
    \       0x1E   0xE8BD 0x4010      POP      {R4,LR}
    \       0x22   0x....'....        B.W      OSStartHighRdy
     789              }
@@ -1757,7 +1886,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
     898                              if ((ptcb->OSTCBStat & OS_STAT_PEND_ANY) != OS_STAT_RDY) {
    \       0x48   0x7821             LDRB     R1,[R4, #+0]
    \       0x4A   0xF011 0x0F37      TST      R1,#0x37
-   \       0x4E   0xBF0F             ITEEE    EQ 
+   \       0x4E   0xBF0F             ITEEE    EQ
    \       0x50   0x2100             MOVEQ    R1,#+0
    \       0x52   0xF001 0x01C8      ANDNE    R1,R1,#0xC8
    \       0x56   0x7021             STRBNE   R1,[R4, #+0]
@@ -2623,7 +2752,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    1551              while (size > 0) {
    \                     OS_MemClr: (+1)
    \        0x0   0x000A             MOVS     R2,R1
-   \        0x2   0xBF18             IT       NE 
+   \        0x2   0xBF18             IT       NE
    1552                  *pdest++ = (INT8U)0;
    \        0x4   0x....'....        BNE.W    __aeabi_memclr
    1553                  size--;
@@ -2714,38 +2843,35 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \        0xA   0x4604             MOV      R4,R0
    \        0xC   0x78E8             LDRB     R0,[R5, #+3]
    \        0xE   0x4301             ORRS     R1,R0,R1
-   \       0x10   0xD111             BNE.N    ??OS_Sched_0
+   \       0x10   0xD10D             BNE.N    ??OS_Sched_0
    1617                      OS_SchedNew();
    \       0x12   0x....'....        BL       OS_SchedNew
    1618                      if (OSPrioHighRdy != OSPrioCur) {          /* No Ctx Sw if current task is highest rdy     */
    \       0x16   0x7968             LDRB     R0,[R5, #+5]
    \       0x18   0x7929             LDRB     R1,[R5, #+4]
    \       0x1A   0x4288             CMP      R0,R1
-   \       0x1C   0xD00B             BEQ.N    ??OS_Sched_0
+   \       0x1C   0xD007             BEQ.N    ??OS_Sched_0
    1619                          OSTCBHighRdy = OSTCBPrioTbl[OSPrioHighRdy];
-   \       0x1E   0x....             LDR.N    R2,??DataTable20_1
-   \       0x20   0xF852 0x0020      LDR      R0,[R2, R0, LSL #+2]
-   \       0x24   0x62E8             STR      R0,[R5, #+44]
+   \       0x1E   0x....'....        BL       ?Subroutine7
    1620          #if OS_TASK_PROFILE_EN > 0
    1621                          OSTCBHighRdy->OSTCBCtxSwCtr++;         /* Inc. # of context switches to this task      */
-   \       0x26   0x6B81             LDR      R1,[R0, #+56]
-   \       0x28   0x1C49             ADDS     R1,R1,#+1
-   \       0x2A   0x6381             STR      R1,[R0, #+56]
    1622          #endif
    1623                          OSCtxSwCtr++;                          /* Increment context switch counter             */
-   \       0x2C   0x6928             LDR      R0,[R5, #+16]
-   \       0x2E   0x1C40             ADDS     R0,R0,#+1
-   \       0x30   0x6128             STR      R0,[R5, #+16]
    1624                          OS_TASK_SW();                          /* Perform a context switch                     */
-   \       0x32   0x....'....        BL       OSCtxSw
+   \                     ??CrossCallReturnLabel_14: (+1)
+   \       0x22   0x62E8             STR      R0,[R5, #+44]
+   \       0x24   0x6929             LDR      R1,[R5, #+16]
+   \       0x26   0x1C49             ADDS     R1,R1,#+1
+   \       0x28   0x6129             STR      R1,[R5, #+16]
+   \       0x2A   0x....'....        BL       OSCtxSw
    1625                      }
    1626                  }
    1627              }
    1628              OS_EXIT_CRITICAL();
    \                     ??OS_Sched_0: (+1)
-   \       0x36   0x4620             MOV      R0,R4
-   \       0x38                      REQUIRE ?Subroutine0
-   \       0x38                      ;; // Fall through to label ?Subroutine0
+   \       0x2E   0x4620             MOV      R0,R4
+   \       0x30                      REQUIRE ?Subroutine0
+   \       0x30                      ;; // Fall through to label ?Subroutine0
    1629          }
    1630          
    1631          
@@ -3092,7 +3218,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \       0x12   0xF854 0x0020      LDR      R0,[R4, R0, LSL #+2]
    1862                      if (ptcb != (OS_TCB *)0) {                               /* Make sure task 'ptcb' is ...   */
    \       0x16   0x2800             CMP      R0,#+0
-   \       0x18   0xBF18             IT       NE 
+   \       0x18   0xBF18             IT       NE
    \       0x1A   0x2801             CMPNE    R0,#+1
    1863                          if (ptcb != OS_TCB_RESERVED) {                       /* ... still valid.               */
    \       0x1C   0xD006             BEQ.N    ??OS_TaskStatStkChk_1
@@ -3190,7 +3316,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \       0x12   0x6ABC             LDR      R4,[R7, #+40]
    1933              if (ptcb != (OS_TCB *)0) {
    \       0x14   0x2C00             CMP      R4,#+0
-   \       0x16   0xD060             BEQ.N    ??OS_TCBInit_0
+   \       0x16   0xD05F             BEQ.N    ??OS_TCBInit_0
    \       0x18   0xF8AD 0xB000      STRH     R11,[SP, #+0]
    1934                  OSTCBFreeList            = ptcb->OSTCBNext;        /* Update pointer to free TCB list          */
    \       0x1C   0x6961             LDR      R1,[R4, #+20]
@@ -3246,14 +3372,12 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \       0x5A   0x8260             STRH     R0,[R4, #+18]
    \       0x5C   0x71F1             STRB     R1,[R6, #+7]
    \       0x5E   0xEA4F 0x00DB      LSR      R0,R11,#+3
-   \       0x62   0x7130             STRB     R0,[R6, #+4]
-   \       0x64   0xF00B 0x0107      AND      R1,R11,#0x7
-   \       0x68   0x70F1             STRB     R1,[R6, #+3]
-   \       0x6A   0xFA02 0xF000      LSL      R0,R2,R0
-   \       0x6E   0x71B0             STRB     R0,[R6, #+6]
+   \       0x62   0xF00B 0x0107      AND      R1,R11,#0x7
+   \       0x66   0xFA02 0xF300      LSL      R3,R2,R0
+   \       0x6A   0x71B3             STRB     R3,[R6, #+6]
    1964                  ptcb->OSTCBBitX          = (INT8U)(1 << ptcb->OSTCBX);
-   \       0x70   0xFA02 0xF101      LSL      R1,R2,R1
-   \       0x74   0x7171             STRB     R1,[R6, #+5]
+   \       0x6C   0x408A             LSLS     R2,R2,R1
+   \       0x6E   0x7172             STRB     R2,[R6, #+5]
    1965          #else
    1966                  ptcb->OSTCBY             = (INT8U)((prio >> 4) & 0xFF); /* Pre-compute X, Y, BitX and BitY     */
    1967                  ptcb->OSTCBX             = (INT8U) (prio & 0x0F);
@@ -3263,102 +3387,104 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    1971          
    1972          #if (OS_EVENT_EN)
    1973                  ptcb->OSTCBEventPtr      = (OS_EVENT  *)0;         /* Task is not pending on an  event         */
-   \       0x76   0x2000             MOVS     R0,#+0
-   \       0x78   0x61E0             STR      R0,[R4, #+28]
+   \       0x70   0x7130             STRB     R0,[R6, #+4]
+   \       0x72   0x70F1             STRB     R1,[R6, #+3]
+   \       0x74   0x2000             MOVS     R0,#+0
+   \       0x76   0x61E0             STR      R0,[R4, #+28]
    1974          #if (OS_EVENT_MULTI_EN > 0)
    1975                  ptcb->OSTCBEventMultiPtr = (OS_EVENT **)0;         /* Task is not pending on any events        */
-   \       0x7A   0x6220             STR      R0,[R4, #+32]
+   \       0x78   0x6220             STR      R0,[R4, #+32]
    1976          #endif
    1977          #endif
    1978          
    1979          #if (OS_FLAG_EN > 0) && (OS_MAX_FLAGS > 0) && (OS_TASK_DEL_EN > 0)
    1980                  ptcb->OSTCBFlagNode  = (OS_FLAG_NODE *)0;          /* Task is not pending on an event flag     */
-   \       0x7C   0x62A0             STR      R0,[R4, #+40]
+   \       0x7A   0x62A0             STR      R0,[R4, #+40]
    1981          #endif
    1982          
    1983          #if (OS_MBOX_EN > 0) || ((OS_Q_EN > 0) && (OS_MAX_QS > 0))
    1984                  ptcb->OSTCBMsg       = (void *)0;                  /* No message received                      */
-   \       0x7E   0x6260             STR      R0,[R4, #+36]
+   \       0x7C   0x6260             STR      R0,[R4, #+36]
    1985          #endif
    1986          
    1987          #if OS_TASK_PROFILE_EN > 0
    1988                  ptcb->OSTCBCtxSwCtr    = 0L;                       /* Initialize profiling variables           */
-   \       0x80   0x60B0             STR      R0,[R6, #+8]
+   \       0x7E   0x60B0             STR      R0,[R6, #+8]
    1989                  ptcb->OSTCBCyclesStart = 0L;
-   \       0x82   0x6130             STR      R0,[R6, #+16]
+   \       0x80   0x6130             STR      R0,[R6, #+16]
    1990                  ptcb->OSTCBCyclesTot   = 0L;
-   \       0x84   0x60F0             STR      R0,[R6, #+12]
+   \       0x82   0x60F0             STR      R0,[R6, #+12]
    1991                  ptcb->OSTCBStkBase     = (OS_STK *)0;
-   \       0x86   0x6170             STR      R0,[R6, #+20]
+   \       0x84   0x6170             STR      R0,[R6, #+20]
    1992                  ptcb->OSTCBStkUsed     = 0L;
-   \       0x88   0x61B0             STR      R0,[R6, #+24]
+   \       0x86   0x61B0             STR      R0,[R6, #+24]
    1993          #endif
    1994          
    1995          #if OS_TASK_NAME_SIZE > 1
    1996                  ptcb->OSTCBTaskName[0] = '?';                      /* Unknown name at task creation            */
-   \       0x8A   0x213F             MOVS     R1,#+63
-   \       0x8C   0x7731             STRB     R1,[R6, #+28]
+   \       0x88   0x213F             MOVS     R1,#+63
+   \       0x8A   0x7731             STRB     R1,[R6, #+28]
    1997                  ptcb->OSTCBTaskName[1] = OS_ASCII_NUL;
-   \       0x8E   0x7770             STRB     R0,[R6, #+29]
+   \       0x8C   0x7770             STRB     R0,[R6, #+29]
    1998          #endif
    1999          
    2000                  OSTCBInitHook(ptcb);
-   \       0x90   0x4620             MOV      R0,R4
-   \       0x92   0x....'....        BL       OSTCBInitHook
+   \       0x8E   0x4620             MOV      R0,R4
+   \       0x90   0x....'....        BL       OSTCBInitHook
    2001          
    2002                  OSTaskCreateHook(ptcb);                            /* Call user defined hook                   */
-   \       0x96   0x4620             MOV      R0,R4
-   \       0x98   0x....'....        BL       OSTaskCreateHook
+   \       0x94   0x4620             MOV      R0,R4
+   \       0x96   0x....'....        BL       OSTaskCreateHook
    2003          
    2004                  OS_ENTER_CRITICAL();
-   \       0x9C   0x....'....        BL       OS_CPU_SR_Save
+   \       0x9A   0x....'....        BL       OS_CPU_SR_Save
    2005                  OSTCBPrioTbl[prio] = ptcb;
-   \       0xA0   0x....             LDR.N    R1,??DataTable20_1
-   \       0xA2   0xF841 0x402B      STR      R4,[R1, R11, LSL #+2]
+   \       0x9E   0x....             LDR.N    R1,??DataTable20_1
+   \       0xA0   0xF841 0x402B      STR      R4,[R1, R11, LSL #+2]
    2006                  ptcb->OSTCBNext    = OSTCBList;                    /* Link into TCB chain                      */
    2007                  ptcb->OSTCBPrev    = (OS_TCB *)0;
-   \       0xA6   0x2100             MOVS     R1,#+0
-   \       0xA8   0x6B3A             LDR      R2,[R7, #+48]
-   \       0xAA   0x61A1             STR      R1,[R4, #+24]
-   \       0xAC   0x6162             STR      R2,[R4, #+20]
+   \       0xA4   0x2100             MOVS     R1,#+0
+   \       0xA6   0x6B3A             LDR      R2,[R7, #+48]
+   \       0xA8   0x61A1             STR      R1,[R4, #+24]
+   \       0xAA   0x6162             STR      R2,[R4, #+20]
    2008                  if (OSTCBList != (OS_TCB *)0) {
-   \       0xAE   0x6B39             LDR      R1,[R7, #+48]
-   \       0xB0   0xB101             CBZ.N    R1,??OS_TCBInit_1
+   \       0xAC   0x6B39             LDR      R1,[R7, #+48]
+   \       0xAE   0xB101             CBZ.N    R1,??OS_TCBInit_1
    2009                      OSTCBList->OSTCBPrev = ptcb;
-   \       0xB2   0x618C             STR      R4,[R1, #+24]
+   \       0xB0   0x618C             STR      R4,[R1, #+24]
    2010                  }
    2011                  OSTCBList               = ptcb;
    \                     ??OS_TCBInit_1: (+1)
-   \       0xB4   0x633C             STR      R4,[R7, #+48]
+   \       0xB2   0x633C             STR      R4,[R7, #+48]
    2012                  OSRdyGrp               |= ptcb->OSTCBBitY;         /* Make task ready to run                   */
-   \       0xB6   0x79BA             LDRB     R2,[R7, #+6]
-   \       0xB8   0x79B1             LDRB     R1,[R6, #+6]
-   \       0xBA   0x430A             ORRS     R2,R1,R2
-   \       0xBC   0x71BA             STRB     R2,[R7, #+6]
+   \       0xB4   0x79BA             LDRB     R2,[R7, #+6]
+   \       0xB6   0x79B1             LDRB     R1,[R6, #+6]
+   \       0xB8   0x430A             ORRS     R2,R1,R2
+   \       0xBA   0x71BA             STRB     R2,[R7, #+6]
    2013                  OSRdyTbl[ptcb->OSTCBY] |= ptcb->OSTCBBitX;
-   \       0xBE   0xF107 0x030C      ADD      R3,R7,#+12
-   \       0xC2   0x7932             LDRB     R2,[R6, #+4]
-   \       0xC4   0x7971             LDRB     R1,[R6, #+5]
-   \       0xC6   0x5C9C             LDRB     R4,[R3, R2]
-   \       0xC8   0x430C             ORRS     R4,R1,R4
-   \       0xCA   0x549C             STRB     R4,[R3, R2]
+   \       0xBC   0xF107 0x030C      ADD      R3,R7,#+12
+   \       0xC0   0x7932             LDRB     R2,[R6, #+4]
+   \       0xC2   0x7971             LDRB     R1,[R6, #+5]
+   \       0xC4   0x5C9C             LDRB     R4,[R3, R2]
+   \       0xC6   0x430C             ORRS     R4,R1,R4
+   \       0xC8   0x549C             STRB     R4,[R3, R2]
    2014                  OSTaskCtr++;                                       /* Increment the #tasks counter             */
-   \       0xCC   0x7A3A             LDRB     R2,[R7, #+8]
-   \       0xCE   0x1C52             ADDS     R2,R2,#+1
-   \       0xD0   0x723A             STRB     R2,[R7, #+8]
+   \       0xCA   0x7A3A             LDRB     R2,[R7, #+8]
+   \       0xCC   0x1C52             ADDS     R2,R2,#+1
+   \       0xCE   0x723A             STRB     R2,[R7, #+8]
    2015                  OS_EXIT_CRITICAL();
-   \       0xD2   0x....'....        BL       OS_CPU_SR_Restore
+   \       0xD0   0x....'....        BL       OS_CPU_SR_Restore
    2016                  return (OS_ERR_NONE);
-   \       0xD6   0x2000             MOVS     R0,#+0
-   \       0xD8   0xE002             B.N      ??OS_TCBInit_2
+   \       0xD4   0x2000             MOVS     R0,#+0
+   \       0xD6   0xE002             B.N      ??OS_TCBInit_2
    2017              }
    2018              OS_EXIT_CRITICAL();
    \                     ??OS_TCBInit_0: (+1)
-   \       0xDA   0x....'....        BL       OS_CPU_SR_Restore
+   \       0xD8   0x....'....        BL       OS_CPU_SR_Restore
    2019              return (OS_ERR_TASK_NO_MORE_TCB);
-   \       0xDE   0x2042             MOVS     R0,#+66
+   \       0xDC   0x2042             MOVS     R0,#+66
    \                     ??OS_TCBInit_2: (+1)
-   \       0xE0   0xE8BD 0x8FFE      POP      {R1-R11,PC}      ;; return
+   \       0xDE   0xE8BD 0x8FFE      POP      {R1-R11,PC}      ;; return
    2020          }
 
    \                                 In section .text, align 2, keep-with-next
@@ -3385,24 +3511,36 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
    \                                 In section .text, align 4, keep-with-next
    \                     ?_0:
    \        0x0   0x75 0x43          DC8 "uC/OS-II Idle"
+
    \              0x2F 0x4F    
+
    \              0x53 0x2D    
+
    \              0x49 0x49    
+
    \              0x20 0x49    
+
    \              0x64 0x6C    
-   \              0x65 0x00    
-   \        0xE   0x00 0x00          DC8 0, 0
+
+   \              0x65 0x00
+   \        0xE                      DS8 2
 
    \                                 In section .text, align 4, keep-with-next
    \                     ?_1:
    \        0x0   0x75 0x43          DC8 "uC/OS-II Stat"
+
    \              0x2F 0x4F    
+
    \              0x53 0x2D    
+
    \              0x49 0x49    
+
    \              0x20 0x53    
+
    \              0x74 0x61    
-   \              0x74 0x00    
-   \        0xE   0x00 0x00          DC8 0, 0
+
+   \              0x74 0x00
+   \        0xE                      DS8 2
 
    Maximum stack usage in bytes:
 
@@ -3514,9 +3652,10 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
       10  ?Subroutine4
       32  ?Subroutine5
       12  ?Subroutine6
+      14  ?Subroutine7
       16  ?_0
       16  ?_1
-    3424  OSCPUUsage
+   3'424  OSCPUUsage
           OSStatRdy
           OSIntNesting
           OSLockNesting
@@ -3543,12 +3682,12 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
           OSTCBTbl
       60  OSEventNameGet
       74  OSEventNameSet
-     394  OSEventPendMulti
+     390  OSEventPendMulti
        4  OSFlagFreeList
      140  OSFlagTbl
      280  OSInit
       22  OSIntEnter
-      74  OSIntExit
+      64  OSIntExit
       30  OSSchedLock
       46  OSSchedUnlock
       40  OSStart
@@ -3566,11 +3705,11 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
       12  OS_EventWaitListInit
       10  OS_MemClr
       20  OS_MemCopy
-      56  OS_Sched
+      48  OS_Sched
       24  OS_SchedNew
       32  OS_StrCopy
       20  OS_StrLen
-     228  OS_TCBInit
+     226  OS_TCBInit
       24  OS_TaskIdle
       84  OS_TaskStat
       54  OS_TaskStatStkChk
@@ -3578,9 +3717,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_core.c
  
  3'696 bytes in section .bss
    256 bytes in section .rodata
- 2'184 bytes in section .text
+ 2'174 bytes in section .text
  
- 2'184 bytes of CODE  memory
+ 2'174 bytes of CODE  memory
    256 bytes of CONST memory
  3'696 bytes of DATA  memory
 

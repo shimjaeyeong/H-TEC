@@ -1,55 +1,58 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V8.40.1.212/W32 for ARM         23/Sep/2019  21:46:18
-# Copyright 1999-2019 IAR Systems AB.
+# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         12/Dec/2020  15:41:51
+# Copyright 1999-2020 IAR Systems AB.
 #
-#    Cpu mode     =  
-#    Endian       =  little
-#    Source file  =
-#        C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
-#    Command line =
-#        -f C:\Users\19eslab1\AppData\Local\Temp\EWA23E.tmp
-#        (C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
+#    Cpu mode             
+#    Endian            =  little
+#    Source file       =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uCOS-II\Source\os_flag.c
+#    Command line      =
+#        -f C:\Users\SHIMJA~1\AppData\Local\Temp\EWDE83.tmp
+#        (C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uCOS-II\Source\os_flag.c
 #        -lCN
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
 #        -o
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj
 #        --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config
 #        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
-#        8.3\arm\inc\c\DLib_Config_Normal.h" -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\
+#        8.4\arm\inc\c\DLib_Config_Normal.h" -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\ports\arm-cortex-m3\generic\iar\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\ports\arm-cortex-m3\generic\iar\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\BSP\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\BSP\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Source\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Source\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Ports\ST\STM32\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Ports\ST\STM32\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\\
 #        -I
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\\
 #        -Ohz --use_c++_inline)
-#    Locale       =  C
-#    List file    =
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List\os_flag.lst
-#    Object file  =
-#        C:\Users\19eslab1\Desktop\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj\os_flag.o
+#    Locale            =  C
+#    List file         =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List\os_flag.lst
+#    Object file       =
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj\os_flag.o
+#    Runtime model:       
+#      __SystemLibrary =  DLib
+#      __size_limit    =  32768|ARM.EW.LINKER
 #
 ###############################################################################
 
-C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
+C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uCOS-II\Source\os_flag.c
       1          /*
       2          *********************************************************************************************************
       3          *                                                uC/OS-II
@@ -184,7 +187,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     117              if (result != (INT8U)0) {                              /* See if we need to consume the flags      */
    \                     ??OSFlagAccept_1: (+1)
    \       0x1A   0xEA5F 0x6009      LSLS     R0,R9,#+24
-   \       0x1E   0xBF46             ITTE     MI 
+   \       0x1E   0xBF46             ITTE     MI
    \       0x20   0xF009 0x097F      ANDMI    R9,R9,#0x7F
    \       0x24   0x2401             MOVMI    R4,#+1
    \       0x26   0x2400             MOVPL    R4,#+0
@@ -205,7 +208,8 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
    \       0x36   0xE8DF 0xF009      TBB      [PC, R9]
    \                     ??OSFlagAccept_0:
    \       0x3A   0x15 0x1B          DC8      0x15,0x1B,0x2,0xC
-   \              0x02 0x0C    
+
+   \              0x02 0x0C
     127                  case OS_FLAG_WAIT_SET_ALL:                         /* See if all required flags are set        */
     128                       flags_rdy = (OS_FLAGS)(pgrp->OSFlagFlags & flags);     /* Extract only the bits we want   */
    \                     ??OSFlagAccept_4: (+1)
@@ -477,9 +481,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     304          #endif
     305              if (OSIntNesting > 0) {                                /* See if called from ISR ...               */
    \        0x6   0x....'....        LDR.W    R1,??DataTable8
-   \        0xA   0x4606             MOV      R6,R0
+   \        0xA   0x4607             MOV      R7,R0
    \        0xC   0x7808             LDRB     R0,[R1, #+0]
-   \        0xE   0x4617             MOV      R7,R2
+   \        0xE   0x4692             MOV      R10,R2
    \       0x10   0xB108             CBZ.N    R0,??OSFlagDel_0
     306                  *perr = OS_ERR_DEL_ISR;                            /* ... can't DELETE from an ISR             */
    \       0x12   0x210F             MOVS     R1,#+15
@@ -488,44 +492,44 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     308              }
     309              if (pgrp->OSFlagType != OS_EVENT_TYPE_FLAG) {          /* Validate event group type                */
    \                     ??OSFlagDel_0: (+1)
-   \       0x16   0x7830             LDRB     R0,[R6, #+0]
+   \       0x16   0x7838             LDRB     R0,[R7, #+0]
    \       0x18   0x2805             CMP      R0,#+5
-   \       0x1A   0xD002             BEQ.N    ??OSFlagDel_2
+   \       0x1A   0xD003             BEQ.N    ??OSFlagDel_2
     310                  *perr = OS_ERR_EVENT_TYPE;
    \       0x1C   0x2101             MOVS     R1,#+1
    \                     ??OSFlagDel_1: (+1)
-   \       0x1E   0x7039             STRB     R1,[R7, #+0]
+   \       0x1E   0xF88A 0x1000      STRB     R1,[R10, #+0]
     311                  return (pgrp);
-   \       0x20   0xE02C             B.N      ??OSFlagDel_3
+   \       0x22   0xE02C             B.N      ??OSFlagDel_3
     312              }
     313              OS_ENTER_CRITICAL();
    \                     ??OSFlagDel_2: (+1)
-   \       0x22   0x....'....        BL       OS_CPU_SR_Save
+   \       0x24   0x....'....        BL       OS_CPU_SR_Save
     314              if (pgrp->OSFlagWaitList != (void *)0) {               /* See if any tasks waiting on event flags  */
-   \       0x26   0x6874             LDR      R4,[R6, #+4]
+   \       0x28   0x687C             LDR      R4,[R7, #+4]
     315                  tasks_waiting = OS_TRUE;                           /* Yes                                      */
     316              } else {
     317                  tasks_waiting = OS_FALSE;                          /* No                                       */
     318              }
     319              switch (opt) {
-   \       0x28   0x....'....        LDR.W    R10,??DataTable8_1
-   \       0x2C   0x2C00             CMP      R4,#+0
-   \       0x2E   0xBF14             ITE      NE 
-   \       0x30   0x2501             MOVNE    R5,#+1
-   \       0x32   0x2500             MOVEQ    R5,#+0
-   \       0x34   0xF1B8 0x0F00      CMP      R8,#+0
-   \       0x38   0x4681             MOV      R9,R0
-   \       0x3A   0xD003             BEQ.N    ??OSFlagDel_4
-   \       0x3C   0xF1B8 0x0F01      CMP      R8,#+1
-   \       0x40   0xD00D             BEQ.N    ??OSFlagDel_5
-   \       0x42   0xE017             B.N      ??OSFlagDel_6
+   \       0x2A   0x....'....        LDR.W    R6,??DataTable8_1
+   \       0x2E   0x2C00             CMP      R4,#+0
+   \       0x30   0xBF14             ITE      NE
+   \       0x32   0x2501             MOVNE    R5,#+1
+   \       0x34   0x2500             MOVEQ    R5,#+0
+   \       0x36   0xF1B8 0x0F00      CMP      R8,#+0
+   \       0x3A   0x4681             MOV      R9,R0
+   \       0x3C   0xD003             BEQ.N    ??OSFlagDel_4
+   \       0x3E   0xF1B8 0x0F01      CMP      R8,#+1
+   \       0x42   0xD00D             BEQ.N    ??OSFlagDel_5
+   \       0x44   0xE016             B.N      ??OSFlagDel_6
     320                  case OS_DEL_NO_PEND:                               /* Delete group if no task waiting          */
     321                       if (tasks_waiting == OS_FALSE) {
    \                     ??OSFlagDel_4: (+1)
-   \       0x44   0xB915             CBNZ.N   R5,??OSFlagDel_7
+   \       0x46   0xB915             CBNZ.N   R5,??OSFlagDel_7
     322          #if OS_FLAG_NAME_SIZE > 1
     323                           pgrp->OSFlagName[0]  = '?';               /* Unknown name                             */
-   \       0x46   0x....'....        BL       ?Subroutine0
+   \       0x48   0x....'....        BL       ?Subroutine2
     324                           pgrp->OSFlagName[1]  = OS_ASCII_NUL;
     325          #endif
     326                           pgrp->OSFlagType     = OS_EVENT_TYPE_UNUSED;
@@ -534,17 +538,17 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     329                           OSFlagFreeList       = pgrp;
     330                           OS_EXIT_CRITICAL();
     331                           *perr                = OS_ERR_NONE;
-   \                     ??CrossCallReturnLabel_1: (+1)
-   \       0x4A   0xE00F             B.N      ??OSFlagDel_8
+   \                     ??CrossCallReturnLabel_8: (+1)
+   \       0x4C   0xE00F             B.N      ??OSFlagDel_8
     332                           pgrp_return          = (OS_FLAG_GRP *)0;  /* Event Flag Group has been deleted        */
     333                       } else {
     334                           OS_EXIT_CRITICAL();
    \                     ??OSFlagDel_7: (+1)
-   \       0x4C   0x....'....        BL       OS_CPU_SR_Restore
+   \       0x4E   0x....'....        BL       OS_CPU_SR_Restore
     335                           *perr                = OS_ERR_TASK_WAITING;
-   \       0x50   0x2049             MOVS     R0,#+73
-   \       0x52   0xE012             B.N      ??OSFlagDel_9
+   \       0x52   0x2049             MOVS     R0,#+73
     336                           pgrp_return          = pgrp;
+   \       0x54   0xE011             B.N      ??OSFlagDel_9
     337                       }
     338                       break;
     339          
@@ -553,18 +557,18 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     342                       while (pnode != (OS_FLAG_NODE *)0) {          /* Ready ALL tasks waiting for flags        */
     343                           (void)OS_FlagTaskRdy(pnode, (OS_FLAGS)0);
    \                     ??OSFlagDel_10: (+1)
-   \       0x54   0x2100             MOVS     R1,#+0
-   \       0x56   0x4620             MOV      R0,R4
-   \       0x58   0x....'....        BL       OS_FlagTaskRdy
+   \       0x56   0x2100             MOVS     R1,#+0
+   \       0x58   0x4620             MOV      R0,R4
+   \       0x5A   0x....'....        BL       OS_FlagTaskRdy
     344                           pnode = (OS_FLAG_NODE *)pnode->OSFlagNodeNext;
-   \       0x5C   0x6824             LDR      R4,[R4, #+0]
+   \       0x5E   0x6824             LDR      R4,[R4, #+0]
     345                       }
    \                     ??OSFlagDel_5: (+1)
-   \       0x5E   0x2C00             CMP      R4,#+0
-   \       0x60   0xD1F8             BNE.N    ??OSFlagDel_10
+   \       0x60   0x2C00             CMP      R4,#+0
+   \       0x62   0xD1F8             BNE.N    ??OSFlagDel_10
     346          #if OS_FLAG_NAME_SIZE > 1
     347                       pgrp->OSFlagName[0]  = '?';                   /* Unknown name                             */
-   \       0x62   0x....'....        BL       ?Subroutine0
+   \       0x64   0x....'....        BL       ?Subroutine2
     348                       pgrp->OSFlagName[1]  = OS_ASCII_NUL;
     349          #endif
     350                       pgrp->OSFlagType     = OS_EVENT_TYPE_UNUSED;
@@ -573,19 +577,18 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     353                       OSFlagFreeList       = pgrp;
     354                       OS_EXIT_CRITICAL();
     355                       if (tasks_waiting == OS_TRUE) {               /* Reschedule only if task(s) were waiting  */
-   \                     ??CrossCallReturnLabel_0: (+1)
-   \       0x66   0xB10D             CBZ.N    R5,??OSFlagDel_8
+   \                     ??CrossCallReturnLabel_7: (+1)
+   \       0x68   0xB10D             CBZ.N    R5,??OSFlagDel_8
     356                           OS_Sched();                               /* Find highest priority task ready to run  */
-   \       0x68   0x....'....        BL       OS_Sched
+   \       0x6A   0x....'....        BL       OS_Sched
     357                       }
     358                       *perr = OS_ERR_NONE;
    \                     ??OSFlagDel_8: (+1)
-   \       0x6C   0x2000             MOVS     R0,#+0
-   \       0x6E   0x7038             STRB     R0,[R7, #+0]
+   \       0x6E   0x2000             MOVS     R0,#+0
     359                       pgrp_return          = (OS_FLAG_GRP *)0;      /* Event Flag Group has been deleted        */
-   \       0x70   0x2600             MOVS     R6,#+0
+   \       0x70   0x2700             MOVS     R7,#+0
     360                       break;
-   \       0x72   0xE003             B.N      ??OSFlagDel_3
+   \       0x72   0xE002             B.N      ??OSFlagDel_9
     361          
     362                  default:
     363                       OS_EXIT_CRITICAL();
@@ -593,30 +596,30 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
    \       0x74   0x....'....        BL       OS_CPU_SR_Restore
     364                       *perr                = OS_ERR_INVALID_OPT;
    \       0x78   0x2007             MOVS     R0,#+7
-   \                     ??OSFlagDel_9: (+1)
-   \       0x7A   0x7038             STRB     R0,[R7, #+0]
     365                       pgrp_return          = pgrp;
     366                       break;
+   \                     ??OSFlagDel_9: (+1)
+   \       0x7A   0xF88A 0x0000      STRB     R0,[R10, #+0]
     367              }
     368              return (pgrp_return);
    \                     ??OSFlagDel_3: (+1)
-   \       0x7C   0x4630             MOV      R0,R6
-   \       0x7E   0xE8BD 0x87F0      POP      {R4-R10,PC}      ;; return
+   \       0x7E   0x4638             MOV      R0,R7
+   \       0x80   0xE8BD 0x87F0      POP      {R4-R10,PC}      ;; return
     369          }
 
    \                                 In section .text, align 2, keep-with-next
-   \                     ?Subroutine0: (+1)
+   \                     ?Subroutine2: (+1)
    \        0x0   0x203F             MOVS     R0,#+63
    \        0x2   0x2100             MOVS     R1,#+0
-   \        0x4   0x72B0             STRB     R0,[R6, #+10]
-   \        0x6   0x72F1             STRB     R1,[R6, #+11]
-   \        0x8   0x7031             STRB     R1,[R6, #+0]
+   \        0x4   0x72B8             STRB     R0,[R7, #+10]
+   \        0x6   0x72F9             STRB     R1,[R7, #+11]
+   \        0x8   0x7039             STRB     R1,[R7, #+0]
    \        0xA   0x4648             MOV      R0,R9
-   \        0xC   0xF8DA 0x2000      LDR      R2,[R10, #+0]
-   \       0x10   0x6072             STR      R2,[R6, #+4]
-   \       0x12   0x8131             STRH     R1,[R6, #+8]
-   \       0x14   0xF8CA 0x6000      STR      R6,[R10, #+0]
-   \       0x18   0x....'....        B.W      OS_CPU_SR_Restore
+   \        0xC   0x6832             LDR      R2,[R6, #+0]
+   \        0xE   0x607A             STR      R2,[R7, #+4]
+   \       0x10   0x8139             STRH     R1,[R7, #+8]
+   \       0x12   0x6037             STR      R7,[R6, #+0]
+   \       0x14   0x....'....        B.W      OS_CPU_SR_Restore
     370          #endif
     371          /*$PAGE*/
     372          /*
@@ -649,7 +652,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     397          {
    \                     OSFlagNameGet: (+1)
    \        0x0   0xB5F8             PUSH     {R3-R7,LR}
-   \        0x2   0x....'....        BL       ?Subroutine2
+   \        0x2   0x....'....        BL       ?Subroutine1
     398              INT8U      len;
     399          #if OS_CRITICAL_METHOD == 3                      /* Allocate storage for CPU status register           */
     400              OS_CPU_SR  cpu_sr = 0;
@@ -671,7 +674,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     416              }
     417          #endif
     418              if (OSIntNesting > 0) {                      /* See if trying to call from an ISR                  */
-   \                     ??CrossCallReturnLabel_7: (+1)
+   \                     ??CrossCallReturnLabel_5: (+1)
    \        0x6   0xB110             CBZ.N    R0,??OSFlagNameGet_0
     419                  *perr = OS_ERR_NAME_GET_ISR;
    \        0x8   0x2111             MOVS     R1,#+17
@@ -688,9 +691,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
    \       0x16   0x2805             CMP      R0,#+5
    \       0x18   0xD005             BEQ.N    ??OSFlagNameGet_2
     424                  OS_EXIT_CRITICAL();
-   \       0x1A   0x....'....        BL       ?Subroutine1
+   \       0x1A   0x....'....        BL       ?Subroutine0
     425                  *perr = OS_ERR_EVENT_TYPE;
-   \                     ??CrossCallReturnLabel_6: (+1)
+   \                     ??CrossCallReturnLabel_4: (+1)
    \       0x1E   0x2001             MOVS     R0,#+1
    \       0x20   0x7020             STRB     R0,[R4, #+0]
     426                  return (0);
@@ -705,9 +708,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
    \       0x2C   0x....'....        BL       OS_StrCopy
    \       0x30   0x4605             MOV      R5,R0
     429              OS_EXIT_CRITICAL();
-   \       0x32   0x....'....        BL       ?Subroutine1
+   \       0x32   0x....'....        BL       ?Subroutine0
     430              *perr = OS_ERR_NONE;
-   \                     ??CrossCallReturnLabel_5: (+1)
+   \                     ??CrossCallReturnLabel_3: (+1)
    \       0x36   0x2000             MOVS     R0,#+0
    \       0x38   0x7020             STRB     R0,[R4, #+0]
     431              return (len);
@@ -716,7 +719,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     432          }
 
    \                                 In section .text, align 2, keep-with-next
-   \                     ?Subroutine2: (+1)
+   \                     ?Subroutine1: (+1)
    \        0x0   0x460E             MOV      R6,R1
    \        0x2   0x....             LDR.N    R1,??DataTable8
    \        0x4   0x4605             MOV      R5,R0
@@ -725,7 +728,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
    \        0xA   0x4770             BX       LR
 
    \                                 In section .text, align 2, keep-with-next
-   \                     ?Subroutine1: (+1)
+   \                     ?Subroutine0: (+1)
    \        0x0   0x4638             MOV      R0,R7
    \        0x2   0x....'....        B.W      OS_CPU_SR_Restore
     433          #endif
@@ -761,7 +764,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     461          {
    \                     OSFlagNameSet: (+1)
    \        0x0   0xB5F8             PUSH     {R3-R7,LR}
-   \        0x2   0x....'....        BL       ?Subroutine2
+   \        0x2   0x....'....        BL       ?Subroutine1
     462              INT8U      len;
     463          #if OS_CRITICAL_METHOD == 3                      /* Allocate storage for CPU status register           */
     464              OS_CPU_SR  cpu_sr = 0;
@@ -783,7 +786,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     480              }
     481          #endif
     482              if (OSIntNesting > 0) {                      /* See if trying to call from an ISR                  */
-   \                     ??CrossCallReturnLabel_8: (+1)
+   \                     ??CrossCallReturnLabel_6: (+1)
    \        0x6   0xB110             CBZ.N    R0,??OSFlagNameSet_0
     483                  *perr = OS_ERR_NAME_SET_ISR;
    \        0x8   0x2112             MOVS     R1,#+18
@@ -800,9 +803,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
    \       0x16   0x2805             CMP      R0,#+5
    \       0x18   0xD003             BEQ.N    ??OSFlagNameSet_1
     488                  OS_EXIT_CRITICAL();
-   \       0x1A   0x....'....        BL       ?Subroutine1
+   \       0x1A   0x....'....        BL       ?Subroutine0
     489                  *perr = OS_ERR_EVENT_TYPE;
-   \                     ??CrossCallReturnLabel_4: (+1)
+   \                     ??CrossCallReturnLabel_2: (+1)
    \       0x1E   0x2001             MOVS     R0,#+1
    \       0x20   0xE010             B.N      ??OSFlagNameSet_2
     490                  return;
@@ -815,9 +818,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
    \       0x28   0x2810             CMP      R0,#+16
    \       0x2A   0xDB03             BLT.N    ??OSFlagNameSet_3
     494                  OS_EXIT_CRITICAL();
-   \       0x2C   0x....'....        BL       ?Subroutine1
+   \       0x2C   0x....'....        BL       ?Subroutine0
     495                  *perr = OS_ERR_FLAG_NAME_TOO_LONG;
-   \                     ??CrossCallReturnLabel_3: (+1)
+   \                     ??CrossCallReturnLabel_1: (+1)
    \       0x30   0x2073             MOVS     R0,#+115
    \       0x32   0xE007             B.N      ??OSFlagNameSet_2
     496                  return;
@@ -828,9 +831,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
    \       0x36   0xF105 0x000A      ADD      R0,R5,#+10
    \       0x3A   0x....'....        BL       OS_StrCopy
     499              OS_EXIT_CRITICAL();
-   \       0x3E   0x....'....        BL       ?Subroutine1
+   \       0x3E   0x....'....        BL       ?Subroutine0
     500              *perr = OS_ERR_NONE;
-   \                     ??CrossCallReturnLabel_2: (+1)
+   \                     ??CrossCallReturnLabel_0: (+1)
    \       0x42   0x2000             MOVS     R0,#+0
    \                     ??OSFlagNameSet_2: (+1)
    \       0x44   0x7020             STRB     R0,[R4, #+0]
@@ -948,7 +951,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     590              if (pgrp->OSFlagType != OS_EVENT_TYPE_FLAG) {          /* Validate event block type                */
    \       0x22   0x7829             LDRB     R1,[R5, #+0]
    \       0x24   0x2905             CMP      R1,#+5
-   \       0x26   0xBF18             IT       NE 
+   \       0x26   0xBF18             IT       NE
    \       0x28   0x2001             MOVNE    R0,#+1
     591                  *perr = OS_ERR_EVENT_TYPE;
    \       0x2A   0xD170             BNE.N    ??OSFlagPend_2
@@ -958,7 +961,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     594              result = (INT8U)(wait_type & OS_FLAG_CONSUME);
     595              if (result != (INT8U)0) {                             /* See if we need to consume the flags      */
    \       0x2E   0xEA5F 0x6009      LSLS     R0,R9,#+24
-   \       0x32   0xBF46             ITTE     MI 
+   \       0x32   0xBF46             ITTE     MI
    \       0x34   0xF009 0x097F      ANDMI    R9,R9,#0x7F
    \       0x38   0x2401             MOVMI    R4,#+1
    \       0x3A   0x2400             MOVPL    R4,#+0
@@ -979,7 +982,8 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
    \       0x4E   0xE8DF 0xF009      TBB      [PC, R9]
    \                     ??OSFlagPend_0:
    \       0x52   0x31 0x37          DC8      0x31,0x37,0x2,0x2A
-   \              0x02 0x2A    
+
+   \              0x02 0x2A
     604                  case OS_FLAG_WAIT_SET_ALL:                         /* See if all required flags are set        */
     605                       flags_rdy = (OS_FLAGS)(pgrp->OSFlagFlags & flags);   /* Extract only the bits we want     */
    \                     ??OSFlagPend_5: (+1)
@@ -1093,7 +1097,7 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     686                  switch (pend_stat) {
    \                     ??CrossCallReturnLabel_11: (+1)
    \       0x9C   0x2F02             CMP      R7,#+2
-   \       0x9E   0xBF14             ITE      NE 
+   \       0x9E   0xBF14             ITE      NE
    \       0xA0   0x200A             MOVNE    R0,#+10
    \       0xA2   0x200E             MOVEQ    R0,#+14
     687                      case OS_STAT_PEND_ABORT:
@@ -1288,9 +1292,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     795          OS_FLAGS  OSFlagPost (OS_FLAG_GRP *pgrp, OS_FLAGS flags, INT8U opt, INT8U *perr)
     796          {
    \                     OSFlagPost: (+1)
-   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
    \        0x4   0x4607             MOV      R7,R0
-   \        0x6   0x460C             MOV      R4,R1
+   \        0x6   0x460E             MOV      R6,R1
     797              OS_FLAG_NODE *pnode;
     798              BOOLEAN       sched;
     799              OS_FLAGS      flags_cur;
@@ -1314,14 +1318,14 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     817              if (pgrp->OSFlagType != OS_EVENT_TYPE_FLAG) {    /* Make sure we are pointing to an event flag grp */
    \        0x8   0x7838             LDRB     R0,[R7, #+0]
    \        0xA   0x2805             CMP      R0,#+5
-   \        0xC   0x4616             MOV      R6,R2
+   \        0xC   0x4614             MOV      R4,R2
    \        0xE   0x461D             MOV      R5,R3
    \       0x10   0xD002             BEQ.N    ??OSFlagPost_1
     818                  *perr = OS_ERR_EVENT_TYPE;
    \       0x12   0x2101             MOVS     R1,#+1
    \       0x14   0x7029             STRB     R1,[R5, #+0]
     819                  return ((OS_FLAGS)0);
-   \       0x16   0xE03E             B.N      ??OSFlagPost_2
+   \       0x16   0xE040             B.N      ??OSFlagPost_2
     820              }
     821          /*$PAGE*/
     822              OS_ENTER_CRITICAL();
@@ -1329,17 +1333,15 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
    \       0x18   0x....'....        BL       OS_CPU_SR_Save
    \       0x1C   0x4680             MOV      R8,R0
     823              switch (opt) {
-   \       0x1E   0xB116             CBZ.N    R6,??OSFlagPost_3
-   \       0x20   0x2E01             CMP      R6,#+1
-   \       0x22   0xD007             BEQ.N    ??OSFlagPost_4
-   \       0x24   0xE009             B.N      ??OSFlagPost_5
+   \       0x1E   0xB114             CBZ.N    R4,??OSFlagPost_3
+   \       0x20   0x2C01             CMP      R4,#+1
+   \       0x22   0xD008             BEQ.N    ??OSFlagPost_4
+   \       0x24   0xE00B             B.N      ??OSFlagPost_5
     824                  case OS_FLAG_CLR:
     825                       pgrp->OSFlagFlags &= ~flags;            /* Clear the flags specified in the group         */
    \                     ??OSFlagPost_3: (+1)
    \       0x26   0x8938             LDRH     R0,[R7, #+8]
-   \       0x28   0xEA20 0x0404      BIC      R4,R0,R4
-   \                     ??OSFlagPost_6: (+1)
-   \       0x2C   0x813C             STRH     R4,[R7, #+8]
+   \       0x28   0xEA20 0x0906      BIC      R9,R0,R6
     826                       break;
     827          
     828                  case OS_FLAG_SET:
@@ -1352,33 +1354,35 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     835                       return ((OS_FLAGS)0);
     836              }
     837              sched = OS_FALSE;                                /* Indicate that we don't need rescheduling       */
-   \       0x2E   0x2600             MOVS     R6,#+0
     838              pnode = (OS_FLAG_NODE *)pgrp->OSFlagWaitList;
-   \       0x30   0x687C             LDR      R4,[R7, #+4]
-   \       0x32   0xE018             B.N      ??OSFlagPost_7
+   \                     ??OSFlagPost_6: (+1)
+   \       0x2C   0x687C             LDR      R4,[R7, #+4]
+   \       0x2E   0xF8A7 0x9008      STRH     R9,[R7, #+8]
+   \       0x32   0x2600             MOVS     R6,#+0
+   \       0x34   0xE019             B.N      ??OSFlagPost_7
    \                     ??OSFlagPost_4: (+1)
-   \       0x34   0x8938             LDRH     R0,[R7, #+8]
-   \       0x36   0x4304             ORRS     R4,R4,R0
-   \       0x38   0xE7F8             B.N      ??OSFlagPost_6
+   \       0x36   0x8938             LDRH     R0,[R7, #+8]
+   \       0x38   0xEA46 0x0900      ORR      R9,R6,R0
+   \       0x3C   0xE7F6             B.N      ??OSFlagPost_6
    \                     ??OSFlagPost_5: (+1)
-   \       0x3A   0x....'....        BL       OS_CPU_SR_Restore
-   \       0x3E   0x2071             MOVS     R0,#+113
-   \       0x40   0xE028             B.N      ??OSFlagPost_8
+   \       0x3E   0x....'....        BL       OS_CPU_SR_Restore
+   \       0x42   0x2071             MOVS     R0,#+113
+   \       0x44   0xE028             B.N      ??OSFlagPost_8
     839              while (pnode != (OS_FLAG_NODE *)0) {             /* Go through all tasks waiting on event flag(s)  */
     840                  switch (pnode->OSFlagNodeWaitType) {
     841                      case OS_FLAG_WAIT_SET_ALL:               /* See if all req. flags are set for current node */
     842                           flags_rdy = (OS_FLAGS)(pgrp->OSFlagFlags & pnode->OSFlagNodeFlags);
    \                     ??OSFlagPost_9: (+1)
-   \       0x42   0x8A20             LDRH     R0,[R4, #+16]
-   \       0x44   0x8939             LDRH     R1,[R7, #+8]
-   \       0x46   0x4001             ANDS     R1,R0,R1
+   \       0x46   0x8A20             LDRH     R0,[R4, #+16]
+   \       0x48   0x8939             LDRH     R1,[R7, #+8]
+   \       0x4A   0x4001             ANDS     R1,R0,R1
     843                           if (flags_rdy == pnode->OSFlagNodeFlags) {
    \                     ??OSFlagPost_10: (+1)
-   \       0x48   0x4281             CMP      R1,R0
-   \       0x4A   0xD10B             BNE.N    ??OSFlagPost_11
+   \       0x4C   0x4281             CMP      R1,R0
+   \       0x4E   0xD10B             BNE.N    ??OSFlagPost_11
     844                               rdy = OS_FlagTaskRdy(pnode, flags_rdy);  /* Make task RTR, event(s) Rx'd          */
     845                               if (rdy == OS_TRUE) {
-   \       0x4C   0xE004             B.N      ??OSFlagPost_12
+   \       0x50   0xE004             B.N      ??OSFlagPost_12
     846                                   sched = OS_TRUE;                     /* When done we will reschedule          */
     847                               }
     848                           }
@@ -1408,20 +1412,20 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     872                      case OS_FLAG_WAIT_CLR_ANY:               /* See if any flag set                            */
     873                           flags_rdy = (OS_FLAGS)(~pgrp->OSFlagFlags & pnode->OSFlagNodeFlags);
    \                     ??OSFlagPost_13: (+1)
-   \       0x4E   0x8939             LDRH     R1,[R7, #+8]
-   \       0x50   0x8A20             LDRH     R0,[R4, #+16]
-   \       0x52   0xEA30 0x0101      BICS     R1,R0,R1
+   \       0x52   0x8939             LDRH     R1,[R7, #+8]
+   \       0x54   0x8A20             LDRH     R0,[R4, #+16]
+   \       0x56   0xEA30 0x0101      BICS     R1,R0,R1
     874                           if (flags_rdy != (OS_FLAGS)0) {
    \                     ??OSFlagPost_14: (+1)
-   \       0x56   0xD005             BEQ.N    ??OSFlagPost_11
+   \       0x5A   0xD005             BEQ.N    ??OSFlagPost_11
     875                               rdy = OS_FlagTaskRdy(pnode, flags_rdy);  /* Make task RTR, event(s) Rx'd          */
     876                               if (rdy == OS_TRUE) {
    \                     ??OSFlagPost_12: (+1)
-   \       0x58   0x4620             MOV      R0,R4
-   \       0x5A   0x....'....        BL       OS_FlagTaskRdy
-   \       0x5E   0x2801             CMP      R0,#+1
-   \       0x60   0xBF08             IT       EQ 
-   \       0x62   0x2601             MOVEQ    R6,#+1
+   \       0x5C   0x4620             MOV      R0,R4
+   \       0x5E   0x....'....        BL       OS_FlagTaskRdy
+   \       0x62   0x2801             CMP      R0,#+1
+   \       0x64   0xBF08             IT       EQ
+   \       0x66   0x2601             MOVEQ    R6,#+1
     877                                   sched = OS_TRUE;                     /* When done we will reschedule          */
     878                               }
     879                           }
@@ -1434,63 +1438,64 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
     886                  }
     887                  pnode = (OS_FLAG_NODE *)pnode->OSFlagNodeNext; /* Point to next task waiting for event flag(s) */
    \                     ??OSFlagPost_11: (+1)
-   \       0x64   0x6824             LDR      R4,[R4, #+0]
+   \       0x68   0x6824             LDR      R4,[R4, #+0]
    \                     ??OSFlagPost_7: (+1)
-   \       0x66   0xB1C4             CBZ.N    R4,??OSFlagPost_15
-   \       0x68   0x7CA0             LDRB     R0,[R4, #+18]
-   \       0x6A   0x2803             CMP      R0,#+3
-   \       0x6C   0xD80E             BHI.N    ??OSFlagPost_16
-   \       0x6E   0xE8DF 0xF000      TBB      [PC, R0]
+   \       0x6A   0xB1C4             CBZ.N    R4,??OSFlagPost_15
+   \       0x6C   0x7CA0             LDRB     R0,[R4, #+18]
+   \       0x6E   0x2803             CMP      R0,#+3
+   \       0x70   0xD80E             BHI.N    ??OSFlagPost_16
+   \       0x72   0xE8DF 0xF000      TBB      [PC, R0]
    \                     ??OSFlagPost_0:
-   \       0x72   0x08 0x03          DC8      0x8,0x3,0x2,0x4
-   \              0x02 0x04    
+   \       0x76   0x08 0x03          DC8      0x8,0x3,0x2,0x4
+
+   \              0x02 0x04
    \                     ??OSFlagPost_17: (+1)
-   \       0x76   0xE7E4             B.N      ??OSFlagPost_9
+   \       0x7A   0xE7E4             B.N      ??OSFlagPost_9
    \                     ??OSFlagPost_18: (+1)
-   \       0x78   0xE7E9             B.N      ??OSFlagPost_13
+   \       0x7C   0xE7E9             B.N      ??OSFlagPost_13
    \                     ??OSFlagPost_19: (+1)
-   \       0x7A   0x8939             LDRH     R1,[R7, #+8]
-   \       0x7C   0x8A20             LDRH     R0,[R4, #+16]
-   \       0x7E   0x4001             ANDS     R1,R0,R1
-   \       0x80   0xE7E9             B.N      ??OSFlagPost_14
+   \       0x7E   0x8939             LDRH     R1,[R7, #+8]
+   \       0x80   0x8A20             LDRH     R0,[R4, #+16]
+   \       0x82   0x4001             ANDS     R1,R0,R1
+   \       0x84   0xE7E9             B.N      ??OSFlagPost_14
    \                     ??OSFlagPost_20: (+1)
-   \       0x82   0x8A20             LDRH     R0,[R4, #+16]
-   \       0x84   0x8939             LDRH     R1,[R7, #+8]
-   \       0x86   0xEA20 0x0101      BIC      R1,R0,R1
-   \       0x8A   0xE7DD             B.N      ??OSFlagPost_10
+   \       0x86   0x8A20             LDRH     R0,[R4, #+16]
+   \       0x88   0x8939             LDRH     R1,[R7, #+8]
+   \       0x8A   0xEA20 0x0101      BIC      R1,R0,R1
+   \       0x8E   0xE7DD             B.N      ??OSFlagPost_10
    \                     ??OSFlagPost_16: (+1)
-   \       0x8C   0x4640             MOV      R0,R8
-   \       0x8E   0x....'....        BL       OS_CPU_SR_Restore
-   \       0x92   0x206F             MOVS     R0,#+111
+   \       0x90   0x4640             MOV      R0,R8
+   \       0x92   0x....'....        BL       OS_CPU_SR_Restore
+   \       0x96   0x206F             MOVS     R0,#+111
    \                     ??OSFlagPost_8: (+1)
-   \       0x94   0x7028             STRB     R0,[R5, #+0]
+   \       0x98   0x7028             STRB     R0,[R5, #+0]
    \                     ??OSFlagPost_2: (+1)
-   \       0x96   0x2000             MOVS     R0,#+0
-   \       0x98   0xE00D             B.N      ??OSFlagPost_21
+   \       0x9A   0x2000             MOVS     R0,#+0
+   \       0x9C   0xE00D             B.N      ??OSFlagPost_21
     888              }
     889              OS_EXIT_CRITICAL();
    \                     ??OSFlagPost_15: (+1)
-   \       0x9A   0x4640             MOV      R0,R8
-   \       0x9C   0x....'....        BL       OS_CPU_SR_Restore
+   \       0x9E   0x4640             MOV      R0,R8
+   \       0xA0   0x....'....        BL       OS_CPU_SR_Restore
     890              if (sched == OS_TRUE) {
-   \       0xA0   0xB10E             CBZ.N    R6,??OSFlagPost_22
+   \       0xA4   0xB10E             CBZ.N    R6,??OSFlagPost_22
     891                  OS_Sched();
-   \       0xA2   0x....'....        BL       OS_Sched
+   \       0xA6   0x....'....        BL       OS_Sched
     892              }
     893              OS_ENTER_CRITICAL();
    \                     ??OSFlagPost_22: (+1)
-   \       0xA6   0x....'....        BL       OS_CPU_SR_Save
+   \       0xAA   0x....'....        BL       OS_CPU_SR_Save
     894              flags_cur = pgrp->OSFlagFlags;
-   \       0xAA   0x893C             LDRH     R4,[R7, #+8]
+   \       0xAE   0x893C             LDRH     R4,[R7, #+8]
     895              OS_EXIT_CRITICAL();
-   \       0xAC   0x....'....        BL       OS_CPU_SR_Restore
+   \       0xB0   0x....'....        BL       OS_CPU_SR_Restore
     896              *perr     = OS_ERR_NONE;
-   \       0xB0   0x2000             MOVS     R0,#+0
-   \       0xB2   0x7028             STRB     R0,[R5, #+0]
+   \       0xB4   0x2000             MOVS     R0,#+0
+   \       0xB6   0x7028             STRB     R0,[R5, #+0]
     897              return (flags_cur);
-   \       0xB4   0x4620             MOV      R0,R4
+   \       0xB8   0x4620             MOV      R0,R4
    \                     ??OSFlagPost_21: (+1)
-   \       0xB6   0xE8BD 0x81F0      POP      {R4-R8,PC}       ;; return
+   \       0xBA   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}    ;; return
     898          }
     899          /*$PAGE*/
     900          /*
@@ -1979,11 +1984,11 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
        8   OSFlagPendGetFlagsRdy
          8   -> OS_CPU_SR_Restore
          8   -> OS_CPU_SR_Save
-      24   OSFlagPost
-        24   -> OS_CPU_SR_Restore
-        24   -> OS_CPU_SR_Save
-        24   -> OS_FlagTaskRdy
-        24   -> OS_Sched
+      32   OSFlagPost
+        32   -> OS_CPU_SR_Restore
+        32   -> OS_CPU_SR_Save
+        32   -> OS_FlagTaskRdy
+        32   -> OS_Sched
       16   OSFlagQuery
         16   -> OS_CPU_SR_Restore
         16   -> OS_CPU_SR_Save
@@ -2006,18 +2011,18 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
        4  ??DataTable8_4
        4  ??DataTable8_5
        4  ??DataTable8_6
-      28  ?Subroutine0
-       6  ?Subroutine1
-      12  ?Subroutine2
+       6  ?Subroutine0
+      12  ?Subroutine1
+      24  ?Subroutine2
        6  ?Subroutine3
      146  OSFlagAccept
       76  OSFlagCreate
-     130  OSFlagDel
+     132  OSFlagDel
       62  OSFlagNameGet
       72  OSFlagNameSet
      276  OSFlagPend
       20  OSFlagPendGetFlagsRdy
-     186  OSFlagPost
+     190  OSFlagPost
       38  OSFlagQuery
       92  OS_FlagBlock
       54  OS_FlagInit
@@ -2025,9 +2030,9 @@ C:\Users\19eslab1\Desktop\Micrium\Software\uCOS-II\Source\os_flag.c
       30  OS_FlagUnlink
 
  
- 1'324 bytes in section .text
+ 1'326 bytes in section .text
  
- 1'324 bytes of CODE memory
+ 1'326 bytes of CODE memory
 
 Errors: none
 Warnings: none
