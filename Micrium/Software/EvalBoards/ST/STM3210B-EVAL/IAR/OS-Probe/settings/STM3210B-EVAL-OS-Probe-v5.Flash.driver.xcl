@@ -6,7 +6,7 @@
 
 "-p" 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\CONFIG\debugger\ST\STM32F100RB.ddf" 
+"D:\Develop\IAR Systems\arm\CONFIG\debugger\ST\STM32F100RB.ddf" 
 
 "--drv_verify_download" 
 
