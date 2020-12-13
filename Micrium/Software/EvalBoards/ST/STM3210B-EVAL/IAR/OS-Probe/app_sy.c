@@ -74,10 +74,18 @@ static void *msg[10];
 
 // Event Flags
 static OS_FLAG_GRP *flagGroup;
-static OS_FLAGS check;
+const static OS_FLAGS FLAG_INIT = 0;
+const static OS_FLAGS FLAG_DETECT = 1;
+const static OS_FLAGS FLAG_DETECT_NOT = 2;
+const static OS_FLAGS FLAG_TEMPER_NORMAL = 4;
+const static OS_FLAGS FLAG_TEMPER_HIGH = 8;
+const static OS_FLAGS FLAG_TEMPER_LOW = 16;
+
 // TODO("Check OS FLAG")
 //#define OS_FLAGS_NBITS 8
 //#define OS_FLAG_EN 1
+
+const static int DELAY_TIME = 100;
 
 #if ((APP_OS_PROBE_EN == DEF_ENABLED) &&  \
 	 (APP_PROBE_COM_EN == DEF_ENABLED) && \
@@ -160,19 +168,19 @@ int main(void)
 	App_msgQue = OSQCreate(msg, 10);
 
 	// Create Event Flag
-	flagGroup = OSFlagCreate(check, os_err);
+	flagGroup = OSFlagCreate(FLAG_INIT, os_err);
 
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskDetect,                      // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
-							 (void *)0,												// Task로 넘겨줄 인자
-							 (OS_STK *)&App_TaskDetectStk[APP_TASK_STK_SIZE - 1],	// Task가 할당될 Stack의 Top을 가리키는 주소
-							 (INT8U)APP_TASK_DETECT_PRIO,							// Task의 우선 순위 (MPT)
-							 (INT16U)APP_TASK_DETECT_PRIO,							// Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
-							 (OS_STK *)&App_TaskDetectStk,							// Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
-							 (INT32U)APP_TASK_STK_SIZE,								// Task Stack의 크기를 의미
-							 (void *)0,												// Task Control Block 활용시 사용
-							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));	// Task 생성 옵션
+	os_err = OSTaskCreateExt((void (*)(void *))App_TaskDetect,					   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+							 (void *)0,											   // Task로 넘겨줄 인자
+							 (OS_STK *)&App_TaskDetectStk[APP_TASK_STK_SIZE - 1],  // Task가 할당될 Stack의 Top을 가리키는 주소
+							 (INT8U)APP_TASK_DETECT_PRIO,						   // Task의 우선 순위 (MPT)
+							 (INT16U)APP_TASK_DETECT_PRIO,						   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
+							 (OS_STK *)&App_TaskDetectStk,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
+							 (INT32U)APP_TASK_STK_SIZE,							   // Task Stack의 크기를 의미
+							 (void *)0,											   // Task Control Block 활용시 사용
+							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
 
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskTemper,                      // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
+	os_err = OSTaskCreateExt((void (*)(void *))App_TaskTemper, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
 							 (void *)0,
 							 (OS_STK *)&App_TaskTemperStk[APP_TASK_STK_SIZE - 1],
 							 (INT8U)APP_TASK_TEMPER_PRIO,
@@ -182,7 +190,7 @@ int main(void)
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskPass,                         // 정상체온인 사람은 통과를 허가하는 Task            
+	os_err = OSTaskCreateExt((void (*)(void *))App_TaskPass, // 정상체온인 사람은 통과를 허가하는 Task
 							 (void *)0,
 							 (OS_STK *)&App_TaskPassStk[APP_TASK_STK_SIZE - 1],
 							 (INT8U)APP_TASK_PASS_PRIO,
@@ -192,7 +200,7 @@ int main(void)
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskDeny,                         // 비정상체온인 사람은 통과를 불허하는 Task
+	os_err = OSTaskCreateExt((void (*)(void *))App_TaskDeny, // 비정상체온인 사람은 통과를 불허하는 Task
 							 (void *)0,
 							 (OS_STK *)&App_TaskDenyStk[APP_TASK_STK_SIZE - 1],
 							 (INT8U)APP_TASK_DENY_PRIO,
@@ -227,10 +235,18 @@ int main(void)
  *********************************************************************************************************
  */
 
- // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
-static void App_TaskDetect(void* p)
+// Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+static void App_TaskDetect(void *p)
 {
-
+	CPU_INT08U err;
+	while (DEF_TRUE)
+	{
+		if (condition != 0) // when human detected
+		{
+			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, *err);
+		}
+		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+	}
 }
 
 /*
@@ -249,9 +265,28 @@ static void App_TaskDetect(void* p)
  *********************************************************************************************************
  */
 // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
-static void App_TaskTemper(void* p)
+static void App_TaskTemper(void *p)
 {
+	CPU_INT08U err;
+	while (DEF_TRUE)
+	{
+		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, &err);
+		// 물체 감지시까지 대기
+		if (condition > high) // when temperature is HIGH
+		{
+			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, *err);
+		}
+		else if (condition < low)
+		{
+			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, *err);
+		}
+		else
+		{
+			OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, *err);
+		}
 
+		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+	}
 }
 
 /*
@@ -269,9 +304,18 @@ static void App_TaskTemper(void* p)
  * Note(s)     : none.
  *********************************************************************************************************
  */
-// 정상체온인 사람은 통과를 허가하는 Task 
-static void App_TaskPass(void* p) {
-
+// 정상체온인 사람은 통과를 허가하는 Task
+static void App_TaskPass(void *p)
+{
+	CPU_INT08U err;
+	while (DEF_TRUE)
+	{
+		OSFlagPend(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, &err);
+		TODO("dot-matrix pass");
+		TODO("piezo pass");
+		TODO("door open");					// 문 언제 닫음? 열린 뒤 일정 시간 후 문 닫는 태스크 추가 고려
+		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+	}
 }
 
 /*
@@ -290,8 +334,19 @@ static void App_TaskPass(void* p) {
  *********************************************************************************************************
  */
 // 비정상체온인 사람은 통과를 불허하는 Task
-static void App_TaskDeny(void* p) {
-
+static void App_TaskDeny(void *p)
+{
+	CPU_INT08U err;
+	while (DEF_TRUE)
+	{
+		OSFlagPend(flagGroup,
+				   FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW,
+				   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
+				   &err);
+		TODO("dot-matrix deny");
+		TODO("piezo deny");
+		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+	}
 }
 
 /*
@@ -309,7 +364,6 @@ static void App_TaskDeny(void* p) {
  * Note(s)     : none.
  *********************************************************************************************************
  */
-
 
 /*
  *********************************************************************************************************
@@ -672,9 +726,9 @@ static void Init_All()
 	GPIO_Init(GPIOB, &gpio_init);
 	GPIO_SetBits(GPIOB, GPIO_Pin_12) // check
 
-	// CONFIG
-	// ADC
-	adc_init.ADC_Mode = ADC_Mode_Independent;
+		// CONFIG
+		// ADC
+		adc_init.ADC_Mode = ADC_Mode_Independent;
 	adc_init.ADC_ScanConvMode = DISABLE;
 	adc_init.ADC_ContinuousConvMode = ENABLE;
 	adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
@@ -694,7 +748,7 @@ static void Init_All()
 	I2C_INIT(I2C1, &i2c_init);
 	I2C_Cmd(I2C1, ENABLE);
 	// TIM (PWM)
-	tim_timebase_init.TIM_Prescaler = (uint16_t) (SystemCoreClock / 1000000) - 1;
+	tim_timebase_init.TIM_Prescaler = (uint16_t)(SystemCoreClock / 1000000) - 1;
 	tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Up;
 	tim_timebase_init.TIM_Period = 20000 - 1;
 	tim_timebase_init.TIM_ClockDivision = 0;
