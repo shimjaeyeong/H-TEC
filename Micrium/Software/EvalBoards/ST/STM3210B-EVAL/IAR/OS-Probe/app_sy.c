@@ -69,7 +69,7 @@ static OS_STK App_TaskKbdStk[APP_TASK_KBD_STK_SIZE];
 //static OS_EVENT      *App_UserIFMbox; // 메시지 박스
 
 // Message Que
-static OS_EVENT *App_msgQue;
+static OS_EVENT *App_temperQue;
 static void *msg[10];
 
 // Event Flags
@@ -165,7 +165,7 @@ int main(void)
 	OSInit();
 
 	// Create Message Que, msg : 저장공간, 크기 : 10
-	App_msgQue = OSQCreate(msg, 10);
+	App_temperQue = OSQCreate(msg, 10);
 
 	// Create Event Flag
 	flagGroup = OSFlagCreate(FLAG_INIT, os_err);
@@ -268,16 +268,20 @@ static void App_TaskDetect(void *p)
 static void App_TaskTemper(void *p)
 {
 	CPU_INT08U err;
+	int temp;
 	while (DEF_TRUE)
 	{
 		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, &err);
-		// 물체 감지시까지 대기
-		if (condition > high) // when temperature is HIGH
+
+		temp = TODO("Get temperature");
+		if (temp > high) // when temperature is HIGH
 		{
+			OSQPost(App_temperQue, temp);
 			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, *err);
 		}
-		else if (condition < low)
+		else if (temp < low)
 		{
+			OSQPost(App_temperQue, temp);
 			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, *err);
 		}
 		else
@@ -337,13 +341,15 @@ static void App_TaskPass(void *p)
 static void App_TaskDeny(void *p)
 {
 	CPU_INT08U err;
+	int temp = 0;
 	while (DEF_TRUE)
 	{
 		OSFlagPend(flagGroup,
 				   FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW,
 				   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
 				   &err);
-		TODO("dot-matrix deny");
+		temp = OSQPend(App_temperQue, 0, &err);
+		TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
 		TODO("piezo deny");
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
