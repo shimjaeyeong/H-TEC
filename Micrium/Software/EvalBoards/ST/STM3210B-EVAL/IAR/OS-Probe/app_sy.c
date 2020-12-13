@@ -213,9 +213,9 @@ int main(void)
 
 /*
  *********************************************************************************************************
- *                                          App_TaskStart()
+ *                                          App_TaskDetect()
  *
- * Description : The startup task.  The uC/OS-II ticker should only be initialize once multitasking starts.
+ * Description : Human detecting task. Monitor the existence of people,
  *
  * Argument(s) : p_arg       Argument passed to 'App_TaskStart()' by 'OSTaskCreate()'.
  *
@@ -226,73 +226,72 @@ int main(void)
  * Note(s)     : none.
  *********************************************************************************************************
  */
-// LED ������ ���� Task
-static void App_TaskDetect(void *p_arg)
+
+ // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+static void App_TaskDetect(void* p)
 {
-	CPU_INT08U os_err;
 
-	(void)p_arg;
-
-	BSP_Init();			  /* Initialize BSP functions.                            */
-	OS_CPU_SysTickInit(); /* Initialize the SysTick.                              */
-
-#if (OS_TASK_STAT_EN > 0)
-	OSStatInit(); /* Determine CPU capacity.                              */
-#endif
-
-#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
-	 (APP_OS_PROBE_EN == DEF_ENABLED))
-	App_InitProbe();
-#endif
-	/* Create application events.                           */
-	/* Task�� ����� ���� MailBox ����                        */
-	App_EventCreate();
-
-	/* Create application tasks.                            */
-	/* LCD ���� Task, Ű���� �Է� Task ����                    */
-	App_TaskCreate();
-
-	/* Task body, always written as an infinite loop.       */
-	while (DEF_TRUE)
-	{
-		if (ADC_GetConversionValue(ADC1) == 1)
-		{
-			OSFlagPost(flagGroup, check, OS_FLAG_SET, os_err);
-		}
-		OSTimeDlyHMSM(0, 0, 0, 100);
-	}
 }
 
 /*
  *********************************************************************************************************
- *                                             App_EventCreate()
+ *                                            App_TaskTemper()
  *
- * Description : Create the application events.
+ * Description : Measure a person's temperature
  *
- * Argument(s) : none.
+ * Argument(s) : p_arg       Argument passed to 'App_TaskKbd()' by 'OSTaskCreate()'.
  *
  * Return(s)   : none.
  *
- * Caller(s)   : App_TaskStart().
+ * Caller(s)   : This is a task.
  *
  * Note(s)     : none.
  *********************************************************************************************************
  */
-
-static void App_EventCreate(void)
+// 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
+static void App_TaskTemper(void* p)
 {
-#if (OS_EVENT_NAME_SIZE > 12)
-	CPU_INT08U os_err;
-#endif
 
-	/* Create MBOX for communication between Kbd and UserIF.*/
-	/* Mail Box ����                                         */
-	/* ������ ũ���� ������ Task�� Interrupt Service Routine   */
-	/* ���� �ٸ� Task ������ �� �����                         */
-	App_UserIFMbox = OSMboxCreate((void *)0);
-#if (OS_EVENT_NAME_SIZE > 12)
-	OSEventNameSet(App_UserIFMbox, "User IF Mbox", &os_err);
-#endif
+}
+
+/*
+ *********************************************************************************************************
+ *                                            App_TaskPass()
+ *
+ * Description : Those who are at normal body temperature are allowed to pass.
+ *
+ * Argument(s) : p_arg       Argument passed to 'App_TaskKbd()' by 'OSTaskCreate()'.
+ *
+ * Return(s)   : none.
+ *
+ * Caller(s)   : This is a task.
+ *
+ * Note(s)     : none.
+ *********************************************************************************************************
+ */
+// 정상체온인 사람은 통과를 허가하는 Task 
+static void App_TaskPass(void* p) {
+
+}
+
+/*
+ *********************************************************************************************************
+ *                                            App_TaskDeny()
+ *
+ * Description : People with abnormal body temperature are not allowed to pass through.
+ *
+ * Argument(s) : p_arg       Argument passed to 'App_TaskKbd()' by 'OSTaskCreate()'.
+ *
+ * Return(s)   : none.
+ *
+ * Caller(s)   : This is a task.
+ *
+ * Note(s)     : none.
+ *********************************************************************************************************
+ */
+// 비정상체온인 사람은 통과를 불허하는 Task
+static void App_TaskDeny(void* p) {
+
 }
 
 /*
@@ -311,150 +310,6 @@ static void App_EventCreate(void)
  *********************************************************************************************************
  */
 
-static void App_TaskCreate(void)
-{
-	CPU_INT08U os_err;
-
-	// LCD�� ���Ž�Ű�� Task ����
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskUserIF,
-							 (void *)0,
-							 (OS_STK *)&App_TaskUserIFStk[APP_TASK_USER_IF_STK_SIZE - 1],
-							 (INT8U)APP_TASK_USER_IF_PRIO,
-							 (INT16U)APP_TASK_USER_IF_PRIO,
-							 (OS_STK *)&App_TaskUserIFStk[0],
-							 (INT32U)APP_TASK_USER_IF_STK_SIZE,
-							 (void *)0,
-							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
-
-#if (OS_TASK_NAME_SIZE >= 9)
-	OSTaskNameSet(APP_TASK_USER_IF_PRIO, "User I/F", &os_err);
-#endif
-	// Keyboard �Է��� �޴� Task ����
-	os_err = OSTaskCreateExt(
-		(void (*)(void *))App_TaskKbd,
-		(void *)0,
-		(OS_STK *)&App_TaskKbdStk[APP_TASK_KBD_STK_SIZE - 1],
-		(INT8U)APP_TASK_KBD_PRIO,
-		(INT16U)APP_TASK_KBD_PRIO,
-		(OS_STK *)&App_TaskKbdStk[0],
-		(INT32U)APP_TASK_KBD_STK_SIZE,
-		(void *)0,
-		(INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
-#if (OS_TASK_NAME_SIZE >= 9)
-	OSTaskNameSet(APP_TASK_KBD_PRIO, "Keyboard", &os_err);
-#endif
-}
-
-/*
- *********************************************************************************************************
- *                                            App_TaskKbd()
- *
- * Description : Monitor the state of the push buttons and passes messages to AppTaskUserIF()
- *
- * Argument(s) : p_arg       Argument passed to 'App_TaskKbd()' by 'OSTaskCreate()'.
- *
- * Return(s)   : none.
- *
- * Caller(s)   : This is a task.
- *
- * Note(s)     : none.
- *********************************************************************************************************
- */
-
-// Keyboard �Է��� �޴� Task
-static void App_TaskKbd(void *p_arg)
-{
-	CPU_BOOLEAN b1_prev;
-	CPU_BOOLEAN b1;
-	CPU_INT08U key;
-
-	(void)p_arg;
-
-	b1_prev = DEF_FALSE;
-	key = 1;
-
-	while (DEF_TRUE)
-	{
-		b1 = BSP_PB_GetStatus(BSP_PB_ID_KEY);
-
-		if ((b1 == DEF_TRUE) && (b1_prev == DEF_FALSE))
-		{
-			if (key == 2)
-			{
-				key = 1;
-			}
-			else
-			{
-				key++;
-			}
-			// MailBox�� Task���� �Է¹��� �� Key�� ����
-			OSMboxPost(App_UserIFMbox, (void *)key);
-		}
-
-		b1_prev = b1;
-
-		OSTimeDlyHMSM(0, 0, 0, 20);
-	}
-}
-
-/*
- *********************************************************************************************************
- *                                            App_TaskUserIF()
- *
- * Description : Updates LCD.
- *
- * Argument(s) : p_arg       Argument passed to 'App_TaskUserIF()' by 'OSTaskCreate()'.
- *
- * Return(s)   : none.
- *
- * Caller(s)   : This is a task.
- *
- * Note(s)     : none.
- *********************************************************************************************************
- */
-
-// LCD ������ ���� Task
-static void App_TaskUserIF(void *p_arg)
-{
-	CPU_INT08U *msg;
-	CPU_INT08U err;
-	CPU_INT32U nstate;
-	CPU_INT32U pstate;
-
-	(void)p_arg;
-
-	App_DispScr_SignOn();
-	OSTimeDlyHMSM(0, 0, 1, 0);
-	nstate = 1;
-	pstate = 1;
-
-	while (DEF_TRUE)
-	{
-		// �ٸ� Task���� Mailbox�� ������ ����� ���� ����
-		msg = (CPU_INT08U *)(OSMboxPend(App_UserIFMbox, OS_TICKS_PER_SEC / 10, &err));
-		if (err == OS_NO_ERR)
-		{
-			nstate = (CPU_INT32U)msg;
-		}
-
-		if (nstate != pstate)
-		{
-			pstate = nstate;
-		}
-
-		switch (nstate)
-		{
-		case 2:
-			App_DispScr_TaskNames();
-			break;
-
-		case 1:
-		default:
-			App_DispScr_SignOn();
-			break;
-		}
-	}
-}
 
 /*
  *********************************************************************************************************
@@ -839,9 +694,9 @@ static void Init_All()
 	I2C_INIT(I2C1, &i2c_init);
 	I2C_Cmd(I2C1, ENABLE);
 	// TIM (PWM)
-	tim_timebase_init.TIM_Prescaler = 72 - 1;
+	tim_timebase_init.TIM_Prescaler = (uint16_t) (SystemCoreClock / 1000000) - 1;
 	tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Up;
-	tim_timebase_init.TIM_Period = 20000;
+	tim_timebase_init.TIM_Period = 20000 - 1;
 	tim_timebase_init.TIM_ClockDivision = 0;
 	tim_timebase_init.TIM_RepetitionCounter;
 	TIM_TimeBaseInit(TIM4, &time_timebase_init);
