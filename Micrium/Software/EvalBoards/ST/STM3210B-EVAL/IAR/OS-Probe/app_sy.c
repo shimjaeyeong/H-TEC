@@ -156,23 +156,23 @@ int main(void)
 	/* Initialize "uC/OS-II, The Real-Time Kernel".         */
 	OSInit();
 
-	// Create Message Que
+	// Create Message Que, msg : 저장공간, 크기 : 10
 	App_msgQue = OSQCreate(msg, 10);
 
 	// Create Event Flag
 	flagGroup = OSFlagCreate(check, os_err);
 
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskDetect,
-							 (void *)0,
-							 (OS_STK *)&App_TaskDetectStk[APP_TASK_STK_SIZE - 1],
-							 (INT8U)APP_TASK_DETECT_PRIO,
-							 (INT16U)APP_TASK_DETECT_PRIO,
-							 (OS_STK *)&App_TaskDetectStk,
-							 (INT32U)APP_TASK_STK_SIZE,
-							 (void *)0,
-							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+	os_err = OSTaskCreateExt((void (*)(void *))App_TaskDetect,                      // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+							 (void *)0,												// Task로 넘겨줄 인자
+							 (OS_STK *)&App_TaskDetectStk[APP_TASK_STK_SIZE - 1],	// Task가 할당될 Stack의 Top을 가리키는 주소
+							 (INT8U)APP_TASK_DETECT_PRIO,							// Task의 우선 순위 (MPT)
+							 (INT16U)APP_TASK_DETECT_PRIO,							// Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
+							 (OS_STK *)&App_TaskDetectStk,							// Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
+							 (INT32U)APP_TASK_STK_SIZE,								// Task Stack의 크기를 의미
+							 (void *)0,												// Task Control Block 활용시 사용
+							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));	// Task 생성 옵션
 
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskTemper,
+	os_err = OSTaskCreateExt((void (*)(void *))App_TaskTemper,                      // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
 							 (void *)0,
 							 (OS_STK *)&App_TaskTemperStk[APP_TASK_STK_SIZE - 1],
 							 (INT8U)APP_TASK_TEMPER_PRIO,
@@ -182,7 +182,7 @@ int main(void)
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskPass,
+	os_err = OSTaskCreateExt((void (*)(void *))App_TaskPass,                         // 정상체온인 사람은 통과를 허가하는 Task            
 							 (void *)0,
 							 (OS_STK *)&App_TaskPassStk[APP_TASK_STK_SIZE - 1],
 							 (INT8U)APP_TASK_PASS_PRIO,
@@ -192,7 +192,7 @@ int main(void)
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskDeny,
+	os_err = OSTaskCreateExt((void (*)(void *))App_TaskDeny,                         // 비정상체온인 사람은 통과를 불허하는 Task
 							 (void *)0,
 							 (OS_STK *)&App_TaskDenyStk[APP_TASK_STK_SIZE - 1],
 							 (INT8U)APP_TASK_DENY_PRIO,
@@ -817,9 +817,9 @@ static void Init_All()
 	GPIO_Init(GPIOB, &gpio_init);
 	GPIO_SetBits(GPIOB, GPIO_Pin_12) // check
 
-		// CONFIG
-		// ADC
-		adc_init.ADC_Mode = ADC_Mode_Independent;
+	// CONFIG
+	// ADC
+	adc_init.ADC_Mode = ADC_Mode_Independent;
 	adc_init.ADC_ScanConvMode = DISABLE;
 	adc_init.ADC_ContinuousConvMode = ENABLE;
 	adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
@@ -839,9 +839,9 @@ static void Init_All()
 	I2C_INIT(I2C1, &i2c_init);
 	I2C_Cmd(I2C1, ENABLE);
 	// TIM (PWM)
-	tim_timebase_init.TIM_Prescaler = 400 - 1;
+	tim_timebase_init.TIM_Prescaler = 72 - 1;
 	tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Up;
-	tim_timebase_init.TIM_Period = 1000 - 1;
+	tim_timebase_init.TIM_Period = 20000;
 	tim_timebase_init.TIM_ClockDivision = 0;
 	tim_timebase_init.TIM_RepetitionCounter;
 	TIM_TimeBaseInit(TIM4, &time_timebase_init);
