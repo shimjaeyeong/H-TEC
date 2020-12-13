@@ -51,10 +51,10 @@
 *********************************************************************************************************
 */
 
-#define  APP_TASK_START_PRIO                               3
-#define  APP_TASK_KBD_PRIO                                 4
-
-#define  APP_TASK_USER_IF_PRIO                            12
+#define  APP_TASK_DETECT_PRIO                          1
+#define  APP_TASK_TEMPER_PRIO                          2
+#define  APP_TASK_PASS_PRIO                            6
+#define  APP_TASK_DENY_PRIO                            7
 
 #define  OS_PROBE_TASK_PRIO              (OS_LOWEST_PRIO - 3)
 #define  OS_TASK_TMR_PRIO                (OS_LOWEST_PRIO - 2)
@@ -66,12 +66,8 @@
 *********************************************************************************************************
 */
 
-#define  APP_TASK_START_STK_SIZE                         128
-#define  APP_TASK_KBD_STK_SIZE                           128
+#define  APP_TASK_STK_SIZE                         128
 
-#define  APP_TASK_USER_IF_STK_SIZE                       256
-
-#define  OS_PROBE_TASK_STK_SIZE                          128
 
 /*
 *********************************************************************************************************

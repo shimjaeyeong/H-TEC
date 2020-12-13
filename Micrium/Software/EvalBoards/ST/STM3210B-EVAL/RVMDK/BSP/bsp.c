@@ -32,7 +32,7 @@
 *********************************************************************************************************
 */
 
-#define  BSP_MODULE
+#define BSP_MODULE
 #include <bsp.h>
 
 /*
@@ -40,47 +40,47 @@
 *                                            LOCAL DEFINES
 *********************************************************************************************************
 */
-                                                                /* -------------------- GPIOA PINS -------------------- */
-#define  BSP_GPIOA_PB_WAKEUP                      DEF_BIT_00
-#define  BSP_GPIOA_UART1_TX                       DEF_BIT_09
-#define  BSP_GPIOA_UART1_RX                       DEF_BIT_10
-#define  BSP_GPIOA_LCD_BL                         DEF_BIT_14
+/* -------------------- GPIOA PINS -------------------- */
+#define BSP_GPIOA_PB_WAKEUP DEF_BIT_00
+#define BSP_GPIOA_UART1_TX DEF_BIT_09
+#define BSP_GPIOA_UART1_RX DEF_BIT_10
+#define BSP_GPIOA_LCD_BL DEF_BIT_14
 
-                                                                /* -------------------- GPIOB PINS -------------------- */
-#define  BSP_GPIOB_LCD_CS                         DEF_BIT_02
-#define  BSP_GPIOB_TEMP_INT                       DEF_BIT_05
-#define  BSP_GPIOB_TEMP_SCL                       DEF_BIT_06
-#define  BSP_GPIOB_TEMP_SDA                       DEF_BIT_07
-#define  BSP_GPIOB_AUDIO_PWM                      DEF_BIT_08
-#define  BSP_GPIOB_PB_KEY                         DEF_BIT_09
-#define  BSP_GPIOB_LCD_SCL                        DEF_BIT_13
-#define  BSP_GPIOB_LCD_SDO                        DEF_BIT_14
-#define  BSP_GPIOB_LCD_SDI                        DEF_BIT_15
+/* -------------------- GPIOB PINS -------------------- */
+#define BSP_GPIOB_LCD_CS DEF_BIT_02
+#define BSP_GPIOB_TEMP_INT DEF_BIT_05
+#define BSP_GPIOB_TEMP_SCL DEF_BIT_06
+#define BSP_GPIOB_TEMP_SDA DEF_BIT_07
+#define BSP_GPIOB_AUDIO_PWM DEF_BIT_08
+#define BSP_GPIOB_PB_KEY DEF_BIT_09
+#define BSP_GPIOB_LCD_SCL DEF_BIT_13
+#define BSP_GPIOB_LCD_SDO DEF_BIT_14
+#define BSP_GPIOB_LCD_SDI DEF_BIT_15
 
-                                                                /* -------------------- GPIOC PINS -------------------- */
-#define  BSP_GPIOC_POT                            DEF_BIT_04
-#define  BSP_GPIOC_LED1                           DEF_BIT_06
-#define  BSP_GPIOC_LED2                           DEF_BIT_07
-#define  BSP_GPIOC_LED3                           DEF_BIT_08
-#define  BSP_GPIOC_LED4                           DEF_BIT_09
-#define  BSP_GPIOC_PB_TAMPER                      DEF_BIT_13
+/* -------------------- GPIOC PINS -------------------- */
+#define BSP_GPIOC_POT DEF_BIT_04
+#define BSP_GPIOC_LED1 DEF_BIT_06
+#define BSP_GPIOC_LED2 DEF_BIT_07
+#define BSP_GPIOC_LED3 DEF_BIT_08
+#define BSP_GPIOC_LED4 DEF_BIT_09
+#define BSP_GPIOC_PB_TAMPER DEF_BIT_13
 
-                                                                /* -------------------- GPIOD PINS -------------------- */
-#define  BSP_GPIOD_CAN_RX                         DEF_BIT_00
-#define  BSP_GPIOD_CAN_TX                         DEF_BIT_01
-#define  BSP_GPIOD_UART2_CTS                      DEF_BIT_03
-#define  BSP_GPIOD_UART2_RTS                      DEF_BIT_04
-#define  BSP_GPIOD_UART2_TX                       DEF_BIT_05
-#define  BSP_GPIOD_UART2_RX                       DEF_BIT_06
-#define  BSP_GPIOD_LCD_RS                         DEF_BIT_07
-#define  BSP_GPIOD_JOY_UP                         DEF_BIT_08
-#define  BSP_GPIOD_JOY_SEL                        DEF_BIT_12
-#define  BSP_GPIOD_JOY_DOWN                       DEF_BIT_14
-#define  BSP_GPIOD_LCD_RD                         DEF_BIT_15
+/* -------------------- GPIOD PINS -------------------- */
+#define BSP_GPIOD_CAN_RX DEF_BIT_00
+#define BSP_GPIOD_CAN_TX DEF_BIT_01
+#define BSP_GPIOD_UART2_CTS DEF_BIT_03
+#define BSP_GPIOD_UART2_RTS DEF_BIT_04
+#define BSP_GPIOD_UART2_TX DEF_BIT_05
+#define BSP_GPIOD_UART2_RX DEF_BIT_06
+#define BSP_GPIOD_LCD_RS DEF_BIT_07
+#define BSP_GPIOD_JOY_UP DEF_BIT_08
+#define BSP_GPIOD_JOY_SEL DEF_BIT_12
+#define BSP_GPIOD_JOY_DOWN DEF_BIT_14
+#define BSP_GPIOD_LCD_RD DEF_BIT_15
 
-                                                                /* -------------------- GPIOE PINS -------------------- */
-#define  BSP_GPIOE_JOY_LEFT                       DEF_BIT_00
-#define  BSP_GPIOE_JOY_RIGHT                      DEF_BIT_01
+/* -------------------- GPIOE PINS -------------------- */
+#define BSP_GPIOE_JOY_LEFT DEF_BIT_00
+#define BSP_GPIOE_JOY_RIGHT DEF_BIT_01
 
 /*
 *********************************************************************************************************
@@ -88,20 +88,17 @@
 *********************************************************************************************************
 */
 
-
 /*
 *********************************************************************************************************
 *                                          LOCAL DATA TYPES
 *********************************************************************************************************
 */
 
-
 /*
 *********************************************************************************************************
 *                                            LOCAL TABLES
 *********************************************************************************************************
 */
-
 
 /*
 *********************************************************************************************************
@@ -115,21 +112,19 @@
 *********************************************************************************************************
 */
 
-static  void  BSP_ADC_Init     (void);
+static void BSP_ADC_Init(void);
 
-static  void  BSP_Joystick_Init(void);
+static void BSP_Joystick_Init(void);
 
-static  void  BSP_LED_Init     (void);
+static void BSP_LED_Init(void);
 
-static  void  BSP_PB_Init      (void);
-
+static void BSP_PB_Init(void);
 
 /*
 *********************************************************************************************************
 *                                     LOCAL CONFIGURATION ERRORS
 *********************************************************************************************************
 */
-
 
 /*
 *********************************************************************************************************
@@ -147,12 +142,11 @@ static  void  BSP_PB_Init      (void);
 *********************************************************************************************************
 */
 
-void  BSP_Init (void)
+void BSP_Init(void)
 {
     RCC_DeInit();
     RCC_HSEConfig(RCC_HSE_ON);
     RCC_WaitForHSEStartUp();
-
 
     RCC_HCLKConfig(RCC_SYSCLK_Div1);
     RCC_PCLK2Config(RCC_HCLK_Div1);
@@ -163,20 +157,22 @@ void  BSP_Init (void)
     RCC_PLLConfig(RCC_PLLSource_HSE_Div1, RCC_PLLMul_9);
     RCC_PLLCmd(ENABLE);
 
-    while (RCC_GetFlagStatus(RCC_FLAG_PLLRDY) == RESET) {
+    while (RCC_GetFlagStatus(RCC_FLAG_PLLRDY) == RESET)
+    {
         ;
     }
 
     RCC_SYSCLKConfig(RCC_SYSCLKSource_PLLCLK);
 
-    while (RCC_GetSYSCLKSource() != 0x08) {
+    while (RCC_GetSYSCLKSource() != 0x08)
+    {
         ;
     }
 
-    BSP_ADC_Init();                                             /* Initialize the I/Os for the ADC      controls.       */
-    BSP_LED_Init();                                             /* Initialize the I/Os for the LED      controls.       */
-    BSP_PB_Init();                                              /* Initialize the I/Os for the PB       control.        */
-    BSP_Joystick_Init();                                        /* Initialize the I/Os for the Joystick control.        */
+    BSP_ADC_Init();      /* Initialize the I/Os for the ADC      controls.       */
+    BSP_LED_Init();      /* Initialize the I/Os for the LED      controls.       */
+    BSP_PB_Init();       /* Initialize the I/Os for the PB       control.        */
+    BSP_Joystick_Init(); /* Initialize the I/Os for the Joystick control.        */
 
     STM3210B_LCD_Init();
     LCD_Clear(0xFFFF);
@@ -198,10 +194,9 @@ void  BSP_Init (void)
 *********************************************************************************************************
 */
 
-CPU_INT32U  BSP_CPU_ClkFreq (void)
+CPU_INT32U BSP_CPU_ClkFreq(void)
 {
-    RCC_ClocksTypeDef  rcc_clocks;
-
+    RCC_ClocksTypeDef rcc_clocks;
 
     RCC_GetClocksFreq(&rcc_clocks);
 
@@ -232,10 +227,9 @@ CPU_INT32U  BSP_CPU_ClkFreq (void)
 *********************************************************************************************************
 */
 
-INT32U  OS_CPU_SysTickClkFreq (void)
+INT32U OS_CPU_SysTickClkFreq(void)
 {
-    INT32U  freq;
-
+    INT32U freq;
 
     freq = BSP_CPU_ClkFreq();
     return (freq);
@@ -265,32 +259,30 @@ INT32U  OS_CPU_SysTickClkFreq (void)
 *********************************************************************************************************
 */
 
-static  void  BSP_ADC_Init (void)
+static void BSP_ADC_Init(void)
 {
-    ADC_InitTypeDef   adc_init;
-    GPIO_InitTypeDef  gpio_init;
-
+    ADC_InitTypeDef adc_init;
+    GPIO_InitTypeDef gpio_init;
 
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
 
-    gpio_init.GPIO_Pin  = GPIO_Pin_4;
+    gpio_init.GPIO_Pin = GPIO_Pin_4;
     gpio_init.GPIO_Mode = GPIO_Mode_AIN;
     GPIO_Init(GPIOC, &gpio_init);
 
-    adc_init.ADC_Mode               = ADC_Mode_Independent;
-    adc_init.ADC_ScanConvMode       = DISABLE;
+    adc_init.ADC_Mode = ADC_Mode_Independent;
+    adc_init.ADC_ScanConvMode = DISABLE;
     adc_init.ADC_ContinuousConvMode = ENABLE;
-    adc_init.ADC_ExternalTrigConv   = ADC_ExternalTrigConv_None;
-    adc_init.ADC_DataAlign          = ADC_DataAlign_Right;
-    adc_init.ADC_NbrOfChannel       = 1;
+    adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+    adc_init.ADC_DataAlign = ADC_DataAlign_Right;
+    adc_init.ADC_NbrOfChannel = 1;
     ADC_Init(ADC1, &adc_init);
 
     ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 1, ADC_SampleTime_13Cycles5);
     ADC_Cmd(ADC1, ENABLE);
     ADC_SoftwareStartConvCmd(ADC1, ENABLE);
 }
-
 
 /*
 *********************************************************************************************************
@@ -309,14 +301,14 @@ static  void  BSP_ADC_Init (void)
 *********************************************************************************************************
 */
 
-CPU_INT16U  BSP_ADC_GetStatus (CPU_INT08U  adc)
+CPU_INT16U BSP_ADC_GetStatus(CPU_INT08U adc)
 {
-    CPU_INT16U  result;
-
+    CPU_INT16U result;
 
     result = 0;
 
-    if (adc == 1) {
+    if (adc == 1)
+    {
         result = ADC_GetConversionValue(ADC1);
     }
 
@@ -347,23 +339,22 @@ CPU_INT16U  BSP_ADC_GetStatus (CPU_INT08U  adc)
 *********************************************************************************************************
 */
 
-static  void  BSP_PB_Init (void)
+static void BSP_PB_Init(void)
 {
-    GPIO_InitTypeDef  gpio_init;
-
+    GPIO_InitTypeDef gpio_init;
 
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-    gpio_init.GPIO_Pin  = BSP_GPIOA_PB_WAKEUP;
+    gpio_init.GPIO_Pin = BSP_GPIOA_PB_WAKEUP;
     gpio_init.GPIO_Mode = GPIO_Mode_IN_FLOATING;
     GPIO_Init(GPIOB, &gpio_init);
 
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-    gpio_init.GPIO_Pin  = BSP_GPIOB_PB_KEY;
+    gpio_init.GPIO_Pin = BSP_GPIOB_PB_KEY;
     gpio_init.GPIO_Mode = GPIO_Mode_IN_FLOATING;
     GPIO_Init(GPIOB, &gpio_init);
 
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
-    gpio_init.GPIO_Pin  = BSP_GPIOC_PB_TAMPER;
+    gpio_init.GPIO_Pin = BSP_GPIOC_PB_TAMPER;
     gpio_init.GPIO_Mode = GPIO_Mode_IN_FLOATING;
     GPIO_Init(GPIOB, &gpio_init);
 }
@@ -387,38 +378,41 @@ static  void  BSP_PB_Init (void)
 *********************************************************************************************************
 */
 
-CPU_BOOLEAN  BSP_PB_GetStatus (CPU_INT08U pb)
+CPU_BOOLEAN BSP_PB_GetStatus(CPU_INT08U pb)
 {
-    CPU_BOOLEAN  status;
-    CPU_INT32U   pin;
-
+    CPU_BOOLEAN status;
+    CPU_INT32U pin;
 
     status = DEF_FALSE;
 
-    switch (pb) {
-        case BSP_PB_ID_KEY:
-             pin = GPIO_ReadInputDataBit(GPIOB, BSP_GPIOB_PB_KEY);
-             if (pin == 0) {
-                 status = DEF_TRUE;
-             }
-             break;
+    switch (pb)
+    {
+    case BSP_PB_ID_KEY:
+        pin = GPIO_ReadInputDataBit(GPIOB, BSP_GPIOB_PB_KEY);
+        if (pin == 0)
+        {
+            status = DEF_TRUE;
+        }
+        break;
 
-        case BSP_PB_ID_WAKEUP:
-             pin = GPIO_ReadInputDataBit(GPIOA, BSP_GPIOA_PB_WAKEUP);
-             if (pin == 0) {
-                 status = DEF_TRUE;
-             }
-             break;
+    case BSP_PB_ID_WAKEUP:
+        pin = GPIO_ReadInputDataBit(GPIOA, BSP_GPIOA_PB_WAKEUP);
+        if (pin == 0)
+        {
+            status = DEF_TRUE;
+        }
+        break;
 
-        case BSP_PB_ID_TAMPER:
-             pin = GPIO_ReadInputDataBit(GPIOC, BSP_GPIOC_PB_TAMPER);
-             if (pin == 0) {
-                 status = DEF_TRUE;
-             }
-             break;
+    case BSP_PB_ID_TAMPER:
+        pin = GPIO_ReadInputDataBit(GPIOC, BSP_GPIOC_PB_TAMPER);
+        if (pin == 0)
+        {
+            status = DEF_TRUE;
+        }
+        break;
 
-        default:
-             break;
+    default:
+        break;
     }
 
     return (status);
@@ -448,20 +442,19 @@ CPU_BOOLEAN  BSP_PB_GetStatus (CPU_INT08U pb)
 *********************************************************************************************************
 */
 
-static  void  BSP_Joystick_Init (void)
+static void BSP_Joystick_Init(void)
 {
-    GPIO_InitTypeDef  gpio_init;
-
+    GPIO_InitTypeDef gpio_init;
 
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD | RCC_APB2Periph_GPIOE, ENABLE);
 
-                                                                /* Configure JOY_UP, JOY_SEL, JOY_DOWN.                 */
-    gpio_init.GPIO_Pin  = BSP_GPIOD_JOY_UP | BSP_GPIOD_JOY_SEL | BSP_GPIOD_JOY_DOWN;
+    /* Configure JOY_UP, JOY_SEL, JOY_DOWN.                 */
+    gpio_init.GPIO_Pin = BSP_GPIOD_JOY_UP | BSP_GPIOD_JOY_SEL | BSP_GPIOD_JOY_DOWN;
     gpio_init.GPIO_Mode = GPIO_Mode_IN_FLOATING;
     GPIO_Init(GPIOD, &gpio_init);
 
-                                                                /* Configure JOY_LEFT & JOY_RIGHT.                      */
-    gpio_init.GPIO_Pin  = BSP_GPIOE_JOY_LEFT | BSP_GPIOE_JOY_RIGHT;
+    /* Configure JOY_LEFT & JOY_RIGHT.                      */
+    gpio_init.GPIO_Pin = BSP_GPIOE_JOY_LEFT | BSP_GPIOE_JOY_RIGHT;
     gpio_init.GPIO_Mode = GPIO_Mode_IN_FLOATING;
     GPIO_Init(GPIOE, &gpio_init);
 }
@@ -488,35 +481,40 @@ static  void  BSP_Joystick_Init (void)
 *********************************************************************************************************
 */
 
-CPU_INT32U  BSP_Joystick_GetStatus (void)
+CPU_INT32U BSP_Joystick_GetStatus(void)
 {
-    CPU_BOOLEAN  pin;
-    CPU_BOOLEAN  status;
+    CPU_BOOLEAN pin;
+    CPU_BOOLEAN status;
 
     status = 0;
 
-    pin    = GPIO_ReadInputDataBit(GPIOE, BSP_GPIOE_JOY_RIGHT);
-    if (pin == 0) {
+    pin = GPIO_ReadInputDataBit(GPIOE, BSP_GPIOE_JOY_RIGHT);
+    if (pin == 0)
+    {
         status |= BSP_JOYSTICK_LEFT;
     }
 
-    pin    = GPIO_ReadInputDataBit(GPIOE, BSP_GPIOE_JOY_LEFT);
-    if (pin == 0) {
+    pin = GPIO_ReadInputDataBit(GPIOE, BSP_GPIOE_JOY_LEFT);
+    if (pin == 0)
+    {
         status |= BSP_JOYSTICK_RIGHT;
     }
 
-    pin    = GPIO_ReadInputDataBit(GPIOD, BSP_GPIOD_JOY_UP);
-    if (pin == 0) {
+    pin = GPIO_ReadInputDataBit(GPIOD, BSP_GPIOD_JOY_UP);
+    if (pin == 0)
+    {
         status |= BSP_JOYSTICK_UP;
     }
 
-    pin    = GPIO_ReadInputDataBit(GPIOD, BSP_GPIOD_JOY_DOWN);
-    if (pin == 0) {
+    pin = GPIO_ReadInputDataBit(GPIOD, BSP_GPIOD_JOY_DOWN);
+    if (pin == 0)
+    {
         status |= BSP_JOYSTICK_DOWN;
     }
 
-    pin    = GPIO_ReadInputDataBit(GPIOD, BSP_GPIOD_JOY_SEL);
-    if (pin == 0) {
+    pin = GPIO_ReadInputDataBit(GPIOD, BSP_GPIOD_JOY_SEL);
+    if (pin == 0)
+    {
         status |= BSP_JOYSTICK_CENTER;
     }
 
@@ -547,16 +545,15 @@ CPU_INT32U  BSP_Joystick_GetStatus (void)
 *********************************************************************************************************
 */
 
-static  void  BSP_LED_Init (void)
+static void BSP_LED_Init(void)
 {
-    GPIO_InitTypeDef  gpio_init;
-
+    GPIO_InitTypeDef gpio_init;
 
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
 
-    gpio_init.GPIO_Pin   = BSP_GPIOC_LED1 | BSP_GPIOC_LED2 | BSP_GPIOC_LED3 | BSP_GPIOC_LED4;
+    gpio_init.GPIO_Pin = BSP_GPIOC_LED1 | BSP_GPIOC_LED2 | BSP_GPIOC_LED3 | BSP_GPIOC_LED4;
     gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    gpio_init.GPIO_Mode  = GPIO_Mode_Out_PP;
+    gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
     GPIO_Init(GPIOC, &gpio_init);
 }
 
@@ -582,31 +579,32 @@ static  void  BSP_LED_Init (void)
 *********************************************************************************************************
 */
 
-void  BSP_LED_On (CPU_INT08U led)
+void BSP_LED_On(CPU_INT08U led)
 {
-    switch (led) {
-        case 0:
-             GPIO_SetBits(GPIOC, BSP_GPIOC_LED1 | BSP_GPIOC_LED2 | BSP_GPIOC_LED3 | BSP_GPIOC_LED4);
-             break;
+    switch (led)
+    {
+    case 0:
+        GPIO_SetBits(GPIOC, BSP_GPIOC_LED1 | BSP_GPIOC_LED2 | BSP_GPIOC_LED3 | BSP_GPIOC_LED4);
+        break;
 
-        case 1:
-             GPIO_SetBits(GPIOC, BSP_GPIOC_LED1);
-             break;
+    case 1:
+        GPIO_SetBits(GPIOC, BSP_GPIOC_LED1);
+        break;
 
-        case 2:
-             GPIO_SetBits(GPIOC, BSP_GPIOC_LED2);
-             break;
+    case 2:
+        GPIO_SetBits(GPIOC, BSP_GPIOC_LED2);
+        break;
 
-        case 3:
-             GPIO_SetBits(GPIOC, BSP_GPIOC_LED3);
-             break;
+    case 3:
+        GPIO_SetBits(GPIOC, BSP_GPIOC_LED3);
+        break;
 
-        case 4:
-             GPIO_SetBits(GPIOC, BSP_GPIOC_LED4);
-             break;
+    case 4:
+        GPIO_SetBits(GPIOC, BSP_GPIOC_LED4);
+        break;
 
-        default:
-             break;
+    default:
+        break;
     }
 }
 
@@ -632,31 +630,32 @@ void  BSP_LED_On (CPU_INT08U led)
 *********************************************************************************************************
 */
 
-void  BSP_LED_Off (CPU_INT08U led)
+void BSP_LED_Off(CPU_INT08U led)
 {
-    switch (led) {
-        case 0:
-             GPIO_ResetBits(GPIOC, BSP_GPIOC_LED1 | BSP_GPIOC_LED2 | BSP_GPIOC_LED3 | BSP_GPIOC_LED4);
-             break;
+    switch (led)
+    {
+    case 0:
+        GPIO_ResetBits(GPIOC, BSP_GPIOC_LED1 | BSP_GPIOC_LED2 | BSP_GPIOC_LED3 | BSP_GPIOC_LED4);
+        break;
 
-        case 1:
-             GPIO_ResetBits(GPIOC, BSP_GPIOC_LED1);
-             break;
+    case 1:
+        GPIO_ResetBits(GPIOC, BSP_GPIOC_LED1);
+        break;
 
-        case 2:
-             GPIO_ResetBits(GPIOC, BSP_GPIOC_LED2);
-             break;
+    case 2:
+        GPIO_ResetBits(GPIOC, BSP_GPIOC_LED2);
+        break;
 
-        case 3:
-             GPIO_ResetBits(GPIOC, BSP_GPIOC_LED3);
-             break;
+    case 3:
+        GPIO_ResetBits(GPIOC, BSP_GPIOC_LED3);
+        break;
 
-        case 4:
-             GPIO_ResetBits(GPIOC, BSP_GPIOC_LED4);
-             break;
+    case 4:
+        GPIO_ResetBits(GPIOC, BSP_GPIOC_LED4);
+        break;
 
-        default:
-             break;
+    default:
+        break;
     }
 }
 
@@ -682,55 +681,67 @@ void  BSP_LED_Off (CPU_INT08U led)
 *********************************************************************************************************
 */
 
-void  BSP_LED_Toggle (CPU_INT08U led)
+void BSP_LED_Toggle(CPU_INT08U led)
 {
-    CPU_INT32U  pins;
-
+    CPU_INT32U pins;
 
     pins = GPIO_ReadOutputData(GPIOC);
 
-    switch (led) {
-        case 0:
-             BSP_LED_Toggle(1);
-             BSP_LED_Toggle(2);
-             BSP_LED_Toggle(3);
-             BSP_LED_Toggle(4);
-             break;
+    switch (led)
+    {
+    case 0:
+        BSP_LED_Toggle(1);
+        BSP_LED_Toggle(2);
+        BSP_LED_Toggle(3);
+        BSP_LED_Toggle(4);
+        break;
 
-        case 1:
-             if ((pins & BSP_GPIOC_LED1) == 0) {
-                 GPIO_SetBits(  GPIOC, BSP_GPIOC_LED1);
-             } else {
-                 GPIO_ResetBits(GPIOC, BSP_GPIOC_LED1);
-             }
-            break;
+    case 1:
+        if ((pins & BSP_GPIOC_LED1) == 0)
+        {
+            GPIO_SetBits(GPIOC, BSP_GPIOC_LED1);
+        }
+        else
+        {
+            GPIO_ResetBits(GPIOC, BSP_GPIOC_LED1);
+        }
+        break;
 
-        case 2:
-             if ((pins & BSP_GPIOC_LED2) == 0) {
-                 GPIO_SetBits(  GPIOC, BSP_GPIOC_LED2);
-             } else {
-                 GPIO_ResetBits(GPIOC, BSP_GPIOC_LED2);
-             }
-            break;
+    case 2:
+        if ((pins & BSP_GPIOC_LED2) == 0)
+        {
+            GPIO_SetBits(GPIOC, BSP_GPIOC_LED2);
+        }
+        else
+        {
+            GPIO_ResetBits(GPIOC, BSP_GPIOC_LED2);
+        }
+        break;
 
-        case 3:
-             if ((pins & BSP_GPIOC_LED3) == 0) {
-                 GPIO_SetBits(  GPIOC, BSP_GPIOC_LED3);
-             } else {
-                 GPIO_ResetBits(GPIOC, BSP_GPIOC_LED3);
-             }
-            break;
+    case 3:
+        if ((pins & BSP_GPIOC_LED3) == 0)
+        {
+            GPIO_SetBits(GPIOC, BSP_GPIOC_LED3);
+        }
+        else
+        {
+            GPIO_ResetBits(GPIOC, BSP_GPIOC_LED3);
+        }
+        break;
 
-        case 4:
-             if ((pins & BSP_GPIOC_LED4) == 0) {
-                 GPIO_SetBits(  GPIOC, BSP_GPIOC_LED4);
-             } else {
-                 GPIO_ResetBits(GPIOC, BSP_GPIOC_LED4);
-             }
-            break;
+    case 4:
+        if ((pins & BSP_GPIOC_LED4) == 0)
+        {
+            GPIO_SetBits(GPIOC, BSP_GPIOC_LED4);
+        }
+        else
+        {
+            GPIO_ResetBits(GPIOC, BSP_GPIOC_LED4);
+        }
+        break;
 
-        default:
-             break;
+    default:
+        break;
     }
 }
 /*
@@ -757,17 +768,16 @@ void  BSP_LED_Toggle (CPU_INT08U led)
 *********************************************************************************************************
 */
 
-#if ((APP_OS_PROBE_EN   == DEF_ENABLED) && \
+#if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
      (OS_PROBE_HOOKS_EN == 1))
-void  OSProbe_TmrInit (void)
+void OSProbe_TmrInit(void)
 {
-    TIM_TimeBaseInitTypeDef  tim_init;
+    TIM_TimeBaseInitTypeDef tim_init;
 
-
-    tim_init.TIM_Period        = 0xFFFF;
-    tim_init.TIM_Prescaler     = 0x00;
+    tim_init.TIM_Period = 0xFFFF;
+    tim_init.TIM_Prescaler = 0x00;
     tim_init.TIM_ClockDivision = 0x0;
-    tim_init.TIM_CounterMode   = TIM_CounterMode_Up;
+    tim_init.TIM_CounterMode = TIM_CounterMode_Up;
 
 #if (OS_PROBE_TIMER_SEL == 2)
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
@@ -810,9 +820,9 @@ void  OSProbe_TmrInit (void)
 *********************************************************************************************************
 */
 
-#if ((APP_OS_PROBE_EN   == DEF_ENABLED) && \
+#if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
      (OS_PROBE_HOOKS_EN == 1))
-CPU_INT32U  OSProbe_TmrRd (void)
+CPU_INT32U OSProbe_TmrRd(void)
 {
 #if (OS_PROBE_TIMER_SEL == 2)
 
