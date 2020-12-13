@@ -1,5 +1,5 @@
 cpu_c.pbi: \
-  C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uC-CPU\ARM-Cortex-M3\IAR\cpu_c.c \
-  C:\Users\shimjaeyeong\H-TEC\Micrium\Software\uC-CPU\ARM-Cortex-M3\IAR\cpu.h \
-  C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\cpu_def.h \
-  C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\lib_def.h
+  D:\Develop\H-TEC\Micrium\Software\uC-CPU\ARM-Cortex-M3\IAR\cpu_c.c \
+  D:\Develop\H-TEC\Micrium\Software\uC-CPU\ARM-Cortex-M3\IAR\cpu.h \
+  D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\cpu_def.h \
+  D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\lib_def.h
