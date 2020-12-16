@@ -57,19 +57,14 @@
  */
 
 // Task Stack (size: 128)
-static OS_STK App_TaskDetectStk[APP_TASK_STK_SIZE];
-static OS_STK App_TaskTemperStk[APP_TASK_STK_SIZE];
-static OS_STK App_TaskPassStk[APP_TASK_STK_SIZE];
-static OS_STK App_TaskDenyStk[APP_TASK_STK_SIZE];
-// Original Task Stack
-static OS_STK App_TaskStartStk[APP_TASK_STK_SIZE];
-static OS_STK App_TaskUserIFStk[APP_TASK_USER_IF_STK_SIZE];
-static OS_STK App_TaskKbdStk[APP_TASK_KBD_STK_SIZE];
+static OS_STK TaskDetectStk[TASK_STK_SIZE];
+static OS_STK TaskTemperStk[TASK_STK_SIZE];
+static OS_STK TaskPassStk[TASK_STK_SIZE];
+static OS_STK TaskDenyStk[TASK_STK_SIZE];
 
-//static OS_EVENT      *App_UserIFMbox; // 메시지 박스
 
 // Message Que
-static OS_EVENT *App_temperQue;
+static OS_EVENT *temperQue;
 static void *msg[10];
 
 // Event Flags
@@ -87,25 +82,25 @@ const static OS_FLAGS FLAG_TEMPER_LOW = 16;
 
 const static int DELAY_TIME = 100;
 
-#if ((APP_OS_PROBE_EN == DEF_ENABLED) &&  \
-	 (APP_PROBE_COM_EN == DEF_ENABLED) && \
+#if ((OS_PROBE_EN == DEF_ENABLED) &&  \
+	 (PROBE_COM_EN == DEF_ENABLED) && \
 	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-static CPU_FP32 App_ProbeComRxPktSpd;
-static CPU_FP32 App_ProbeComTxPktSpd;
-static CPU_FP32 App_ProbeComTxSymSpd;
-static CPU_FP32 App_ProbeComTxSymByteSpd;
+static CPU_FP32 ProbeComRxPktSpd;
+static CPU_FP32 ProbeComTxPktSpd;
+static CPU_FP32 ProbeComTxSymSpd;
+static CPU_FP32 ProbeComTxSymByteSpd;
 
-static CPU_INT32U App_ProbeComRxPktLast;
-static CPU_INT32U App_ProbeComTxPktLast;
-static CPU_INT32U App_ProbeComTxSymLast;
-static CPU_INT32U App_ProbeComTxSymByteLast;
+static CPU_INT32U ProbeComRxPktLast;
+static CPU_INT32U ProbeComTxPktLast;
+static CPU_INT32U ProbeComTxSymLast;
+static CPU_INT32U ProbeComTxSymByteLast;
 
-static CPU_INT32U App_ProbeComCtrLast;
+static CPU_INT32U ProbeComCtrLast;
 #endif
 
-#if (APP_OS_PROBE_EN == DEF_ENABLED)
-static CPU_INT32U App_ProbeCounts;
-static CPU_BOOLEAN App_ProbeB1;
+#if (OS_PROBE_EN == DEF_ENABLED)
+static CPU_INT32U ProbeCounts;
+static CPU_BOOLEAN ProbeB1;
 
 #endif
 
@@ -116,29 +111,29 @@ static CPU_BOOLEAN App_ProbeB1;
  */
 
 // Task function
-static void App_TaskDetect(void *p);
-static void App_TaskTemper(void *p);
-static void App_TaskPass(void *p);
-static void App_TaskDeny(void *p);
+static void TaskDetect(void *p);
+static void TaskTemper(void *p);
+static void TaskPass(void *p);
+static void TaskDeny(void *p);
 
 // Original function
-static void App_TaskCreate(void);
-static void App_EventCreate(void);
+static void TaskCreate(void);
+static void EventCreate(void);
 
-static void App_TaskStart(void *p_arg);
-static void App_TaskUserIF(void *p_arg);
-static void App_TaskKbd(void *p_arg);
+static void TaskStart(void *p_arg);
+static void TaskUserIF(void *p_arg);
+static void TaskKbd(void *p_arg);
 
-static void App_DispScr_SignOn(void);
-static void App_DispScr_TaskNames(void);
+static void DispScr_SignOn(void);
+static void DispScr_TaskNames(void);
 
-#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
-	 (APP_OS_PROBE_EN == DEF_ENABLED))
-static void App_InitProbe(void);
+#if ((PROBE_COM_EN == DEF_ENABLED) || \
+	 (OS_PROBE_EN == DEF_ENABLED))
+static void InitProbe(void);
 #endif
 
-#if (APP_OS_PROBE_EN == DEF_ENABLED)
-static void App_ProbeCallback(void);
+#if (OS_PROBE_EN == DEF_ENABLED)
+static void ProbeCallback(void);
 #endif
 
 /*
@@ -165,53 +160,53 @@ int main(void)
 	OSInit();
 
 	// Create Message Que, msg : 저장공간, 크기 : 10
-	App_temperQue = OSQCreate(msg, 10);
+	temperQue = OSQCreate(msg, 10);
 
 	// Create Event Flag
 	flagGroup = OSFlagCreate(FLAG_INIT, os_err);
 
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskDetect,					   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+	os_err = OSTaskCreateExt((void (*)(void *))TaskDetect,					   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
 							 (void *)0,											   // Task로 넘겨줄 인자
-							 (OS_STK *)&App_TaskDetectStk[APP_TASK_STK_SIZE - 1],  // Task가 할당될 Stack의 Top을 가리키는 주소
-							 (INT8U)APP_TASK_DETECT_PRIO,						   // Task의 우선 순위 (MPT)
-							 (INT16U)APP_TASK_DETECT_PRIO,						   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
-							 (OS_STK *)&App_TaskDetectStk,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
-							 (INT32U)APP_TASK_STK_SIZE,							   // Task Stack의 크기를 의미
+							 (OS_STK *)&TaskDetectStk[TASK_STK_SIZE - 1],  // Task가 할당될 Stack의 Top을 가리키는 주소
+							 (INT8U)TASK_DETECT_PRIO,						   // Task의 우선 순위 (MPT)
+							 (INT16U)TASK_DETECT_PRIO,						   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
+							 (OS_STK *)&TaskDetectStk,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
+							 (INT32U)TASK_STK_SIZE,							   // Task Stack의 크기를 의미
 							 (void *)0,											   // Task Control Block 활용시 사용
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
 
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskTemper, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
+	os_err = OSTaskCreateExt((void (*)(void *))TaskTemper, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
 							 (void *)0,
-							 (OS_STK *)&App_TaskTemperStk[APP_TASK_STK_SIZE - 1],
-							 (INT8U)APP_TASK_TEMPER_PRIO,
-							 (INT16U)APP_TASK_TEMPER_PRIO,
-							 (OS_STK *)&App_TaskTemperStk,
-							 (INT32U)APP_TASK_STK_SIZE,
-							 (void *)0,
-							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
-
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskPass, // 정상체온인 사람은 통과를 허가하는 Task
-							 (void *)0,
-							 (OS_STK *)&App_TaskPassStk[APP_TASK_STK_SIZE - 1],
-							 (INT8U)APP_TASK_PASS_PRIO,
-							 (INT16U)APP_TASK_PASS_PRIO,
-							 (OS_STK *)&App_TaskPASSStk,
-							 (INT32U)APP_TASK_STK_SIZE,
+							 (OS_STK *)&TaskTemperStk[TASK_STK_SIZE - 1],
+							 (INT8U)TASK_TEMPER_PRIO,
+							 (INT16U)TASK_TEMPER_PRIO,
+							 (OS_STK *)&TaskTemperStk,
+							 (INT32U)TASK_STK_SIZE,
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void *))App_TaskDeny, // 비정상체온인 사람은 통과를 불허하는 Task
+	os_err = OSTaskCreateExt((void (*)(void *))TaskPass, // 정상체온인 사람은 통과를 허가하는 Task
 							 (void *)0,
-							 (OS_STK *)&App_TaskDenyStk[APP_TASK_STK_SIZE - 1],
-							 (INT8U)APP_TASK_DENY_PRIO,
-							 (INT16U)APP_TASK_DENY_PRIO,
-							 (OS_STK *)&App_TaskDeNYStk,
-							 (INT32U)APP_TASK_STK_SIZE,
+							 (OS_STK *)&TaskPassStk[TASK_STK_SIZE - 1],
+							 (INT8U)TASK_PASS_PRIO,
+							 (INT16U)TASK_PASS_PRIO,
+							 (OS_STK *)&TaskPASSStk,
+							 (INT32U)TASK_STK_SIZE,
+							 (void *)0,
+							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+
+	os_err = OSTaskCreateExt((void (*)(void *))TaskDeny, // 비정상체온인 사람은 통과를 불허하는 Task
+							 (void *)0,
+							 (OS_STK *)&TaskDenyStk[TASK_STK_SIZE - 1],
+							 (INT8U)TASK_DENY_PRIO,
+							 (INT16U)TASK_DENY_PRIO,
+							 (OS_STK *)&TaskDeNYStk,
+							 (INT32U)TASK_STK_SIZE,
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
 #if (OS_TASK_NAME_SIZE >= 11)
-	OSTaskNameSet(APP_TASK_START_PRIO, (CPU_INT08U *)"Start Task", &os_err);
+	OSTaskNameSet(TASK_START_PRIO, (CPU_INT08U *)"Start Task", &os_err);
 #endif
 
 	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
@@ -221,11 +216,11 @@ int main(void)
 
 /*
  *********************************************************************************************************
- *                                          App_TaskDetect()
+ *                                          TaskDetect()
  *
  * Description : Human detecting task. Monitor the existence of people,
  *
- * Argument(s) : p_arg       Argument passed to 'App_TaskStart()' by 'OSTaskCreate()'.
+ * Argument(s) : p_arg       Argument passed to 'TaskStart()' by 'OSTaskCreate()'.
  *
  * Return(s)   : none.
  *
@@ -236,12 +231,14 @@ int main(void)
  */
 
 // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
-static void App_TaskDetect(void *p)
+static void TaskDetect(void *p)
 {
 	CPU_INT08U err;
+
+
 	while (DEF_TRUE)
 	{
-		if (condition != 0) // when human detected
+		if (GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_0) != 0) // when human detected
 		{
 			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, *err);
 		}
@@ -251,11 +248,11 @@ static void App_TaskDetect(void *p)
 
 /*
  *********************************************************************************************************
- *                                            App_TaskTemper()
+ *                                            TaskTemper()
  *
  * Description : Measure a person's temperature
  *
- * Argument(s) : p_arg       Argument passed to 'App_TaskKbd()' by 'OSTaskCreate()'.
+ * Argument(s) : p_arg       Argument passed to 'TaskKbd()' by 'OSTaskCreate()'.
  *
  * Return(s)   : none.
  *
@@ -265,7 +262,7 @@ static void App_TaskDetect(void *p)
  *********************************************************************************************************
  */
 // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
-static void App_TaskTemper(void *p)
+static void TaskTemper(void *p)
 {
 	CPU_INT08U err;
 	int temp;
@@ -276,12 +273,12 @@ static void App_TaskTemper(void *p)
 		temp = TODO("Get temperature");
 		if (temp > high) // when temperature is HIGH
 		{
-			OSQPost(App_temperQue, temp);
+			OSQPost(temperQue, temp);
 			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, *err);
 		}
 		else if (temp < low)
 		{
-			OSQPost(App_temperQue, temp);
+			OSQPost(temperQue, temp);
 			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, *err);
 		}
 		else
@@ -295,11 +292,11 @@ static void App_TaskTemper(void *p)
 
 /*
  *********************************************************************************************************
- *                                            App_TaskPass()
+ *                                            TaskPass()
  *
  * Description : Those who are at normal body temperature are allowed to pass.
  *
- * Argument(s) : p_arg       Argument passed to 'App_TaskKbd()' by 'OSTaskCreate()'.
+ * Argument(s) : p_arg       Argument passed to 'TaskKbd()' by 'OSTaskCreate()'.
  *
  * Return(s)   : none.
  *
@@ -309,7 +306,7 @@ static void App_TaskTemper(void *p)
  *********************************************************************************************************
  */
 // 정상체온인 사람은 통과를 허가하는 Task
-static void App_TaskPass(void *p)
+static void TaskPass(void *p)
 {
 	CPU_INT08U err;
 	while (DEF_TRUE)
@@ -324,11 +321,11 @@ static void App_TaskPass(void *p)
 
 /*
  *********************************************************************************************************
- *                                            App_TaskDeny()
+ *                                            TaskDeny()
  *
  * Description : People with abnormal body temperature are not allowed to pass through.
  *
- * Argument(s) : p_arg       Argument passed to 'App_TaskKbd()' by 'OSTaskCreate()'.
+ * Argument(s) : p_arg       Argument passed to 'TaskKbd()' by 'OSTaskCreate()'.
  *
  * Return(s)   : none.
  *
@@ -338,7 +335,7 @@ static void App_TaskPass(void *p)
  *********************************************************************************************************
  */
 // 비정상체온인 사람은 통과를 불허하는 Task
-static void App_TaskDeny(void *p)
+static void TaskDeny(void *p)
 {
 	CPU_INT08U err;
 	int temp = 0;
@@ -348,7 +345,7 @@ static void App_TaskDeny(void *p)
 				   FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW,
 				   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
 				   &err);
-		temp = OSQPend(App_temperQue, 0, &err);
+		temp = OSQPend(temperQue, 0, &err);
 		TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
 		TODO("piezo deny");
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
@@ -357,7 +354,7 @@ static void App_TaskDeny(void *p)
 
 /*
  *********************************************************************************************************
- *                                            App_TaskCreate()
+ *                                            TaskCreate()
  *
  * Description : Create the application tasks.
  *
@@ -365,7 +362,7 @@ static void App_TaskDeny(void *p)
  *
  * Return(s)   : none.
  *
- * Caller(s)   : App_TaskStart().
+ * Caller(s)   : TaskStart().
  *
  * Note(s)     : none.
  *********************************************************************************************************
@@ -373,7 +370,7 @@ static void App_TaskDeny(void *p)
 
 /*
  *********************************************************************************************************
- *                                          App_DispScr_SignOn()
+ *                                          DispScr_SignOn()
  *
  * Description : Display uC/OS-II system information on the LCD.
  *
@@ -381,19 +378,19 @@ static void App_TaskDeny(void *p)
  *
  * Return(s)   : none.
  *
- * Caller(s)   : App_TaskUserIF().
+ * Caller(s)   : TaskUserIF().
  *
  * Note(s)     : none.
  *********************************************************************************************************
  */
 
-static void App_DispScr_SignOn(void)
+static void DispScr_SignOn(void)
 {
 }
 
 /*
  *********************************************************************************************************
- *                                          App_DispScr_SignOn()
+ *                                          DispScr_SignOn()
  *
  * Description : Display uC/OS-II system information on the LCD.
  *
@@ -401,19 +398,19 @@ static void App_DispScr_SignOn(void)
  *
  * Return(s)   : none.
  *
- * Caller(s)   : App_TaskUserIF().
+ * Caller(s)   : TaskUserIF().
  *
  * Note(s)     : none.
  *********************************************************************************************************
  */
 
-static void App_DispScr_TaskNames(void)
+static void DispScr_TaskNames(void)
 {
 }
 
 /*
  *********************************************************************************************************
- *                                             App_InitProbe()
+ *                                             InitProbe()
  *
  * Description : Initialize uC/Probe target code.
  *
@@ -421,34 +418,34 @@ static void App_DispScr_TaskNames(void)
  *
  * Return(s)   : none.
  *
- * Caller(s)   : App_TaskStart().
+ * Caller(s)   : TaskStart().
  *
  * Note(s)     : none.
  *********************************************************************************************************
  */
 
-#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
-	 (APP_OS_PROBE_EN == DEF_ENABLED))
-static void App_InitProbe(void)
+#if ((PROBE_COM_EN == DEF_ENABLED) || \
+	 (OS_PROBE_EN == DEF_ENABLED))
+static void InitProbe(void)
 {
-#if (APP_OS_PROBE_EN == DEF_ENABLED)
-	(void)App_ProbeCounts;
-	(void)App_ProbeB1;
+#if (OS_PROBE_EN == DEF_ENABLED)
+	(void)ProbeCounts;
+	(void)ProbeB1;
 
-#if ((APP_PROBE_COM_EN == DEF_ENABLED) && \
+#if ((PROBE_COM_EN == DEF_ENABLED) && \
 	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-	(void)App_ProbeComRxPktSpd;
-	(void)App_ProbeComTxPktSpd;
-	(void)App_ProbeComTxSymSpd;
-	(void)App_ProbeComTxSymByteSpd;
+	(void)ProbeComRxPktSpd;
+	(void)ProbeComTxPktSpd;
+	(void)ProbeComTxSymSpd;
+	(void)ProbeComTxSymByteSpd;
 #endif
 
 	OSProbe_Init();
-	OSProbe_SetCallback(App_ProbeCallback);
+	OSProbe_SetCallback(ProbeCallback);
 	OSProbe_SetDelay(250);
 #endif
 
-#if (APP_PROBE_COM_EN == DEF_ENABLED)
+#if (PROBE_COM_EN == DEF_ENABLED)
 	ProbeCom_Init(); /* Initialize the uC/Probe communications module.       */
 #endif
 }
@@ -470,10 +467,10 @@ static void App_InitProbe(void)
  *********************************************************************************************************
  */
 
-#if (APP_OS_PROBE_EN == DEF_ENABLED)
-static void App_ProbeCallback(void)
+#if (OS_PROBE_EN == DEF_ENABLED)
+static void ProbeCallback(void)
 {
-#if ((APP_PROBE_COM_EN == DEF_ENABLED) && \
+#if ((PROBE_COM_EN == DEF_ENABLED) && \
 	 (PROBE_COM_STAT_EN == DEF_ENABLED))
 	CPU_INT32U ctr_curr;
 	CPU_INT32U rxpkt_curr;
@@ -482,11 +479,11 @@ static void App_ProbeCallback(void)
 	CPU_INT32U symbyte_curr;
 #endif
 
-	App_ProbeCounts++;
+	ProbeCounts++;
 
-	App_ProbeB1 = BSP_PB_GetStatus(1);
+	ProbeB1 = BSP_PB_GetStatus(1);
 
-#if ((APP_PROBE_COM_EN == DEF_ENABLED) && \
+#if ((PROBE_COM_EN == DEF_ENABLED) && \
 	 (PROBE_COM_STAT_EN == DEF_ENABLED))
 	ctr_curr = OSTime;
 	rxpkt_curr = ProbeCom_RxPktCtr;
@@ -494,18 +491,18 @@ static void App_ProbeCallback(void)
 	sym_curr = ProbeCom_TxSymCtr;
 	symbyte_curr = ProbeCom_TxSymByteCtr;
 
-	if ((ctr_curr - App_ProbeComCtrLast) >= OS_TICKS_PER_SEC)
+	if ((ctr_curr - ProbeComCtrLast) >= OS_TICKS_PER_SEC)
 	{
-		App_ProbeComRxPktSpd = ((CPU_FP32)(rxpkt_curr - App_ProbeComRxPktLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-		App_ProbeComTxPktSpd = ((CPU_FP32)(txpkt_curr - App_ProbeComTxPktLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-		App_ProbeComTxSymSpd = ((CPU_FP32)(sym_curr - App_ProbeComTxSymLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-		App_ProbeComTxSymByteSpd = ((CPU_FP32)(symbyte_curr - App_ProbeComTxSymByteLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+		ProbeComRxPktSpd = ((CPU_FP32)(rxpkt_curr - ProbeComRxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+		ProbeComTxPktSpd = ((CPU_FP32)(txpkt_curr - ProbeComTxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+		ProbeComTxSymSpd = ((CPU_FP32)(sym_curr - ProbeComTxSymLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+		ProbeComTxSymByteSpd = ((CPU_FP32)(symbyte_curr - ProbeComTxSymByteLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
 
-		App_ProbeComCtrLast = ctr_curr;
-		App_ProbeComRxPktLast = rxpkt_curr;
-		App_ProbeComTxPktLast = txpkt_curr;
-		App_ProbeComTxSymLast = sym_curr;
-		App_ProbeComTxSymByteLast = symbyte_curr;
+		ProbeComCtrLast = ctr_curr;
+		ProbeComRxPktLast = rxpkt_curr;
+		ProbeComTxPktLast = txpkt_curr;
+		ProbeComTxSymLast = sym_curr;
+		ProbeComTxSymByteLast = symbyte_curr;
 	}
 #endif
 }
@@ -513,7 +510,7 @@ static void App_ProbeCallback(void)
 
 /*
  *********************************************************************************************************
- *                                      App_FormatDec()
+ *                                      FormatDec()
  *
  * Description : Convert a decimal value to ASCII (without leading zeros).
  *
@@ -539,7 +536,7 @@ static void App_ProbeCallback(void)
  *********************************************************************************************************
  */
 
-#if (OS_APP_HOOKS_EN > 0)
+#if (OS_HOOKS_EN > 0)
 /*
  *********************************************************************************************************
  *                                      TASK CREATION HOOK (APPLICATION)
@@ -552,9 +549,9 @@ static void App_ProbeCallback(void)
  *********************************************************************************************************
  */
 
-void App_TaskCreateHook(OS_TCB *ptcb)
+void TaskCreateHook(OS_TCB *ptcb)
 {
-#if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
+#if ((OS_PROBE_EN == DEF_ENABLED) && \
 	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
 	OSProbe_TaskCreateHook(ptcb);
 #endif
@@ -572,7 +569,7 @@ void App_TaskCreateHook(OS_TCB *ptcb)
  *********************************************************************************************************
  */
 
-void App_TaskDelHook(OS_TCB *ptcb)
+void TaskDelHook(OS_TCB *ptcb)
 {
 	(void)ptcb;
 }
@@ -591,7 +588,7 @@ void App_TaskDelHook(OS_TCB *ptcb)
  */
 
 #if OS_VERSION >= 251
-void App_TaskIdleHook(void)
+void TaskIdleHook(void)
 {
 }
 #endif
@@ -607,7 +604,7 @@ void App_TaskIdleHook(void)
  *********************************************************************************************************
  */
 
-void App_TaskStatHook(void)
+void TaskStatHook(void)
 {
 }
 
@@ -629,9 +626,9 @@ void App_TaskStatHook(void)
  */
 
 #if OS_TASK_SW_HOOK_EN > 0
-void App_TaskSwHook(void)
+void TaskSwHook(void)
 {
-#if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
+#if ((OS_PROBE_EN == DEF_ENABLED) && \
 	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
 	OSProbe_TaskSwHook();
 #endif
@@ -652,7 +649,7 @@ void App_TaskSwHook(void)
  */
 
 #if OS_VERSION >= 204
-void App_TCBInitHook(OS_TCB *ptcb)
+void TCBInitHook(OS_TCB *ptcb)
 {
 	(void)ptcb;
 }
@@ -671,9 +668,9 @@ void App_TCBInitHook(OS_TCB *ptcb)
  */
 
 #if OS_TIME_TICK_HOOK_EN > 0
-void App_TimeTickHook(void)
+void TimeTickHook(void)
 {
-#if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
+#if ((OS_PROBE_EN == DEF_ENABLED) && \
 	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
 	OSProbe_TickHook();
 #endif
@@ -732,9 +729,9 @@ static void Init_All()
 	GPIO_Init(GPIOB, &gpio_init);
 	GPIO_SetBits(GPIOB, GPIO_Pin_12) // check
 
-		// CONFIG
-		// ADC
-		adc_init.ADC_Mode = ADC_Mode_Independent;
+	// CONFIG
+	// ADC
+	adc_init.ADC_Mode = ADC_Mode_Independent;
 	adc_init.ADC_ScanConvMode = DISABLE;
 	adc_init.ADC_ContinuousConvMode = ENABLE;
 	adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
