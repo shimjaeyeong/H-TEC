@@ -57,10 +57,10 @@
  */
 
 // Task Stack (size: 128)
-static OS_STK TaskDetectStk[TASK_STK_SIZE];
-static OS_STK TaskTemperStk[TASK_STK_SIZE];
-static OS_STK TaskPassStk[TASK_STK_SIZE];
-static OS_STK TaskDenyStk[TASK_STK_SIZE];
+static OS_STK detectTaskStack[TASK_STK_SIZE];
+static OS_STK temperatureTaskStack[TASK_STK_SIZE];
+static OS_STK passTaskStack[TASK_STK_SIZE];
+static OS_STK denyTaskStack[TASK_STK_SIZE];
 
 
 // Message Que
@@ -68,6 +68,8 @@ static OS_EVENT *temperQue;
 static void *msg[10];
 
 // Event Flags
+#define OS_FLAGS_NBITS 8
+#define OS_FLAG_EN 1
 static OS_FLAG_GRP *flagGroup;
 const static OS_FLAGS FLAG_INIT = 0;
 const static OS_FLAGS FLAG_DETECT = 1;
@@ -76,9 +78,6 @@ const static OS_FLAGS FLAG_TEMPER_NORMAL = 4;
 const static OS_FLAGS FLAG_TEMPER_HIGH = 8;
 const static OS_FLAGS FLAG_TEMPER_LOW = 16;
 
-// TODO("Check OS FLAG")
-//#define OS_FLAGS_NBITS 8
-//#define OS_FLAG_EN 1
 
 const static int DELAY_TIME = 100;
 
@@ -111,18 +110,10 @@ static CPU_BOOLEAN ProbeB1;
  */
 
 // Task function
-static void TaskDetect(void *p);
-static void TaskTemper(void *p);
-static void TaskPass(void *p);
-static void TaskDeny(void *p);
-
-// Original function
-static void TaskCreate(void);
-static void EventCreate(void);
-
-static void TaskStart(void *p_arg);
-static void TaskUserIF(void *p_arg);
-static void TaskKbd(void *p_arg);
+static void detectTask(void *p);
+static void temperTask(void *p);
+static void passTask(void *p);
+static void denyTask(void *p);
 
 static void DispScr_SignOn(void);
 static void DispScr_TaskNames(void);
@@ -165,42 +156,42 @@ int main(void)
 	// Create Event Flag
 	flagGroup = OSFlagCreate(FLAG_INIT, os_err);
 
-	os_err = OSTaskCreateExt((void (*)(void *))TaskDetect,					   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+	os_err = OSTaskCreateExt((void (*)(void *))detectTask,					   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
 							 (void *)0,											   // Task로 넘겨줄 인자
-							 (OS_STK *)&TaskDetectStk[TASK_STK_SIZE - 1],  // Task가 할당될 Stack의 Top을 가리키는 주소
+							 (OS_STK *)&detectTaskStack[TASK_STK_SIZE - 1],  // Task가 할당될 Stack의 Top을 가리키는 주소
 							 (INT8U)TASK_DETECT_PRIO,						   // Task의 우선 순위 (MPT)
 							 (INT16U)TASK_DETECT_PRIO,						   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
-							 (OS_STK *)&TaskDetectStk,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
+							 (OS_STK *)&detectTaskStack,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
 							 (INT32U)TASK_STK_SIZE,							   // Task Stack의 크기를 의미
 							 (void *)0,											   // Task Control Block 활용시 사용
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
 
-	os_err = OSTaskCreateExt((void (*)(void *))TaskTemper, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
+	os_err = OSTaskCreateExt((void (*)(void *))temperTask, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
 							 (void *)0,
-							 (OS_STK *)&TaskTemperStk[TASK_STK_SIZE - 1],
+							 (OS_STK *)&temperatureTaskStack[TASK_STK_SIZE - 1],
 							 (INT8U)TASK_TEMPER_PRIO,
 							 (INT16U)TASK_TEMPER_PRIO,
-							 (OS_STK *)&TaskTemperStk,
+							 (OS_STK *)&temperatureTaskStack,
 							 (INT32U)TASK_STK_SIZE,
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void *))TaskPass, // 정상체온인 사람은 통과를 허가하는 Task
+	os_err = OSTaskCreateExt((void (*)(void *))passTask, // 정상체온인 사람은 통과를 허가하는 Task
 							 (void *)0,
-							 (OS_STK *)&TaskPassStk[TASK_STK_SIZE - 1],
+							 (OS_STK *)&passTaskStack[TASK_STK_SIZE - 1],
 							 (INT8U)TASK_PASS_PRIO,
 							 (INT16U)TASK_PASS_PRIO,
-							 (OS_STK *)&TaskPASSStk,
+							 (OS_STK *)&passTaskStack,
 							 (INT32U)TASK_STK_SIZE,
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void *))TaskDeny, // 비정상체온인 사람은 통과를 불허하는 Task
+	os_err = OSTaskCreateExt((void (*)(void *))denyTask, // 비정상체온인 사람은 통과를 불허하는 Task
 							 (void *)0,
-							 (OS_STK *)&TaskDenyStk[TASK_STK_SIZE - 1],
+							 (OS_STK *)&denyTaskStack[TASK_STK_SIZE - 1],
 							 (INT8U)TASK_DENY_PRIO,
 							 (INT16U)TASK_DENY_PRIO,
-							 (OS_STK *)&TaskDeNYStk,
+							 (OS_STK *)&denyTaskStack,
 							 (INT32U)TASK_STK_SIZE,
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
@@ -216,7 +207,7 @@ int main(void)
 
 /*
  *********************************************************************************************************
- *                                          TaskDetect()
+ *                                          detectTask()
  *
  * Description : Human detecting task. Monitor the existence of people,
  *
@@ -231,7 +222,7 @@ int main(void)
  */
 
 // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
-static void TaskDetect(void *p)
+static void detectTask(void *p)
 {
 	CPU_INT08U err;
 
@@ -248,7 +239,7 @@ static void TaskDetect(void *p)
 
 /*
  *********************************************************************************************************
- *                                            TaskTemper()
+ *                                            temperTask()
  *
  * Description : Measure a person's temperature
  *
@@ -262,7 +253,7 @@ static void TaskDetect(void *p)
  *********************************************************************************************************
  */
 // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
-static void TaskTemper(void *p)
+static void temperTask(void *p)
 {
 	CPU_INT08U err;
 	int temp;
@@ -292,7 +283,7 @@ static void TaskTemper(void *p)
 
 /*
  *********************************************************************************************************
- *                                            TaskPass()
+ *                                            passTask()
  *
  * Description : Those who are at normal body temperature are allowed to pass.
  *
@@ -306,7 +297,7 @@ static void TaskTemper(void *p)
  *********************************************************************************************************
  */
 // 정상체온인 사람은 통과를 허가하는 Task
-static void TaskPass(void *p)
+static void passTask(void *p)
 {
 	CPU_INT08U err;
 	while (DEF_TRUE)
@@ -321,7 +312,7 @@ static void TaskPass(void *p)
 
 /*
  *********************************************************************************************************
- *                                            TaskDeny()
+ *                                            denyTask()
  *
  * Description : People with abnormal body temperature are not allowed to pass through.
  *
@@ -335,7 +326,7 @@ static void TaskPass(void *p)
  *********************************************************************************************************
  */
 // 비정상체온인 사람은 통과를 불허하는 Task
-static void TaskDeny(void *p)
+static void denyTask(void *p)
 {
 	CPU_INT08U err;
 	int temp = 0;
