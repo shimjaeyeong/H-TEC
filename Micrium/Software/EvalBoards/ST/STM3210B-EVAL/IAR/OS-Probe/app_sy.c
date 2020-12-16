@@ -61,7 +61,7 @@ static OS_STK detectTaskStack[TASK_STK_SIZE];
 static OS_STK temperatureTaskStack[TASK_STK_SIZE];
 static OS_STK passTaskStack[TASK_STK_SIZE];
 static OS_STK denyTaskStack[TASK_STK_SIZE];
-
+static OS_STK checkTaskStack[TASK_STK_SIZE];
 
 // Message Que
 static OS_EVENT *temperQue;
@@ -78,7 +78,10 @@ const static OS_FLAGS FLAG_TEMPER_NORMAL = 4;
 const static OS_FLAGS FLAG_TEMPER_HIGH = 8;
 const static OS_FLAGS FLAG_TEMPER_LOW = 16;
 
-
+// time
+static OS_EVENT *sem;
+static int count = 0;
+const static int TIME_COUNT = 9; // 100ms * 10 = 1초
 const static int DELAY_TIME = 100;
 
 #if ((OS_PROBE_EN == DEF_ENABLED) &&  \
@@ -156,13 +159,16 @@ int main(void)
 	// Create Event Flag
 	flagGroup = OSFlagCreate(FLAG_INIT, os_err);
 
-	os_err = OSTaskCreateExt((void (*)(void *))detectTask,					   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+	// Create semaphore
+	sem = OSSemCreate(0);
+
+	os_err = OSTaskCreateExt((void (*)(void *))detectTask,						   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
 							 (void *)0,											   // Task로 넘겨줄 인자
-							 (OS_STK *)&detectTaskStack[TASK_STK_SIZE - 1],  // Task가 할당될 Stack의 Top을 가리키는 주소
-							 (INT8U)TASK_DETECT_PRIO,						   // Task의 우선 순위 (MPT)
-							 (INT16U)TASK_DETECT_PRIO,						   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
+							 (OS_STK *)&detectTaskStack[TASK_STK_SIZE - 1],		   // Task가 할당될 Stack의 Top을 가리키는 주소
+							 (INT8U)TASK_DETECT_PRIO,							   // Task의 우선 순위 (MPT)
+							 (INT16U)TASK_DETECT_PRIO,							   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
 							 (OS_STK *)&detectTaskStack,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
-							 (INT32U)TASK_STK_SIZE,							   // Task Stack의 크기를 의미
+							 (INT32U)TASK_STK_SIZE,								   // Task Stack의 크기를 의미
 							 (void *)0,											   // Task Control Block 활용시 사용
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
 
@@ -196,6 +202,15 @@ int main(void)
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
+	os_err = OSTaskCreateExt((void (*)(void *))checkTask, // 알림 장치 작동 중지하는 Task
+							 (void *)0,
+							 (OS_STK *)&checkTaskStack[TASK_STK_SIZE - 1],
+							 (INT8U)TASK_CHECK_PRIO,
+							 (INT16U)TASK_CHECK_PRIO,
+							 (OS_STK *)&checkTaskStack,
+							 (INT32U)TASK_STK_SIZE,
+							 (void *)0,
+							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 #if (OS_TASK_NAME_SIZE >= 11)
 	OSTaskNameSet(TASK_START_PRIO, (CPU_INT08U *)"Start Task", &os_err);
 #endif
@@ -211,7 +226,7 @@ int main(void)
  *
  * Description : Human detecting task. Monitor the existence of people,
  *
- * Argument(s) : p_arg       Argument passed to 'TaskStart()' by 'OSTaskCreate()'.
+ * Argument(s) : p
  *
  * Return(s)   : none.
  *
@@ -225,7 +240,6 @@ int main(void)
 static void detectTask(void *p)
 {
 	CPU_INT08U err;
-
 
 	while (DEF_TRUE)
 	{
@@ -243,7 +257,7 @@ static void detectTask(void *p)
  *
  * Description : Measure a person's temperature
  *
- * Argument(s) : p_arg       Argument passed to 'TaskKbd()' by 'OSTaskCreate()'.
+ * Argument(s) : p
  *
  * Return(s)   : none.
  *
@@ -257,11 +271,12 @@ static void temperTask(void *p)
 {
 	CPU_INT08U err;
 	int temp;
+	int high = 39;
+	int low = 34;
 	while (DEF_TRUE)
 	{
 		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, &err);
-
-		temp = TODO("Get temperature");
+		temp = readTemperature();
 		if (temp > high) // when temperature is HIGH
 		{
 			OSQPost(temperQue, temp);
@@ -281,13 +296,54 @@ static void temperTask(void *p)
 	}
 }
 
+static int readTemperature()
+{
+	CPU_INT08U high, low;
+	CPU_INT016U tmp = 0;
+
+	while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
+		;
+	I2C_GenerateSTART(I2C1, ENABLE);
+	while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
+		;
+	I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Transmitter);
+	while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
+		;
+	I2C_SendData(I2C1, 0x0);
+	while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+		;
+	I2C_GenerateSTOP(I2C1, ENABLE);
+
+	I2C_GenerateSTART(I2C1, ENABLE);
+	while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
+		;
+	I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Receiver);
+	while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
+		;
+	while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
+		; /* Poll on RxNE */
+	high = I2C_ReceiveData(I2C1);
+	I2C_AcknowledgeConfig(I2C1, DISABLE);
+	I2C_GenerateSTOP(I2C1, ENABLE);
+
+	while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
+		; /* Poll on RxNE */
+
+	low = I2C_ReceiveData(I2C1);
+	I2C_AcknowledgeConfig(I2C1, ENABLE);
+	tmp = (uint16_t)(high << 8);
+
+	tmp |= low;
+	return tmp >> 7;
+}
+
 /*
  *********************************************************************************************************
  *                                            passTask()
  *
  * Description : Those who are at normal body temperature are allowed to pass.
  *
- * Argument(s) : p_arg       Argument passed to 'TaskKbd()' by 'OSTaskCreate()'.
+ * Argument(s) : p
  *
  * Return(s)   : none.
  *
@@ -303,9 +359,20 @@ static void passTask(void *p)
 	while (DEF_TRUE)
 	{
 		OSFlagPend(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, &err);
+		// dot-matrix
 		TODO("dot-matrix pass");
-		TODO("piezo pass");
-		TODO("door open");					// 문 언제 닫음? 열린 뒤 일정 시간 후 문 닫는 태스크 추가 고려
+		// piezo
+		GPIO_SetBits(GPIOB, GPIO_Pin_8);
+		// door
+		for (int i = TIM2->CCR1; i < 2300; i += 2) // 1500 -> 2300
+		{
+			TIM2->CCR1 = i;
+		}
+
+		// stop setting
+		OSSemPend(sem, 0, &err);
+		count = 1;
+		OSSemPost(sem);
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
 }
@@ -316,7 +383,7 @@ static void passTask(void *p)
  *
  * Description : People with abnormal body temperature are not allowed to pass through.
  *
- * Argument(s) : p_arg       Argument passed to 'TaskKbd()' by 'OSTaskCreate()'.
+ * Argument(s) : p
  *
  * Return(s)   : none.
  *
@@ -337,28 +404,76 @@ static void denyTask(void *p)
 				   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
 				   &err);
 		temp = OSQPend(temperQue, 0, &err);
+		// dot-matrix
 		TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
-		TODO("piezo deny");
+		// piezo
+		GPIO_SetBits(GPIOB, GPIO_Pin_8);
+		// Stop setting
+		OSSemPend(sem, 0, &err);
+		count = 1;
+		OSSemPost(sem);
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
 }
 
 /*
  *********************************************************************************************************
- *                                            TaskCreate()
+ *                                            checkTask()
  *
- * Description : Create the application tasks.
+ * Description : Check dot-matrix, piezo, motor.
  *
- * Argument(s) : none.
+ * Argument(s) : p
  *
  * Return(s)   : none.
  *
- * Caller(s)   : TaskStart().
+ * Caller(s)   : This is a task.
  *
  * Note(s)     : none.
  *********************************************************************************************************
  */
+// dot-matrix, piezo, motor를 1초 후 정지하도록 하는 Task
+static void checkTask(void *p)
+{
+	CPU_INT08U err;
+	int isStop = 0;
+	while (DEF_TRUE)
+	{
+		if (count != 0)
+		{
+			OSSemPend(sem, 0, &err);
+			if (count > TIME_COUNT)
+			{
+				isStop = 1; // Use flag / Don't do a lot of work in sem
+				count = 0;	// init time counter
+			}
+			count++;
+			OSSemPost(sem);
 
+			// STOP: Do out of sem
+			if (isStop == 1)
+			{
+				stopAll();
+				isStop = 0;
+			}
+		}
+
+		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+	}
+}
+
+// Stop all
+static void stopAll()
+{
+	// dot-matrix
+
+	// piezo
+	GPIO_ResetBits(GPIOB, GPIO_Pin_8);
+	// motor
+	for (int i = TIM2->CCR1; i > 1500; i -= 2) // 2300 -> 1500
+	{
+		TIM2->CCR1 = i;
+	}
+}
 /*
  *********************************************************************************************************
  *                                          DispScr_SignOn()
@@ -720,9 +835,9 @@ static void Init_All()
 	GPIO_Init(GPIOB, &gpio_init);
 	GPIO_SetBits(GPIOB, GPIO_Pin_12) // check
 
-	// CONFIG
-	// ADC
-	adc_init.ADC_Mode = ADC_Mode_Independent;
+		// CONFIG
+		// ADC
+		adc_init.ADC_Mode = ADC_Mode_Independent;
 	adc_init.ADC_ScanConvMode = DISABLE;
 	adc_init.ADC_ContinuousConvMode = ENABLE;
 	adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
@@ -738,14 +853,14 @@ static void Init_All()
 	i2c_init.I2C_OwnAddress1 = 0;
 	i2c_init.I2C_Ack = I2C_Ack_Enable;
 	i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-	i2c_init.I2C_ClockSpeed = I2C_Speed; // 5000
+	i2c_init.I2C_ClockSpeed = 100000;
 	I2C_INIT(I2C1, &i2c_init);
 	I2C_Cmd(I2C1, ENABLE);
 	// TIM (PWM)
-	tim_timebase_init.TIM_Prescaler = (uint16_t)(SystemCoreClock / 1000000) - 1;
-	tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Up;
-	tim_timebase_init.TIM_Period = 20000 - 1;
+	tim_timebase_init.TIM_Prescaler = (uint16_t)(72000000 / 1000000) - 1; // set to 1MHz Counter Clock
+	tim_timebase_init.TIM_Period = 20000 - 1;							  // set to 50Hz pulse with 1MHz Counter Clock
 	tim_timebase_init.TIM_ClockDivision = 0;
+	tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Down;
 	tim_timebase_init.TIM_RepetitionCounter;
 	TIM_TimeBaseInit(TIM4, &time_timebase_init);
 	/* PIEZO: PWM1 Mode configuration: Channel3 */
@@ -759,7 +874,7 @@ static void Init_All()
 	/* MOTOR: PWM1 Mode configuration: Channel4 */
 	tim_motor_init.TIM_OCMode = TIM_OCMODE_PWM1;
 	tim_motor_init.TIM_OutputState = TIM_OUTPUTSTATE_Enable;
-	tim_motor_init.TIM_Pulse = 1500;
+	tim_motor_init.TIM_Pulse = 1500; // 50 % duty cylce value
 	tim_motor_init.TIM_OCPolarity = TIM_OCPolarity_High;
 	TIM_PWMIConfig(TIM4, &tim_motor_init);
 	TIM_OC4Init(TIM4, &tim_motor_init);

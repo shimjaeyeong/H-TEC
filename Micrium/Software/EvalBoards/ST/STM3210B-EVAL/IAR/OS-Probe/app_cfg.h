@@ -26,8 +26,8 @@
 *********************************************************************************************************
 */
 
-#ifndef  __APP_CFG_H__
-#define  __APP_CFG_H__
+#ifndef __APP_CFG_H__
+#define __APP_CFG_H__
 
 /*
 *********************************************************************************************************
@@ -35,8 +35,8 @@
 *********************************************************************************************************
 */
 
-#define  APP_OS_PROBE_EN                         DEF_ENABLED
-#define  APP_PROBE_COM_EN                        DEF_ENABLED
+#define APP_OS_PROBE_EN DEF_ENABLED
+#define APP_PROBE_COM_EN DEF_ENABLED
 
 /*
 *********************************************************************************************************
@@ -44,20 +44,20 @@
 *********************************************************************************************************
 */
 
-
 /*
 *********************************************************************************************************
 *                                            TASK PRIORITIES
 *********************************************************************************************************
 */
 
-#define  APP_TASK_DETECT_PRIO                          1
-#define  APP_TASK_TEMPER_PRIO                          2
-#define  APP_TASK_PASS_PRIO                            6
-#define  APP_TASK_DENY_PRIO                            7
+#define TASK_DETECT_PRIO 1
+#define TASK_TEMPER_PRIO 2
+#define TASK_PASS_PRIO 6
+#define TASK_DENY_PRIO 7
+#define TASK_CHECK_PRIO 3
 
-#define  OS_PROBE_TASK_PRIO              (OS_LOWEST_PRIO - 3)
-#define  OS_TASK_TMR_PRIO                (OS_LOWEST_PRIO - 2)
+#define OS_PROBE_TASK_PRIO (OS_LOWEST_PRIO - 3)
+#define OS_TASK_TMR_PRIO (OS_LOWEST_PRIO - 2)
 
 /*
 *********************************************************************************************************
@@ -66,8 +66,7 @@
 *********************************************************************************************************
 */
 
-#define  APP_TASK_STK_SIZE                         128
-
+#define APP_TASK_STK_SIZE 128
 
 /*
 *********************************************************************************************************
@@ -75,8 +74,8 @@
 *********************************************************************************************************
 */
 
-#define  uC_CFG_OPTIMIZE_ASM_EN                 DEF_ENABLED
-#define  LIB_STR_CFG_FP_EN                      DEF_DISABLED
+#define uC_CFG_OPTIMIZE_ASM_EN DEF_ENABLED
+#define LIB_STR_CFG_FP_EN DEF_DISABLED
 
 /*
 *********************************************************************************************************
@@ -84,13 +83,10 @@
 *********************************************************************************************************
 */
 
-#define  OS_PROBE_TASK                                     1    /* Task will be created for uC/Probe OS Plug-In.        */
-#define  OS_PROBE_TMR_32_BITS                              0    /* uC/Probe OS Plugin timer is a 16-bit timer.          */
-#define  OS_PROBE_TIMER_SEL                                2    /* Select timer 2.                                      */
-#define  OS_PROBE_HOOKS_EN                                 1    /* Hooks to update OS_TCB profiling members included.   */
-#define  OS_PROBE_USE_FP                                   1
-
-
-
+#define OS_PROBE_TASK 1        /* Task will be created for uC/Probe OS Plug-In.        */
+#define OS_PROBE_TMR_32_BITS 0 /* uC/Probe OS Plugin timer is a 16-bit timer.          */
+#define OS_PROBE_TIMER_SEL 2   /* Select timer 2.                                      */
+#define OS_PROBE_HOOKS_EN 1    /* Hooks to update OS_TCB profiling members included.   */
+#define OS_PROBE_USE_FP 1
 
 #endif

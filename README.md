@@ -22,5 +22,6 @@ if 온도가 37 이상 {<br>
 ## 참고 자료
 - Datasheet - STM32D102x8 STM32F102xB - https://www.st.com/resource/en/datasheet/stm32f102c8.pdf
 - JK전자와 함께하는 ARM 완전정복(6)-2 - http://www.ntrexgo.com/archives/21271
+- 얼렁뚱땅 임베디드 개발자 되기 - https://m.blog.naver.com/PostView.nhn?blogId=sm6787&logNo=220310055043
 - PWM을 이용한 서보 모터 작동 - https://lifeseed.tistory.com/81
 - PWM with buzzer - https://community.st.com/s/question/0D50X00009Xkanh/pwm-with-buzzer
