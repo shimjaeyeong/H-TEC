@@ -21,8 +21,8 @@
 *                                   STM3210B-EVAL Evaluation Board
 *
 * Filename      : app_cfg.h
-* Version       : V1.10
-* Programmer(s) : BAN
+* Version       : V1.0
+* Programmer(s) : Lee Seung Yun
 *********************************************************************************************************
 */
 

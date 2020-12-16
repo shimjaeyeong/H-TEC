@@ -124,6 +124,7 @@ static void DispScr_TaskNames(void);
 
 static int readTemperature(void);
 static void stopAll();
+static void initAll();
 
 #if ((PROBE_COM_EN == DEF_ENABLED) || \
 	 (OS_PROBE_EN == DEF_ENABLED))
@@ -157,11 +158,13 @@ int main(void)
 	/* Initialize "uC/OS-II, The Real-Time Kernel".         */
 	OSInit();
 
+	initAll();
+
 	// Create Message Que, msg : 저장공간, 크기 : 10
 	temperQue = OSQCreate(msg, 10);
 
 	// Create Event Flag
-	flagGroup = OSFlagCreate(FLAG_INIT, os_err);
+	flagGroup = OSFlagCreate(FLAG_INIT, &os_err);
 
 	// Create semaphore
 	sem = OSSemCreate(0);
@@ -215,8 +218,13 @@ int main(void)
 							 (INT32U)TASK_STK_SIZE,
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+
 #if (OS_TASK_NAME_SIZE >= 11)
-	OSTaskNameSet(TASK_START_PRIO, (CPU_INT08U *)"Start Task", &os_err);
+	OSTaskNameSet(TASK_DETECT_PRIO, (CPU_INT08U *)"Detect Task", &os_err);
+	OSTaskNameSet(TASK_TEMPER_PRIO, (CPU_INT08U *)"Temperature Task", &os_err);
+	OSTaskNameSet(TASK_PASS_PRIO, (CPU_INT08U *)"Pass Task", &os_err);
+	OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U *)"Deny Task", &os_err);
+	OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U *)"Check Task", &os_err);
 #endif
 
 	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
@@ -249,7 +257,7 @@ static void detectTask(void *p)
 	{
 		if (GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_0) != 0) // when human detected
 		{
-			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, *err);
+			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, &err);
 		}
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
@@ -273,27 +281,27 @@ static void detectTask(void *p)
 // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
 static void temperTask(void *p)
 {
-	CPU_INT08U err;
+	INT8U err;
 	int temp;
 	int high = 39;
 	int low = 34;
 	while (DEF_TRUE)
 	{
-		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, &err);
+		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, &err);
 		temp = readTemperature();
 		if (temp > high) // when temperature is HIGH
 		{
 			OSQPost(temperQue, temp);
-			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, *err);
+			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, &err);
 		}
 		else if (temp < low)
 		{
 			OSQPost(temperQue, temp);
-			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, *err);
+			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, &err);
 		}
 		else
 		{
-			OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, *err);
+			OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, &err);
 		}
 
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
@@ -302,43 +310,44 @@ static void temperTask(void *p)
 
 static int readTemperature()
 {
-	CPU_INT08U high, low;
-	CPU_INT016U tmp = 0;
+	// int high, low;
+	// int tmp = 0;
 
-	while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
-		;
-	I2C_GenerateSTART(I2C1, ENABLE);
-	while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
-		;
-	I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Transmitter);
-	while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
-		;
-	I2C_SendData(I2C1, 0x0);
-	while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
-		;
-	I2C_GenerateSTOP(I2C1, ENABLE);
+	// while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
+	// 	;
+	// I2C_GenerateSTART(I2C1, ENABLE);
+	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
+	// 	;
+	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Transmitter);
+	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
+	// 	;
+	// I2C_SendData(I2C1, 0x0);
+	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+	// 	;
+	// I2C_GenerateSTOP(I2C1, ENABLE);
 
-	I2C_GenerateSTART(I2C1, ENABLE);
-	while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
-		;
-	I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Receiver);
-	while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
-		;
-	while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
-		; /* Poll on RxNE */
-	high = I2C_ReceiveData(I2C1);
-	I2C_AcknowledgeConfig(I2C1, DISABLE);
-	I2C_GenerateSTOP(I2C1, ENABLE);
+	// I2C_GenerateSTART(I2C1, ENABLE);
+	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
+	// 	;
+	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Receiver);
+	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
+	// 	;
+	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
+	// 	; /* Poll on RxNE */
+	// high = I2C_ReceiveData(I2C1);
+	// I2C_AcknowledgeConfig(I2C1, DISABLE);
+	// I2C_GenerateSTOP(I2C1, ENABLE);
 
-	while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
-		; /* Poll on RxNE */
+	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
+	// 	; /* Poll on RxNE */
 
-	low = I2C_ReceiveData(I2C1);
-	I2C_AcknowledgeConfig(I2C1, ENABLE);
-	tmp = (uint16_t)(high << 8);
+	// low = I2C_ReceiveData(I2C1);
+	// I2C_AcknowledgeConfig(I2C1, ENABLE);
+	// tmp = (uint16_t)(high << 8);
 
-	tmp |= low;
-	return tmp >> 7;
+	// tmp |= low;
+	// return tmp >> 7;
+	return 36;
 }
 
 /*
@@ -359,10 +368,10 @@ static int readTemperature()
 // 정상체온인 사람은 통과를 허가하는 Task
 static void passTask(void *p)
 {
-	CPU_INT08U err;
+	int err;
 	while (DEF_TRUE)
 	{
-		OSFlagPend(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, &err);
+		OSFlagPend(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
 		// dot-matrix
 		TODO("dot-matrix pass");
 		// piezo
@@ -374,7 +383,7 @@ static void passTask(void *p)
 		}
 
 		// stop setting
-		OSSemPend(sem, 0, &err);
+		OSSemPend(sem, 0, (INT8U *)&err);
 		count = 1;
 		OSSemPost(sem);
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
@@ -399,21 +408,22 @@ static void passTask(void *p)
 // 비정상체온인 사람은 통과를 불허하는 Task
 static void denyTask(void *p)
 {
-	CPU_INT08U err;
+	int err;
 	int temp = 0;
 	while (DEF_TRUE)
 	{
 		OSFlagPend(flagGroup,
 				   FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW,
 				   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
-				   &err);
+				   0,
+				   (INT8U *)&err);
 		temp = OSQPend(temperQue, 0, &err);
 		// dot-matrix
 		TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
 		// piezo
 		GPIO_SetBits(GPIOB, GPIO_Pin_8);
 		// Stop setting
-		OSSemPend(sem, 0, &err);
+		OSSemPend(sem, 0, (INT8U *)&err);
 		count = 1;
 		OSSemPost(sem);
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
@@ -788,7 +798,7 @@ void TimeTickHook(void)
 #endif
 #endif
 
-static void Init_All()
+static void initAll()
 {
 	ADC_InitTypeDef adc_init;
 	GPIO_InitTypeDef gpio_init;
@@ -837,11 +847,11 @@ static void Init_All()
 	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &gpio_init);
-	GPIO_SetBits(GPIOB, GPIO_Pin_12) // check
+	GPIO_SetBits(GPIOB, GPIO_Pin_12); // check
 
-		// CONFIG
-		// ADC
-		adc_init.ADC_Mode = ADC_Mode_Independent;
+	// CONFIG
+	// ADC
+	adc_init.ADC_Mode = ADC_Mode_Independent;
 	adc_init.ADC_ScanConvMode = DISABLE;
 	adc_init.ADC_ContinuousConvMode = ENABLE;
 	adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
@@ -858,15 +868,15 @@ static void Init_All()
 	i2c_init.I2C_Ack = I2C_Ack_Enable;
 	i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
 	i2c_init.I2C_ClockSpeed = 100000;
-	I2C_INIT(I2C1, &i2c_init);
+	I2C_Init(I2C1, &i2c_init);
 	I2C_Cmd(I2C1, ENABLE);
 	// TIM (PWM)
-	tim_timebase_init.TIM_Prescaler = (uint16_t)(72000000 / 1000000) - 1; // set to 1MHz Counter Clock
-	tim_timebase_init.TIM_Period = 20000 - 1;							  // set to 50Hz pulse with 1MHz Counter Clock
+	tim_timebase_init.TIM_Prescaler = (72000000 / 1000000) - 1; // set to 1MHz Counter Clock
+	tim_timebase_init.TIM_Period = 20000 - 1;					// set to 50Hz pulse with 1MHz Counter Clock
 	tim_timebase_init.TIM_ClockDivision = 0;
 	tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Down;
 	tim_timebase_init.TIM_RepetitionCounter;
-	TIM_TimeBaseInit(TIM4, &time_timebase_init);
+	TIM_TimeBaseInit(TIM4, &tim_timebase_init);
 	/* PIEZO: PWM1 Mode configuration: Channel3 */
 	tim_piezo_init.TIM_OCMode = TIM_OCMODE_PWM1;
 	tim_piezo_init.TIM_OutputState = TIM_OUTPUTSTATE_Enable;
@@ -883,7 +893,7 @@ static void Init_All()
 	TIM_PWMIConfig(TIM4, &tim_motor_init);
 	TIM_OC4Init(TIM4, &tim_motor_init);
 	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Disable);
-	TIM_ARRPreloadConfig(Tim4, ENABLE);
+	TIM_ARRPreloadConfig(TIM4, ENABLE);
 	TIM_Cmd(TIM4, ENABLE);
 	// SPI
 	spi_init.SPI_Direction = SPI_Direction_1Line_Tx;
