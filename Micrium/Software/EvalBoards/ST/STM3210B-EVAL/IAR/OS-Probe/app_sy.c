@@ -117,9 +117,13 @@ static void detectTask(void *p);
 static void temperTask(void *p);
 static void passTask(void *p);
 static void denyTask(void *p);
+static void checkTask(void *p);
 
 static void DispScr_SignOn(void);
 static void DispScr_TaskNames(void);
+
+static int readTemperature(void);
+static void stopAll();
 
 #if ((PROBE_COM_EN == DEF_ENABLED) || \
 	 (OS_PROBE_EN == DEF_ENABLED))
@@ -157,7 +161,7 @@ int main(void)
 	temperQue = OSQCreate(msg, 10);
 
 	// Create Event Flag
-	flagGroup = OSFlagCreate(FLAG_INIT, os_err);
+	flagGroup = OSFlagCreate(FLAG_INIT, &os_err);
 
 	// Create semaphore
 	sem = OSSemCreate(0);

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         12/Dec/2020  23:43:27
+# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         17/Dec/2020  00:39:05
 # Copyright 1999-2020 IAR Systems AB.
 #
 #    Cpu mode             
@@ -8,7 +8,7 @@
 #    Source file       =
 #        D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_flag.c
 #    Command line      =
-#        -f C:\Users\fabi8\AppData\Local\Temp\EW21B0.tmp
+#        -f C:\Users\fabi8\AppData\Local\Temp\EW326B.tmp
 #        (D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_flag.c -lCN
 #        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
 #        -o
@@ -67,7 +67,7 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_flag.c
      14          * LICENSING TERMS:
      15          * ---------------
      16          *   uC/OS-II is provided in source form for FREE evaluation, for educational use or for peaceful research.  
-     17          * If you plan on using  uC/OS-II  in a commercial product you need to contact Micriµm to properly license 
+     17          * If you plan on using  uC/OS-II  in a commercial product you need to contact Micriï¿½m to properly license 
      18          * its use in your product. We provide ALL the source code for your convenience and to help you experience 
      19          * uC/OS-II.   The fact that the  source is provided does  NOT  mean that you can use it without  paying a 
      20          * licensing fee.
