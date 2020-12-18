@@ -44,8 +44,10 @@
 
 #include  <stm32f10x_conf.h>
 #include  <stm32f10x_lib.h>
+#include  <stm32f10x_type.h>
 
 #include  <app_cfg.h>
+#include  <os_cfg.h>
 #include  <bsp.h>
 
 #if (APP_OS_PROBE_EN == DEF_ENABLED)

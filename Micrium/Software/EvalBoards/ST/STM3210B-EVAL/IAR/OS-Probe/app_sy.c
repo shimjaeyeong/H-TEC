@@ -68,8 +68,6 @@ static OS_EVENT *temperQue;
 static void *msg[10];
 
 // Event Flags
-#define OS_FLAGS_NBITS 8
-#define OS_FLAG_EN 1
 static OS_FLAG_GRP *flagGroup;
 const static OS_FLAGS FLAG_INIT = 0;
 const static OS_FLAGS FLAG_DETECT = 1;
@@ -161,7 +159,7 @@ int main(void)
 	initAll();
 
 	// Create Message Que, msg : 저장공간, 크기 : 10
-	temperQue = OSQCreate(msg, 10);
+	temperQue = (OS_EVENT *)OSQCreate(msg, 10);
 
 	// Create Event Flag
 	flagGroup = OSFlagCreate(FLAG_INIT, &os_err);
@@ -373,7 +371,7 @@ static void passTask(void *p)
 	{
 		OSFlagPend(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
 		// dot-matrix
-		TODO("dot-matrix pass");
+		// TODO("dot-matrix pass");
 		// piezo
 		GPIO_SetBits(GPIOB, GPIO_Pin_8);
 		// door
@@ -419,7 +417,7 @@ static void denyTask(void *p)
 				   (INT8U *)&err);
 		temp = OSQPend(temperQue, 0, &err);
 		// dot-matrix
-		TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
+		// TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
 		// piezo
 		GPIO_SetBits(GPIOB, GPIO_Pin_8);
 		// Stop setting
@@ -868,8 +866,8 @@ static void initAll()
 	i2c_init.I2C_Ack = I2C_Ack_Enable;
 	i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
 	i2c_init.I2C_ClockSpeed = 100000;
-	I2C_Init(I2C1, &i2c_init);
-	I2C_Cmd(I2C1, ENABLE);
+	I2C_Init(I2C2, &i2c_init);
+	I2C_Cmd(I2C2, ENABLE);
 	// TIM (PWM)
 	tim_timebase_init.TIM_Prescaler = (72000000 / 1000000) - 1; // set to 1MHz Counter Clock
 	tim_timebase_init.TIM_Period = 20000 - 1;					// set to 50Hz pulse with 1MHz Counter Clock
@@ -878,19 +876,20 @@ static void initAll()
 	tim_timebase_init.TIM_RepetitionCounter;
 	TIM_TimeBaseInit(TIM4, &tim_timebase_init);
 	/* PIEZO: PWM1 Mode configuration: Channel3 */
-	tim_piezo_init.TIM_OCMode = TIM_OCMODE_PWM1;
-	tim_piezo_init.TIM_OutputState = TIM_OUTPUTSTATE_Enable;
+	tim_piezo_init.TIM_OCMode = TIM_OCMode_PWM1;
+	tim_piezo_init.TIM_OutputState = TIM_OutputState_Enable;
 	tim_piezo_init.TIM_Pulse = 500;
 	tim_piezo_init.TIM_OCPolarity = TIM_OCPolarity_High;
 	TIM_OC3Init(TIM4, &tim_piezo_init);
 	//TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Disable);
 	TIM_Cmd(TIM4, ENABLE);
 	/* MOTOR: PWM1 Mode configuration: Channel4 */
-	tim_motor_init.TIM_OCMode = TIM_OCMODE_PWM1;
-	tim_motor_init.TIM_OutputState = TIM_OUTPUTSTATE_Enable;
+	tim_motor_init.TIM_OCMode = TIM_OCMode_PWM1;
+	tim_motor_init.TIM_OutputState = TIM_OutputState_Enable;
 	tim_motor_init.TIM_Pulse = 1500; // 50 % duty cylce value
 	tim_motor_init.TIM_OCPolarity = TIM_OCPolarity_High;
-	TIM_PWMIConfig(TIM4, &tim_motor_init);
+
+	//TIM_PWMIConfig(TIM4, &tim_motor_init);
 	TIM_OC4Init(TIM4, &tim_motor_init);
 	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Disable);
 	TIM_ARRPreloadConfig(TIM4, ENABLE);

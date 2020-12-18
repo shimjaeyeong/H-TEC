@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         17/Dec/2020  01:23:13
+# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         18/Dec/2020  22:01:12
 # Copyright 1999-2020 IAR Systems AB.
 #
 #    Cpu mode                        
@@ -8,7 +8,7 @@
 #    Source file                  =
 #        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
 #    Command line                 =
-#        -f C:\Users\fabi8\AppData\Local\Temp\EW9F8E.tmp
+#        -f C:\Users\fabi8\AppData\Local\Temp\EW6209.tmp
 #        (D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
 #        -lCN
 #        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
@@ -125,846 +125,845 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
      68          static void *msg[10];
      69          
      70          // Event Flags
-     71          #define OS_FLAGS_NBITS 8
-     72          #define OS_FLAG_EN 1
-     73          static OS_FLAG_GRP *flagGroup;
-     74          const static OS_FLAGS FLAG_INIT = 0;
-     75          const static OS_FLAGS FLAG_DETECT = 1;
-     76          const static OS_FLAGS FLAG_DETECT_NOT = 2;
-     77          const static OS_FLAGS FLAG_TEMPER_NORMAL = 4;
-     78          const static OS_FLAGS FLAG_TEMPER_HIGH = 8;
-     79          const static OS_FLAGS FLAG_TEMPER_LOW = 16;
-     80          
-     81          // time
-     82          static OS_EVENT *sem;
-     83          static int count = 0;
-     84          const static int TIME_COUNT = 9; // 100ms * 10 = 1초
-     85          const static int DELAY_TIME = 100;
-     86          
-     87          #if ((OS_PROBE_EN == DEF_ENABLED) &&  \
-     88          	 (PROBE_COM_EN == DEF_ENABLED) && \
-     89          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-     90          static CPU_FP32 ProbeComRxPktSpd;
-     91          static CPU_FP32 ProbeComTxPktSpd;
-     92          static CPU_FP32 ProbeComTxSymSpd;
-     93          static CPU_FP32 ProbeComTxSymByteSpd;
-     94          
-     95          static CPU_INT32U ProbeComRxPktLast;
-     96          static CPU_INT32U ProbeComTxPktLast;
-     97          static CPU_INT32U ProbeComTxSymLast;
-     98          static CPU_INT32U ProbeComTxSymByteLast;
-     99          
-    100          static CPU_INT32U ProbeComCtrLast;
-    101          #endif
-    102          
-    103          #if (OS_PROBE_EN == DEF_ENABLED)
-    104          static CPU_INT32U ProbeCounts;
-    105          static CPU_BOOLEAN ProbeB1;
+     71          static OS_FLAG_GRP *flagGroup;
+     72          const static OS_FLAGS FLAG_INIT = 0;
+     73          const static OS_FLAGS FLAG_DETECT = 1;
+     74          const static OS_FLAGS FLAG_DETECT_NOT = 2;
+     75          const static OS_FLAGS FLAG_TEMPER_NORMAL = 4;
+     76          const static OS_FLAGS FLAG_TEMPER_HIGH = 8;
+     77          const static OS_FLAGS FLAG_TEMPER_LOW = 16;
+     78          
+     79          // time
+     80          static OS_EVENT *sem;
+     81          static int count = 0;
+     82          const static int TIME_COUNT = 9; // 100ms * 10 = 1초
+     83          const static int DELAY_TIME = 100;
+     84          
+     85          #if ((OS_PROBE_EN == DEF_ENABLED) &&  \
+     86          	 (PROBE_COM_EN == DEF_ENABLED) && \
+     87          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
+     88          static CPU_FP32 ProbeComRxPktSpd;
+     89          static CPU_FP32 ProbeComTxPktSpd;
+     90          static CPU_FP32 ProbeComTxSymSpd;
+     91          static CPU_FP32 ProbeComTxSymByteSpd;
+     92          
+     93          static CPU_INT32U ProbeComRxPktLast;
+     94          static CPU_INT32U ProbeComTxPktLast;
+     95          static CPU_INT32U ProbeComTxSymLast;
+     96          static CPU_INT32U ProbeComTxSymByteLast;
+     97          
+     98          static CPU_INT32U ProbeComCtrLast;
+     99          #endif
+    100          
+    101          #if (OS_PROBE_EN == DEF_ENABLED)
+    102          static CPU_INT32U ProbeCounts;
+    103          static CPU_BOOLEAN ProbeB1;
+    104          
+    105          #endif
     106          
-    107          #endif
-    108          
-    109          /*
+    107          /*
+    108           *********************************************************************************************************
+    109           *                                      LOCAL FUNCTION PROTOTYPES
     110           *********************************************************************************************************
-    111           *                                      LOCAL FUNCTION PROTOTYPES
-    112           *********************************************************************************************************
-    113           */
-    114          
-    115          // Task function
-    116          static void detectTask(void *p);
-    117          static void temperTask(void *p);
-    118          static void passTask(void *p);
-    119          static void denyTask(void *p);
-    120          static void checkTask(void *p);
-    121          
-    122          static void DispScr_SignOn(void);
-    123          static void DispScr_TaskNames(void);
-    124          
-    125          static int readTemperature(void);
-    126          static void stopAll();
-    127          static void initAll();
-    128          
-    129          #if ((PROBE_COM_EN == DEF_ENABLED) || \
-    130          	 (OS_PROBE_EN == DEF_ENABLED))
-    131          static void InitProbe(void);
-    132          #endif
-    133          
-    134          #if (OS_PROBE_EN == DEF_ENABLED)
-    135          static void ProbeCallback(void);
-    136          #endif
-    137          
-    138          /*
-    139           *********************************************************************************************************
-    140           *                                                main()
-    141           *
-    142           * Description : This is the standard entry point for C code.  It is assumed that your code will call
-    143           *               main() once you have performed all necessary initialization.
+    111           */
+    112          
+    113          // Task function
+    114          static void detectTask(void *p);
+    115          static void temperTask(void *p);
+    116          static void passTask(void *p);
+    117          static void denyTask(void *p);
+    118          static void checkTask(void *p);
+    119          
+    120          static void DispScr_SignOn(void);
+    121          static void DispScr_TaskNames(void);
+    122          
+    123          static int readTemperature(void);
+    124          static void stopAll();
+    125          static void initAll();
+    126          
+    127          #if ((PROBE_COM_EN == DEF_ENABLED) || \
+    128          	 (OS_PROBE_EN == DEF_ENABLED))
+    129          static void InitProbe(void);
+    130          #endif
+    131          
+    132          #if (OS_PROBE_EN == DEF_ENABLED)
+    133          static void ProbeCallback(void);
+    134          #endif
+    135          
+    136          /*
+    137           *********************************************************************************************************
+    138           *                                                main()
+    139           *
+    140           * Description : This is the standard entry point for C code.  It is assumed that your code will call
+    141           *               main() once you have performed all necessary initialization.
+    142           *
+    143           * Argument(s) : none.
     144           *
-    145           * Argument(s) : none.
-    146           *
-    147           * Return(s)   : none.
-    148           *********************************************************************************************************
-    149           */
-    150          
-    151          int main(void)
-    152          {
-    153          	CPU_INT08U os_err;
-    154          
-    155          	/* Disable all ints until we are ready to accept them.  */
-    156          	BSP_IntDisAll();
-    157          
-    158          	/* Initialize "uC/OS-II, The Real-Time Kernel".         */
-    159          	OSInit();
+    145           * Return(s)   : none.
+    146           *********************************************************************************************************
+    147           */
+    148          
+    149          int main(void)
+    150          {
+    151          	CPU_INT08U os_err;
+    152          
+    153          	/* Disable all ints until we are ready to accept them.  */
+    154          	BSP_IntDisAll();
+    155          
+    156          	/* Initialize "uC/OS-II, The Real-Time Kernel".         */
+    157          	OSInit();
+    158          
+    159          	initAll();
     160          
-    161          	initAll();
-    162          
-    163          	// Create Message Que, msg : 저장공간, 크기 : 10
-    164          	temperQue = OSQCreate(msg, 10);
-    165          
-    166          	// Create Event Flag
-    167          	flagGroup = OSFlagCreate(FLAG_INIT, &os_err);
-    168          
-    169          	// Create semaphore
-    170          	sem = OSSemCreate(0);
-    171          
-    172          	os_err = OSTaskCreateExt((void (*)(void *))detectTask,						   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
-    173          							 (void *)0,											   // Task로 넘겨줄 인자
-    174          							 (OS_STK *)&detectTaskStack[TASK_STK_SIZE - 1],		   // Task가 할당될 Stack의 Top을 가리키는 주소
-    175          							 (INT8U)TASK_DETECT_PRIO,							   // Task의 우선 순위 (MPT)
-    176          							 (INT16U)TASK_DETECT_PRIO,							   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
-    177          							 (OS_STK *)&detectTaskStack,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
-    178          							 (INT32U)TASK_STK_SIZE,								   // Task Stack의 크기를 의미
-    179          							 (void *)0,											   // Task Control Block 활용시 사용
-    180          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
-    181          
-    182          	os_err = OSTaskCreateExt((void (*)(void *))temperTask, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
-    183          							 (void *)0,
-    184          							 (OS_STK *)&temperatureTaskStack[TASK_STK_SIZE - 1],
-    185          							 (INT8U)TASK_TEMPER_PRIO,
-    186          							 (INT16U)TASK_TEMPER_PRIO,
-    187          							 (OS_STK *)&temperatureTaskStack,
-    188          							 (INT32U)TASK_STK_SIZE,
-    189          							 (void *)0,
-    190          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
-    191          
-    192          	os_err = OSTaskCreateExt((void (*)(void *))passTask, // 정상체온인 사람은 통과를 허가하는 Task
-    193          							 (void *)0,
-    194          							 (OS_STK *)&passTaskStack[TASK_STK_SIZE - 1],
-    195          							 (INT8U)TASK_PASS_PRIO,
-    196          							 (INT16U)TASK_PASS_PRIO,
-    197          							 (OS_STK *)&passTaskStack,
-    198          							 (INT32U)TASK_STK_SIZE,
-    199          							 (void *)0,
-    200          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
-    201          
-    202          	os_err = OSTaskCreateExt((void (*)(void *))denyTask, // 비정상체온인 사람은 통과를 불허하는 Task
-    203          							 (void *)0,
-    204          							 (OS_STK *)&denyTaskStack[TASK_STK_SIZE - 1],
-    205          							 (INT8U)TASK_DENY_PRIO,
-    206          							 (INT16U)TASK_DENY_PRIO,
-    207          							 (OS_STK *)&denyTaskStack,
-    208          							 (INT32U)TASK_STK_SIZE,
-    209          							 (void *)0,
-    210          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
-    211          
-    212          	os_err = OSTaskCreateExt((void (*)(void *))checkTask, // 알림 장치 작동 중지하는 Task
-    213          							 (void *)0,
-    214          							 (OS_STK *)&checkTaskStack[TASK_STK_SIZE - 1],
-    215          							 (INT8U)TASK_CHECK_PRIO,
-    216          							 (INT16U)TASK_CHECK_PRIO,
-    217          							 (OS_STK *)&checkTaskStack,
-    218          							 (INT32U)TASK_STK_SIZE,
-    219          							 (void *)0,
-    220          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
-    221          
-    222          #if (OS_TASK_NAME_SIZE >= 11)
-    223          	OSTaskNameSet(TASK_DETECT_PRIO, (CPU_INT08U *)"Detect Task", &os_err);
-    224          	OSTaskNameSet(TASK_TEMPER_PRIO, (CPU_INT08U *)"Temperature Task", &os_err);
-    225          	OSTaskNameSet(TASK_PASS_PRIO, (CPU_INT08U *)"Pass Task", &os_err);
-    226          	OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U *)"Deny Task", &os_err);
-    227          	OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U *)"Check Task", &os_err);
-    228          #endif
+    161          	// Create Message Que, msg : 저장공간, 크기 : 10
+    162          	temperQue = (OS_EVENT*)OSQCreate(msg, 10);
+    163          
+    164          	// Create Event Flag
+    165          	flagGroup = OSFlagCreate(FLAG_INIT, &os_err);
+    166          
+    167          	// Create semaphore
+    168          	sem = OSSemCreate(0);
+    169          
+    170          	os_err = OSTaskCreateExt((void (*)(void *))detectTask,						   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+    171          							 (void *)0,											   // Task로 넘겨줄 인자
+    172          							 (OS_STK *)&detectTaskStack[TASK_STK_SIZE - 1],		   // Task가 할당될 Stack의 Top을 가리키는 주소
+    173          							 (INT8U)TASK_DETECT_PRIO,							   // Task의 우선 순위 (MPT)
+    174          							 (INT16U)TASK_DETECT_PRIO,							   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
+    175          							 (OS_STK *)&detectTaskStack,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
+    176          							 (INT32U)TASK_STK_SIZE,								   // Task Stack의 크기를 의미
+    177          							 (void *)0,											   // Task Control Block 활용시 사용
+    178          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
+    179          
+    180          	os_err = OSTaskCreateExt((void (*)(void *))temperTask, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
+    181          							 (void *)0,
+    182          							 (OS_STK *)&temperatureTaskStack[TASK_STK_SIZE - 1],
+    183          							 (INT8U)TASK_TEMPER_PRIO,
+    184          							 (INT16U)TASK_TEMPER_PRIO,
+    185          							 (OS_STK *)&temperatureTaskStack,
+    186          							 (INT32U)TASK_STK_SIZE,
+    187          							 (void *)0,
+    188          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+    189          
+    190          	os_err = OSTaskCreateExt((void (*)(void *))passTask, // 정상체온인 사람은 통과를 허가하는 Task
+    191          							 (void *)0,
+    192          							 (OS_STK *)&passTaskStack[TASK_STK_SIZE - 1],
+    193          							 (INT8U)TASK_PASS_PRIO,
+    194          							 (INT16U)TASK_PASS_PRIO,
+    195          							 (OS_STK *)&passTaskStack,
+    196          							 (INT32U)TASK_STK_SIZE,
+    197          							 (void *)0,
+    198          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+    199          
+    200          	os_err = OSTaskCreateExt((void (*)(void *))denyTask, // 비정상체온인 사람은 통과를 불허하는 Task
+    201          							 (void *)0,
+    202          							 (OS_STK *)&denyTaskStack[TASK_STK_SIZE - 1],
+    203          							 (INT8U)TASK_DENY_PRIO,
+    204          							 (INT16U)TASK_DENY_PRIO,
+    205          							 (OS_STK *)&denyTaskStack,
+    206          							 (INT32U)TASK_STK_SIZE,
+    207          							 (void *)0,
+    208          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+    209          
+    210          	os_err = OSTaskCreateExt((void (*)(void *))checkTask, // 알림 장치 작동 중지하는 Task
+    211          							 (void *)0,
+    212          							 (OS_STK *)&checkTaskStack[TASK_STK_SIZE - 1],
+    213          							 (INT8U)TASK_CHECK_PRIO,
+    214          							 (INT16U)TASK_CHECK_PRIO,
+    215          							 (OS_STK *)&checkTaskStack,
+    216          							 (INT32U)TASK_STK_SIZE,
+    217          							 (void *)0,
+    218          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+    219          
+    220          #if (OS_TASK_NAME_SIZE >= 11)
+    221          	OSTaskNameSet(TASK_DETECT_PRIO, (CPU_INT08U *)"Detect Task", &os_err);
+    222          	OSTaskNameSet(TASK_TEMPER_PRIO, (CPU_INT08U *)"Temperature Task", &os_err);
+    223          	OSTaskNameSet(TASK_PASS_PRIO, (CPU_INT08U *)"Pass Task", &os_err);
+    224          	OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U *)"Deny Task", &os_err);
+    225          	OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U *)"Check Task", &os_err);
+    226          #endif
+    227          
+    228          	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
     229          
-    230          	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
-    231          
-    232          	return (0);
-    233          }
-    234          
-    235          /*
-    236           *********************************************************************************************************
-    237           *                                          detectTask()
+    230          	return (0);
+    231          }
+    232          
+    233          /*
+    234           *********************************************************************************************************
+    235           *                                          detectTask()
+    236           *
+    237           * Description : Human detecting task. Monitor the existence of people,
     238           *
-    239           * Description : Human detecting task. Monitor the existence of people,
+    239           * Argument(s) : p
     240           *
-    241           * Argument(s) : p
+    241           * Return(s)   : none.
     242           *
-    243           * Return(s)   : none.
+    243           * Caller(s)   : This is a task.
     244           *
-    245           * Caller(s)   : This is a task.
-    246           *
-    247           * Note(s)     : none.
-    248           *********************************************************************************************************
-    249           */
-    250          
-    251          // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
-    252          static void detectTask(void *p)
-    253          {
-    254          	CPU_INT08U err;
-    255          
-    256          	while (DEF_TRUE)
-    257          	{
-    258          		if (GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_0) != 0) // when human detected
-    259          		{
-    260          			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, &err);
-    261          		}
-    262          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-    263          	}
-    264          }
-    265          
-    266          /*
-    267           *********************************************************************************************************
-    268           *                                            temperTask()
+    245           * Note(s)     : none.
+    246           *********************************************************************************************************
+    247           */
+    248          
+    249          // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+    250          static void detectTask(void *p)
+    251          {
+    252          	CPU_INT08U err;
+    253          
+    254          	while (DEF_TRUE)
+    255          	{
+    256          		if (GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_0) != 0) // when human detected
+    257          		{
+    258          			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, &err);
+    259          		}
+    260          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+    261          	}
+    262          }
+    263          
+    264          /*
+    265           *********************************************************************************************************
+    266           *                                            temperTask()
+    267           *
+    268           * Description : Measure a person's temperature
     269           *
-    270           * Description : Measure a person's temperature
+    270           * Argument(s) : p
     271           *
-    272           * Argument(s) : p
+    272           * Return(s)   : none.
     273           *
-    274           * Return(s)   : none.
+    274           * Caller(s)   : This is a task.
     275           *
-    276           * Caller(s)   : This is a task.
-    277           *
-    278           * Note(s)     : none.
-    279           *********************************************************************************************************
-    280           */
-    281          // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
-    282          static void temperTask(void *p)
-    283          {
-    284          	INT8U err;
-    285          	int temp;
-    286          	int high = 39;
-    287          	int low = 34;
-    288          	while (DEF_TRUE)
-    289          	{
-    290          		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, &err);
-    291          		temp = readTemperature();
-    292          		if (temp > high) // when temperature is HIGH
-    293          		{
-    294          			OSQPost(temperQue, temp);
-    295          			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, &err);
-    296          		}
-    297          		else if (temp < low)
-    298          		{
-    299          			OSQPost(temperQue, temp);
-    300          			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, &err);
-    301          		}
-    302          		else
-    303          		{
-    304          			OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, &err);
-    305          		}
-    306          
-    307          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-    308          	}
-    309          }
-    310          
-    311          static int readTemperature()
-    312          {
-    313          	// int high, low;
-    314          	// int tmp = 0;
-    315          
-    316          	// while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
-    317          	// 	;
-    318          	// I2C_GenerateSTART(I2C1, ENABLE);
-    319          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
-    320          	// 	;
-    321          	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Transmitter);
-    322          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
-    323          	// 	;
-    324          	// I2C_SendData(I2C1, 0x0);
-    325          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
-    326          	// 	;
-    327          	// I2C_GenerateSTOP(I2C1, ENABLE);
-    328          
-    329          	// I2C_GenerateSTART(I2C1, ENABLE);
-    330          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
-    331          	// 	;
-    332          	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Receiver);
-    333          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
-    334          	// 	;
-    335          	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
-    336          	// 	; /* Poll on RxNE */
-    337          	// high = I2C_ReceiveData(I2C1);
-    338          	// I2C_AcknowledgeConfig(I2C1, DISABLE);
-    339          	// I2C_GenerateSTOP(I2C1, ENABLE);
-    340          
-    341          	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
-    342          	// 	; /* Poll on RxNE */
-    343          
-    344          	// low = I2C_ReceiveData(I2C1);
-    345          	// I2C_AcknowledgeConfig(I2C1, ENABLE);
-    346          	// tmp = (uint16_t)(high << 8);
-    347          
-    348          	// tmp |= low;
-    349          	// return tmp >> 7;
-    350          	return 36;
-    351          }
-    352          
-    353          /*
-    354           *********************************************************************************************************
-    355           *                                            passTask()
+    276           * Note(s)     : none.
+    277           *********************************************************************************************************
+    278           */
+    279          // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
+    280          static void temperTask(void *p)
+    281          {
+    282          	INT8U err;
+    283          	int temp;
+    284          	int high = 39;
+    285          	int low = 34;
+    286          	while (DEF_TRUE)
+    287          	{
+    288          		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, &err);
+    289          		temp = readTemperature();
+    290          		if (temp > high) // when temperature is HIGH
+    291          		{
+    292          			OSQPost(temperQue, temp);
+    293          			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, &err);
+    294          		}
+    295          		else if (temp < low)
+    296          		{
+    297          			OSQPost(temperQue, temp);
+    298          			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, &err);
+    299          		}
+    300          		else
+    301          		{
+    302          			OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, &err);
+    303          		}
+    304          
+    305          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+    306          	}
+    307          }
+    308          
+    309          static int readTemperature()
+    310          {
+    311          	// int high, low;
+    312          	// int tmp = 0;
+    313          
+    314          	// while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
+    315          	// 	;
+    316          	// I2C_GenerateSTART(I2C1, ENABLE);
+    317          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
+    318          	// 	;
+    319          	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Transmitter);
+    320          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
+    321          	// 	;
+    322          	// I2C_SendData(I2C1, 0x0);
+    323          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+    324          	// 	;
+    325          	// I2C_GenerateSTOP(I2C1, ENABLE);
+    326          
+    327          	// I2C_GenerateSTART(I2C1, ENABLE);
+    328          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
+    329          	// 	;
+    330          	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Receiver);
+    331          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
+    332          	// 	;
+    333          	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
+    334          	// 	; /* Poll on RxNE */
+    335          	// high = I2C_ReceiveData(I2C1);
+    336          	// I2C_AcknowledgeConfig(I2C1, DISABLE);
+    337          	// I2C_GenerateSTOP(I2C1, ENABLE);
+    338          
+    339          	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
+    340          	// 	; /* Poll on RxNE */
+    341          
+    342          	// low = I2C_ReceiveData(I2C1);
+    343          	// I2C_AcknowledgeConfig(I2C1, ENABLE);
+    344          	// tmp = (uint16_t)(high << 8);
+    345          
+    346          	// tmp |= low;
+    347          	// return tmp >> 7;
+    348          	return 36;
+    349          }
+    350          
+    351          /*
+    352           *********************************************************************************************************
+    353           *                                            passTask()
+    354           *
+    355           * Description : Those who are at normal body temperature are allowed to pass.
     356           *
-    357           * Description : Those who are at normal body temperature are allowed to pass.
+    357           * Argument(s) : p
     358           *
-    359           * Argument(s) : p
+    359           * Return(s)   : none.
     360           *
-    361           * Return(s)   : none.
+    361           * Caller(s)   : This is a task.
     362           *
-    363           * Caller(s)   : This is a task.
-    364           *
-    365           * Note(s)     : none.
-    366           *********************************************************************************************************
-    367           */
-    368          // 정상체온인 사람은 통과를 허가하는 Task
-    369          static void passTask(void *p)
-    370          {
-    371          	int err;
-    372          	while (DEF_TRUE)
-    373          	{
-    374          		OSFlagPend(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
-    375          		// dot-matrix
-    376          		TODO("dot-matrix pass");
-    377          		// piezo
-    378          		GPIO_SetBits(GPIOB, GPIO_Pin_8);
-    379          		// door
-    380          		for (int i = TIM2->CCR1; i < 2300; i += 2) // 1500 -> 2300
-    381          		{
-    382          			TIM2->CCR1 = i;
-    383          		}
-    384          
-    385          		// stop setting
-    386          		OSSemPend(sem, 0, (INT8U *)&err);
-    387          		count = 1;
-    388          		OSSemPost(sem);
-    389          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-    390          	}
-    391          }
-    392          
-    393          /*
-    394           *********************************************************************************************************
-    395           *                                            denyTask()
+    363           * Note(s)     : none.
+    364           *********************************************************************************************************
+    365           */
+    366          // 정상체온인 사람은 통과를 허가하는 Task
+    367          static void passTask(void *p)
+    368          {
+    369          	int err;
+    370          	while (DEF_TRUE)
+    371          	{
+    372          		OSFlagPend(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
+    373          		// dot-matrix
+    374          		// TODO("dot-matrix pass");
+    375          		// piezo
+    376          		GPIO_SetBits(GPIOB, GPIO_Pin_8);
+    377          		// door
+    378          		for (int i = TIM2->CCR1; i < 2300; i += 2) // 1500 -> 2300
+    379          		{
+    380          			TIM2->CCR1 = i;
+    381          		}
+    382          
+    383          		// stop setting
+    384          		OSSemPend(sem, 0, (INT8U *)&err);
+    385          		count = 1;
+    386          		OSSemPost(sem);
+    387          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+    388          	}
+    389          }
+    390          
+    391          /*
+    392           *********************************************************************************************************
+    393           *                                            denyTask()
+    394           *
+    395           * Description : People with abnormal body temperature are not allowed to pass through.
     396           *
-    397           * Description : People with abnormal body temperature are not allowed to pass through.
+    397           * Argument(s) : p
     398           *
-    399           * Argument(s) : p
+    399           * Return(s)   : none.
     400           *
-    401           * Return(s)   : none.
+    401           * Caller(s)   : This is a task.
     402           *
-    403           * Caller(s)   : This is a task.
-    404           *
-    405           * Note(s)     : none.
-    406           *********************************************************************************************************
-    407           */
-    408          // 비정상체온인 사람은 통과를 불허하는 Task
-    409          static void denyTask(void *p)
-    410          {
-    411          	int err;
-    412          	int temp = 0;
-    413          	while (DEF_TRUE)
-    414          	{
-    415          		OSFlagPend(flagGroup,
-    416          				   FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW,
-    417          				   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
-    418          				   0,
-    419          				   (INT8U *)&err);
-    420          		temp = OSQPend(temperQue, 0, &err);
-    421          		// dot-matrix
-    422          		TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
-    423          		// piezo
-    424          		GPIO_SetBits(GPIOB, GPIO_Pin_8);
-    425          		// Stop setting
-    426          		OSSemPend(sem, 0, (INT8U *)&err);
-    427          		count = 1;
-    428          		OSSemPost(sem);
-    429          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-    430          	}
-    431          }
-    432          
-    433          /*
-    434           *********************************************************************************************************
-    435           *                                            checkTask()
+    403           * Note(s)     : none.
+    404           *********************************************************************************************************
+    405           */
+    406          // 비정상체온인 사람은 통과를 불허하는 Task
+    407          static void denyTask(void *p)
+    408          {
+    409          	int err;
+    410          	int temp = 0;
+    411          	while (DEF_TRUE)
+    412          	{
+    413          		OSFlagPend(flagGroup,
+    414          				   FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW,
+    415          				   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
+    416          				   0,
+    417          				   (INT8U *)&err);
+    418          		temp = OSQPend(temperQue, 0, &err);
+    419          		// dot-matrix
+    420          		// TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
+    421          		// piezo
+    422          		GPIO_SetBits(GPIOB, GPIO_Pin_8);
+    423          		// Stop setting
+    424          		OSSemPend(sem, 0, (INT8U *)&err);
+    425          		count = 1;
+    426          		OSSemPost(sem);
+    427          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+    428          	}
+    429          }
+    430          
+    431          /*
+    432           *********************************************************************************************************
+    433           *                                            checkTask()
+    434           *
+    435           * Description : Check dot-matrix, piezo, motor.
     436           *
-    437           * Description : Check dot-matrix, piezo, motor.
+    437           * Argument(s) : p
     438           *
-    439           * Argument(s) : p
+    439           * Return(s)   : none.
     440           *
-    441           * Return(s)   : none.
+    441           * Caller(s)   : This is a task.
     442           *
-    443           * Caller(s)   : This is a task.
-    444           *
-    445           * Note(s)     : none.
-    446           *********************************************************************************************************
-    447           */
-    448          // dot-matrix, piezo, motor를 1초 후 정지하도록 하는 Task
-    449          static void checkTask(void *p)
-    450          {
-    451          	CPU_INT08U err;
-    452          	int isStop = 0;
-    453          	while (DEF_TRUE)
-    454          	{
-    455          		if (count != 0)
-    456          		{
-    457          			OSSemPend(sem, 0, &err);
-    458          			if (count > TIME_COUNT)
-    459          			{
-    460          				isStop = 1; // Use flag / Don't do a lot of work in sem
-    461          				count = 0;	// init time counter
-    462          			}
-    463          			count++;
-    464          			OSSemPost(sem);
-    465          
-    466          			// STOP: Do out of sem
-    467          			if (isStop == 1)
-    468          			{
-    469          				stopAll();
-    470          				isStop = 0;
-    471          			}
-    472          		}
-    473          
-    474          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-    475          	}
-    476          }
-    477          
-    478          // Stop all
-    479          static void stopAll()
-    480          {
-    481          	// dot-matrix
-    482          
-    483          	// piezo
-    484          	GPIO_ResetBits(GPIOB, GPIO_Pin_8);
-    485          	// motor
-    486          	for (int i = TIM2->CCR1; i > 1500; i -= 2) // 2300 -> 1500
-    487          	{
-    488          		TIM2->CCR1 = i;
-    489          	}
-    490          }
-    491          /*
-    492           *********************************************************************************************************
-    493           *                                          DispScr_SignOn()
+    443           * Note(s)     : none.
+    444           *********************************************************************************************************
+    445           */
+    446          // dot-matrix, piezo, motor를 1초 후 정지하도록 하는 Task
+    447          static void checkTask(void *p)
+    448          {
+    449          	CPU_INT08U err;
+    450          	int isStop = 0;
+    451          	while (DEF_TRUE)
+    452          	{
+    453          		if (count != 0)
+    454          		{
+    455          			OSSemPend(sem, 0, &err);
+    456          			if (count > TIME_COUNT)
+    457          			{
+    458          				isStop = 1; // Use flag / Don't do a lot of work in sem
+    459          				count = 0;	// init time counter
+    460          			}
+    461          			count++;
+    462          			OSSemPost(sem);
+    463          
+    464          			// STOP: Do out of sem
+    465          			if (isStop == 1)
+    466          			{
+    467          				stopAll();
+    468          				isStop = 0;
+    469          			}
+    470          		}
+    471          
+    472          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+    473          	}
+    474          }
+    475          
+    476          // Stop all
+    477          static void stopAll()
+    478          {
+    479          	// dot-matrix
+    480          
+    481          	// piezo
+    482          	GPIO_ResetBits(GPIOB, GPIO_Pin_8);
+    483          	// motor
+    484          	for (int i = TIM2->CCR1; i > 1500; i -= 2) // 2300 -> 1500
+    485          	{
+    486          		TIM2->CCR1 = i;
+    487          	}
+    488          }
+    489          /*
+    490           *********************************************************************************************************
+    491           *                                          DispScr_SignOn()
+    492           *
+    493           * Description : Display uC/OS-II system information on the LCD.
     494           *
-    495           * Description : Display uC/OS-II system information on the LCD.
+    495           * Argument(s) : none.
     496           *
-    497           * Argument(s) : none.
+    497           * Return(s)   : none.
     498           *
-    499           * Return(s)   : none.
+    499           * Caller(s)   : TaskUserIF().
     500           *
-    501           * Caller(s)   : TaskUserIF().
-    502           *
-    503           * Note(s)     : none.
-    504           *********************************************************************************************************
-    505           */
-    506          
-    507          static void DispScr_SignOn(void)
-    508          {
-    509          }
-    510          
-    511          /*
-    512           *********************************************************************************************************
-    513           *                                          DispScr_SignOn()
+    501           * Note(s)     : none.
+    502           *********************************************************************************************************
+    503           */
+    504          
+    505          static void DispScr_SignOn(void)
+    506          {
+    507          }
+    508          
+    509          /*
+    510           *********************************************************************************************************
+    511           *                                          DispScr_SignOn()
+    512           *
+    513           * Description : Display uC/OS-II system information on the LCD.
     514           *
-    515           * Description : Display uC/OS-II system information on the LCD.
+    515           * Argument(s) : none.
     516           *
-    517           * Argument(s) : none.
+    517           * Return(s)   : none.
     518           *
-    519           * Return(s)   : none.
+    519           * Caller(s)   : TaskUserIF().
     520           *
-    521           * Caller(s)   : TaskUserIF().
-    522           *
-    523           * Note(s)     : none.
-    524           *********************************************************************************************************
-    525           */
-    526          
-    527          static void DispScr_TaskNames(void)
-    528          {
-    529          }
-    530          
-    531          /*
-    532           *********************************************************************************************************
-    533           *                                             InitProbe()
+    521           * Note(s)     : none.
+    522           *********************************************************************************************************
+    523           */
+    524          
+    525          static void DispScr_TaskNames(void)
+    526          {
+    527          }
+    528          
+    529          /*
+    530           *********************************************************************************************************
+    531           *                                             InitProbe()
+    532           *
+    533           * Description : Initialize uC/Probe target code.
     534           *
-    535           * Description : Initialize uC/Probe target code.
+    535           * Argument(s) : none.
     536           *
-    537           * Argument(s) : none.
+    537           * Return(s)   : none.
     538           *
-    539           * Return(s)   : none.
+    539           * Caller(s)   : TaskStart().
     540           *
-    541           * Caller(s)   : TaskStart().
-    542           *
-    543           * Note(s)     : none.
-    544           *********************************************************************************************************
-    545           */
-    546          
-    547          #if ((PROBE_COM_EN == DEF_ENABLED) || \
-    548          	 (OS_PROBE_EN == DEF_ENABLED))
-    549          static void InitProbe(void)
-    550          {
-    551          #if (OS_PROBE_EN == DEF_ENABLED)
-    552          	(void)ProbeCounts;
-    553          	(void)ProbeB1;
-    554          
-    555          #if ((PROBE_COM_EN == DEF_ENABLED) && \
-    556          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-    557          	(void)ProbeComRxPktSpd;
-    558          	(void)ProbeComTxPktSpd;
-    559          	(void)ProbeComTxSymSpd;
-    560          	(void)ProbeComTxSymByteSpd;
-    561          #endif
-    562          
-    563          	OSProbe_Init();
-    564          	OSProbe_SetCallback(ProbeCallback);
-    565          	OSProbe_SetDelay(250);
-    566          #endif
-    567          
-    568          #if (PROBE_COM_EN == DEF_ENABLED)
-    569          	ProbeCom_Init(); /* Initialize the uC/Probe communications module.       */
+    541           * Note(s)     : none.
+    542           *********************************************************************************************************
+    543           */
+    544          
+    545          #if ((PROBE_COM_EN == DEF_ENABLED) || \
+    546          	 (OS_PROBE_EN == DEF_ENABLED))
+    547          static void InitProbe(void)
+    548          {
+    549          #if (OS_PROBE_EN == DEF_ENABLED)
+    550          	(void)ProbeCounts;
+    551          	(void)ProbeB1;
+    552          
+    553          #if ((PROBE_COM_EN == DEF_ENABLED) && \
+    554          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
+    555          	(void)ProbeComRxPktSpd;
+    556          	(void)ProbeComTxPktSpd;
+    557          	(void)ProbeComTxSymSpd;
+    558          	(void)ProbeComTxSymByteSpd;
+    559          #endif
+    560          
+    561          	OSProbe_Init();
+    562          	OSProbe_SetCallback(ProbeCallback);
+    563          	OSProbe_SetDelay(250);
+    564          #endif
+    565          
+    566          #if (PROBE_COM_EN == DEF_ENABLED)
+    567          	ProbeCom_Init(); /* Initialize the uC/Probe communications module.       */
+    568          #endif
+    569          }
     570          #endif
-    571          }
-    572          #endif
-    573          
-    574          /*
-    575           *********************************************************************************************************
-    576           *                                         AppProbeCallback()
+    571          
+    572          /*
+    573           *********************************************************************************************************
+    574           *                                         AppProbeCallback()
+    575           *
+    576           * Description : uC/Probe OS plugin callback.
     577           *
-    578           * Description : uC/Probe OS plugin callback.
+    578           * Argument(s) : none.
     579           *
-    580           * Argument(s) : none.
+    580           * Return(s)   : none.
     581           *
-    582           * Return(s)   : none.
+    582           * Caller(s)   : uC/Probe OS plugin task.
     583           *
-    584           * Caller(s)   : uC/Probe OS plugin task.
-    585           *
-    586           * Note(s)     : none.
-    587           *********************************************************************************************************
-    588           */
-    589          
-    590          #if (OS_PROBE_EN == DEF_ENABLED)
-    591          static void ProbeCallback(void)
-    592          {
-    593          #if ((PROBE_COM_EN == DEF_ENABLED) && \
-    594          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-    595          	CPU_INT32U ctr_curr;
-    596          	CPU_INT32U rxpkt_curr;
-    597          	CPU_INT32U txpkt_curr;
-    598          	CPU_INT32U sym_curr;
-    599          	CPU_INT32U symbyte_curr;
-    600          #endif
+    584           * Note(s)     : none.
+    585           *********************************************************************************************************
+    586           */
+    587          
+    588          #if (OS_PROBE_EN == DEF_ENABLED)
+    589          static void ProbeCallback(void)
+    590          {
+    591          #if ((PROBE_COM_EN == DEF_ENABLED) && \
+    592          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
+    593          	CPU_INT32U ctr_curr;
+    594          	CPU_INT32U rxpkt_curr;
+    595          	CPU_INT32U txpkt_curr;
+    596          	CPU_INT32U sym_curr;
+    597          	CPU_INT32U symbyte_curr;
+    598          #endif
+    599          
+    600          	ProbeCounts++;
     601          
-    602          	ProbeCounts++;
+    602          	ProbeB1 = BSP_PB_GetStatus(1);
     603          
-    604          	ProbeB1 = BSP_PB_GetStatus(1);
-    605          
-    606          #if ((PROBE_COM_EN == DEF_ENABLED) && \
-    607          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-    608          	ctr_curr = OSTime;
-    609          	rxpkt_curr = ProbeCom_RxPktCtr;
-    610          	txpkt_curr = ProbeCom_TxPktCtr;
-    611          	sym_curr = ProbeCom_TxSymCtr;
-    612          	symbyte_curr = ProbeCom_TxSymByteCtr;
-    613          
-    614          	if ((ctr_curr - ProbeComCtrLast) >= OS_TICKS_PER_SEC)
-    615          	{
-    616          		ProbeComRxPktSpd = ((CPU_FP32)(rxpkt_curr - ProbeComRxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-    617          		ProbeComTxPktSpd = ((CPU_FP32)(txpkt_curr - ProbeComTxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-    618          		ProbeComTxSymSpd = ((CPU_FP32)(sym_curr - ProbeComTxSymLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-    619          		ProbeComTxSymByteSpd = ((CPU_FP32)(symbyte_curr - ProbeComTxSymByteLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-    620          
-    621          		ProbeComCtrLast = ctr_curr;
-    622          		ProbeComRxPktLast = rxpkt_curr;
-    623          		ProbeComTxPktLast = txpkt_curr;
-    624          		ProbeComTxSymLast = sym_curr;
-    625          		ProbeComTxSymByteLast = symbyte_curr;
-    626          	}
+    604          #if ((PROBE_COM_EN == DEF_ENABLED) && \
+    605          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
+    606          	ctr_curr = OSTime;
+    607          	rxpkt_curr = ProbeCom_RxPktCtr;
+    608          	txpkt_curr = ProbeCom_TxPktCtr;
+    609          	sym_curr = ProbeCom_TxSymCtr;
+    610          	symbyte_curr = ProbeCom_TxSymByteCtr;
+    611          
+    612          	if ((ctr_curr - ProbeComCtrLast) >= OS_TICKS_PER_SEC)
+    613          	{
+    614          		ProbeComRxPktSpd = ((CPU_FP32)(rxpkt_curr - ProbeComRxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    615          		ProbeComTxPktSpd = ((CPU_FP32)(txpkt_curr - ProbeComTxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    616          		ProbeComTxSymSpd = ((CPU_FP32)(sym_curr - ProbeComTxSymLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    617          		ProbeComTxSymByteSpd = ((CPU_FP32)(symbyte_curr - ProbeComTxSymByteLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    618          
+    619          		ProbeComCtrLast = ctr_curr;
+    620          		ProbeComRxPktLast = rxpkt_curr;
+    621          		ProbeComTxPktLast = txpkt_curr;
+    622          		ProbeComTxSymLast = sym_curr;
+    623          		ProbeComTxSymByteLast = symbyte_curr;
+    624          	}
+    625          #endif
+    626          }
     627          #endif
-    628          }
-    629          #endif
-    630          
-    631          /*
-    632           *********************************************************************************************************
-    633           *                                      FormatDec()
+    628          
+    629          /*
+    630           *********************************************************************************************************
+    631           *                                      FormatDec()
+    632           *
+    633           * Description : Convert a decimal value to ASCII (without leading zeros).
     634           *
-    635           * Description : Convert a decimal value to ASCII (without leading zeros).
+    635           * Argument(s) : pstr            Pointer to the destination ASCII string.
     636           *
-    637           * Argument(s) : pstr            Pointer to the destination ASCII string.
+    637           *               value           Value to convert (assumes an unsigned value).
     638           *
-    639           *               value           Value to convert (assumes an unsigned value).
+    639           *               digits          The desired number of digits.
     640           *
-    641           *               digits          The desired number of digits.
+    641           * Return(s)   : none.
     642           *
-    643           * Return(s)   : none.
+    643           * Caller(s)   : various.
     644           *
-    645           * Caller(s)   : various.
-    646           *
-    647           * Note(s)     : none.
-    648           *********************************************************************************************************
-    649           */
-    650          
-    651          /*
-    652           *********************************************************************************************************
+    645           * Note(s)     : none.
+    646           *********************************************************************************************************
+    647           */
+    648          
+    649          /*
+    650           *********************************************************************************************************
+    651           *********************************************************************************************************
+    652           *                                          uC/OS-II APP HOOKS
     653           *********************************************************************************************************
-    654           *                                          uC/OS-II APP HOOKS
-    655           *********************************************************************************************************
-    656           *********************************************************************************************************
-    657           */
-    658          
-    659          #if (OS_HOOKS_EN > 0)
-    660          /*
-    661           *********************************************************************************************************
-    662           *                                      TASK CREATION HOOK (APPLICATION)
+    654           *********************************************************************************************************
+    655           */
+    656          
+    657          #if (OS_HOOKS_EN > 0)
+    658          /*
+    659           *********************************************************************************************************
+    660           *                                      TASK CREATION HOOK (APPLICATION)
+    661           *
+    662           * Description : This function is cal when a task is created.
     663           *
-    664           * Description : This function is cal when a task is created.
+    664           * Argument(s) : ptcb   is a pointer to the task control block of the task being created.
     665           *
-    666           * Argument(s) : ptcb   is a pointer to the task control block of the task being created.
-    667           *
-    668           * Note(s)     : (1) Interrupts are disabled during this call.
-    669           *********************************************************************************************************
-    670           */
-    671          
-    672          void TaskCreateHook(OS_TCB *ptcb)
-    673          {
-    674          #if ((OS_PROBE_EN == DEF_ENABLED) && \
-    675          	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
-    676          	OSProbe_TaskCreateHook(ptcb);
-    677          #endif
-    678          }
-    679          
-    680          /*
-    681           *********************************************************************************************************
-    682           *                                    TASK DELETION HOOK (APPLICATION)
+    666           * Note(s)     : (1) Interrupts are disabled during this call.
+    667           *********************************************************************************************************
+    668           */
+    669          
+    670          void TaskCreateHook(OS_TCB *ptcb)
+    671          {
+    672          #if ((OS_PROBE_EN == DEF_ENABLED) && \
+    673          	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
+    674          	OSProbe_TaskCreateHook(ptcb);
+    675          #endif
+    676          }
+    677          
+    678          /*
+    679           *********************************************************************************************************
+    680           *                                    TASK DELETION HOOK (APPLICATION)
+    681           *
+    682           * Description : This function is called when a task is deleted.
     683           *
-    684           * Description : This function is called when a task is deleted.
+    684           * Argument(s) : ptcb   is a pointer to the task control block of the task being deleted.
     685           *
-    686           * Argument(s) : ptcb   is a pointer to the task control block of the task being deleted.
-    687           *
-    688           * Note(s)     : (1) Interrupts are disabled during this call.
-    689           *********************************************************************************************************
-    690           */
-    691          
-    692          void TaskDelHook(OS_TCB *ptcb)
-    693          {
-    694          	(void)ptcb;
-    695          }
-    696          
-    697          /*
-    698           *********************************************************************************************************
-    699           *                                      IDLE TASK HOOK (APPLICATION)
-    700           *
-    701           * Description : This function is called by OSTaskIdleHook(), which is called by the idle task.  This hook
-    702           *               has been added to allow you to do such things as STOP the CPU to conserve power.
+    686           * Note(s)     : (1) Interrupts are disabled during this call.
+    687           *********************************************************************************************************
+    688           */
+    689          
+    690          void TaskDelHook(OS_TCB *ptcb)
+    691          {
+    692          	(void)ptcb;
+    693          }
+    694          
+    695          /*
+    696           *********************************************************************************************************
+    697           *                                      IDLE TASK HOOK (APPLICATION)
+    698           *
+    699           * Description : This function is called by OSTaskIdleHook(), which is called by the idle task.  This hook
+    700           *               has been added to allow you to do such things as STOP the CPU to conserve power.
+    701           *
+    702           * Argument(s) : none.
     703           *
-    704           * Argument(s) : none.
-    705           *
-    706           * Note(s)     : (1) Interrupts are enabled during this call.
-    707           *********************************************************************************************************
-    708           */
-    709          
-    710          #if OS_VERSION >= 251
-    711          void TaskIdleHook(void)
-    712          {
-    713          }
-    714          #endif
-    715          
-    716          /*
-    717           *********************************************************************************************************
-    718           *                                        STATISTIC TASK HOOK (APPLICATION)
-    719           *
-    720           * Description : This function is called by OSTaskStatHook(), which is called every second by uC/OS-II's
-    721           *               statistics task.  This allows your application to add functionality to the statistics task.
-    722           *
-    723           * Argument(s) : none.
-    724           *********************************************************************************************************
-    725           */
-    726          
-    727          void TaskStatHook(void)
-    728          {
-    729          }
-    730          
-    731          /*
-    732           *********************************************************************************************************
-    733           *                                        TASK SWITCH HOOK (APPLICATION)
-    734           *
-    735           * Description : This function is called when a task switch is performed.  This allows you to perform other
-    736           *               operations during a context switch.
+    704           * Note(s)     : (1) Interrupts are enabled during this call.
+    705           *********************************************************************************************************
+    706           */
+    707          
+    708          #if OS_VERSION >= 251
+    709          void TaskIdleHook(void)
+    710          {
+    711          }
+    712          #endif
+    713          
+    714          /*
+    715           *********************************************************************************************************
+    716           *                                        STATISTIC TASK HOOK (APPLICATION)
+    717           *
+    718           * Description : This function is called by OSTaskStatHook(), which is called every second by uC/OS-II's
+    719           *               statistics task.  This allows your application to add functionality to the statistics task.
+    720           *
+    721           * Argument(s) : none.
+    722           *********************************************************************************************************
+    723           */
+    724          
+    725          void TaskStatHook(void)
+    726          {
+    727          }
+    728          
+    729          /*
+    730           *********************************************************************************************************
+    731           *                                        TASK SWITCH HOOK (APPLICATION)
+    732           *
+    733           * Description : This function is called when a task switch is performed.  This allows you to perform other
+    734           *               operations during a context switch.
+    735           *
+    736           * Argument(s) : none.
     737           *
-    738           * Argument(s) : none.
+    738           * Note(s)     : (1) Interrupts are disabled during this call.
     739           *
-    740           * Note(s)     : (1) Interrupts are disabled during this call.
-    741           *
-    742           *               (2) It is assumed that the global pointer 'OSTCBHighRdy' points to the TCB of the task that
-    743           *                   will be 'switched in' (i.e. the highest priority task) and, 'OSTCBCur' points to the
-    744           *                  task being switched out (i.e. the preempted task).
-    745           *********************************************************************************************************
-    746           */
-    747          
-    748          #if OS_TASK_SW_HOOK_EN > 0
-    749          void TaskSwHook(void)
-    750          {
-    751          #if ((OS_PROBE_EN == DEF_ENABLED) && \
-    752          	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
-    753          	OSProbe_TaskSwHook();
+    740           *               (2) It is assumed that the global pointer 'OSTCBHighRdy' points to the TCB of the task that
+    741           *                   will be 'switched in' (i.e. the highest priority task) and, 'OSTCBCur' points to the
+    742           *                  task being switched out (i.e. the preempted task).
+    743           *********************************************************************************************************
+    744           */
+    745          
+    746          #if OS_TASK_SW_HOOK_EN > 0
+    747          void TaskSwHook(void)
+    748          {
+    749          #if ((OS_PROBE_EN == DEF_ENABLED) && \
+    750          	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
+    751          	OSProbe_TaskSwHook();
+    752          #endif
+    753          }
     754          #endif
-    755          }
-    756          #endif
-    757          
-    758          /*
-    759           *********************************************************************************************************
-    760           *                                     OS_TCBInit() HOOK (APPLICATION)
-    761           *
-    762           * Description : This function is called by OSTCBInitHook(), which is called by OS_TCBInit() after setting
-    763           *               up most of the TCB.
+    755          
+    756          /*
+    757           *********************************************************************************************************
+    758           *                                     OS_TCBInit() HOOK (APPLICATION)
+    759           *
+    760           * Description : This function is called by OSTCBInitHook(), which is called by OS_TCBInit() after setting
+    761           *               up most of the TCB.
+    762           *
+    763           * Argument(s) : ptcb    is a pointer to the TCB of the task being created.
     764           *
-    765           * Argument(s) : ptcb    is a pointer to the TCB of the task being created.
-    766           *
-    767           * Note(s)     : (1) Interrupts may or may not be ENABLED during this call.
-    768           *********************************************************************************************************
-    769           */
-    770          
-    771          #if OS_VERSION >= 204
-    772          void TCBInitHook(OS_TCB *ptcb)
-    773          {
-    774          	(void)ptcb;
-    775          }
-    776          #endif
-    777          
-    778          /*
-    779           *********************************************************************************************************
-    780           *                                        TICK HOOK (APPLICATION)
+    765           * Note(s)     : (1) Interrupts may or may not be ENABLED during this call.
+    766           *********************************************************************************************************
+    767           */
+    768          
+    769          #if OS_VERSION >= 204
+    770          void TCBInitHook(OS_TCB *ptcb)
+    771          {
+    772          	(void)ptcb;
+    773          }
+    774          #endif
+    775          
+    776          /*
+    777           *********************************************************************************************************
+    778           *                                        TICK HOOK (APPLICATION)
+    779           *
+    780           * Description : This function is called every tick.
     781           *
-    782           * Description : This function is called every tick.
+    782           * Argument(s) : none.
     783           *
-    784           * Argument(s) : none.
-    785           *
-    786           * Note(s)     : (1) Interrupts may or may not be ENABLED during this call.
-    787           *********************************************************************************************************
-    788           */
-    789          
-    790          #if OS_TIME_TICK_HOOK_EN > 0
-    791          void TimeTickHook(void)
-    792          {
-    793          #if ((OS_PROBE_EN == DEF_ENABLED) && \
-    794          	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
-    795          	OSProbe_TickHook();
+    784           * Note(s)     : (1) Interrupts may or may not be ENABLED during this call.
+    785           *********************************************************************************************************
+    786           */
+    787          
+    788          #if OS_TIME_TICK_HOOK_EN > 0
+    789          void TimeTickHook(void)
+    790          {
+    791          #if ((OS_PROBE_EN == DEF_ENABLED) && \
+    792          	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
+    793          	OSProbe_TickHook();
+    794          #endif
+    795          }
     796          #endif
-    797          }
-    798          #endif
-    799          #endif
-    800          
-    801          static void initAll()
-    802          {
-    803          	ADC_InitTypeDef adc_init;
-    804          	GPIO_InitTypeDef gpio_init;
-    805          	I2C_InitTypeDef i2c_init;
-    806          	TIM_TimeBaseInitTypeDef tim_timebase_init;
-    807          	TIM_OCInitTypeDef tim_piezo_init;
-    808          	TIM_OCInitTypeDef tim_motor_init;
-    809          	SPI_InitTypeDef spi_init;
-    810          
-    811          	// CLOCK
-    812          	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
-    813          	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
-    814          	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
-    815          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
-    816          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
-    817          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-    818          
-    819          	// PIN
-    820          	// ADC
-    821          	gpio_init.GPIO_Pin = GPIO_Pin_0;
-    822          	gpio_init.GPIO_Mode = GPIO_Mode_AIN;
-    823          	GPIO_Init(GPIOB, &gpio_init);
-    824          	// I2C
-    825          	gpio_init.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
-    826          	gpio_init.GPIO_Mode = GPIO_Mode_AF_OD;
-    827          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    828          	GPIO_Init(GPIOB, &gpio_init);
-    829          	// TIM (PWM)
-    830          	// Piezo
-    831          	gpio_init.GPIO_Pin = GPIO_Pin_8;
-    832          	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-    833          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    834          	GPIO_Init(GPIOB, &gpio_init);
-    835          	// Motor
-    836          	gpio_init.GPIO_Pin = GPIO_Pin_9;
-    837          	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-    838          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    797          #endif
+    798          
+    799          static void initAll()
+    800          {
+    801          	ADC_InitTypeDef adc_init;
+    802          	GPIO_InitTypeDef gpio_init;
+    803          	I2C_InitTypeDef i2c_init;
+    804          	TIM_TimeBaseInitTypeDef tim_timebase_init;
+    805          	TIM_OCInitTypeDef tim_piezo_init;
+    806          	TIM_OCInitTypeDef tim_motor_init;
+    807          	SPI_InitTypeDef spi_init;
+    808          
+    809          	// CLOCK
+    810          	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+    811          	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
+    812          	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+    813          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+    814          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+    815          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+    816          
+    817          	// PIN
+    818          	// ADC
+    819          	gpio_init.GPIO_Pin = GPIO_Pin_0;
+    820          	gpio_init.GPIO_Mode = GPIO_Mode_AIN;
+    821          	GPIO_Init(GPIOB, &gpio_init);
+    822          	// I2C
+    823          	gpio_init.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
+    824          	gpio_init.GPIO_Mode = GPIO_Mode_AF_OD;
+    825          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    826          	GPIO_Init(GPIOB, &gpio_init);
+    827          	// TIM (PWM)
+    828          	// Piezo
+    829          	gpio_init.GPIO_Pin = GPIO_Pin_8;
+    830          	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
+    831          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    832          	GPIO_Init(GPIOB, &gpio_init);
+    833          	// Motor
+    834          	gpio_init.GPIO_Pin = GPIO_Pin_9;
+    835          	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
+    836          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    837          	GPIO_Init(GPIOB, &gpio_init);
+    838          	// SPI
     839          	GPIO_Init(GPIOB, &gpio_init);
-    840          	// SPI
-    841          	GPIO_Init(GPIOB, &gpio_init);
-    842          	gpio_init.GPIO_Pin = GPIO_Pin_12;
-    843          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    844          	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-    845          	GPIO_Init(GPIOB, &gpio_init);
-    846          	gpio_init.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-    847          	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-    848          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    849          	GPIO_Init(GPIOB, &gpio_init);
-    850          	GPIO_SetBits(GPIOB, GPIO_Pin_12); // check
-    851          
-    852          	// CONFIG
-    853          	// ADC
-    854          	adc_init.ADC_Mode = ADC_Mode_Independent;
-    855          	adc_init.ADC_ScanConvMode = DISABLE;
-    856          	adc_init.ADC_ContinuousConvMode = ENABLE;
-    857          	adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
-    858          	adc_init.ADC_DataAlign = ADC_DataAlign_Right;
-    859          	adc_init.ADC_NbrOfChannel = 1;
-    860          	ADC_Init(ADC1, &adc_init);
-    861          	ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 1, ADC_SampleTime_13Cycles5);
-    862          	ADC_Cmd(ADC1, ENABLE);
-    863          	ADC_SoftwareStartConvCmd(ADC1, ENABLE);
-    864          	// I2C
-    865          	i2c_init.I2C_Mode = I2C_Mode_I2C;
-    866          	i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
-    867          	i2c_init.I2C_OwnAddress1 = 0;
-    868          	i2c_init.I2C_Ack = I2C_Ack_Enable;
-    869          	i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-    870          	i2c_init.I2C_ClockSpeed = 100000;
-    871          	I2C_Init(I2C1, &i2c_init);
-    872          	I2C_Cmd(I2C1, ENABLE);
-    873          	// TIM (PWM)
-    874          	tim_timebase_init.TIM_Prescaler = (72000000 / 1000000) - 1; // set to 1MHz Counter Clock
-    875          	tim_timebase_init.TIM_Period = 20000 - 1;					// set to 50Hz pulse with 1MHz Counter Clock
-    876          	tim_timebase_init.TIM_ClockDivision = 0;
-    877          	tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Down;
-    878          	tim_timebase_init.TIM_RepetitionCounter;
-    879          	TIM_TimeBaseInit(TIM4, &tim_timebase_init);
-    880          	/* PIEZO: PWM1 Mode configuration: Channel3 */
-    881          	tim_piezo_init.TIM_OCMode = TIM_OCMODE_PWM1;
-    882          	tim_piezo_init.TIM_OutputState = TIM_OUTPUTSTATE_Enable;
-    883          	tim_piezo_init.TIM_Pulse = 500;
-    884          	tim_piezo_init.TIM_OCPolarity = TIM_OCPolarity_High;
-    885          	TIM_OC3Init(TIM4, &tim_piezo_init);
-    886          	//TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Disable);
-    887          	TIM_Cmd(TIM4, ENABLE);
-    888          	/* MOTOR: PWM1 Mode configuration: Channel4 */
-    889          	tim_motor_init.TIM_OCMode = TIM_OCMODE_PWM1;
-    890          	tim_motor_init.TIM_OutputState = TIM_OUTPUTSTATE_Enable;
-    891          	tim_motor_init.TIM_Pulse = 1500; // 50 % duty cylce value
-    892          	tim_motor_init.TIM_OCPolarity = TIM_OCPolarity_High;
-    893          	TIM_PWMIConfig(TIM4, &tim_motor_init);
-    894          	TIM_OC4Init(TIM4, &tim_motor_init);
-    895          	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Disable);
-    896          	TIM_ARRPreloadConfig(TIM4, ENABLE);
-    897          	TIM_Cmd(TIM4, ENABLE);
-    898          	// SPI
-    899          	spi_init.SPI_Direction = SPI_Direction_1Line_Tx;
-    900          	spi_init.SPI_Mode = SPI_Mode_Master;
-    901          	spi_init.SPI_DataSize = SPI_DataSize_16b;
-    902          	spi_init.SPI_CPOL = SPI_CPOL_Low;
-    903          	spi_init.SPI_CPHA = SPI_CPHA_1Edge;
-    904          	spi_init.SPI_NSS = SPI_NSS_Soft;
-    905          	spi_init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;
-    906          	spi_init.SPI_FirstBit = SPI_FirstBit_MSB;
-    907          	spi_init.SPI_CRCPolynomial;
-    908          	SPI_Init(SPI2, &spi_init);
-    909          	SPI_Cmd(SPI2, ENABLE);
-    910          }
+    840          	gpio_init.GPIO_Pin = GPIO_Pin_12;
+    841          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    842          	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
+    843          	GPIO_Init(GPIOB, &gpio_init);
+    844          	gpio_init.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+    845          	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
+    846          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    847          	GPIO_Init(GPIOB, &gpio_init);
+    848          	GPIO_SetBits(GPIOB, GPIO_Pin_12); // check
+    849          
+    850          	// CONFIG
+    851          	// ADC
+    852          	adc_init.ADC_Mode = ADC_Mode_Independent;
+    853          	adc_init.ADC_ScanConvMode = DISABLE;
+    854          	adc_init.ADC_ContinuousConvMode = ENABLE;
+    855          	adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+    856          	adc_init.ADC_DataAlign = ADC_DataAlign_Right;
+    857          	adc_init.ADC_NbrOfChannel = 1;
+    858          	ADC_Init(ADC1, &adc_init);
+    859          	ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 1, ADC_SampleTime_13Cycles5);
+    860          	ADC_Cmd(ADC1, ENABLE);
+    861          	ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+    862          	// I2C
+    863          	i2c_init.I2C_Mode = I2C_Mode_I2C;
+    864          	i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
+    865          	i2c_init.I2C_OwnAddress1 = 0;
+    866          	i2c_init.I2C_Ack = I2C_Ack_Enable;
+    867          	i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    868          	i2c_init.I2C_ClockSpeed = 100000;
+    869          	I2C_Init(I2C2, &i2c_init);
+    870          	I2C_Cmd(I2C2, ENABLE);
+    871          	// TIM (PWM)
+    872          	tim_timebase_init.TIM_Prescaler = (72000000 / 1000000) - 1; // set to 1MHz Counter Clock
+    873          	tim_timebase_init.TIM_Period = 20000 - 1;					// set to 50Hz pulse with 1MHz Counter Clock
+    874          	tim_timebase_init.TIM_ClockDivision = 0;
+    875          	tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Down;
+    876          	tim_timebase_init.TIM_RepetitionCounter;
+    877          	TIM_TimeBaseInit(TIM4, &tim_timebase_init);
+    878          	/* PIEZO: PWM1 Mode configuration: Channel3 */
+    879          	tim_piezo_init.TIM_OCMode = TIM_OCMode_PWM1;
+    880          	tim_piezo_init.TIM_OutputState = TIM_OutputState_Enable;
+    881          	tim_piezo_init.TIM_Pulse = 500;
+    882          	tim_piezo_init.TIM_OCPolarity = TIM_OCPolarity_High;
+    883          	TIM_OC3Init(TIM4, &tim_piezo_init);
+    884          	//TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Disable);
+    885          	TIM_Cmd(TIM4, ENABLE);
+    886          	/* MOTOR: PWM1 Mode configuration: Channel4 */
+    887          	tim_motor_init.TIM_OCMode = TIM_OCMode_PWM1;
+    888          	tim_motor_init.TIM_OutputState = TIM_OutputState_Enable;
+    889          	tim_motor_init.TIM_Pulse = 1500; // 50 % duty cylce value
+    890          	tim_motor_init.TIM_OCPolarity = TIM_OCPolarity_High;
+    891          
+    892          	//TIM_PWMIConfig(TIM4, &tim_motor_init);
+    893          	TIM_OC4Init(TIM4, &tim_motor_init);
+    894          	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Disable);
+    895          	TIM_ARRPreloadConfig(TIM4, ENABLE);
+    896          	TIM_Cmd(TIM4, ENABLE);
+    897          	// SPI
+    898          	spi_init.SPI_Direction = SPI_Direction_1Line_Tx;
+    899          	spi_init.SPI_Mode = SPI_Mode_Master;
+    900          	spi_init.SPI_DataSize = SPI_DataSize_16b;
+    901          	spi_init.SPI_CPOL = SPI_CPOL_Low;
+    902          	spi_init.SPI_CPHA = SPI_CPHA_1Edge;
+    903          	spi_init.SPI_NSS = SPI_NSS_Soft;
+    904          	spi_init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;
+    905          	spi_init.SPI_FirstBit = SPI_FirstBit_MSB;
+    906          	spi_init.SPI_CRCPolynomial;
+    907          	SPI_Init(SPI2, &spi_init);
+    908          	SPI_Cmd(SPI2, ENABLE);
+    909          }
 
-Errors: 5
-Warnings: 13
+Errors: 1
+Warnings: 10
