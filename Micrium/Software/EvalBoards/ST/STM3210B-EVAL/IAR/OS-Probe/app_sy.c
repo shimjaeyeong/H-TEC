@@ -81,6 +81,8 @@ static OS_EVENT *sem;
 static int count = 0;
 const static int TIME_COUNT = 9; // 100ms * 10 = 1초
 const static int DELAY_TIME = 100;
+static int ADC_value = 0;
+
 
 #if ((APP_OS_PROBE_EN == DEF_ENABLED) &&  \
 	 (APP_PROBE_COM_EN == DEF_ENABLED) && \
@@ -227,16 +229,16 @@ int main(void)
 
 	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
 
-	BSP_Init();
-	OS_CPU_SysTickInit();
-#if (OS_TASK_STAT_EN > 0)
-	OSStatInit(); /* Determine CPU capacity.                              */
-#endif
-
-#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
-	 (APP_OS_PROBE_EN == DEF_ENABLED))
-	App_InitProbe();
-#endif
+//	BSP_Init();
+//	OS_CPU_SysTickInit();
+//#if (OS_TASK_STAT_EN > 0)
+//	OSStatInit(); /* Determine CPU capacity.                              */
+//#endif
+//
+//#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+//	 (APP_OS_PROBE_EN == DEF_ENABLED))
+//	App_InitProbe();
+//#endif
 
 	return (0);
 }
@@ -261,20 +263,41 @@ int main(void)
 static void detectTask(void *p)
 {
 	CPU_INT08U err;
+
+	BSP_Init();
+	OS_CPU_SysTickInit();
+#if (OS_TASK_STAT_EN > 0)
+	OSStatInit(); /* Determine CPU capacity.                              */
+#endif
+
+#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+	 (APP_OS_PROBE_EN == DEF_ENABLED))
+	App_InitProbe();
+#endif
+
 	while (DEF_TRUE)
 	{
-		if (ADC_GetConversionValue(ADC1) != 0) // when human detected
+		ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+
+		while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
+
+		ADC_value = ADC_GetConversionValue(ADC1);
+
+		if (ADC_value != RESET) // when human detected
 		{
-			BSP_LED_On(0);
+			BSP_LED_On(4);
+			//BSP_LED_Off(0);
 			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, &err);
 		}
 		else
 		{
-			BSP_LED_On(1);
+			BSP_LED_On(3);
+			//BSP_LED_Off(3);
 			OSFlagPost(flagGroup, FLAG_DETECT_NOT, OS_FLAG_SET, &err);
 		}
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
+
 }
 
 /*
@@ -305,18 +328,21 @@ static void temperTask(void *p)
 		if (temp > high) // when temperature is HIGH
 		{
 			//OSQPost(temperQue, temp);
-			BSP_LED_On(2);
+			//BSP_LED_On(2);
+			//BSP_LED_Off(3);
 			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, &err);
 		}
 		else if (temp < low)
 		{
 			//OSQPost(temperQue, temp);
-			BSP_LED_On(2);
+			//BSP_LED_On(2);
+			//BSP_LED_Off(3);
 			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, &err);
 		}
 		else
 		{
-			BSP_LED_On(3);
+			//BSP_LED_On(3);
+			//BSP_LED_Off(2);
 			OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, &err);
 		}
 
@@ -883,7 +909,7 @@ static void initAll()
 	adc_init.ADC_NbrOfChannel = 1;
 	ADC_Init(ADC1, &adc_init);
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 1, ADC_SampleTime_41Cycles5);
-	ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE);
+	//ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE);
 	ADC_Cmd(ADC1, ENABLE);
 
 	ADC_ResetCalibration(ADC1);

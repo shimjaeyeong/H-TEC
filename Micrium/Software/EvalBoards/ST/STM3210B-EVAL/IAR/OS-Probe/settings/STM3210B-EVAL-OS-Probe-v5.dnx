@@ -23,7 +23,7 @@
         <stlinkfoundProbes />
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>1067126823</Checksum>
+        <Checksum>1765753018</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -105,8 +105,9 @@
         <A0>_ "C:\stm32f100\Micrium\Software\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_dbg.c" ""</A0>
         <A1>_ "C:\stm32f100\Micrium\Software\uCOS-II\Source\os_task.c" ""</A1>
         <A2>_ "C:\stm32f100\Micrium\Software\uCOS-II\Source\os_time.c" ""</A2>
-        <Count>3</Count>
-        <SuppressDialog>0</SuppressDialog>
+        <A3>_ "D:\Develop\H-TEC\Micrium\Software\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_a.asm" ""</A3>
+        <Count>4</Count>
+        <SuppressDialog>1</SuppressDialog>
     </Aliases>
     <CallStackLog>
         <Enabled>0</Enabled>
