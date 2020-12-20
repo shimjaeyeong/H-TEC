@@ -1,6 +1,10 @@
 ###############################################################################
 #
+<<<<<<< HEAD
 # IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         18/Dec/2020  23:47:31
+=======
+# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         21/Dec/2020  02:31:28
+>>>>>>> 12f609e231801fbf08d93cb7ba0b89eff1ec66db
 # Copyright 1999-2020 IAR Systems AB.
 #
 #    Cpu mode                        
@@ -8,8 +12,13 @@
 #    Source file                  =
 #        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
 #    Command line                 =
+<<<<<<< HEAD
 #        -f C:\Users\SHIMJA~1\AppData\Local\Temp\EW4167.tmp
 #        (C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
+=======
+#        -f C:\Users\fabi8\AppData\Local\Temp\EW7E60.tmp
+#        (D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
+>>>>>>> 12f609e231801fbf08d93cb7ba0b89eff1ec66db
 #        -lCN
 #        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
 #        -o
@@ -115,6 +124,8 @@ C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-
      57           */
      58          
      59          // Task Stack (size: 128)
+
+   \                                 In section .bss, align 4
      60          static OS_STK detectTaskStack[TASK_STK_SIZE];
      61          static OS_STK temperatureTaskStack[TASK_STK_SIZE];
      62          static OS_STK passTaskStack[TASK_STK_SIZE];
@@ -126,6 +137,7 @@ C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-
      68          static void *msg[10];
      69          
      70          // Event Flags
+<<<<<<< HEAD
      71          #define OS_FLAGS_NBITS 8
      72          #define OS_FLAG_EN 1
      73          static OS_FLAG_GRP *flagGroup;
@@ -161,11 +173,82 @@ C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-
     103          #if (OS_PROBE_EN == DEF_ENABLED)
     104          static CPU_INT32U ProbeCounts;
     105          static CPU_BOOLEAN ProbeB1;
+=======
+     71          static OS_FLAG_GRP *flagGroup;
+   \                     flagGroup:
+   \        0x0                      DS8 4
+   \        0x4                      DS8 4
+   \        0x8                      DS8 4
+   \        0xC                      DS8 512
+   \      0x20C                      DS8 512
+   \      0x40C                      DS8 512
+   \      0x60C                      DS8 512
+   \      0x80C                      DS8 512
+     72          const static OS_FLAGS FLAG_INIT = 0;
+     73          const static OS_FLAGS FLAG_DETECT = 1;
+     74          const static OS_FLAGS FLAG_DETECT_NOT = 2;
+     75          const static OS_FLAGS FLAG_TEMPER_NORMAL = 4;
+     76          const static OS_FLAGS FLAG_TEMPER_HIGH = 8;
+     77          const static OS_FLAGS FLAG_TEMPER_LOW = 16;
+     78          
+     79          // time
+     80          static OS_EVENT *sem;
+     81          static int count = 0;
+     82          const static int TIME_COUNT = 9; // 100ms * 10 = 1초
+     83          const static int DELAY_TIME = 100;
+     84          
+     85          #if ((APP_OS_PROBE_EN == DEF_ENABLED) &&  \
+     86          	 (APP_PROBE_COM_EN == DEF_ENABLED) && \
+     87          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
+
+   \                                 In section .bss, align 4
+   \        0x0                      DS8 4
+     88          static CPU_FP32 App_ProbeComRxPktSpd;
+
+   \                                 In section .bss, align 4
+   \        0x0                      DS8 4
+     89          static CPU_FP32 App_ProbeComTxPktSpd;
+
+   \                                 In section .bss, align 4
+   \        0x0                      DS8 4
+     90          static CPU_FP32 App_ProbeComTxSymSpd;
+
+   \                                 In section .bss, align 4
+   \        0x0                      DS8 4
+     91          static CPU_FP32 App_ProbeComTxSymByteSpd;
+     92          
+
+   \                                 In section .bss, align 4
+     93          static CPU_INT32U App_ProbeComRxPktLast;
+   \                     App_ProbeComRxPktLast:
+   \        0x0                      DS8 4
+   \        0x4                      DS8 4
+   \        0x8                      DS8 4
+   \        0xC                      DS8 4
+   \       0x10                      DS8 4
+   \       0x14                      DS8 4
+     94          static CPU_INT32U App_ProbeComTxPktLast;
+     95          static CPU_INT32U App_ProbeComTxSymLast;
+     96          static CPU_INT32U App_ProbeComTxSymByteLast;
+     97          
+     98          static CPU_INT32U App_ProbeComCtrLast;
+     99          #endif
+    100          
+    101          #if (APP_OS_PROBE_EN == DEF_ENABLED)
+    102          static CPU_INT32U App_ProbeCounts;
+
+   \                                 In section .bss, align 1
+   \        0x0                      DS8 1
+    103          static CPU_BOOLEAN App_ProbeB1;
+    104          
+    105          #endif
+>>>>>>> 12f609e231801fbf08d93cb7ba0b89eff1ec66db
     106          
-    107          #endif
-    108          
-    109          /*
+    107          /*
+    108           *********************************************************************************************************
+    109           *                                      LOCAL FUNCTION PROTOTYPES
     110           *********************************************************************************************************
+<<<<<<< HEAD
     111           *                                      LOCAL FUNCTION PROTOTYPES
     112           *********************************************************************************************************
     113           */
@@ -710,19 +793,1072 @@ C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-
     652           *********************************************************************************************************
     653           *********************************************************************************************************
     654           *                                          uC/OS-II APP HOOKS
+=======
+    111           */
+    112          
+    113          // Task function
+    114          static void detectTask(void *p);
+    115          static void temperTask(void *p);
+    116          static void passTask(void *p);
+    117          static void denyTask(void *p);
+    118          static void checkTask(void *p);
+    119          
+    120          static void App_DispScr_SignOn(void);
+    121          static void DispScr_TaskNames(void);
+    122          
+    123          static int readTemperature(void);
+    124          static void stopAll();
+    125          static void initAll();
+    126          
+    127          #if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+    128          	 (APP_OS_PROBE_EN == DEF_ENABLED))
+    129          static void App_InitProbe(void);
+    130          #endif
+    131          
+    132          #if (APP_OS_PROBE_EN == DEF_ENABLED)
+    133          static void App_ProbeCallback(void);
+    134          #endif
+    135          
+    136          /*
+    137           *********************************************************************************************************
+    138           *                                                main()
+    139           *
+    140           * Description : This is the standard entry point for C code.  It is assumed that your code will call
+    141           *               main() once you have performed all necessary initialization.
+    142           *
+    143           * Argument(s) : none.
+    144           *
+    145           * Return(s)   : none.
+    146           *********************************************************************************************************
+    147           */
+    148          
+
+   \                                 In section .text, align 4, keep-with-next
+    149          int main(void)
+    150          {
+   \                     main: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0xB09C             SUB      SP,SP,#+112
+    151          	CPU_INT08U os_err;
+    152          
+    153          	/* Disable all ints until we are ready to accept them.  */
+    154          	BSP_IntDisAll();
+   \        0x4   0x....'....        BL       BSP_IntDisAll
+    155          
+    156          	/* Initialize "uC/OS-II, The Real-Time Kernel".         */
+    157          	OSInit();
+   \        0x8   0x....'....        BL       OSInit
+    158          
+    159          	initAll();
+   \        0xC   0x2101             MOVS     R1,#+1
+   \        0xE   0xF44F 0x1000      MOV      R0,#+2097152
+   \       0x12   0x....'....        BL       RCC_APB1PeriphClockCmd
+   \       0x16   0x2101             MOVS     R1,#+1
+   \       0x18   0xF44F 0x4080      MOV      R0,#+16384
+   \       0x1C   0x....'....        BL       RCC_APB1PeriphClockCmd
+   \       0x20   0x2101             MOVS     R1,#+1
+   \       0x22   0x2004             MOVS     R0,#+4
+   \       0x24   0x....'....        BL       RCC_APB1PeriphClockCmd
+   \       0x28   0x2101             MOVS     R1,#+1
+   \       0x2A   0x2001             MOVS     R0,#+1
+   \       0x2C   0x....'....        BL       RCC_APB2PeriphClockCmd
+   \       0x30   0x2101             MOVS     R1,#+1
+   \       0x32   0xF44F 0x7000      MOV      R0,#+512
+   \       0x36   0x....'....        BL       RCC_APB2PeriphClockCmd
+   \       0x3A   0x2101             MOVS     R1,#+1
+   \       0x3C   0x2008             MOVS     R0,#+8
+   \       0x3E   0x....'....        BL       RCC_APB2PeriphClockCmd
+   \       0x42   0x2001             MOVS     R0,#+1
+   \       0x44   0x2100             MOVS     R1,#+0
+   \       0x46   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+   \       0x4A   0xF88D 0x1003      STRB     R1,[SP, #+3]
+   \       0x4E   0x2203             MOVS     R2,#+3
+   \       0x50   0xF88D 0x2002      STRB     R2,[SP, #+2]
+   \       0x54   0x4669             MOV      R1,SP
+   \       0x56   0x....'....        LDR.W    R5,??DataTable12  ;; 0x40010c00
+   \       0x5A   0x4628             MOV      R0,R5
+   \       0x5C   0x....'....        BL       GPIO_Init
+   \       0x60   0x20C0             MOVS     R0,#+192
+   \       0x62   0x211C             MOVS     R1,#+28
+   \       0x64   0x....'....        BL       ??Subroutine0_0
+   \                     ??CrossCallReturnLabel_0: (+1)
+   \       0x68   0xF44F 0x7080      MOV      R0,#+256
+   \       0x6C   0x....'....        BL       ?Subroutine0
+   \                     ??CrossCallReturnLabel_2: (+1)
+   \       0x70   0x2118             MOVS     R1,#+24
+   \       0x72   0xF88D 0x1003      STRB     R1,[SP, #+3]
+   \       0x76   0x2203             MOVS     R2,#+3
+   \       0x78   0xF44F 0x7400      MOV      R4,#+512
+   \       0x7C   0xF88D 0x2002      STRB     R2,[SP, #+2]
+   \       0x80   0xF8AD 0x4000      STRH     R4,[SP, #+0]
+   \       0x84   0x....'....        BL       ?Subroutine3
+   \                     ??CrossCallReturnLabel_14: (+1)
+   \       0x88   0x....'....        BL       ?Subroutine3
+   \                     ??CrossCallReturnLabel_13: (+1)
+   \       0x8C   0xF44F 0x5080      MOV      R0,#+4096
+   \       0x90   0x2103             MOVS     R1,#+3
+   \       0x92   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+   \       0x96   0xF88D 0x1002      STRB     R1,[SP, #+2]
+   \       0x9A   0x2210             MOVS     R2,#+16
+   \       0x9C   0xF88D 0x2003      STRB     R2,[SP, #+3]
+   \       0xA0   0x....'....        BL       ?Subroutine3
+   \                     ??CrossCallReturnLabel_12: (+1)
+   \       0xA4   0xF44F 0x4060      MOV      R0,#+57344
+   \       0xA8   0x....'....        BL       ?Subroutine0
+   \                     ??CrossCallReturnLabel_1: (+1)
+   \       0xAC   0xF44F 0x5180      MOV      R1,#+4096
+   \       0xB0   0x4628             MOV      R0,R5
+   \       0xB2   0x....'....        BL       GPIO_SetBits
+   \       0xB6   0x2201             MOVS     R2,#+1
+   \       0xB8   0xF88D 0x2060      STRB     R2,[SP, #+96]
+   \       0xBC   0xF88D 0x2061      STRB     R2,[SP, #+97]
+   \       0xC0   0x2100             MOVS     R1,#+0
+   \       0xC2   0xF44F 0x2260      MOV      R2,#+917504
+   \       0xC6   0x9219             STR      R2,[SP, #+100]
+   \       0xC8   0x9117             STR      R1,[SP, #+92]
+   \       0xCA   0x911A             STR      R1,[SP, #+104]
+   \       0xCC   0x2201             MOVS     R2,#+1
+   \       0xCE   0xF88D 0x206C      STRB     R2,[SP, #+108]
+   \       0xD2   0xA917             ADD      R1,SP,#+92
+   \       0xD4   0x....'....        LDR.W    R5,??DataTable12_1  ;; 0x40012400
+   \       0xD8   0x4628             MOV      R0,R5
+   \       0xDA   0x....'....        BL       ADC_Init
+   \       0xDE   0x2304             MOVS     R3,#+4
+   \       0xE0   0x2201             MOVS     R2,#+1
+   \       0xE2   0x2108             MOVS     R1,#+8
+   \       0xE4   0x4628             MOV      R0,R5
+   \       0xE6   0x....'....        BL       ADC_RegularChannelConfig
+   \       0xEA   0x2201             MOVS     R2,#+1
+   \       0xEC   0xF44F 0x7108      MOV      R1,#+544
+   \       0xF0   0x4628             MOV      R0,R5
+   \       0xF2   0x....'....        BL       ADC_ITConfig
+   \       0xF6   0x2101             MOVS     R1,#+1
+   \       0xF8   0x4628             MOV      R0,R5
+   \       0xFA   0x....'....        BL       ADC_Cmd
+   \       0xFE   0x4628             MOV      R0,R5
+   \      0x100   0x....'....        BL       ADC_ResetCalibration
+   \                     ??main_0: (+1)
+   \      0x104   0x4628             MOV      R0,R5
+   \      0x106   0x....'....        BL       ADC_GetResetCalibrationStatus
+   \      0x10A   0x2800             CMP      R0,#+0
+   \      0x10C   0xD1FA             BNE.N    ??main_0
+   \      0x10E   0x4628             MOV      R0,R5
+   \      0x110   0x....'....        BL       ADC_StartCalibration
+   \                     ??main_1: (+1)
+   \      0x114   0x4628             MOV      R0,R5
+   \      0x116   0x....'....        BL       ADC_GetCalibrationStatus
+   \      0x11A   0x2800             CMP      R0,#+0
+   \      0x11C   0xD1FA             BNE.N    ??main_1
+   \      0x11E   0x2101             MOVS     R1,#+1
+   \      0x120   0x4628             MOV      R0,R5
+   \      0x122   0x....'....        BL       ADC_SoftwareStartConvCmd
+   \      0x126   0xF64B 0x72FF      MOVW     R2,#+49151
+   \      0x12A   0xF8AD 0x201A      STRH     R2,[SP, #+26]
+   \      0x12E   0x2100             MOVS     R1,#+0
+   \      0x130   0xF8AD 0x1018      STRH     R1,[SP, #+24]
+   \      0x134   0xF8AD 0x101C      STRH     R1,[SP, #+28]
+   \      0x138   0xF44F 0x6280      MOV      R2,#+1024
+   \      0x13C   0xF8AD 0x201E      STRH     R2,[SP, #+30]
+   \      0x140   0xF44F 0x4180      MOV      R1,#+16384
+   \      0x144   0xF8AD 0x1020      STRH     R1,[SP, #+32]
+   \      0x148   0xA906             ADD      R1,SP,#+24
+   \      0x14A   0x....'....        LDR.W    R2,??DataTable12_2  ;; 0x186a0
+   \      0x14E   0x....'....        LDR.W    R5,??DataTable12_3  ;; 0x40005400
+   \      0x152   0x9209             STR      R2,[SP, #+36]
+   \      0x154   0x4628             MOV      R0,R5
+   \      0x156   0x....'....        BL       I2C_Init
+   \      0x15A   0x2101             MOVS     R1,#+1
+   \      0x15C   0x4628             MOV      R0,R5
+   \      0x15E   0x....'....        BL       I2C_Cmd
+   \      0x162   0x2147             MOVS     R1,#+71
+   \      0x164   0xF8AD 0x1004      STRH     R1,[SP, #+4]
+   \      0x168   0xF644 0x621F      MOVW     R2,#+19999
+   \      0x16C   0xF8AD 0x2008      STRH     R2,[SP, #+8]
+   \      0x170   0x2100             MOVS     R1,#+0
+   \      0x172   0xF8AD 0x100A      STRH     R1,[SP, #+10]
+   \      0x176   0x2210             MOVS     R2,#+16
+   \      0x178   0xF8AD 0x2006      STRH     R2,[SP, #+6]
+   \      0x17C   0xA901             ADD      R1,SP,#+4
+   \      0x17E   0x....             LDR.N    R5,??DataTable12_4  ;; 0x40000800
+   \      0x180   0x4628             MOV      R0,R5
+   \      0x182   0x....'....        BL       TIM_TimeBaseInit
+   \      0x186   0x2160             MOVS     R1,#+96
+   \      0x188   0xF8AD 0x104C      STRH     R1,[SP, #+76]
+   \      0x18C   0x2201             MOVS     R2,#+1
+   \      0x18E   0xF8AD 0x204E      STRH     R2,[SP, #+78]
+   \      0x192   0xF44F 0x71FA      MOV      R1,#+500
+   \      0x196   0xF8AD 0x1052      STRH     R1,[SP, #+82]
+   \      0x19A   0x2200             MOVS     R2,#+0
+   \      0x19C   0xF8AD 0x2054      STRH     R2,[SP, #+84]
+   \      0x1A0   0xA913             ADD      R1,SP,#+76
+   \      0x1A2   0x4628             MOV      R0,R5
+   \      0x1A4   0x....'....        BL       TIM_OC3Init
+   \      0x1A8   0x2101             MOVS     R1,#+1
+   \      0x1AA   0x4628             MOV      R0,R5
+   \      0x1AC   0x....'....        BL       TIM_Cmd
+   \      0x1B0   0x2160             MOVS     R1,#+96
+   \      0x1B2   0xF8AD 0x103C      STRH     R1,[SP, #+60]
+   \      0x1B6   0x2201             MOVS     R2,#+1
+   \      0x1B8   0xF8AD 0x203E      STRH     R2,[SP, #+62]
+   \      0x1BC   0xF240 0x51DC      MOVW     R1,#+1500
+   \      0x1C0   0xF8AD 0x1042      STRH     R1,[SP, #+66]
+   \      0x1C4   0x2200             MOVS     R2,#+0
+   \      0x1C6   0xF8AD 0x2044      STRH     R2,[SP, #+68]
+   \      0x1CA   0xA90F             ADD      R1,SP,#+60
+   \      0x1CC   0x4628             MOV      R0,R5
+   \      0x1CE   0x....'....        BL       TIM_OC4Init
+   \      0x1D2   0x2100             MOVS     R1,#+0
+   \      0x1D4   0x4628             MOV      R0,R5
+   \      0x1D6   0x....'....        BL       TIM_OC4PreloadConfig
+   \      0x1DA   0x2101             MOVS     R1,#+1
+   \      0x1DC   0x4628             MOV      R0,R5
+   \      0x1DE   0x....'....        BL       TIM_ARRPreloadConfig
+   \      0x1E2   0x2101             MOVS     R1,#+1
+   \      0x1E4   0x4628             MOV      R0,R5
+   \      0x1E6   0x....'....        BL       TIM_Cmd
+   \      0x1EA   0xF44F 0x4140      MOV      R1,#+49152
+   \      0x1EE   0xF8AD 0x1028      STRH     R1,[SP, #+40]
+   \      0x1F2   0xF44F 0x7282      MOV      R2,#+260
+   \      0x1F6   0xF44F 0x6100      MOV      R1,#+2048
+   \      0x1FA   0xF8AD 0x102C      STRH     R1,[SP, #+44]
+   \      0x1FE   0xF8AD 0x202A      STRH     R2,[SP, #+42]
+   \      0x202   0xF8AD 0x4032      STRH     R4,[SP, #+50]
+   \      0x206   0x2110             MOVS     R1,#+16
+   \      0x208   0x2200             MOVS     R2,#+0
+   \      0x20A   0xF8AD 0x1034      STRH     R1,[SP, #+52]
+   \      0x20E   0xF8AD 0x202E      STRH     R2,[SP, #+46]
+   \      0x212   0xF8AD 0x2030      STRH     R2,[SP, #+48]
+   \      0x216   0xF8AD 0x2036      STRH     R2,[SP, #+54]
+   \      0x21A   0xA90A             ADD      R1,SP,#+40
+   \      0x21C   0x....             LDR.N    R4,??DataTable12_5  ;; 0x40003800
+   \      0x21E   0x4620             MOV      R0,R4
+   \      0x220   0x....'....        BL       SPI_Init
+   \      0x224   0x2101             MOVS     R1,#+1
+   \      0x226   0x4620             MOV      R0,R4
+   \      0x228   0x....'....        BL       SPI_Cmd
+    160          
+    161          	// Create Message Que, msg : 저장공간, 크기 : 10
+    162          	//temperQue = (OS_EVENT *)OSQCreate(msg, 10);
+    163          
+    164          	// Create Event Flag
+    165          	flagGroup = OSFlagCreate(FLAG_INIT, &os_err);
+   \      0x22C   0xA905             ADD      R1,SP,#+20
+   \      0x22E   0x2000             MOVS     R0,#+0
+   \      0x230   0x....             LDR.N    R4,??DataTable12_6
+   \      0x232   0x....'....        BL       OSFlagCreate
+   \      0x236   0x6020             STR      R0,[R4, #+0]
+    166          
+    167          	// Create semaphore
+    168          	sem = OSSemCreate(0);
+   \      0x238   0x2000             MOVS     R0,#+0
+   \      0x23A   0x....'....        BL       OSSemCreate
+   \      0x23E   0x6060             STR      R0,[R4, #+4]
+    169          
+    170          	os_err = OSTaskCreateExt((void (*)(void *))detectTask,						   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+    171          							 (void *)0,											   // Task로 넘겨줄 인자
+    172          							 (OS_STK *)&detectTaskStack[TASK_STK_SIZE - 1],		   // Task가 할당될 Stack의 Top을 가리키는 주소
+    173          							 (INT8U)TASK_DETECT_PRIO,							   // Task의 우선 순위 (MPT)
+    174          							 (INT16U)TASK_DETECT_PRIO,							   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
+    175          							 (OS_STK *)&detectTaskStack,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
+    176          							 (INT32U)TASK_STK_SIZE,								   // Task Stack의 크기를 의미
+    177          							 (void *)0,											   // Task Control Block 활용시 사용
+    178          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
+   \      0x240   0x....'....        BL       ??Subroutine4_0
+   \                     ??CrossCallReturnLabel_18: (+1)
+   \      0x244   0xF104 0x030C      ADD      R3,R4,#+12
+   \      0x248   0x2002             MOVS     R0,#+2
+   \      0x24A   0x....'....        BL       ?Subroutine1
+   \                     ??CrossCallReturnLabel_3: (+1)
+   \      0x24E   0x2302             MOVS     R3,#+2
+   \      0x250   0xF504 0x7202      ADD      R2,R4,#+520
+   \      0x254   0x....'....        ADR.W    R0,detectTask
+   \      0x258   0x....'....        BL       OSTaskCreateExt
+   \      0x25C   0x....'....        BL       ?Subroutine4
+    179          
+    180          	os_err = OSTaskCreateExt((void (*)(void *))temperTask, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
+    181          							 (void *)0,
+    182          							 (OS_STK *)&temperatureTaskStack[TASK_STK_SIZE - 1],
+    183          							 (INT8U)TASK_TEMPER_PRIO,
+    184          							 (INT16U)TASK_TEMPER_PRIO,
+    185          							 (OS_STK *)&temperatureTaskStack,
+    186          							 (INT32U)TASK_STK_SIZE,
+    187          							 (void *)0,
+    188          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+   \                     ??CrossCallReturnLabel_15: (+1)
+   \      0x260   0xF504 0x7303      ADD      R3,R4,#+524
+   \      0x264   0x2001             MOVS     R0,#+1
+   \      0x266   0x....'....        BL       ?Subroutine1
+   \                     ??CrossCallReturnLabel_4: (+1)
+   \      0x26A   0x2301             MOVS     R3,#+1
+   \      0x26C   0xF504 0x6281      ADD      R2,R4,#+1032
+   \      0x270   0x....'....        ADR.W    R0,temperTask
+   \      0x274   0x....'....        BL       OSTaskCreateExt
+   \      0x278   0xF88D 0x0014      STRB     R0,[SP, #+20]
+    189          
+    190          	os_err = OSTaskCreateExt((void (*)(void *))passTask, // 정상체온인 사람은 통과를 허가하는 Task
+    191          							 (void *)0,
+    192          							 (OS_STK *)&passTaskStack[TASK_STK_SIZE - 1],
+    193          							 (INT8U)TASK_PASS_PRIO,
+    194          							 (INT16U)TASK_PASS_PRIO,
+    195          							 (OS_STK *)&passTaskStack,
+    196          							 (INT32U)TASK_STK_SIZE,
+    197          							 (void *)0,
+    198          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+   \      0x27C   0x2100             MOVS     R1,#+0
+   \      0x27E   0x2003             MOVS     R0,#+3
+   \      0x280   0x9004             STR      R0,[SP, #+16]
+   \      0x282   0x2280             MOVS     R2,#+128
+   \      0x284   0xF204 0x430C      ADDW     R3,R4,#+1036
+   \      0x288   0x2007             MOVS     R0,#+7
+   \      0x28A   0x9202             STR      R2,[SP, #+8]
+   \      0x28C   0x9301             STR      R3,[SP, #+4]
+   \      0x28E   0x9000             STR      R0,[SP, #+0]
+   \      0x290   0x9103             STR      R1,[SP, #+12]
+   \      0x292   0x2307             MOVS     R3,#+7
+   \      0x294   0xF504 0x62C1      ADD      R2,R4,#+1544
+   \      0x298   0x....'....        ADR.W    R0,passTask
+   \      0x29C   0x....'....        BL       OSTaskCreateExt
+   \      0x2A0   0x....'....        BL       ?Subroutine4
+    199          
+    200          	os_err = OSTaskCreateExt((void (*)(void *))denyTask, // 비정상체온인 사람은 통과를 불허하는 Task
+    201          							 (void *)0,
+    202          							 (OS_STK *)&denyTaskStack[TASK_STK_SIZE - 1],
+    203          							 (INT8U)TASK_DENY_PRIO,
+    204          							 (INT16U)TASK_DENY_PRIO,
+    205          							 (OS_STK *)&denyTaskStack,
+    206          							 (INT32U)TASK_STK_SIZE,
+    207          							 (void *)0,
+    208          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+   \                     ??CrossCallReturnLabel_16: (+1)
+   \      0x2A4   0xF204 0x630C      ADDW     R3,R4,#+1548
+   \      0x2A8   0x2008             MOVS     R0,#+8
+   \      0x2AA   0x....'....        BL       ?Subroutine1
+   \                     ??CrossCallReturnLabel_5: (+1)
+   \      0x2AE   0x2308             MOVS     R3,#+8
+   \      0x2B0   0xF604 0x0208      ADDW     R2,R4,#+2056
+   \      0x2B4   0x....'....        ADR.W    R0,denyTask
+   \      0x2B8   0x....'....        BL       OSTaskCreateExt
+   \      0x2BC   0x....'....        BL       ?Subroutine4
+    209          
+    210          	os_err = OSTaskCreateExt((void (*)(void *))checkTask, // 알림 장치 작동 중지하는 Task
+    211          							 (void *)0,
+    212          							 (OS_STK *)&checkTaskStack[TASK_STK_SIZE - 1],
+    213          							 (INT8U)TASK_CHECK_PRIO,
+    214          							 (INT16U)TASK_CHECK_PRIO,
+    215          							 (OS_STK *)&checkTaskStack,
+    216          							 (INT32U)TASK_STK_SIZE,
+    217          							 (void *)0,
+    218          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+   \                     ??CrossCallReturnLabel_17: (+1)
+   \      0x2C0   0xF604 0x030C      ADDW     R3,R4,#+2060
+   \      0x2C4   0x2006             MOVS     R0,#+6
+   \      0x2C6   0x....'....        BL       ?Subroutine1
+   \                     ??CrossCallReturnLabel_6: (+1)
+   \      0x2CA   0x2306             MOVS     R3,#+6
+   \      0x2CC   0xF604 0x2208      ADDW     R2,R4,#+2568
+   \      0x2D0   0x....'....        ADR.W    R0,checkTask
+   \      0x2D4   0x....'....        BL       OSTaskCreateExt
+   \      0x2D8   0xF88D 0x0014      STRB     R0,[SP, #+20]
+    219          
+    220          #if (OS_TASK_NAME_SIZE >= 11)
+    221          	OSTaskNameSet(TASK_DETECT_PRIO, (CPU_INT08U *)"Detect Task", &os_err);
+   \      0x2DC   0xF10D 0x0214      ADD.W    R2,SP,#+20
+   \      0x2E0   0x....             ADR.N    R1,?_0
+   \      0x2E2   0x2002             MOVS     R0,#+2
+   \      0x2E4   0x....'....        BL       OSTaskNameSet
+    222          	OSTaskNameSet(TASK_TEMPER_PRIO, (CPU_INT08U *)"Temperature Task", &os_err);
+   \      0x2E8   0xF10D 0x0214      ADD.W    R2,SP,#+20
+   \      0x2EC   0x....             ADR.N    R1,?_1
+   \      0x2EE   0x2001             MOVS     R0,#+1
+   \      0x2F0   0x....'....        BL       OSTaskNameSet
+    223          	OSTaskNameSet(TASK_PASS_PRIO, (CPU_INT08U *)"Pass Task", &os_err);
+   \      0x2F4   0xF10D 0x0214      ADD.W    R2,SP,#+20
+   \      0x2F8   0x....             ADR.N    R1,?_2
+   \      0x2FA   0x2007             MOVS     R0,#+7
+   \      0x2FC   0x....'....        BL       OSTaskNameSet
+    224          	OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U *)"Deny Task", &os_err);
+   \      0x300   0xF10D 0x0214      ADD.W    R2,SP,#+20
+   \      0x304   0x....             ADR.N    R1,?_3
+   \      0x306   0x2008             MOVS     R0,#+8
+   \      0x308   0x....'....        BL       OSTaskNameSet
+    225          	OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U *)"Check Task", &os_err);
+   \      0x30C   0xF10D 0x0214      ADD.W    R2,SP,#+20
+   \      0x310   0x....             ADR.N    R1,?_4
+   \      0x312   0x2006             MOVS     R0,#+6
+   \      0x314   0x....'....        BL       OSTaskNameSet
+    226          #endif
+    227          
+    228          	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
+   \      0x318   0x....'....        BL       OSStart
+    229          
+    230          	BSP_Init();
+   \      0x31C   0x....'....        BL       BSP_Init
+    231          	OS_CPU_SysTickInit();
+   \      0x320   0x....'....        BL       OS_CPU_SysTickInit
+    232          	#if (OS_TASK_STAT_EN > 0)
+    233          	OSStatInit();                                           /* Determine CPU capacity.                              */
+   \      0x324   0x....'....        BL       OSStatInit
+    234          #endif
+    235          
+    236          #if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+    237          	(APP_OS_PROBE_EN == DEF_ENABLED))
+    238          	App_InitProbe();
+   \      0x328   0x....'....        BL       OSProbe_Init
+   \      0x32C   0x....'....        ADR.W    R0,App_ProbeCallback
+   \      0x330   0x....'....        BL       OSProbe_SetCallback
+   \      0x334   0x20FA             MOVS     R0,#+250
+   \      0x336   0x....'....        BL       OSProbe_SetDelay
+   \      0x33A   0x....'....        BL       ProbeCom_Init
+    239          #endif
+    240          
+    241          	return (0);
+   \      0x33E   0x2000             MOVS     R0,#+0
+   \      0x340   0xB01D             ADD      SP,SP,#+116
+   \      0x342   0xBD30             POP      {R4,R5,PC}       ;; return
+    242          }
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine4: (+1)
+   \        0x0   0xF88D 0x0014      STRB     R0,[SP, #+20]
+   \                     ??Subroutine4_0: (+1)
+   \        0x4   0x2280             MOVS     R2,#+128
+   \        0x6   0x2003             MOVS     R0,#+3
+   \        0x8   0x9004             STR      R0,[SP, #+16]
+   \        0xA   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine1: (+1)
+   \        0x0   0x2100             MOVS     R1,#+0
+   \        0x2   0x9202             STR      R2,[SP, #+8]
+   \        0x4   0x9301             STR      R3,[SP, #+4]
+   \        0x6   0x9000             STR      R0,[SP, #+0]
+   \        0x8   0x9103             STR      R1,[SP, #+12]
+   \        0xA   0x4770             BX       LR
+    243          
+    244          /*
+    245           *********************************************************************************************************
+    246           *                                          detectTask()
+    247           *
+    248           * Description : Human detecting task. Monitor the existence of people,
+    249           *
+    250           * Argument(s) : p
+    251           *
+    252           * Return(s)   : none.
+    253           *
+    254           * Caller(s)   : This is a task.
+    255           *
+    256           * Note(s)     : none.
+    257           *********************************************************************************************************
+    258           */
+    259          
+    260          // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+
+   \                                 In section .text, align 4, keep-with-next
+    261          static void detectTask(void *p)
+    262          {
+   \                     detectTask: (+1)
+   \        0x0   0xB51C             PUSH     {R2-R4,LR}
+   \        0x2   0x....             LDR.N    R4,??DataTable12_6
+    263          	CPU_INT08U err;
+    264          	while (DEF_TRUE)
+    265          	{
+    266          		if (ADC_GetConversionValue(ADC1) != 0) // when human detected
+   \                     ??detectTask_0: (+1)
+   \        0x4   0x....             LDR.N    R0,??DataTable12_1  ;; 0x40012400
+   \        0x6   0x....'....        BL       ADC_GetConversionValue
+   \        0xA   0xB930             CBNZ.N   R0,??detectTask_1
+    267          		{
+    268          			BSP_LED_On(0);
+    269          			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, &err);
+    270          		}
+    271          		else
+    272          		{
+    273          			BSP_LED_On(1);
+   \        0xC   0x2001             MOVS     R0,#+1
+   \        0xE   0x....'....        BL       BSP_LED_On
+    274          			OSFlagPost(flagGroup, FLAG_DETECT_NOT, OS_FLAG_SET, &err);
+   \       0x12   0x466B             MOV      R3,SP
+   \       0x14   0x2201             MOVS     R2,#+1
+   \       0x16   0x2102             MOVS     R1,#+2
+   \       0x18   0xE005             B.N      ??detectTask_2
+    275          		}
+   \                     ??detectTask_1: (+1)
+   \       0x1A   0x2000             MOVS     R0,#+0
+   \       0x1C   0x....'....        BL       BSP_LED_On
+   \       0x20   0x466B             MOV      R3,SP
+   \       0x22   0x2201             MOVS     R2,#+1
+   \       0x24   0x2101             MOVS     R1,#+1
+   \                     ??detectTask_2: (+1)
+   \       0x26   0x6820             LDR      R0,[R4, #+0]
+   \       0x28   0x....'....        BL       OSFlagPost
+    276          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+   \       0x2C   0x....'....        BL       ?Subroutine2
+    277          	}
+   \                     ??CrossCallReturnLabel_11: (+1)
+   \       0x30   0xE7E8             B.N      ??detectTask_0
+    278          }
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine2: (+1)
+   \        0x0   0x2364             MOVS     R3,#+100
+   \        0x2   0x2200             MOVS     R2,#+0
+   \        0x4   0x2100             MOVS     R1,#+0
+   \        0x6   0x2000             MOVS     R0,#+0
+   \        0x8   0x....'....        B.W      OSTimeDlyHMSM
+    279          
+    280          /*
+    281           *********************************************************************************************************
+    282           *                                            temperTask()
+    283           *
+    284           * Description : Measure a person's temperature
+    285           *
+    286           * Argument(s) : p
+    287           *
+    288           * Return(s)   : none.
+    289           *
+    290           * Caller(s)   : This is a task.
+    291           *
+    292           * Note(s)     : none.
+    293           *********************************************************************************************************
+    294           */
+    295          // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
+
+   \                                 In section .text, align 4, keep-with-next
+    296          static void temperTask(void *p)
+    297          {
+   \                     temperTask: (+1)
+   \        0x0   0xB51C             PUSH     {R2-R4,LR}
+    298          	INT8U err;
+    299          	int temp;
+    300          	int high = 39;
+    301          	int low = 34;
+   \        0x2   0x....             LDR.N    R4,??DataTable12_6
+    302          	while (DEF_TRUE)
+    303          	{
+    304          		temp = readTemperature();
+    305          		if (temp > high) // when temperature is HIGH
+    306          		{
+    307          			//OSQPost(temperQue, temp);
+    308          			BSP_LED_On(2);
+    309          			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, &err);
+    310          		}
+    311          		else if (temp < low)
+    312          		{
+    313          			//OSQPost(temperQue, temp);
+    314          			BSP_LED_On(2);
+    315          			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, &err);
+    316          		}
+    317          		else
+    318          		{
+    319          			BSP_LED_On(3);
+   \                     ??temperTask_0: (+1)
+   \        0x4   0x2003             MOVS     R0,#+3
+   \        0x6   0x....'....        BL       BSP_LED_On
+    320          			OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, &err);
+   \        0xA   0x6820             LDR      R0,[R4, #+0]
+   \        0xC   0x466B             MOV      R3,SP
+   \        0xE   0x2201             MOVS     R2,#+1
+   \       0x10   0x2104             MOVS     R1,#+4
+   \       0x12   0x....'....        BL       OSFlagPost
+    321          		}
+    322          
+    323          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+   \       0x16   0x....'....        BL       ?Subroutine2
+    324          	}
+   \                     ??CrossCallReturnLabel_10: (+1)
+   \       0x1A   0xE7F3             B.N      ??temperTask_0
+    325          }
+    326          
+    327          static int readTemperature()
+    328          {
+    329          	// int high, low;
+    330          	// int tmp = 0;
+    331          
+    332          	// while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
+    333          	// 	;
+    334          	// I2C_GenerateSTART(I2C1, ENABLE);
+    335          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
+    336          	// 	;
+    337          	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Transmitter);
+    338          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
+    339          	// 	;
+    340          	// I2C_SendData(I2C1, 0x0);
+    341          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+    342          	// 	;
+    343          	// I2C_GenerateSTOP(I2C1, ENABLE);
+    344          
+    345          	// I2C_GenerateSTART(I2C1, ENABLE);
+    346          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
+    347          	// 	;
+    348          	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Receiver);
+    349          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
+    350          	// 	;
+    351          	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
+    352          	// 	; /* Poll on RxNE */
+    353          	// high = I2C_ReceiveData(I2C1);
+    354          	// I2C_AcknowledgeConfig(I2C1, DISABLE);
+    355          	// I2C_GenerateSTOP(I2C1, ENABLE);
+    356          
+    357          	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
+    358          	// 	; /* Poll on RxNE */
+    359          
+    360          	// low = I2C_ReceiveData(I2C1);
+    361          	// I2C_AcknowledgeConfig(I2C1, ENABLE);
+    362          	// tmp = (uint16_t)(high << 8);
+    363          
+    364          	// tmp |= low;
+    365          	// return tmp >> 7;
+    366          	return 36;
+    367          }
+    368          
+    369          /*
+    370           *********************************************************************************************************
+    371           *                                            passTask()
+    372           *
+    373           * Description : Those who are at normal body temperature are allowed to pass.
+    374           *
+    375           * Argument(s) : p
+    376           *
+    377           * Return(s)   : none.
+    378           *
+    379           * Caller(s)   : This is a task.
+    380           *
+    381           * Note(s)     : none.
+    382           *********************************************************************************************************
+    383           */
+    384          // 정상체온인 사람은 통과를 허가하는 Task
+
+   \                                 In section .text, align 4, keep-with-next
+    385          static void passTask(void *p)
+    386          {
+   \                     passTask: (+1)
+   \        0x0   0xB53E             PUSH     {R1-R5,LR}
+   \        0x2   0x....             LDR.N    R4,??DataTable12_7  ;; 0x40000034
+   \        0x4   0x....             LDR.N    R5,??DataTable12_6
+   \        0x6   0xE00D             B.N      ??CrossCallReturnLabel_9
+    387          	int err;
+    388          	while (DEF_TRUE)
+    389          	{
+    390          		OSFlagPend(flagGroup, FLAG_DETECT + FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
+    391          		// dot-matrix
+    392          		// TODO("dot-matrix pass");
+    393          		// piezo
+    394          		GPIO_SetBits(GPIOB, GPIO_Pin_8);
+    395          		// door
+    396          		for (int i = TIM2->CCR1; i < 2300; i += 2) // 1500 -> 2300
+    397          		{
+    398          			TIM2->CCR1 = i;
+   \                     ??passTask_0: (+1)
+   \        0x8   0x8020             STRH     R0,[R4, #+0]
+    399          		}
+   \        0xA   0x1C80             ADDS     R0,R0,#+2
+   \                     ??passTask_1: (+1)
+   \        0xC   0x4298             CMP      R0,R3
+   \        0xE   0xDBFB             BLT.N    ??passTask_0
+    400          
+    401          		// stop setting
+    402          		OSSemPend(sem, 0, (INT8U *)&err);
+   \       0x10   0x6868             LDR      R0,[R5, #+4]
+   \       0x12   0x....'....        BL       ?Subroutine6
+    403          		count = 1;
+   \                     ??CrossCallReturnLabel_23: (+1)
+   \       0x16   0x2101             MOVS     R1,#+1
+   \       0x18   0x60A9             STR      R1,[R5, #+8]
+    404          		OSSemPost(sem);
+   \       0x1A   0x6868             LDR      R0,[R5, #+4]
+   \       0x1C   0x....'....        BL       OSSemPost
+    405          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+   \       0x20   0x....'....        BL       ?Subroutine2
+   \                     ??CrossCallReturnLabel_9: (+1)
+   \       0x24   0xA801             ADD      R0,SP,#+4
+   \       0x26   0x9000             STR      R0,[SP, #+0]
+   \       0x28   0x2300             MOVS     R3,#+0
+   \       0x2A   0x6828             LDR      R0,[R5, #+0]
+   \       0x2C   0x2282             MOVS     R2,#+130
+   \       0x2E   0x2105             MOVS     R1,#+5
+   \       0x30   0x....'....        BL       OSFlagPend
+   \       0x34   0x....'....        BL       ?Subroutine5
+   \                     ??CrossCallReturnLabel_20: (+1)
+   \       0x38   0x8820             LDRH     R0,[R4, #+0]
+   \       0x3A   0xF640 0x03FC      MOVW     R3,#+2300
+   \       0x3E   0xE7E5             B.N      ??passTask_1
+    406          	}
+    407          }
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine6: (+1)
+   \        0x0   0xAA01             ADD      R2,SP,#+4
+   \                     ??Subroutine6_0: (+1)
+   \        0x2   0x2100             MOVS     R1,#+0
+   \        0x4   0x....'....        B.W      OSSemPend
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine5: (+1)
+   \        0x0   0xF44F 0x7180      MOV      R1,#+256
+   \        0x4   0x....             LDR.N    R0,??DataTable12  ;; 0x40010c00
+   \        0x6   0x....'....        B.W      GPIO_SetBits
+    408          
+    409          /*
+    410           *********************************************************************************************************
+    411           *                                            denyTask()
+    412           *
+    413           * Description : People with abnormal body temperature are not allowed to pass through.
+    414           *
+    415           * Argument(s) : p
+    416           *
+    417           * Return(s)   : none.
+    418           *
+    419           * Caller(s)   : This is a task.
+    420           *
+    421           * Note(s)     : none.
+    422           *********************************************************************************************************
+    423           */
+    424          // 비정상체온인 사람은 통과를 불허하는 Task
+
+   \                                 In section .text, align 4, keep-with-next
+    425          static void denyTask(void *p)
+    426          {
+   \                     denyTask: (+1)
+   \        0x0   0xB51C             PUSH     {R2-R4,LR}
+    427          	int err;
+    428          	int temp = 0;
+   \        0x2   0x....             LDR.N    R4,??DataTable12_6
+    429          	while (DEF_TRUE)
+    430          	{
+    431          		int flags =
+    432          			OSFlagPend(flagGroup,
+    433          					   FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW + FLAG_DETECT_NOT,
+    434          					   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
+    435          					   0,
+    436          					   (INT8U *)&err);
+    437          		if ((flags & FLAG_TEMPER_HIGH) == FLAG_TEMPER_HIGH)
+   \                     ??denyTask_0: (+1)
+   \        0x4   0xA801             ADD      R0,SP,#+4
+   \        0x6   0x9000             STR      R0,[SP, #+0]
+   \        0x8   0x2300             MOVS     R3,#+0
+   \        0xA   0x6820             LDR      R0,[R4, #+0]
+   \        0xC   0x2283             MOVS     R2,#+131
+   \        0xE   0x211A             MOVS     R1,#+26
+   \       0x10   0x....'....        BL       OSFlagPend
+   \       0x14   0x0700             LSLS     R0,R0,#+28
+   \       0x16   0xD501             BPL.N    ??CrossCallReturnLabel_19
+    438          		{
+    439          			// dot-matrix
+    440          			// TODO("dot-matrix deny");
+    441          			// piezo
+    442          			GPIO_SetBits(GPIOB, GPIO_Pin_8);
+   \       0x18   0x....'....        BL       ?Subroutine5
+    443          		}
+    444          		else if ((flags & FLAG_TEMPER_LOW) == FLAG_TEMPER_LOW)
+    445          		{
+    446          			// dot-matrix
+    447          			// TODO("dot-matrix deny");
+    448          		}
+    449          		OSSemPend(sem, 0, (INT8U *)&err);
+   \                     ??CrossCallReturnLabel_19: (+1)
+   \       0x1C   0x6860             LDR      R0,[R4, #+4]
+   \       0x1E   0x....'....        BL       ?Subroutine6
+    450          		count = 1;
+   \                     ??CrossCallReturnLabel_22: (+1)
+   \       0x22   0x2001             MOVS     R0,#+1
+   \       0x24   0x60A0             STR      R0,[R4, #+8]
+    451          		OSSemPost(sem);
+   \       0x26   0x6860             LDR      R0,[R4, #+4]
+   \       0x28   0x....'....        BL       OSSemPost
+    452          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+   \       0x2C   0x....'....        BL       ?Subroutine2
+    453          	}
+   \                     ??CrossCallReturnLabel_8: (+1)
+   \       0x30   0xE7E8             B.N      ??denyTask_0
+    454          }
+    455          
+    456          /*
+    457           *********************************************************************************************************
+    458           *                                            checkTask()
+    459           *
+    460           * Description : Check dot-matrix, piezo, motor.
+    461           *
+    462           * Argument(s) : p
+    463           *
+    464           * Return(s)   : none.
+    465           *
+    466           * Caller(s)   : This is a task.
+    467           *
+    468           * Note(s)     : none.
+    469           *********************************************************************************************************
+    470           */
+    471          // dot-matrix, piezo, motor를 1초 후 정지하도록 하는 Task
+
+   \                                 In section .text, align 4, keep-with-next
+    472          static void checkTask(void *p)
+    473          {
+   \                     checkTask: (+1)
+   \        0x0   0xB57C             PUSH     {R2-R6,LR}
+    474          	CPU_INT08U err;
+    475          	int isStop = 0;
+   \        0x2   0x2400             MOVS     R4,#+0
+   \        0x4   0x....             LDR.N    R5,??DataTable12_7  ;; 0x40000034
+   \        0x6   0x....             LDR.N    R6,??DataTable12_6
+   \        0x8   0xE006             B.N      ??CrossCallReturnLabel_7
+    476          	while (DEF_TRUE)
+    477          	{
+    478          		if (count != 0)
+    479          		{
+    480          			OSSemPend(sem, 0, &err);
+    481          			if (count > TIME_COUNT)
+    482          			{
+    483          				isStop = 1; // Use flag / Don't do a lot of work in sem
+    484          				count = 0;	// init time counter
+    485          			}
+    486          			count++;
+    487          			OSSemPost(sem);
+    488          
+    489          			// STOP: Do out of sem
+    490          			if (isStop == 1)
+    491          			{
+   \                     ??checkTask_0: (+1)
+   \        0xA   0x8028             STRH     R0,[R5, #+0]
+   \        0xC   0x1E80             SUBS     R0,R0,#+2
+   \                     ??checkTask_1: (+1)
+   \        0xE   0x4288             CMP      R0,R1
+   \       0x10   0xDAFB             BGE.N    ??checkTask_0
+    492          				stopAll();
+    493          				isStop = 0;
+   \       0x12   0x2400             MOVS     R4,#+0
+    494          			}
+    495          		}
+    496          
+    497          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+   \                     ??checkTask_2: (+1)
+   \       0x14   0x....'....        BL       ?Subroutine2
+   \                     ??CrossCallReturnLabel_7: (+1)
+   \       0x18   0x68B0             LDR      R0,[R6, #+8]
+   \       0x1A   0x2800             CMP      R0,#+0
+   \       0x1C   0xD0FA             BEQ.N    ??checkTask_2
+   \       0x1E   0x6870             LDR      R0,[R6, #+4]
+   \       0x20   0x466A             MOV      R2,SP
+   \       0x22   0x....'....        BL       ??Subroutine6_0
+   \                     ??CrossCallReturnLabel_21: (+1)
+   \       0x26   0x68B0             LDR      R0,[R6, #+8]
+   \       0x28   0x280A             CMP      R0,#+10
+   \       0x2A   0xBFA4             ITT      GE
+   \       0x2C   0x2401             MOVGE    R4,#+1
+   \       0x2E   0x2000             MOVGE    R0,#+0
+   \       0x30   0x1C40             ADDS     R0,R0,#+1
+   \       0x32   0x60B0             STR      R0,[R6, #+8]
+   \       0x34   0x6870             LDR      R0,[R6, #+4]
+   \       0x36   0x....'....        BL       OSSemPost
+   \       0x3A   0x2C00             CMP      R4,#+0
+   \       0x3C   0xD0EA             BEQ.N    ??checkTask_2
+   \       0x3E   0xF44F 0x7180      MOV      R1,#+256
+   \       0x42   0x....             LDR.N    R0,??DataTable12  ;; 0x40010c00
+   \       0x44   0x....'....        BL       GPIO_ResetBits
+   \       0x48   0x8828             LDRH     R0,[R5, #+0]
+   \       0x4A   0xF240 0x51DD      MOVW     R1,#+1501
+   \       0x4E   0xE7DE             B.N      ??checkTask_1
+    498          	}
+    499          }
+    500          
+    501          // Stop all
+    502          static void stopAll()
+    503          {
+    504          	// dot-matrix
+    505          
+    506          	// piezo
+    507          	GPIO_ResetBits(GPIOB, GPIO_Pin_8);
+    508          	// motor
+    509          	for (int i = TIM2->CCR1; i > 1500; i -= 2) // 2300 -> 1500
+    510          	{
+    511          		TIM2->CCR1 = i;
+    512          	}
+    513          }
+    514          /*
+    515           *********************************************************************************************************
+    516           *                                          App_DispScr_SignOn()
+    517           *
+    518           * Description : Display uC/OS-II system information on the LCD.
+    519           *
+    520           * Argument(s) : none.
+    521           *
+    522           * Return(s)   : none.
+    523           *
+    524           * Caller(s)   : TaskUserIF().
+    525           *
+    526           * Note(s)     : none.
+    527           *********************************************************************************************************
+    528           */
+    529          
+    530          static void App_DispScr_SignOn(void)
+    531          {
+    532          }
+    533          
+    534          /*
+    535           *********************************************************************************************************
+    536           *                                          App_DispScr_SignOn()
+    537           *
+    538           * Description : Display uC/OS-II system information on the LCD.
+    539           *
+    540           * Argument(s) : none.
+    541           *
+    542           * Return(s)   : none.
+    543           *
+    544           * Caller(s)   : TaskUserIF().
+    545           *
+    546           * Note(s)     : none.
+    547           *********************************************************************************************************
+    548           */
+    549          
+    550          static void App_DispScr_TaskNames(void)
+    551          {
+    552          }
+    553          
+    554          /*
+    555           *********************************************************************************************************
+    556           *                                             App_InitProbe()
+    557           *
+    558           * Description : Initialize uC/Probe target code.
+    559           *
+    560           * Argument(s) : none.
+    561           *
+    562           * Return(s)   : none.
+    563           *
+    564           * Caller(s)   : App_TaskStart().
+    565           *
+    566           * Note(s)     : none.
+    567           *********************************************************************************************************
+    568           */
+    569          
+    570          #if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+    571          	 (APP_OS_PROBE_EN == DEF_ENABLED))
+    572          static void App_InitProbe(void)
+    573          {
+    574          #if (APP_OS_PROBE_EN == DEF_ENABLED)
+    575          	(void)App_ProbeCounts;
+    576          	(void)App_ProbeB1;
+    577          
+    578          #if ((APP_PROBE_COM_EN == DEF_ENABLED) && \
+    579          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
+    580          	(void)App_ProbeComRxPktSpd;
+    581          	(void)App_ProbeComTxPktSpd;
+    582          	(void)App_ProbeComTxSymSpd;
+    583          	(void)App_ProbeComTxSymByteSpd;
+    584          #endif
+    585          
+    586          	OSProbe_Init();
+    587          	OSProbe_SetCallback(App_ProbeCallback);
+    588          	OSProbe_SetDelay(250);
+    589          #endif
+    590          
+    591          #if (APP_PROBE_COM_EN == DEF_ENABLED)
+    592          	ProbeCom_Init(); /* Initialize the uC/Probe communications module.       */
+    593          #endif
+    594          }
+    595          #endif
+    596          
+    597          /*
+    598           *********************************************************************************************************
+    599           *                                         AppProbeCallback()
+    600           *
+    601           * Description : uC/Probe OS plugin callback.
+    602           *
+    603           * Argument(s) : none.
+    604           *
+    605           * Return(s)   : none.
+    606           *
+    607           * Caller(s)   : uC/Probe OS plugin task.
+    608           *
+    609           * Note(s)     : none.
+    610           *********************************************************************************************************
+    611           */
+    612          
+    613          #if (APP_OS_PROBE_EN == DEF_ENABLED)
+
+   \                                 In section .text, align 4, keep-with-next
+    614          static void App_ProbeCallback(void)
+    615          {
+   \                     App_ProbeCallback: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    616          #if ((APP_PROBE_COM_EN == DEF_ENABLED) && \
+    617          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
+    618          	CPU_INT32U ctr_curr;
+    619          	CPU_INT32U rxpkt_curr;
+    620          	CPU_INT32U txpkt_curr;
+    621          	CPU_INT32U sym_curr;
+    622          	CPU_INT32U symbyte_curr;
+    623          #endif
+    624          
+    625          	App_ProbeCounts++;
+   \        0x2   0x....             LDR.N    R4,??DataTable12_8
+   \        0x4   0x6961             LDR      R1,[R4, #+20]
+   \        0x6   0x1C49             ADDS     R1,R1,#+1
+   \        0x8   0x6161             STR      R1,[R4, #+20]
+    626          
+    627          	App_ProbeB1 = BSP_PB_GetStatus(1);
+   \        0xA   0x2001             MOVS     R0,#+1
+   \        0xC   0x....'....        BL       BSP_PB_GetStatus
+    628          
+    629          #if ((APP_PROBE_COM_EN == DEF_ENABLED) && \
+    630          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
+    631          	ctr_curr = OSTime;
+   \       0x10   0x....             LDR.N    R1,??DataTable12_9
+   \       0x12   0x6808             LDR      R0,[R1, #+0]
+    632          	rxpkt_curr = ProbeCom_RxPktCtr;
+    633          	txpkt_curr = ProbeCom_TxPktCtr;
+    634          	sym_curr = ProbeCom_TxSymCtr;
+    635          	symbyte_curr = ProbeCom_TxSymByteCtr;
+    636          
+    637          	if ((ctr_curr - App_ProbeComCtrLast) >= OS_TICKS_PER_SEC)
+   \       0x14   0x6922             LDR      R2,[R4, #+16]
+   \       0x16   0x1A82             SUBS     R2,R0,R2
+   \       0x18   0xF5B2 0x7F7A      CMP      R2,#+1000
+   \       0x1C   0xD30C             BCC.N    ??App_ProbeCallback_0
+    638          	{
+    639          		App_ProbeComRxPktSpd = ((CPU_FP32)(rxpkt_curr - App_ProbeComRxPktLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    640          		App_ProbeComTxPktSpd = ((CPU_FP32)(txpkt_curr - App_ProbeComTxPktLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    641          		App_ProbeComTxSymSpd = ((CPU_FP32)(sym_curr - App_ProbeComTxSymLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    642          		App_ProbeComTxSymByteSpd = ((CPU_FP32)(symbyte_curr - App_ProbeComTxSymByteLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    643          
+    644          		App_ProbeComCtrLast = ctr_curr;
+   \       0x1E   0x6120             STR      R0,[R4, #+16]
+    645          		App_ProbeComRxPktLast = rxpkt_curr;
+    646          		App_ProbeComTxPktLast = txpkt_curr;
+   \       0x20   0x....             LDR.N    R2,??DataTable12_10
+   \       0x22   0x....             LDR.N    R0,??DataTable12_11
+   \       0x24   0x6801             LDR      R1,[R0, #+0]
+    647          		App_ProbeComTxSymLast = sym_curr;
+   \       0x26   0x....             LDR.N    R0,??DataTable12_12
+   \       0x28   0x6021             STR      R1,[R4, #+0]
+   \       0x2A   0x6813             LDR      R3,[R2, #+0]
+    648          		App_ProbeComTxSymByteLast = symbyte_curr;
+   \       0x2C   0x....             LDR.N    R2,??DataTable12_13
+   \       0x2E   0x6063             STR      R3,[R4, #+4]
+   \       0x30   0x6801             LDR      R1,[R0, #+0]
+   \       0x32   0x60A1             STR      R1,[R4, #+8]
+   \       0x34   0x6810             LDR      R0,[R2, #+0]
+   \       0x36   0x60E0             STR      R0,[R4, #+12]
+    649          	}
+    650          #endif
+    651          }
+   \                     ??App_ProbeCallback_0: (+1)
+   \       0x38   0xBD10             POP      {R4,PC}          ;; return
+    652          #endif
+    653          
+    654          /*
+>>>>>>> 12f609e231801fbf08d93cb7ba0b89eff1ec66db
     655           *********************************************************************************************************
-    656           *********************************************************************************************************
-    657           */
-    658          
-    659          #if (OS_HOOKS_EN > 0)
-    660          /*
-    661           *********************************************************************************************************
-    662           *                                      TASK CREATION HOOK (APPLICATION)
+    656           *                                      App_FormatDec()
+    657           *
+    658           * Description : Convert a decimal value to ASCII (without leading zeros).
+    659           *
+    660           * Argument(s) : pstr            Pointer to the destination ASCII string.
+    661           *
+    662           *               value           Value to convert (assumes an unsigned value).
     663           *
-    664           * Description : This function is cal when a task is created.
+    664           *               digits          The desired number of digits.
     665           *
-    666           * Argument(s) : ptcb   is a pointer to the task control block of the task being created.
+    666           * Return(s)   : none.
     667           *
+<<<<<<< HEAD
     668           * Note(s)     : (1) Interrupts are disabled during this call.
     669           *********************************************************************************************************
     670           */
@@ -819,16 +1955,133 @@ C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-
     761           *
     762           * Description : This function is called by OSTCBInitHook(), which is called by OS_TCBInit() after setting
     763           *               up most of the TCB.
+=======
+    668           * Caller(s)   : various.
+    669           *
+    670           * Note(s)     : none.
+    671           *********************************************************************************************************
+    672           */
+    673          
+    674          /*
+    675           *********************************************************************************************************
+    676           *********************************************************************************************************
+    677           *                                          uC/OS-II APP HOOKS
+    678           *********************************************************************************************************
+    679           *********************************************************************************************************
+    680           */
+    681          
+    682          #if (OS_APP_HOOKS_EN > 0)
+    683          /*
+    684           *********************************************************************************************************
+    685           *                                      TASK CREATION HOOK (APPLICATION)
+    686           *
+    687           * Description : This function is cal when a task is created.
+    688           *
+    689           * Argument(s) : ptcb   is a pointer to the task control block of the task being created.
+    690           *
+    691           * Note(s)     : (1) Interrupts are disabled during this call.
+    692           *********************************************************************************************************
+    693           */
+    694          
+
+   \                                 In section .text, align 2, keep-with-next
+    695          void App_TaskCreateHook(OS_TCB *ptcb)
+    696          {
+    697          #if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
+    698          	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
+    699          	OSProbe_TaskCreateHook(ptcb);
+   \                     App_TaskCreateHook: (+1)
+   \        0x0   0x....'....        B.W      OSProbe_TaskCreateHook
+    700          #endif
+    701          }
+    702          
+    703          /*
+    704           *********************************************************************************************************
+    705           *                                    TASK DELETION HOOK (APPLICATION)
+    706           *
+    707           * Description : This function is called when a task is deleted.
+    708           *
+    709           * Argument(s) : ptcb   is a pointer to the task control block of the task being deleted.
+    710           *
+    711           * Note(s)     : (1) Interrupts are disabled during this call.
+    712           *********************************************************************************************************
+    713           */
+    714          
+
+   \                                 In section .text, align 2, keep-with-next
+    715          void App_TaskDelHook(OS_TCB *ptcb)
+    716          {
+    717          	(void)ptcb;
+    718          }
+   \                     App_TaskDelHook: (+1)
+   \        0x0   0x4770             BX       LR               ;; return
+    719          
+    720          /*
+    721           *********************************************************************************************************
+    722           *                                      IDLE TASK HOOK (APPLICATION)
+    723           *
+    724           * Description : This function is called by OSTaskIdleHook(), which is called by the idle task.  This hook
+    725           *               has been added to allow you to do such things as STOP the CPU to conserve power.
+    726           *
+    727           * Argument(s) : none.
+    728           *
+    729           * Note(s)     : (1) Interrupts are enabled during this call.
+    730           *********************************************************************************************************
+    731           */
+    732          
+    733          #if OS_VERSION >= 251
+
+   \                                 In section .text, align 2, keep-with-next
+    734          void App_TaskIdleHook(void)
+    735          {
+    736          }
+   \                     App_TaskIdleHook: (+1)
+   \        0x0   0x4770             BX       LR               ;; return
+    737          #endif
+    738          
+    739          /*
+    740           *********************************************************************************************************
+    741           *                                        STATISTIC TASK HOOK (APPLICATION)
+    742           *
+    743           * Description : This function is called by OSTaskStatHook(), which is called every second by uC/OS-II's
+    744           *               statistics task.  This allows your application to add functionality to the statistics task.
+    745           *
+    746           * Argument(s) : none.
+    747           *********************************************************************************************************
+    748           */
+    749          
+
+   \                                 In section .text, align 2, keep-with-next
+    750          void App_TaskStatHook(void)
+    751          {
+    752          }
+   \                     App_TaskStatHook: (+1)
+   \        0x0   0x4770             BX       LR               ;; return
+    753          
+    754          /*
+    755           *********************************************************************************************************
+    756           *                                        TASK SWITCH HOOK (APPLICATION)
+    757           *
+    758           * Description : This function is called when a task switch is performed.  This allows you to perform other
+    759           *               operations during a context switch.
+    760           *
+    761           * Argument(s) : none.
+    762           *
+    763           * Note(s)     : (1) Interrupts are disabled during this call.
+>>>>>>> 12f609e231801fbf08d93cb7ba0b89eff1ec66db
     764           *
-    765           * Argument(s) : ptcb    is a pointer to the TCB of the task being created.
-    766           *
-    767           * Note(s)     : (1) Interrupts may or may not be ENABLED during this call.
+    765           *               (2) It is assumed that the global pointer 'OSTCBHighRdy' points to the TCB of the task that
+    766           *                   will be 'switched in' (i.e. the highest priority task) and, 'OSTCBCur' points to the
+    767           *                  task being switched out (i.e. the preempted task).
     768           *********************************************************************************************************
     769           */
     770          
-    771          #if OS_VERSION >= 204
-    772          void TCBInitHook(OS_TCB *ptcb)
+    771          #if OS_TASK_SW_HOOK_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
+    772          void App_TaskSwHook(void)
     773          {
+<<<<<<< HEAD
     774             (void)ptcb;
     775          }
     776          #endif
@@ -969,3 +2222,491 @@ C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-
 
 Errors: 2
 Warnings: 13
+=======
+    774          #if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
+    775          	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
+    776          	OSProbe_TaskSwHook();
+   \                     App_TaskSwHook: (+1)
+   \        0x0   0x....'....        B.W      OSProbe_TaskSwHook
+    777          #endif
+    778          }
+    779          #endif
+    780          
+    781          /*
+    782           *********************************************************************************************************
+    783           *                                     OS_TCBInit() HOOK (APPLICATION)
+    784           *
+    785           * Description : This function is called by OSTCBInitHook(), which is called by OS_TCBInit() after setting
+    786           *               up most of the TCB.
+    787           *
+    788           * Argument(s) : ptcb    is a pointer to the TCB of the task being created.
+    789           *
+    790           * Note(s)     : (1) Interrupts may or may not be ENABLED during this call.
+    791           *********************************************************************************************************
+    792           */
+    793          
+    794          #if OS_VERSION >= 204
+
+   \                                 In section .text, align 2, keep-with-next
+    795          void App_TCBInitHook(OS_TCB *ptcb)
+    796          {
+    797          	(void)ptcb;
+    798          }
+   \                     App_TCBInitHook: (+1)
+   \        0x0   0x4770             BX       LR               ;; return
+    799          #endif
+    800          
+    801          /*
+    802           *********************************************************************************************************
+    803           *                                        TICK HOOK (APPLICATION)
+    804           *
+    805           * Description : This function is called every tick.
+    806           *
+    807           * Argument(s) : none.
+    808           *
+    809           * Note(s)     : (1) Interrupts may or may not be ENABLED during this call.
+    810           *********************************************************************************************************
+    811           */
+    812          
+    813          #if OS_TIME_TICK_HOOK_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
+    814          void App_TimeTickHook(void)
+    815          {
+    816          #if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
+    817          	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
+    818          	OSProbe_TickHook();
+   \                     App_TimeTickHook: (+1)
+   \        0x0   0x....'....        B.W      OSProbe_TickHook
+    819          #endif
+    820          }
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine3: (+1)
+   \        0x0   0x4669             MOV      R1,SP
+   \        0x2   0x4628             MOV      R0,R5
+   \        0x4   0x....'....        B.W      GPIO_Init
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine0: (+1)
+   \        0x0   0x2118             MOVS     R1,#+24
+   \                     ??Subroutine0_0: (+1)
+   \        0x2   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+   \        0x6   0xF88D 0x1003      STRB     R1,[SP, #+3]
+   \        0xA   0x2203             MOVS     R2,#+3
+   \        0xC   0xF88D 0x2002      STRB     R2,[SP, #+2]
+   \       0x10   0x4669             MOV      R1,SP
+   \       0x12   0x4628             MOV      R0,R5
+   \       0x14   0x....'....        B.W      GPIO_Init
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12:
+   \        0x0   0x4001'0C00        DC32     0x40010c00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_1:
+   \        0x0   0x4001'2400        DC32     0x40012400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_2:
+   \        0x0   0x0001'86A0        DC32     0x186a0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_3:
+   \        0x0   0x4000'5400        DC32     0x40005400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_4:
+   \        0x0   0x4000'0800        DC32     0x40000800
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_5:
+   \        0x0   0x4000'3800        DC32     0x40003800
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_6:
+   \        0x0   0x....'....        DC32     flagGroup
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_7:
+   \        0x0   0x4000'0034        DC32     0x40000034
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_8:
+   \        0x0   0x....'....        DC32     App_ProbeComRxPktLast
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_9:
+   \        0x0   0x....'....        DC32     OSTime
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_10:
+   \        0x0   0x....'....        DC32     ProbeCom_TxPktCtr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_11:
+   \        0x0   0x....'....        DC32     ProbeCom_RxPktCtr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_12:
+   \        0x0   0x....'....        DC32     ProbeCom_TxSymCtr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_13:
+   \        0x0   0x....'....        DC32     ProbeCom_TxSymByteCtr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ?_0:
+   \        0x0   0x44 0x65          DC8 "Detect Task"
+
+   \              0x74 0x65    
+
+   \              0x63 0x74    
+
+   \              0x20 0x54    
+
+   \              0x61 0x73    
+
+   \              0x6B 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ?_1:
+   \        0x0   0x54 0x65          DC8 "Temperature Task"
+
+   \              0x6D 0x70    
+
+   \              0x65 0x72    
+
+   \              0x61 0x74    
+
+   \              0x75 0x72    
+
+   \              0x65 0x20    
+
+   \              0x54 0x61    
+
+   \              0x73 0x6B    
+
+   \              0x00
+   \       0x11                      DS8 3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ?_2:
+   \        0x0   0x50 0x61          DC8 "Pass Task"
+
+   \              0x73 0x73    
+
+   \              0x20 0x54    
+
+   \              0x61 0x73    
+
+   \              0x6B 0x00
+   \        0xA                      DS8 2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ?_3:
+   \        0x0   0x44 0x65          DC8 "Deny Task"
+
+   \              0x6E 0x79    
+
+   \              0x20 0x54    
+
+   \              0x61 0x73    
+
+   \              0x6B 0x00
+   \        0xA                      DS8 2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ?_4:
+   \        0x0   0x43 0x68          DC8 "Check Task"
+
+   \              0x65 0x63    
+
+   \              0x6B 0x20    
+
+   \              0x54 0x61    
+
+   \              0x73 0x6B    
+
+   \              0x00
+   \        0xB                      DS8 1
+    821          #endif
+    822          #endif
+    823          
+    824          static void initAll()
+    825          {
+    826          	ADC_InitTypeDef adc_init;
+    827          	GPIO_InitTypeDef gpio_init;
+    828          	I2C_InitTypeDef i2c_init;
+    829          	TIM_TimeBaseInitTypeDef tim_timebase_init;
+    830          	TIM_OCInitTypeDef tim_piezo_init;
+    831          	TIM_OCInitTypeDef tim_motor_init;
+    832          	SPI_InitTypeDef spi_init;
+    833          
+    834          	// CLOCK
+    835          	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+    836          	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
+    837          	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+    838          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+    839          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+    840          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+    841          
+    842          	// PIN
+    843          	// ADC
+    844          	gpio_init.GPIO_Pin = GPIO_Pin_0;
+    845          	gpio_init.GPIO_Mode = GPIO_Mode_AIN;
+    846          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    847          	GPIO_Init(GPIOB, &gpio_init);
+    848          	// I2C
+    849          	gpio_init.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
+    850          	gpio_init.GPIO_Mode = GPIO_Mode_AF_OD;
+    851          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    852          	GPIO_Init(GPIOB, &gpio_init);
+    853          	// TIM (PWM)
+    854          	// Piezo
+    855          	gpio_init.GPIO_Pin = GPIO_Pin_8;
+    856          	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
+    857          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    858          	GPIO_Init(GPIOB, &gpio_init);
+    859          	// Motor
+    860          	gpio_init.GPIO_Pin = GPIO_Pin_9;
+    861          	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
+    862          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    863          	GPIO_Init(GPIOB, &gpio_init);
+    864          	// SPI
+    865          	GPIO_Init(GPIOB, &gpio_init);
+    866          	gpio_init.GPIO_Pin = GPIO_Pin_12;
+    867          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    868          	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
+    869          	GPIO_Init(GPIOB, &gpio_init);
+    870          	gpio_init.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+    871          	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
+    872          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    873          	GPIO_Init(GPIOB, &gpio_init);
+    874          	GPIO_SetBits(GPIOB, GPIO_Pin_12); // check
+    875          
+    876          	// CONFIG
+    877          	// ADC
+    878          	adc_init.ADC_Mode = ADC_Mode_Independent;
+    879          	adc_init.ADC_ScanConvMode = ENABLE;
+    880          	adc_init.ADC_ContinuousConvMode = ENABLE;
+    881          	adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+    882          	adc_init.ADC_DataAlign = ADC_DataAlign_Right;
+    883          	adc_init.ADC_NbrOfChannel = 1;
+    884          	ADC_Init(ADC1, &adc_init);
+    885          	ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 1, ADC_SampleTime_41Cycles5);
+    886          	ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE);
+    887          	ADC_Cmd(ADC1, ENABLE);
+    888          
+    889          	ADC_ResetCalibration(ADC1);
+    890          	while (ADC_GetResetCalibrationStatus(ADC1) != RESET)
+    891          		;
+    892          	ADC_StartCalibration(ADC1);
+    893          	while (ADC_GetCalibrationStatus(ADC1) != RESET)
+    894          		;
+    895          	ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+    896          	// I2C
+    897          	i2c_init.I2C_Mode = I2C_Mode_I2C;
+    898          	i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
+    899          	i2c_init.I2C_OwnAddress1 = 0;
+    900          	i2c_init.I2C_Ack = I2C_Ack_Enable;
+    901          	i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    902          	i2c_init.I2C_ClockSpeed = 100000;
+    903          	I2C_Init(((I2C_TypeDef *)I2C1_BASE), &i2c_init);
+    904          	I2C_Cmd(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+    905          	// TIM (PWM)
+    906          	tim_timebase_init.TIM_Prescaler = (72000000 / 1000000) - 1; // set to 1MHz Counter Clock
+    907          	tim_timebase_init.TIM_Period = 20000 - 1;					// set to 50Hz pulse with 1MHz Counter Clock
+    908          	tim_timebase_init.TIM_ClockDivision = 0;
+    909          	tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Down;
+    910          	tim_timebase_init.TIM_RepetitionCounter;
+    911          	TIM_TimeBaseInit(TIM4, &tim_timebase_init);
+    912          	/* PIEZO: PWM1 Mode configuration: Channel3 */
+    913          	tim_piezo_init.TIM_OCMode = TIM_OCMode_PWM1;
+    914          	tim_piezo_init.TIM_OutputState = TIM_OutputState_Enable;
+    915          	tim_piezo_init.TIM_Pulse = 500;
+    916          	tim_piezo_init.TIM_OCPolarity = TIM_OCPolarity_High;
+    917          	TIM_OC3Init(TIM4, &tim_piezo_init);
+    918          	//TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Disable);
+    919          	TIM_Cmd(TIM4, ENABLE);
+    920          	/* MOTOR: PWM1 Mode configuration: Channel4 */
+    921          	tim_motor_init.TIM_OCMode = TIM_OCMode_PWM1;
+    922          	tim_motor_init.TIM_OutputState = TIM_OutputState_Enable;
+    923          	tim_motor_init.TIM_Pulse = 1500; // 50 % duty cylce value
+    924          	tim_motor_init.TIM_OCPolarity = TIM_OCPolarity_High;
+    925          
+    926          	//TIM_PWMIConfig(TIM4, &tim_motor_init);
+    927          	TIM_OC4Init(TIM4, &tim_motor_init);
+    928          	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Disable);
+    929          	TIM_ARRPreloadConfig(TIM4, ENABLE);
+    930          	TIM_Cmd(TIM4, ENABLE);
+    931          	// SPI
+    932          	spi_init.SPI_Direction = SPI_Direction_1Line_Tx;
+    933          	spi_init.SPI_Mode = SPI_Mode_Master;
+    934          	spi_init.SPI_DataSize = SPI_DataSize_16b;
+    935          	spi_init.SPI_CPOL = SPI_CPOL_Low;
+    936          	spi_init.SPI_CPHA = SPI_CPHA_1Edge;
+    937          	spi_init.SPI_NSS = SPI_NSS_Soft;
+    938          	spi_init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;
+    939          	spi_init.SPI_FirstBit = SPI_FirstBit_MSB;
+    940          	spi_init.SPI_CRCPolynomial;
+    941          	SPI_Init(SPI2, &spi_init);
+    942          	SPI_Cmd(SPI2, ENABLE);
+    943          }
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   App_ProbeCallback
+         8   -> BSP_PB_GetStatus
+       0   App_TCBInitHook
+       0   App_TaskCreateHook
+         0   -> OSProbe_TaskCreateHook
+       0   App_TaskDelHook
+       0   App_TaskIdleHook
+       0   App_TaskStatHook
+       0   App_TaskSwHook
+         0   -> OSProbe_TaskSwHook
+       0   App_TimeTickHook
+         0   -> OSProbe_TickHook
+      24   checkTask
+        24   -> GPIO_ResetBits
+        24   -> OSSemPend
+        24   -> OSSemPost
+        24   -> OSTimeDlyHMSM
+      16   denyTask
+        16   -> GPIO_SetBits
+        16   -> OSFlagPend
+        16   -> OSSemPend
+        16   -> OSSemPost
+        16   -> OSTimeDlyHMSM
+      16   detectTask
+        16   -> ADC_GetConversionValue
+        16   -> BSP_LED_On
+        16   -> OSFlagPost
+        16   -> OSTimeDlyHMSM
+     128   main
+       128   -> ADC_Cmd
+       128   -> ADC_GetCalibrationStatus
+       128   -> ADC_GetResetCalibrationStatus
+       128   -> ADC_ITConfig
+       128   -> ADC_Init
+       128   -> ADC_RegularChannelConfig
+       128   -> ADC_ResetCalibration
+       128   -> ADC_SoftwareStartConvCmd
+       128   -> ADC_StartCalibration
+       128   -> BSP_Init
+       128   -> BSP_IntDisAll
+       128   -> GPIO_Init
+       128   -> GPIO_SetBits
+       128   -> I2C_Cmd
+       128   -> I2C_Init
+       128   -> OSFlagCreate
+       128   -> OSInit
+       128   -> OSProbe_Init
+       128   -> OSProbe_SetCallback
+       128   -> OSProbe_SetDelay
+       128   -> OSSemCreate
+       128   -> OSStart
+       128   -> OSStatInit
+       128   -> OSTaskCreateExt
+       128   -> OSTaskNameSet
+       128   -> OS_CPU_SysTickInit
+       128   -> ProbeCom_Init
+       128   -> RCC_APB1PeriphClockCmd
+       128   -> RCC_APB2PeriphClockCmd
+       128   -> SPI_Cmd
+       128   -> SPI_Init
+       128   -> TIM_ARRPreloadConfig
+       128   -> TIM_Cmd
+       128   -> TIM_OC3Init
+       128   -> TIM_OC4Init
+       128   -> TIM_OC4PreloadConfig
+       128   -> TIM_TimeBaseInit
+      24   passTask
+        24   -> GPIO_SetBits
+        24   -> OSFlagPend
+        24   -> OSSemPend
+        24   -> OSSemPost
+        24   -> OSTimeDlyHMSM
+      16   temperTask
+        16   -> BSP_LED_On
+        16   -> OSFlagPost
+        16   -> OSTimeDlyHMSM
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable12
+       4  ??DataTable12_1
+       4  ??DataTable12_10
+       4  ??DataTable12_11
+       4  ??DataTable12_12
+       4  ??DataTable12_13
+       4  ??DataTable12_2
+       4  ??DataTable12_3
+       4  ??DataTable12_4
+       4  ??DataTable12_5
+       4  ??DataTable12_6
+       4  ??DataTable12_7
+       4  ??DataTable12_8
+       4  ??DataTable12_9
+      24  ?Subroutine0
+      12  ?Subroutine1
+      12  ?Subroutine2
+       8  ?Subroutine3
+      12  ?Subroutine4
+      10  ?Subroutine5
+       8  ?Subroutine6
+      12  ?_0
+      20  ?_1
+      12  ?_2
+      12  ?_3
+      12  ?_4
+       1  App_ProbeB1
+      58  App_ProbeCallback
+      24  App_ProbeComRxPktLast
+          App_ProbeComTxPktLast
+          App_ProbeComTxSymLast
+          App_ProbeComTxSymByteLast
+          App_ProbeComCtrLast
+          App_ProbeCounts
+       4  App_ProbeComRxPktSpd
+       4  App_ProbeComTxPktSpd
+       4  App_ProbeComTxSymByteSpd
+       4  App_ProbeComTxSymSpd
+       2  App_TCBInitHook
+       4  App_TaskCreateHook
+       2  App_TaskDelHook
+       2  App_TaskIdleHook
+       2  App_TaskStatHook
+       4  App_TaskSwHook
+       4  App_TimeTickHook
+      80  checkTask
+      50  denyTask
+      50  detectTask
+   2'572  flagGroup
+          sem
+          count
+          detectTaskStack
+          temperatureTaskStack
+          passTaskStack
+          denyTaskStack
+          checkTaskStack
+     836  main
+      64  passTask
+      28  temperTask
+
+ 
+ 2'613 bytes in section .bss
+ 1'396 bytes in section .text
+ 
+ 1'396 bytes of CODE memory
+ 2'613 bytes of DATA memory
+
+Errors: none
+Warnings: 8
+>>>>>>> 12f609e231801fbf08d93cb7ba0b89eff1ec66db

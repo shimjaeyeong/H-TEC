@@ -68,8 +68,6 @@ static OS_EVENT *temperQue;
 static void *msg[10];
 
 // Event Flags
-#define OS_FLAGS_NBITS 8
-#define OS_FLAG_EN 1
 static OS_FLAG_GRP *flagGroup;
 const static OS_FLAGS FLAG_INIT = 0;
 const static OS_FLAGS FLAG_DETECT = 1;
@@ -84,25 +82,25 @@ static int count = 0;
 const static int TIME_COUNT = 9; // 100ms * 10 = 1초
 const static int DELAY_TIME = 100;
 
-#if ((OS_PROBE_EN == DEF_ENABLED) &&  \
-	 (PROBE_COM_EN == DEF_ENABLED) && \
+#if ((APP_OS_PROBE_EN == DEF_ENABLED) &&  \
+	 (APP_PROBE_COM_EN == DEF_ENABLED) && \
 	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-static CPU_FP32 ProbeComRxPktSpd;
-static CPU_FP32 ProbeComTxPktSpd;
-static CPU_FP32 ProbeComTxSymSpd;
-static CPU_FP32 ProbeComTxSymByteSpd;
+static CPU_FP32 App_ProbeComRxPktSpd;
+static CPU_FP32 App_ProbeComTxPktSpd;
+static CPU_FP32 App_ProbeComTxSymSpd;
+static CPU_FP32 App_ProbeComTxSymByteSpd;
 
-static CPU_INT32U ProbeComRxPktLast;
-static CPU_INT32U ProbeComTxPktLast;
-static CPU_INT32U ProbeComTxSymLast;
-static CPU_INT32U ProbeComTxSymByteLast;
+static CPU_INT32U App_ProbeComRxPktLast;
+static CPU_INT32U App_ProbeComTxPktLast;
+static CPU_INT32U App_ProbeComTxSymLast;
+static CPU_INT32U App_ProbeComTxSymByteLast;
 
-static CPU_INT32U ProbeComCtrLast;
+static CPU_INT32U App_ProbeComCtrLast;
 #endif
 
-#if (OS_PROBE_EN == DEF_ENABLED)
-static CPU_INT32U ProbeCounts;
-static CPU_BOOLEAN ProbeB1;
+#if (APP_OS_PROBE_EN == DEF_ENABLED)
+static CPU_INT32U App_ProbeCounts;
+static CPU_BOOLEAN App_ProbeB1;
 
 #endif
 
@@ -119,20 +117,20 @@ static void passTask(void *p);
 static void denyTask(void *p);
 static void checkTask(void *p);
 
-static void DispScr_SignOn(void);
+static void App_DispScr_SignOn(void);
 static void DispScr_TaskNames(void);
 
 static int readTemperature(void);
 static void stopAll();
 static void initAll();
 
-#if ((PROBE_COM_EN == DEF_ENABLED) || \
-	 (OS_PROBE_EN == DEF_ENABLED))
-static void InitProbe(void);
+#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+	 (APP_OS_PROBE_EN == DEF_ENABLED))
+static void App_InitProbe(void);
 #endif
 
-#if (OS_PROBE_EN == DEF_ENABLED)
-static void ProbeCallback(void);
+#if (APP_OS_PROBE_EN == DEF_ENABLED)
+static void App_ProbeCallback(void);
 #endif
 
 /*
@@ -161,7 +159,7 @@ int main(void)
 	initAll();
 
 	// Create Message Que, msg : 저장공간, 크기 : 10
-	temperQue = OSQCreate(msg, 10);
+	//temperQue = (OS_EVENT *)OSQCreate(msg, 10);
 
 	// Create Event Flag
 	flagGroup = OSFlagCreate(FLAG_INIT, &os_err);
@@ -229,6 +227,17 @@ int main(void)
 
 	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
 
+	BSP_Init();
+	OS_CPU_SysTickInit();
+	#if (OS_TASK_STAT_EN > 0)
+	OSStatInit();                                           /* Determine CPU capacity.                              */
+#endif
+
+#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+	(APP_OS_PROBE_EN == DEF_ENABLED))
+	App_InitProbe();
+#endif
+
 	return (0);
 }
 
@@ -252,12 +261,17 @@ int main(void)
 static void detectTask(void *p)
 {
 	CPU_INT08U err;
-
 	while (DEF_TRUE)
 	{
-		if (GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_0) != 0) // when human detected
+		if (ADC_GetConversionValue(ADC1) != 0) // when human detected
 		{
+			BSP_LED_On(0);
 			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, &err);
+		}
+		else
+		{
+			BSP_LED_On(1);
+			OSFlagPost(flagGroup, FLAG_DETECT_NOT, OS_FLAG_SET, &err);
 		}
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
@@ -287,20 +301,22 @@ static void temperTask(void *p)
 	int low = 34;
 	while (DEF_TRUE)
 	{
-		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, &err);
 		temp = readTemperature();
 		if (temp > high) // when temperature is HIGH
 		{
-			OSQPost(temperQue, temp);
+			//OSQPost(temperQue, temp);
+			BSP_LED_On(2);
 			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, &err);
 		}
 		else if (temp < low)
 		{
-			OSQPost(temperQue, temp);
+			//OSQPost(temperQue, temp);
+			BSP_LED_On(2);
 			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, &err);
 		}
 		else
 		{
+			BSP_LED_On(3);
 			OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, &err);
 		}
 
@@ -371,9 +387,9 @@ static void passTask(void *p)
 	int err;
 	while (DEF_TRUE)
 	{
-		OSFlagPend(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
+		OSFlagPend(flagGroup, FLAG_DETECT + FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
 		// dot-matrix
-		TODO("dot-matrix pass");
+		// TODO("dot-matrix pass");
 		// piezo
 		GPIO_SetBits(GPIOB, GPIO_Pin_8);
 		// door
@@ -412,17 +428,24 @@ static void denyTask(void *p)
 	int temp = 0;
 	while (DEF_TRUE)
 	{
-		OSFlagPend(flagGroup,
-				   FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW,
-				   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
-				   0,
-				   (INT8U *)&err);
-		temp = OSQPend(temperQue, 0, &err);
-		// dot-matrix
-		TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
-		// piezo
-		GPIO_SetBits(GPIOB, GPIO_Pin_8);
-		// Stop setting
+		int flags =
+			OSFlagPend(flagGroup,
+					   FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW + FLAG_DETECT_NOT,
+					   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
+					   0,
+					   (INT8U *)&err);
+		if ((flags & FLAG_TEMPER_HIGH) == FLAG_TEMPER_HIGH)
+		{
+			// dot-matrix
+			// TODO("dot-matrix deny");
+			// piezo
+			GPIO_SetBits(GPIOB, GPIO_Pin_8);
+		}
+		else if ((flags & FLAG_TEMPER_LOW) == FLAG_TEMPER_LOW)
+		{
+			// dot-matrix
+			// TODO("dot-matrix deny");
+		}
 		OSSemPend(sem, 0, (INT8U *)&err);
 		count = 1;
 		OSSemPost(sem);
@@ -490,7 +513,7 @@ static void stopAll()
 }
 /*
  *********************************************************************************************************
- *                                          DispScr_SignOn()
+ *                                          App_DispScr_SignOn()
  *
  * Description : Display uC/OS-II system information on the LCD.
  *
@@ -504,13 +527,13 @@ static void stopAll()
  *********************************************************************************************************
  */
 
-static void DispScr_SignOn(void)
+static void App_DispScr_SignOn(void)
 {
 }
 
 /*
  *********************************************************************************************************
- *                                          DispScr_SignOn()
+ *                                          App_DispScr_SignOn()
  *
  * Description : Display uC/OS-II system information on the LCD.
  *
@@ -524,13 +547,13 @@ static void DispScr_SignOn(void)
  *********************************************************************************************************
  */
 
-static void DispScr_TaskNames(void)
+static void App_DispScr_TaskNames(void)
 {
 }
 
 /*
  *********************************************************************************************************
- *                                             InitProbe()
+ *                                             App_InitProbe()
  *
  * Description : Initialize uC/Probe target code.
  *
@@ -538,34 +561,34 @@ static void DispScr_TaskNames(void)
  *
  * Return(s)   : none.
  *
- * Caller(s)   : TaskStart().
+ * Caller(s)   : App_TaskStart().
  *
  * Note(s)     : none.
  *********************************************************************************************************
  */
 
-#if ((PROBE_COM_EN == DEF_ENABLED) || \
-	 (OS_PROBE_EN == DEF_ENABLED))
-static void InitProbe(void)
+#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+	 (APP_OS_PROBE_EN == DEF_ENABLED))
+static void App_InitProbe(void)
 {
-#if (OS_PROBE_EN == DEF_ENABLED)
-	(void)ProbeCounts;
-	(void)ProbeB1;
+#if (APP_OS_PROBE_EN == DEF_ENABLED)
+	(void)App_ProbeCounts;
+	(void)App_ProbeB1;
 
-#if ((PROBE_COM_EN == DEF_ENABLED) && \
+#if ((APP_PROBE_COM_EN == DEF_ENABLED) && \
 	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-	(void)ProbeComRxPktSpd;
-	(void)ProbeComTxPktSpd;
-	(void)ProbeComTxSymSpd;
-	(void)ProbeComTxSymByteSpd;
+	(void)App_ProbeComRxPktSpd;
+	(void)App_ProbeComTxPktSpd;
+	(void)App_ProbeComTxSymSpd;
+	(void)App_ProbeComTxSymByteSpd;
 #endif
 
 	OSProbe_Init();
-	OSProbe_SetCallback(ProbeCallback);
+	OSProbe_SetCallback(App_ProbeCallback);
 	OSProbe_SetDelay(250);
 #endif
 
-#if (PROBE_COM_EN == DEF_ENABLED)
+#if (APP_PROBE_COM_EN == DEF_ENABLED)
 	ProbeCom_Init(); /* Initialize the uC/Probe communications module.       */
 #endif
 }
@@ -587,10 +610,10 @@ static void InitProbe(void)
  *********************************************************************************************************
  */
 
-#if (OS_PROBE_EN == DEF_ENABLED)
-static void ProbeCallback(void)
+#if (APP_OS_PROBE_EN == DEF_ENABLED)
+static void App_ProbeCallback(void)
 {
-#if ((PROBE_COM_EN == DEF_ENABLED) && \
+#if ((APP_PROBE_COM_EN == DEF_ENABLED) && \
 	 (PROBE_COM_STAT_EN == DEF_ENABLED))
 	CPU_INT32U ctr_curr;
 	CPU_INT32U rxpkt_curr;
@@ -599,11 +622,11 @@ static void ProbeCallback(void)
 	CPU_INT32U symbyte_curr;
 #endif
 
-	ProbeCounts++;
+	App_ProbeCounts++;
 
-	ProbeB1 = BSP_PB_GetStatus(1);
+	App_ProbeB1 = BSP_PB_GetStatus(1);
 
-#if ((PROBE_COM_EN == DEF_ENABLED) && \
+#if ((APP_PROBE_COM_EN == DEF_ENABLED) && \
 	 (PROBE_COM_STAT_EN == DEF_ENABLED))
 	ctr_curr = OSTime;
 	rxpkt_curr = ProbeCom_RxPktCtr;
@@ -611,18 +634,18 @@ static void ProbeCallback(void)
 	sym_curr = ProbeCom_TxSymCtr;
 	symbyte_curr = ProbeCom_TxSymByteCtr;
 
-	if ((ctr_curr - ProbeComCtrLast) >= OS_TICKS_PER_SEC)
+	if ((ctr_curr - App_ProbeComCtrLast) >= OS_TICKS_PER_SEC)
 	{
-		ProbeComRxPktSpd = ((CPU_FP32)(rxpkt_curr - ProbeComRxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-		ProbeComTxPktSpd = ((CPU_FP32)(txpkt_curr - ProbeComTxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-		ProbeComTxSymSpd = ((CPU_FP32)(sym_curr - ProbeComTxSymLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-		ProbeComTxSymByteSpd = ((CPU_FP32)(symbyte_curr - ProbeComTxSymByteLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+		App_ProbeComRxPktSpd = ((CPU_FP32)(rxpkt_curr - App_ProbeComRxPktLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+		App_ProbeComTxPktSpd = ((CPU_FP32)(txpkt_curr - App_ProbeComTxPktLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+		App_ProbeComTxSymSpd = ((CPU_FP32)(sym_curr - App_ProbeComTxSymLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+		App_ProbeComTxSymByteSpd = ((CPU_FP32)(symbyte_curr - App_ProbeComTxSymByteLast) / (ctr_curr - App_ProbeComCtrLast)) * OS_TICKS_PER_SEC;
 
-		ProbeComCtrLast = ctr_curr;
-		ProbeComRxPktLast = rxpkt_curr;
-		ProbeComTxPktLast = txpkt_curr;
-		ProbeComTxSymLast = sym_curr;
-		ProbeComTxSymByteLast = symbyte_curr;
+		App_ProbeComCtrLast = ctr_curr;
+		App_ProbeComRxPktLast = rxpkt_curr;
+		App_ProbeComTxPktLast = txpkt_curr;
+		App_ProbeComTxSymLast = sym_curr;
+		App_ProbeComTxSymByteLast = symbyte_curr;
 	}
 #endif
 }
@@ -630,7 +653,7 @@ static void ProbeCallback(void)
 
 /*
  *********************************************************************************************************
- *                                      FormatDec()
+ *                                      App_FormatDec()
  *
  * Description : Convert a decimal value to ASCII (without leading zeros).
  *
@@ -656,7 +679,7 @@ static void ProbeCallback(void)
  *********************************************************************************************************
  */
 
-#if (OS_HOOKS_EN > 0)
+#if (OS_APP_HOOKS_EN > 0)
 /*
  *********************************************************************************************************
  *                                      TASK CREATION HOOK (APPLICATION)
@@ -669,9 +692,9 @@ static void ProbeCallback(void)
  *********************************************************************************************************
  */
 
-void TaskCreateHook(OS_TCB *ptcb)
+void App_TaskCreateHook(OS_TCB *ptcb)
 {
-#if ((OS_PROBE_EN == DEF_ENABLED) && \
+#if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
 	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
 	OSProbe_TaskCreateHook(ptcb);
 #endif
@@ -689,7 +712,7 @@ void TaskCreateHook(OS_TCB *ptcb)
  *********************************************************************************************************
  */
 
-void TaskDelHook(OS_TCB *ptcb)
+void App_TaskDelHook(OS_TCB *ptcb)
 {
 	(void)ptcb;
 }
@@ -708,7 +731,7 @@ void TaskDelHook(OS_TCB *ptcb)
  */
 
 #if OS_VERSION >= 251
-void TaskIdleHook(void)
+void App_TaskIdleHook(void)
 {
 }
 #endif
@@ -724,7 +747,7 @@ void TaskIdleHook(void)
  *********************************************************************************************************
  */
 
-void TaskStatHook(void)
+void App_TaskStatHook(void)
 {
 }
 
@@ -746,9 +769,9 @@ void TaskStatHook(void)
  */
 
 #if OS_TASK_SW_HOOK_EN > 0
-void TaskSwHook(void)
+void App_TaskSwHook(void)
 {
-#if ((OS_PROBE_EN == DEF_ENABLED) && \
+#if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
 	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
 	OSProbe_TaskSwHook();
 #endif
@@ -769,7 +792,7 @@ void TaskSwHook(void)
  */
 
 #if OS_VERSION >= 204
-void TCBInitHook(OS_TCB *ptcb)
+void App_TCBInitHook(OS_TCB *ptcb)
 {
 	(void)ptcb;
 }
@@ -788,9 +811,9 @@ void TCBInitHook(OS_TCB *ptcb)
  */
 
 #if OS_TIME_TICK_HOOK_EN > 0
-void TimeTickHook(void)
+void App_TimeTickHook(void)
 {
-#if ((OS_PROBE_EN == DEF_ENABLED) && \
+#if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
 	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
 	OSProbe_TickHook();
 #endif
@@ -820,6 +843,7 @@ static void initAll()
 	// ADC
 	gpio_init.GPIO_Pin = GPIO_Pin_0;
 	gpio_init.GPIO_Mode = GPIO_Mode_AIN;
+	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &gpio_init);
 	// I2C
 	gpio_init.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
@@ -852,14 +876,22 @@ static void initAll()
 	// CONFIG
 	// ADC
 	adc_init.ADC_Mode = ADC_Mode_Independent;
-	adc_init.ADC_ScanConvMode = DISABLE;
+	adc_init.ADC_ScanConvMode = ENABLE;
 	adc_init.ADC_ContinuousConvMode = ENABLE;
 	adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
 	adc_init.ADC_DataAlign = ADC_DataAlign_Right;
 	adc_init.ADC_NbrOfChannel = 1;
 	ADC_Init(ADC1, &adc_init);
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 1, ADC_SampleTime_13Cycles5);
+	ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 1, ADC_SampleTime_41Cycles5);
+	ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE);
 	ADC_Cmd(ADC1, ENABLE);
+
+	ADC_ResetCalibration(ADC1);
+	while (ADC_GetResetCalibrationStatus(ADC1) != RESET)
+		;
+	ADC_StartCalibration(ADC1);
+	while (ADC_GetCalibrationStatus(ADC1) != RESET)
+		;
 	ADC_SoftwareStartConvCmd(ADC1, ENABLE);
 	// I2C
 	i2c_init.I2C_Mode = I2C_Mode_I2C;
@@ -868,8 +900,8 @@ static void initAll()
 	i2c_init.I2C_Ack = I2C_Ack_Enable;
 	i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
 	i2c_init.I2C_ClockSpeed = 100000;
-	I2C_Init(I2C1, &i2c_init);
-	I2C_Cmd(I2C1, ENABLE);
+	I2C_Init(((I2C_TypeDef *)I2C1_BASE), &i2c_init);
+	I2C_Cmd(((I2C_TypeDef *)I2C1_BASE), ENABLE);
 	// TIM (PWM)
 	tim_timebase_init.TIM_Prescaler = (72000000 / 1000000) - 1; // set to 1MHz Counter Clock
 	tim_timebase_init.TIM_Period = 20000 - 1;					// set to 50Hz pulse with 1MHz Counter Clock
@@ -878,19 +910,20 @@ static void initAll()
 	tim_timebase_init.TIM_RepetitionCounter;
 	TIM_TimeBaseInit(TIM4, &tim_timebase_init);
 	/* PIEZO: PWM1 Mode configuration: Channel3 */
-	tim_piezo_init.TIM_OCMode = TIM_OCMODE_PWM1;
-	tim_piezo_init.TIM_OutputState = TIM_OUTPUTSTATE_Enable;
+	tim_piezo_init.TIM_OCMode = TIM_OCMode_PWM1;
+	tim_piezo_init.TIM_OutputState = TIM_OutputState_Enable;
 	tim_piezo_init.TIM_Pulse = 500;
 	tim_piezo_init.TIM_OCPolarity = TIM_OCPolarity_High;
 	TIM_OC3Init(TIM4, &tim_piezo_init);
 	//TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Disable);
 	TIM_Cmd(TIM4, ENABLE);
 	/* MOTOR: PWM1 Mode configuration: Channel4 */
-	tim_motor_init.TIM_OCMode = TIM_OCMODE_PWM1;
-	tim_motor_init.TIM_OutputState = TIM_OUTPUTSTATE_Enable;
+	tim_motor_init.TIM_OCMode = TIM_OCMode_PWM1;
+	tim_motor_init.TIM_OutputState = TIM_OutputState_Enable;
 	tim_motor_init.TIM_Pulse = 1500; // 50 % duty cylce value
 	tim_motor_init.TIM_OCPolarity = TIM_OCPolarity_High;
-	TIM_PWMIConfig(TIM4, &tim_motor_init);
+
+	//TIM_PWMIConfig(TIM4, &tim_motor_init);
 	TIM_OC4Init(TIM4, &tim_motor_init);
 	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Disable);
 	TIM_ARRPreloadConfig(TIM4, ENABLE);
