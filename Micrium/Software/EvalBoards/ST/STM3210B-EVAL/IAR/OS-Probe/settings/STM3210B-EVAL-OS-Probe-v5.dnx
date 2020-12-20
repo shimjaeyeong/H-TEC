@@ -15,15 +15,15 @@
         <CStepIntDis>_ 0</CStepIntDis>
     </JLinkDriver>
     <StLinkDriver>
+        <stlinkserialNo>USB0</stlinkserialNo>
+        <stlinkfoundProbes />
         <CStepIntDis>_ 0</CStepIntDis>
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
         <stlinkResetStyle>0</stlinkResetStyle>
         <stlinkResetStrategy>0</stlinkResetStrategy>
-        <stlinkserialNo>USB0</stlinkserialNo>
-        <stlinkfoundProbes />
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>1765753018</Checksum>
+        <Checksum>2814297069</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -94,8 +94,16 @@
     </DisassembleMode>
     <Breakpoints2>
         <Bp0>_ 0 "EMUL_CODE" "{$PROJ_DIR$\app.c}.0.1" 0 0 1 "" 0 "" 0</Bp0>
-        <Count>1</Count>
+        <Bp1>_ 1 "EMUL_CODE" "{$PROJ_DIR$\app.c}.281.3" 0 0 1 "" 0 "" 0</Bp1>
+        <Bp2>_ 1 "EMUL_CODE" "{$PROJ_DIR$\app.c}.513.3" 0 0 1 "" 0 "" 0</Bp2>
+        <Bp3>_ 1 "EMUL_CODE" "{$PROJ_DIR$\app.c}.513.3" 0 0 1 "" 0 "" 0</Bp3>
+        <Bp4>_ 1 "EMUL_CODE" "{$PROJ_DIR$\app.c}.328.3" 0 0 1 "" 0 "" 0</Bp4>
+        <Count>5</Count>
     </Breakpoints2>
+    <TermIOLog>
+        <LoggingEnabled>_ 0</LoggingEnabled>
+        <LogFile>_ ""</LogFile>
+    </TermIOLog>
     <LogFile>
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
@@ -105,9 +113,8 @@
         <A0>_ "C:\stm32f100\Micrium\Software\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_dbg.c" ""</A0>
         <A1>_ "C:\stm32f100\Micrium\Software\uCOS-II\Source\os_task.c" ""</A1>
         <A2>_ "C:\stm32f100\Micrium\Software\uCOS-II\Source\os_time.c" ""</A2>
-        <A3>_ "D:\Develop\H-TEC\Micrium\Software\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_a.asm" ""</A3>
-        <Count>4</Count>
-        <SuppressDialog>1</SuppressDialog>
+        <Count>3</Count>
+        <SuppressDialog>0</SuppressDialog>
     </Aliases>
     <CallStackLog>
         <Enabled>0</Enabled>
@@ -115,8 +122,4 @@
     <CallStackStripe>
         <ShowTiming>1</ShowTiming>
     </CallStackStripe>
-    <TermIOLog>
-        <LoggingEnabled>_ 0</LoggingEnabled>
-        <LogFile>_ ""</LogFile>
-    </TermIOLog>
 </settings>

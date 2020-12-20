@@ -80,9 +80,8 @@ const static OS_FLAGS FLAG_TEMPER_LOW = 16;
 static OS_EVENT *sem;
 static int count = 0;
 const static int TIME_COUNT = 9; // 100ms * 10 = 1초
-const static int DELAY_TIME = 100;
+const static int DELAY_TIME = 150;
 static int ADC_value = 0;
-
 
 #if ((APP_OS_PROBE_EN == DEF_ENABLED) &&  \
 	 (APP_PROBE_COM_EN == DEF_ENABLED) && \
@@ -229,16 +228,16 @@ int main(void)
 
 	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
 
-//	BSP_Init();
-//	OS_CPU_SysTickInit();
-//#if (OS_TASK_STAT_EN > 0)
-//	OSStatInit(); /* Determine CPU capacity.                              */
-//#endif
-//
-//#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+	//	BSP_Init();
+	//	OS_CPU_SysTickInit();
+	//#if (OS_TASK_STAT_EN > 0)
+	//	OSStatInit(); /* Determine CPU capacity.                              */
+	//#endif
+	//
+	//#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
 //	 (APP_OS_PROBE_EN == DEF_ENABLED))
-//	App_InitProbe();
-//#endif
+	//	App_InitProbe();
+	//#endif
 
 	return (0);
 }
@@ -279,25 +278,23 @@ static void detectTask(void *p)
 	{
 		ADC_SoftwareStartConvCmd(ADC1, ENABLE);
 
-		while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
+		while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET)
+			;
 
 		ADC_value = ADC_GetConversionValue(ADC1);
 
-		if (ADC_value != RESET) // when human detected
+		if (ADC_value != 0) // when human detected
 		{
-			BSP_LED_On(4);
-			//BSP_LED_Off(0);
+			BSP_LED_On(3);
 			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, &err);
 		}
 		else
 		{
-			BSP_LED_On(3);
-			//BSP_LED_Off(3);
+			BSP_LED_Off(3);
 			OSFlagPost(flagGroup, FLAG_DETECT_NOT, OS_FLAG_SET, &err);
 		}
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
-
 }
 
 /*
@@ -315,6 +312,7 @@ static void detectTask(void *p)
  * Note(s)     : none.
  *********************************************************************************************************
  */
+//void i2c_multi_read(int Device_Addr, int Reg, int *pBuffer, int NumByteToRead);
 // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
 static void temperTask(void *p)
 {
@@ -325,6 +323,8 @@ static void temperTask(void *p)
 	while (DEF_TRUE)
 	{
 		temp = readTemperature();
+		//i2c_multi_read(0x74, 0xfa, &temp, 1); //
+		BSP_LED_On(4);
 		if (temp > high) // when temperature is HIGH
 		{
 			//OSQPost(temperQue, temp);
@@ -349,47 +349,145 @@ static void temperTask(void *p)
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
 }
+/*
+void i2c_multi_read(int Device_Addr, int Reg, int *pBuffer, int NumByteToRead)
 
-static int readTemperature()
 {
-	// int high, low;
-	// int tmp = 0;
 
-	// while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
-	// 	;
-	// I2C_GenerateSTART(I2C1, ENABLE);
-	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
-	// 	;
-	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Transmitter);
-	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
-	// 	;
-	// I2C_SendData(I2C1, 0x0);
-	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
-	// 	;
-	// I2C_GenerateSTOP(I2C1, ENABLE);
+	/* While the bus is busy */
 
-	// I2C_GenerateSTART(I2C1, ENABLE);
-	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
-	// 	;
-	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Receiver);
-	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
-	// 	;
-	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
-	// 	; /* Poll on RxNE */
-	// high = I2C_ReceiveData(I2C1);
-	// I2C_AcknowledgeConfig(I2C1, DISABLE);
-	// I2C_GenerateSTOP(I2C1, ENABLE);
+while (I2C_GetFlagStatus(((I2C_TypeDef *)I2C1_BASE), I2C_FLAG_BUSY))
+	;
 
-	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
-	// 	; /* Poll on RxNE */
+/* Send START condition */
 
-	// low = I2C_ReceiveData(I2C1);
-	// I2C_AcknowledgeConfig(I2C1, ENABLE);
-	// tmp = (uint16_t)(high << 8);
+I2C_GenerateSTART(((I2C_TypeDef *)I2C1_BASE), ENABLE);
 
-	// tmp |= low;
-	// return tmp >> 7;
-	return 36;
+/* Test on EV5 and clear it */
+
+while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
+	;
+
+/* Send slave address for write */
+
+I2C_Send7bitAddress(((I2C_TypeDef *)I2C1_BASE), Device_Addr, I2C_Direction_Transmitter);
+
+/* Test on EV6 and clear it */
+
+while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
+	;
+
+/* Send the device internal address to read from: Only one byte address */
+
+I2C_SendData(((I2C_TypeDef *)I2C1_BASE), Reg);
+
+/* Test on EV8 and clear it */
+
+while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+	;
+
+/* Send STOP condition */
+
+I2C_GenerateSTOP(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+
+/********************************/
+
+/* Send STRAT condition a second time */
+
+I2C_GenerateSTART(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+
+/* Test on EV5 and clear it */
+
+while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
+	;
+
+/* Send device address for read */
+
+I2C_Send7bitAddress(((I2C_TypeDef *)I2C1_BASE), Device_Addr, I2C_Direction_Receiver);
+
+/* Test on EV6 and clear it */
+
+while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
+	;
+
+/* While there is data to be read */
+
+while (NumByteToRead)
+
+{
+
+	if (NumByteToRead == 1)
+
+	{
+
+		/* Disable Acknowledgement */
+
+		I2C_AcknowledgeConfig(((I2C_TypeDef *)I2C1_BASE), DISABLE);
+
+		/* Send STOP Condition */
+
+		I2C_GenerateSTOP(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+	}
+
+	while ((I2C_GetLastEvent(((I2C_TypeDef *)I2C1_BASE)) & 0x0040) != 0x000040)
+		; /* Poll on RxNE */
+
+	/* Read a byte from the EEPROM */
+
+	*pBuffer = I2C_ReceiveData(((I2C_TypeDef *)I2C1_BASE));
+
+	/* Point to the next location where the byte read will be saved */
+
+	pBuffer++;
+
+	/* Decrement the read bytes counter */
+
+	NumByteToRead--;
+}
+
+/* Enable Acknowledgement to be ready for another reception */
+
+I2C_AcknowledgeConfig(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+}
+* /
+	static int readTemperature()
+{
+	int state = 0;
+	I2C_GenerateSTART(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+	I2C_Send7bitAddress(((I2C_TypeDef *)I2C1_BASE), 0x74, I2C_Direction_Transmitter);
+	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
+		state = I2C_GetLastEvent(((I2C_TypeDef *)I2C1_BASE));
+
+	I2C_SendData(((I2C_TypeDef *)I2C1_BASE), 0x07);
+	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+		state = I2C_GetLastEvent(((I2C_TypeDef *)I2C1_BASE));
+	//I2C_GenerateSTOP(((I2C_TypeDef *)I2C1_BASE), ENABLE); // check
+
+	I2C_GenerateSTART(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+	//while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
+	//	; // check
+	//I2C_SendData(I2C1, 0x75);
+	I2C_Send7bitAddress(((I2C_TypeDef *)I2C1_BASE), 0x75, I2C_Direction_Transmitter);
+	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
+		state = I2C_GetLastEvent(((I2C_TypeDef *)I2C1_BASE));
+
+	int low = I2C_ReceiveData(((I2C_TypeDef *)I2C1_BASE));
+	I2C_AcknowledgeConfig(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+
+	int high = I2C_ReceiveData(((I2C_TypeDef *)I2C1_BASE));
+	I2C_AcknowledgeConfig(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+
+	int pec = I2C_GetPEC(((I2C_TypeDef *)I2C1_BASE));
+	I2C_GenerateSTOP(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+
+	if (high & 0x80 != 0)
+	{
+		return -1;
+	}
+	else
+	{
+		return (high << 8 + low) * 0.02 - 273.15;
+	}
 }
 
 /*
@@ -460,17 +558,19 @@ static void denyTask(void *p)
 					   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
 					   0,
 					   (INT8U *)&err);
-		if ((flags & FLAG_TEMPER_HIGH) == FLAG_TEMPER_HIGH)
+		if ((flags & FLAG_TEMPER_HIGH) != 0)
 		{
 			// dot-matrix
-			// TODO("dot-matrix deny");
+			// TODO("dot-matrix deny"); X
 			// piezo
 			GPIO_SetBits(GPIOB, GPIO_Pin_8);
 		}
-		else if ((flags & FLAG_TEMPER_LOW) == FLAG_TEMPER_LOW)
+		else if ((flags & FLAG_TEMPER_LOW) + (flags & FLAG_DETECT_NOT) == 0)
 		{
 			// dot-matrix
-			// TODO("dot-matrix deny");
+			// TODO("dot-matrix stay"); --
+			// piezo
+			GPIO_SetBits(GPIOB, GPIO_Pin_8);
 		}
 		OSSemPend(sem, 0, (INT8U *)&err);
 		count = 1;
