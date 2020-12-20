@@ -1,50 +1,51 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         17/Dec/2020  01:23:13
+# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         18/Dec/2020  23:47:31
 # Copyright 1999-2020 IAR Systems AB.
 #
 #    Cpu mode                        
 #    Endian                       =  little
 #    Source file                  =
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
 #    Command line                 =
-#        -f C:\Users\fabi8\AppData\Local\Temp\EW9F8E.tmp
-#        (D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
+#        -f C:\Users\SHIMJA~1\AppData\Local\Temp\EW4167.tmp
+#        (C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
 #        -lCN
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
 #        -o
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj
 #        --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config
-#        "D:\Develop\IAR Systems\arm\inc\c\DLib_Config_Normal.h" -I
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\\
+#        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        8.4\arm\inc\c\DLib_Config_Normal.h" -I
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\\
 #        -I
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\ports\arm-cortex-m3\generic\iar\\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\ports\arm-cortex-m3\generic\iar\\
 #        -I
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\ucos-ii\source\\
 #        -I
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-lib\\
 #        -I
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\\
 #        -I
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uc-cpu\ARM-Cortex-M3\IAR\\
 #        -I
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\cpu\st\stm32\inc\\
 #        -I
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\BSP\\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\BSP\\
 #        -I
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Source\\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Source\\
 #        -I
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Ports\ST\STM32\\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\RS-232\Ports\ST\STM32\\
 #        -I
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Communication\Generic\Source\\
 #        -I
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\\
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\..\..\..\..\..\uC-Probe\Target\Plugins\uCOS-II\\
 #        -Ohz --use_c++_inline)
 #    Locale                       =  C
 #    List file                    =
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List\app.lst
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List\app.lst
 #    Object file                  =
-#        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj\app.o
+#        C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\Obj\app.o
 #    Runtime model:                  
 #      __SystemLibrary            =  DLib
 #      __dlib_file_descriptor     =  0
@@ -54,7 +55,7 @@
 #
 ###############################################################################
 
-D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
+C:\Users\shimjaeyeong\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
       1          /*
       2           *********************************************************************************************************
       3           *                                              TERM PROJECT
@@ -142,8 +143,8 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
      85          const static int DELAY_TIME = 100;
      86          
      87          #if ((OS_PROBE_EN == DEF_ENABLED) &&  \
-     88          	 (PROBE_COM_EN == DEF_ENABLED) && \
-     89          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
+     88              (PROBE_COM_EN == DEF_ENABLED) && \
+     89              (PROBE_COM_STAT_EN == DEF_ENABLED))
      90          static CPU_FP32 ProbeComRxPktSpd;
      91          static CPU_FP32 ProbeComTxPktSpd;
      92          static CPU_FP32 ProbeComTxSymSpd;
@@ -184,7 +185,7 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     127          static void initAll();
     128          
     129          #if ((PROBE_COM_EN == DEF_ENABLED) || \
-    130          	 (OS_PROBE_EN == DEF_ENABLED))
+    130              (OS_PROBE_EN == DEF_ENABLED))
     131          static void InitProbe(void);
     132          #endif
     133          
@@ -207,86 +208,86 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     150          
     151          int main(void)
     152          {
-    153          	CPU_INT08U os_err;
+    153             CPU_INT08U os_err;
     154          
-    155          	/* Disable all ints until we are ready to accept them.  */
-    156          	BSP_IntDisAll();
+    155             /* Disable all ints until we are ready to accept them.  */
+    156             BSP_IntDisAll();
     157          
-    158          	/* Initialize "uC/OS-II, The Real-Time Kernel".         */
-    159          	OSInit();
+    158             /* Initialize "uC/OS-II, The Real-Time Kernel".         */
+    159             OSInit();
     160          
-    161          	initAll();
+    161             initAll();
     162          
-    163          	// Create Message Que, msg : 저장공간, 크기 : 10
-    164          	temperQue = OSQCreate(msg, 10);
+    163             // Create Message Que, msg : 저장공간, 크기 : 10
+    164             temperQue = OSQCreate(msg, 10);
     165          
-    166          	// Create Event Flag
-    167          	flagGroup = OSFlagCreate(FLAG_INIT, &os_err);
+    166             // Create Event Flag
+    167             flagGroup = OSFlagCreate(FLAG_INIT, &os_err);
     168          
-    169          	// Create semaphore
-    170          	sem = OSSemCreate(0);
+    169             // Create semaphore
+    170             sem = OSSemCreate(0);
     171          
-    172          	os_err = OSTaskCreateExt((void (*)(void *))detectTask,						   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
-    173          							 (void *)0,											   // Task로 넘겨줄 인자
-    174          							 (OS_STK *)&detectTaskStack[TASK_STK_SIZE - 1],		   // Task가 할당될 Stack의 Top을 가리키는 주소
-    175          							 (INT8U)TASK_DETECT_PRIO,							   // Task의 우선 순위 (MPT)
-    176          							 (INT16U)TASK_DETECT_PRIO,							   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
-    177          							 (OS_STK *)&detectTaskStack,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
-    178          							 (INT32U)TASK_STK_SIZE,								   // Task Stack의 크기를 의미
-    179          							 (void *)0,											   // Task Control Block 활용시 사용
-    180          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
+    172             os_err = OSTaskCreateExt((void (*)(void *))detectTask,                     // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+    173                                (void *)0,                                    // Task로 넘겨줄 인자
+    174                                (OS_STK *)&detectTaskStack[TASK_STK_SIZE - 1],         // Task가 할당될 Stack의 Top을 가리키는 주소
+    175                                (INT8U)TASK_DETECT_PRIO,                        // Task의 우선 순위 (MPT)
+    176                                (INT16U)TASK_DETECT_PRIO,                        // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
+    177                                (OS_STK *)&detectTaskStack,                     // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
+    178                                (INT32U)TASK_STK_SIZE,                           // Task Stack의 크기를 의미
+    179                                (void *)0,                                    // Task Control Block 활용시 사용
+    180                                (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
     181          
-    182          	os_err = OSTaskCreateExt((void (*)(void *))temperTask, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
-    183          							 (void *)0,
-    184          							 (OS_STK *)&temperatureTaskStack[TASK_STK_SIZE - 1],
-    185          							 (INT8U)TASK_TEMPER_PRIO,
-    186          							 (INT16U)TASK_TEMPER_PRIO,
-    187          							 (OS_STK *)&temperatureTaskStack,
-    188          							 (INT32U)TASK_STK_SIZE,
-    189          							 (void *)0,
-    190          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+    182             os_err = OSTaskCreateExt((void (*)(void *))temperTask, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
+    183                                (void *)0,
+    184                                (OS_STK *)&temperatureTaskStack[TASK_STK_SIZE - 1],
+    185                                (INT8U)TASK_TEMPER_PRIO,
+    186                                (INT16U)TASK_TEMPER_PRIO,
+    187                                (OS_STK *)&temperatureTaskStack,
+    188                                (INT32U)TASK_STK_SIZE,
+    189                                (void *)0,
+    190                                (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
     191          
-    192          	os_err = OSTaskCreateExt((void (*)(void *))passTask, // 정상체온인 사람은 통과를 허가하는 Task
-    193          							 (void *)0,
-    194          							 (OS_STK *)&passTaskStack[TASK_STK_SIZE - 1],
-    195          							 (INT8U)TASK_PASS_PRIO,
-    196          							 (INT16U)TASK_PASS_PRIO,
-    197          							 (OS_STK *)&passTaskStack,
-    198          							 (INT32U)TASK_STK_SIZE,
-    199          							 (void *)0,
-    200          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+    192             os_err = OSTaskCreateExt((void (*)(void *))passTask, // 정상체온인 사람은 통과를 허가하는 Task
+    193                                (void *)0,
+    194                                (OS_STK *)&passTaskStack[TASK_STK_SIZE - 1],
+    195                                (INT8U)TASK_PASS_PRIO,
+    196                                (INT16U)TASK_PASS_PRIO,
+    197                                (OS_STK *)&passTaskStack,
+    198                                (INT32U)TASK_STK_SIZE,
+    199                                (void *)0,
+    200                                (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
     201          
-    202          	os_err = OSTaskCreateExt((void (*)(void *))denyTask, // 비정상체온인 사람은 통과를 불허하는 Task
-    203          							 (void *)0,
-    204          							 (OS_STK *)&denyTaskStack[TASK_STK_SIZE - 1],
-    205          							 (INT8U)TASK_DENY_PRIO,
-    206          							 (INT16U)TASK_DENY_PRIO,
-    207          							 (OS_STK *)&denyTaskStack,
-    208          							 (INT32U)TASK_STK_SIZE,
-    209          							 (void *)0,
-    210          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+    202             os_err = OSTaskCreateExt((void (*)(void *))denyTask, // 비정상체온인 사람은 통과를 불허하는 Task
+    203                                (void *)0,
+    204                                (OS_STK *)&denyTaskStack[TASK_STK_SIZE - 1],
+    205                                (INT8U)TASK_DENY_PRIO,
+    206                                (INT16U)TASK_DENY_PRIO,
+    207                                (OS_STK *)&denyTaskStack,
+    208                                (INT32U)TASK_STK_SIZE,
+    209                                (void *)0,
+    210                                (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
     211          
-    212          	os_err = OSTaskCreateExt((void (*)(void *))checkTask, // 알림 장치 작동 중지하는 Task
-    213          							 (void *)0,
-    214          							 (OS_STK *)&checkTaskStack[TASK_STK_SIZE - 1],
-    215          							 (INT8U)TASK_CHECK_PRIO,
-    216          							 (INT16U)TASK_CHECK_PRIO,
-    217          							 (OS_STK *)&checkTaskStack,
-    218          							 (INT32U)TASK_STK_SIZE,
-    219          							 (void *)0,
-    220          							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+    212             os_err = OSTaskCreateExt((void (*)(void *))checkTask, // 알림 장치 작동 중지하는 Task
+    213                                (void *)0,
+    214                                (OS_STK *)&checkTaskStack[TASK_STK_SIZE - 1],
+    215                                (INT8U)TASK_CHECK_PRIO,
+    216                                (INT16U)TASK_CHECK_PRIO,
+    217                                (OS_STK *)&checkTaskStack,
+    218                                (INT32U)TASK_STK_SIZE,
+    219                                (void *)0,
+    220                                (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
     221          
     222          #if (OS_TASK_NAME_SIZE >= 11)
-    223          	OSTaskNameSet(TASK_DETECT_PRIO, (CPU_INT08U *)"Detect Task", &os_err);
-    224          	OSTaskNameSet(TASK_TEMPER_PRIO, (CPU_INT08U *)"Temperature Task", &os_err);
-    225          	OSTaskNameSet(TASK_PASS_PRIO, (CPU_INT08U *)"Pass Task", &os_err);
-    226          	OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U *)"Deny Task", &os_err);
-    227          	OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U *)"Check Task", &os_err);
+    223             OSTaskNameSet(TASK_DETECT_PRIO, (CPU_INT08U *)"Detect Task", &os_err);
+    224             OSTaskNameSet(TASK_TEMPER_PRIO, (CPU_INT08U *)"Temperature Task", &os_err);
+    225             OSTaskNameSet(TASK_PASS_PRIO, (CPU_INT08U *)"Pass Task", &os_err);
+    226             OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U *)"Deny Task", &os_err);
+    227             OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U *)"Check Task", &os_err);
     228          #endif
     229          
-    230          	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
+    230             OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
     231          
-    232          	return (0);
+    232             return (0);
     233          }
     234          
     235          /*
@@ -308,16 +309,16 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     251          // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
     252          static void detectTask(void *p)
     253          {
-    254          	CPU_INT08U err;
+    254             CPU_INT08U err;
     255          
-    256          	while (DEF_TRUE)
-    257          	{
-    258          		if (GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_0) != 0) // when human detected
-    259          		{
-    260          			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, &err);
-    261          		}
-    262          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-    263          	}
+    256             while (DEF_TRUE)
+    257             {
+    258                if (GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_0) != 0) // when human detected
+    259                {
+    260                   OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, &err);
+    261                }
+    262                OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+    263             }
     264          }
     265          
     266          /*
@@ -338,73 +339,73 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     281          // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
     282          static void temperTask(void *p)
     283          {
-    284          	INT8U err;
-    285          	int temp;
-    286          	int high = 39;
-    287          	int low = 34;
-    288          	while (DEF_TRUE)
-    289          	{
-    290          		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, &err);
-    291          		temp = readTemperature();
-    292          		if (temp > high) // when temperature is HIGH
-    293          		{
-    294          			OSQPost(temperQue, temp);
-    295          			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, &err);
-    296          		}
-    297          		else if (temp < low)
-    298          		{
-    299          			OSQPost(temperQue, temp);
-    300          			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, &err);
-    301          		}
-    302          		else
-    303          		{
-    304          			OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, &err);
-    305          		}
+    284             INT8U err;
+    285             int temp;
+    286             int high = 39;
+    287             int low = 34;
+    288             while (DEF_TRUE)
+    289             {
+    290                OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, &err);
+    291                temp = readTemperature();
+    292                if (temp > high) // when temperature is HIGH
+    293                {
+    294                   OSQPost(temperQue, temp);
+    295                   OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, &err);
+    296                }
+    297                else if (temp < low)
+    298                {
+    299                   OSQPost(temperQue, temp);
+    300                   OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, &err);
+    301                }
+    302                else
+    303                {
+    304                   OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, &err);
+    305                }
     306          
-    307          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-    308          	}
+    307                OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+    308             }
     309          }
     310          
     311          static int readTemperature()
     312          {
-    313          	// int high, low;
-    314          	// int tmp = 0;
+    313             // int high, low;
+    314             // int tmp = 0;
     315          
-    316          	// while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
-    317          	// 	;
-    318          	// I2C_GenerateSTART(I2C1, ENABLE);
-    319          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
-    320          	// 	;
-    321          	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Transmitter);
-    322          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
-    323          	// 	;
-    324          	// I2C_SendData(I2C1, 0x0);
-    325          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
-    326          	// 	;
-    327          	// I2C_GenerateSTOP(I2C1, ENABLE);
+    316             // while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
+    317             //    ;
+    318             // I2C_GenerateSTART(I2C1, ENABLE);
+    319             // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
+    320             //    ;
+    321             // I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Transmitter);
+    322             // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
+    323             //    ;
+    324             // I2C_SendData(I2C1, 0x0);
+    325             // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+    326             //    ;
+    327             // I2C_GenerateSTOP(I2C1, ENABLE);
     328          
-    329          	// I2C_GenerateSTART(I2C1, ENABLE);
-    330          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
-    331          	// 	;
-    332          	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Receiver);
-    333          	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
-    334          	// 	;
-    335          	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
-    336          	// 	; /* Poll on RxNE */
-    337          	// high = I2C_ReceiveData(I2C1);
-    338          	// I2C_AcknowledgeConfig(I2C1, DISABLE);
-    339          	// I2C_GenerateSTOP(I2C1, ENABLE);
+    329             // I2C_GenerateSTART(I2C1, ENABLE);
+    330             // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
+    331             //    ;
+    332             // I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Receiver);
+    333             // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
+    334             //    ;
+    335             // while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
+    336             //    ; /* Poll on RxNE */
+    337             // high = I2C_ReceiveData(I2C1);
+    338             // I2C_AcknowledgeConfig(I2C1, DISABLE);
+    339             // I2C_GenerateSTOP(I2C1, ENABLE);
     340          
-    341          	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
-    342          	// 	; /* Poll on RxNE */
+    341             // while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
+    342             //    ; /* Poll on RxNE */
     343          
-    344          	// low = I2C_ReceiveData(I2C1);
-    345          	// I2C_AcknowledgeConfig(I2C1, ENABLE);
-    346          	// tmp = (uint16_t)(high << 8);
+    344             // low = I2C_ReceiveData(I2C1);
+    345             // I2C_AcknowledgeConfig(I2C1, ENABLE);
+    346             // tmp = (uint16_t)(high << 8);
     347          
-    348          	// tmp |= low;
-    349          	// return tmp >> 7;
-    350          	return 36;
+    348             // tmp |= low;
+    349             // return tmp >> 7;
+    350             return 36;
     351          }
     352          
     353          /*
@@ -425,26 +426,26 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     368          // 정상체온인 사람은 통과를 허가하는 Task
     369          static void passTask(void *p)
     370          {
-    371          	int err;
-    372          	while (DEF_TRUE)
-    373          	{
-    374          		OSFlagPend(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
-    375          		// dot-matrix
-    376          		TODO("dot-matrix pass");
-    377          		// piezo
-    378          		GPIO_SetBits(GPIOB, GPIO_Pin_8);
-    379          		// door
-    380          		for (int i = TIM2->CCR1; i < 2300; i += 2) // 1500 -> 2300
-    381          		{
-    382          			TIM2->CCR1 = i;
-    383          		}
+    371             int err;
+    372             while (DEF_TRUE)
+    373             {
+    374                OSFlagPend(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
+    375                // dot-matrix
+    376                TODO("dot-matrix pass");
+    377                // piezo
+    378                GPIO_SetBits(GPIOB, GPIO_Pin_8);
+    379                // door
+    380                for (int i = TIM2->CCR1; i < 2300; i += 2) // 1500 -> 2300
+    381                {
+    382                   TIM2->CCR1 = i;
+    383                }
     384          
-    385          		// stop setting
-    386          		OSSemPend(sem, 0, (INT8U *)&err);
-    387          		count = 1;
-    388          		OSSemPost(sem);
-    389          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-    390          	}
+    385                // stop setting
+    386                OSSemPend(sem, 0, (INT8U *)&err);
+    387                count = 1;
+    388                OSSemPost(sem);
+    389                OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+    390             }
     391          }
     392          
     393          /*
@@ -465,26 +466,26 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     408          // 비정상체온인 사람은 통과를 불허하는 Task
     409          static void denyTask(void *p)
     410          {
-    411          	int err;
-    412          	int temp = 0;
-    413          	while (DEF_TRUE)
-    414          	{
-    415          		OSFlagPend(flagGroup,
-    416          				   FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW,
-    417          				   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
-    418          				   0,
-    419          				   (INT8U *)&err);
-    420          		temp = OSQPend(temperQue, 0, &err);
-    421          		// dot-matrix
-    422          		TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
-    423          		// piezo
-    424          		GPIO_SetBits(GPIOB, GPIO_Pin_8);
-    425          		// Stop setting
-    426          		OSSemPend(sem, 0, (INT8U *)&err);
-    427          		count = 1;
-    428          		OSSemPost(sem);
-    429          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-    430          	}
+    411             int err;
+    412             int temp = 0;
+    413             while (DEF_TRUE)
+    414             {
+    415                OSFlagPend(flagGroup,
+    416                         FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW,
+    417                         OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
+    418                         0,
+    419                         (INT8U *)&err);
+    420                temp = OSQPend(temperQue, 0, &err);
+    421                // dot-matrix
+    422                TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
+    423                // piezo
+    424                GPIO_SetBits(GPIOB, GPIO_Pin_8);
+    425                // Stop setting
+    426                OSSemPend(sem, 0, (INT8U *)&err);
+    427                count = 1;
+    428                OSSemPost(sem);
+    429                OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+    430             }
     431          }
     432          
     433          /*
@@ -505,45 +506,45 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     448          // dot-matrix, piezo, motor를 1초 후 정지하도록 하는 Task
     449          static void checkTask(void *p)
     450          {
-    451          	CPU_INT08U err;
-    452          	int isStop = 0;
-    453          	while (DEF_TRUE)
-    454          	{
-    455          		if (count != 0)
-    456          		{
-    457          			OSSemPend(sem, 0, &err);
-    458          			if (count > TIME_COUNT)
-    459          			{
-    460          				isStop = 1; // Use flag / Don't do a lot of work in sem
-    461          				count = 0;	// init time counter
-    462          			}
-    463          			count++;
-    464          			OSSemPost(sem);
+    451             CPU_INT08U err;
+    452             int isStop = 0;
+    453             while (DEF_TRUE)
+    454             {
+    455                if (count != 0)
+    456                {
+    457                   OSSemPend(sem, 0, &err);
+    458                   if (count > TIME_COUNT)
+    459                   {
+    460                      isStop = 1; // Use flag / Don't do a lot of work in sem
+    461                      count = 0;   // init time counter
+    462                   }
+    463                   count++;
+    464                   OSSemPost(sem);
     465          
-    466          			// STOP: Do out of sem
-    467          			if (isStop == 1)
-    468          			{
-    469          				stopAll();
-    470          				isStop = 0;
-    471          			}
-    472          		}
+    466                   // STOP: Do out of sem
+    467                   if (isStop == 1)
+    468                   {
+    469                      stopAll();
+    470                      isStop = 0;
+    471                   }
+    472                }
     473          
-    474          		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-    475          	}
+    474                OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+    475             }
     476          }
     477          
     478          // Stop all
     479          static void stopAll()
     480          {
-    481          	// dot-matrix
+    481             // dot-matrix
     482          
-    483          	// piezo
-    484          	GPIO_ResetBits(GPIOB, GPIO_Pin_8);
-    485          	// motor
-    486          	for (int i = TIM2->CCR1; i > 1500; i -= 2) // 2300 -> 1500
-    487          	{
-    488          		TIM2->CCR1 = i;
-    489          	}
+    483             // piezo
+    484             GPIO_ResetBits(GPIOB, GPIO_Pin_8);
+    485             // motor
+    486             for (int i = TIM2->CCR1; i > 1500; i -= 2) // 2300 -> 1500
+    487             {
+    488                TIM2->CCR1 = i;
+    489             }
     490          }
     491          /*
     492           *********************************************************************************************************
@@ -602,28 +603,28 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     545           */
     546          
     547          #if ((PROBE_COM_EN == DEF_ENABLED) || \
-    548          	 (OS_PROBE_EN == DEF_ENABLED))
+    548              (OS_PROBE_EN == DEF_ENABLED))
     549          static void InitProbe(void)
     550          {
     551          #if (OS_PROBE_EN == DEF_ENABLED)
-    552          	(void)ProbeCounts;
-    553          	(void)ProbeB1;
+    552             (void)ProbeCounts;
+    553             (void)ProbeB1;
     554          
     555          #if ((PROBE_COM_EN == DEF_ENABLED) && \
-    556          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-    557          	(void)ProbeComRxPktSpd;
-    558          	(void)ProbeComTxPktSpd;
-    559          	(void)ProbeComTxSymSpd;
-    560          	(void)ProbeComTxSymByteSpd;
+    556              (PROBE_COM_STAT_EN == DEF_ENABLED))
+    557             (void)ProbeComRxPktSpd;
+    558             (void)ProbeComTxPktSpd;
+    559             (void)ProbeComTxSymSpd;
+    560             (void)ProbeComTxSymByteSpd;
     561          #endif
     562          
-    563          	OSProbe_Init();
-    564          	OSProbe_SetCallback(ProbeCallback);
-    565          	OSProbe_SetDelay(250);
+    563             OSProbe_Init();
+    564             OSProbe_SetCallback(ProbeCallback);
+    565             OSProbe_SetDelay(250);
     566          #endif
     567          
     568          #if (PROBE_COM_EN == DEF_ENABLED)
-    569          	ProbeCom_Init(); /* Initialize the uC/Probe communications module.       */
+    569             ProbeCom_Init(); /* Initialize the uC/Probe communications module.       */
     570          #endif
     571          }
     572          #endif
@@ -648,39 +649,39 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     591          static void ProbeCallback(void)
     592          {
     593          #if ((PROBE_COM_EN == DEF_ENABLED) && \
-    594          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-    595          	CPU_INT32U ctr_curr;
-    596          	CPU_INT32U rxpkt_curr;
-    597          	CPU_INT32U txpkt_curr;
-    598          	CPU_INT32U sym_curr;
-    599          	CPU_INT32U symbyte_curr;
+    594              (PROBE_COM_STAT_EN == DEF_ENABLED))
+    595             CPU_INT32U ctr_curr;
+    596             CPU_INT32U rxpkt_curr;
+    597             CPU_INT32U txpkt_curr;
+    598             CPU_INT32U sym_curr;
+    599             CPU_INT32U symbyte_curr;
     600          #endif
     601          
-    602          	ProbeCounts++;
+    602             ProbeCounts++;
     603          
-    604          	ProbeB1 = BSP_PB_GetStatus(1);
+    604             ProbeB1 = BSP_PB_GetStatus(1);
     605          
     606          #if ((PROBE_COM_EN == DEF_ENABLED) && \
-    607          	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-    608          	ctr_curr = OSTime;
-    609          	rxpkt_curr = ProbeCom_RxPktCtr;
-    610          	txpkt_curr = ProbeCom_TxPktCtr;
-    611          	sym_curr = ProbeCom_TxSymCtr;
-    612          	symbyte_curr = ProbeCom_TxSymByteCtr;
+    607              (PROBE_COM_STAT_EN == DEF_ENABLED))
+    608             ctr_curr = OSTime;
+    609             rxpkt_curr = ProbeCom_RxPktCtr;
+    610             txpkt_curr = ProbeCom_TxPktCtr;
+    611             sym_curr = ProbeCom_TxSymCtr;
+    612             symbyte_curr = ProbeCom_TxSymByteCtr;
     613          
-    614          	if ((ctr_curr - ProbeComCtrLast) >= OS_TICKS_PER_SEC)
-    615          	{
-    616          		ProbeComRxPktSpd = ((CPU_FP32)(rxpkt_curr - ProbeComRxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-    617          		ProbeComTxPktSpd = ((CPU_FP32)(txpkt_curr - ProbeComTxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-    618          		ProbeComTxSymSpd = ((CPU_FP32)(sym_curr - ProbeComTxSymLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-    619          		ProbeComTxSymByteSpd = ((CPU_FP32)(symbyte_curr - ProbeComTxSymByteLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    614             if ((ctr_curr - ProbeComCtrLast) >= OS_TICKS_PER_SEC)
+    615             {
+    616                ProbeComRxPktSpd = ((CPU_FP32)(rxpkt_curr - ProbeComRxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    617                ProbeComTxPktSpd = ((CPU_FP32)(txpkt_curr - ProbeComTxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    618                ProbeComTxSymSpd = ((CPU_FP32)(sym_curr - ProbeComTxSymLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+    619                ProbeComTxSymByteSpd = ((CPU_FP32)(symbyte_curr - ProbeComTxSymByteLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
     620          
-    621          		ProbeComCtrLast = ctr_curr;
-    622          		ProbeComRxPktLast = rxpkt_curr;
-    623          		ProbeComTxPktLast = txpkt_curr;
-    624          		ProbeComTxSymLast = sym_curr;
-    625          		ProbeComTxSymByteLast = symbyte_curr;
-    626          	}
+    621                ProbeComCtrLast = ctr_curr;
+    622                ProbeComRxPktLast = rxpkt_curr;
+    623                ProbeComTxPktLast = txpkt_curr;
+    624                ProbeComTxSymLast = sym_curr;
+    625                ProbeComTxSymByteLast = symbyte_curr;
+    626             }
     627          #endif
     628          }
     629          #endif
@@ -729,8 +730,8 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     672          void TaskCreateHook(OS_TCB *ptcb)
     673          {
     674          #if ((OS_PROBE_EN == DEF_ENABLED) && \
-    675          	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
-    676          	OSProbe_TaskCreateHook(ptcb);
+    675              (OS_PROBE_HOOKS_EN == DEF_ENABLED))
+    676             OSProbe_TaskCreateHook(ptcb);
     677          #endif
     678          }
     679          
@@ -748,7 +749,7 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     691          
     692          void TaskDelHook(OS_TCB *ptcb)
     693          {
-    694          	(void)ptcb;
+    694             (void)ptcb;
     695          }
     696          
     697          /*
@@ -806,8 +807,8 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     749          void TaskSwHook(void)
     750          {
     751          #if ((OS_PROBE_EN == DEF_ENABLED) && \
-    752          	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
-    753          	OSProbe_TaskSwHook();
+    752              (OS_PROBE_HOOKS_EN == DEF_ENABLED))
+    753             OSProbe_TaskSwHook();
     754          #endif
     755          }
     756          #endif
@@ -828,7 +829,7 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     771          #if OS_VERSION >= 204
     772          void TCBInitHook(OS_TCB *ptcb)
     773          {
-    774          	(void)ptcb;
+    774             (void)ptcb;
     775          }
     776          #endif
     777          
@@ -848,8 +849,8 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     791          void TimeTickHook(void)
     792          {
     793          #if ((OS_PROBE_EN == DEF_ENABLED) && \
-    794          	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
-    795          	OSProbe_TickHook();
+    794              (OS_PROBE_HOOKS_EN == DEF_ENABLED))
+    795             OSProbe_TickHook();
     796          #endif
     797          }
     798          #endif
@@ -857,114 +858,114 @@ D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\app.c
     800          
     801          static void initAll()
     802          {
-    803          	ADC_InitTypeDef adc_init;
-    804          	GPIO_InitTypeDef gpio_init;
-    805          	I2C_InitTypeDef i2c_init;
-    806          	TIM_TimeBaseInitTypeDef tim_timebase_init;
-    807          	TIM_OCInitTypeDef tim_piezo_init;
-    808          	TIM_OCInitTypeDef tim_motor_init;
-    809          	SPI_InitTypeDef spi_init;
+    803             ADC_InitTypeDef adc_init;
+    804             GPIO_InitTypeDef gpio_init;
+    805             I2C_InitTypeDef i2c_init;
+    806             TIM_TimeBaseInitTypeDef tim_timebase_init;
+    807             TIM_OCInitTypeDef tim_piezo_init;
+    808             TIM_OCInitTypeDef tim_motor_init;
+    809             SPI_InitTypeDef spi_init;
     810          
-    811          	// CLOCK
-    812          	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
-    813          	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
-    814          	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
-    815          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
-    816          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
-    817          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+    811             // CLOCK
+    812             RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+    813             RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
+    814             RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+    815             RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+    816             RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+    817             RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
     818          
-    819          	// PIN
-    820          	// ADC
-    821          	gpio_init.GPIO_Pin = GPIO_Pin_0;
-    822          	gpio_init.GPIO_Mode = GPIO_Mode_AIN;
-    823          	GPIO_Init(GPIOB, &gpio_init);
-    824          	// I2C
-    825          	gpio_init.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
-    826          	gpio_init.GPIO_Mode = GPIO_Mode_AF_OD;
-    827          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    828          	GPIO_Init(GPIOB, &gpio_init);
-    829          	// TIM (PWM)
-    830          	// Piezo
-    831          	gpio_init.GPIO_Pin = GPIO_Pin_8;
-    832          	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-    833          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    834          	GPIO_Init(GPIOB, &gpio_init);
-    835          	// Motor
-    836          	gpio_init.GPIO_Pin = GPIO_Pin_9;
-    837          	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-    838          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    839          	GPIO_Init(GPIOB, &gpio_init);
-    840          	// SPI
-    841          	GPIO_Init(GPIOB, &gpio_init);
-    842          	gpio_init.GPIO_Pin = GPIO_Pin_12;
-    843          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    844          	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-    845          	GPIO_Init(GPIOB, &gpio_init);
-    846          	gpio_init.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-    847          	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-    848          	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    849          	GPIO_Init(GPIOB, &gpio_init);
-    850          	GPIO_SetBits(GPIOB, GPIO_Pin_12); // check
+    819             // PIN
+    820             // ADC
+    821             gpio_init.GPIO_Pin = GPIO_Pin_0;
+    822             gpio_init.GPIO_Mode = GPIO_Mode_AIN;
+    823             GPIO_Init(GPIOB, &gpio_init);
+    824             // I2C
+    825             gpio_init.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
+    826             gpio_init.GPIO_Mode = GPIO_Mode_AF_OD;
+    827             gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    828             GPIO_Init(GPIOB, &gpio_init);
+    829             // TIM (PWM)
+    830             // Piezo
+    831             gpio_init.GPIO_Pin = GPIO_Pin_8;
+    832             gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
+    833             gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    834             GPIO_Init(GPIOB, &gpio_init);
+    835             // Motor
+    836             gpio_init.GPIO_Pin = GPIO_Pin_9;
+    837             gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
+    838             gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    839             GPIO_Init(GPIOB, &gpio_init);
+    840             // SPI
+    841             GPIO_Init(GPIOB, &gpio_init);
+    842             gpio_init.GPIO_Pin = GPIO_Pin_12;
+    843             gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    844             gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
+    845             GPIO_Init(GPIOB, &gpio_init);
+    846             gpio_init.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+    847             gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
+    848             gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+    849             GPIO_Init(GPIOB, &gpio_init);
+    850             GPIO_SetBits(GPIOB, GPIO_Pin_12); // check
     851          
-    852          	// CONFIG
-    853          	// ADC
-    854          	adc_init.ADC_Mode = ADC_Mode_Independent;
-    855          	adc_init.ADC_ScanConvMode = DISABLE;
-    856          	adc_init.ADC_ContinuousConvMode = ENABLE;
-    857          	adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
-    858          	adc_init.ADC_DataAlign = ADC_DataAlign_Right;
-    859          	adc_init.ADC_NbrOfChannel = 1;
-    860          	ADC_Init(ADC1, &adc_init);
-    861          	ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 1, ADC_SampleTime_13Cycles5);
-    862          	ADC_Cmd(ADC1, ENABLE);
-    863          	ADC_SoftwareStartConvCmd(ADC1, ENABLE);
-    864          	// I2C
-    865          	i2c_init.I2C_Mode = I2C_Mode_I2C;
-    866          	i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
-    867          	i2c_init.I2C_OwnAddress1 = 0;
-    868          	i2c_init.I2C_Ack = I2C_Ack_Enable;
-    869          	i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-    870          	i2c_init.I2C_ClockSpeed = 100000;
-    871          	I2C_Init(I2C1, &i2c_init);
-    872          	I2C_Cmd(I2C1, ENABLE);
-    873          	// TIM (PWM)
-    874          	tim_timebase_init.TIM_Prescaler = (72000000 / 1000000) - 1; // set to 1MHz Counter Clock
-    875          	tim_timebase_init.TIM_Period = 20000 - 1;					// set to 50Hz pulse with 1MHz Counter Clock
-    876          	tim_timebase_init.TIM_ClockDivision = 0;
-    877          	tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Down;
-    878          	tim_timebase_init.TIM_RepetitionCounter;
-    879          	TIM_TimeBaseInit(TIM4, &tim_timebase_init);
-    880          	/* PIEZO: PWM1 Mode configuration: Channel3 */
-    881          	tim_piezo_init.TIM_OCMode = TIM_OCMODE_PWM1;
-    882          	tim_piezo_init.TIM_OutputState = TIM_OUTPUTSTATE_Enable;
-    883          	tim_piezo_init.TIM_Pulse = 500;
-    884          	tim_piezo_init.TIM_OCPolarity = TIM_OCPolarity_High;
-    885          	TIM_OC3Init(TIM4, &tim_piezo_init);
-    886          	//TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Disable);
-    887          	TIM_Cmd(TIM4, ENABLE);
-    888          	/* MOTOR: PWM1 Mode configuration: Channel4 */
-    889          	tim_motor_init.TIM_OCMode = TIM_OCMODE_PWM1;
-    890          	tim_motor_init.TIM_OutputState = TIM_OUTPUTSTATE_Enable;
-    891          	tim_motor_init.TIM_Pulse = 1500; // 50 % duty cylce value
-    892          	tim_motor_init.TIM_OCPolarity = TIM_OCPolarity_High;
-    893          	TIM_PWMIConfig(TIM4, &tim_motor_init);
-    894          	TIM_OC4Init(TIM4, &tim_motor_init);
-    895          	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Disable);
-    896          	TIM_ARRPreloadConfig(TIM4, ENABLE);
-    897          	TIM_Cmd(TIM4, ENABLE);
-    898          	// SPI
-    899          	spi_init.SPI_Direction = SPI_Direction_1Line_Tx;
-    900          	spi_init.SPI_Mode = SPI_Mode_Master;
-    901          	spi_init.SPI_DataSize = SPI_DataSize_16b;
-    902          	spi_init.SPI_CPOL = SPI_CPOL_Low;
-    903          	spi_init.SPI_CPHA = SPI_CPHA_1Edge;
-    904          	spi_init.SPI_NSS = SPI_NSS_Soft;
-    905          	spi_init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;
-    906          	spi_init.SPI_FirstBit = SPI_FirstBit_MSB;
-    907          	spi_init.SPI_CRCPolynomial;
-    908          	SPI_Init(SPI2, &spi_init);
-    909          	SPI_Cmd(SPI2, ENABLE);
+    852             // CONFIG
+    853             // ADC
+    854             adc_init.ADC_Mode = ADC_Mode_Independent;
+    855             adc_init.ADC_ScanConvMode = DISABLE;
+    856             adc_init.ADC_ContinuousConvMode = ENABLE;
+    857             adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+    858             adc_init.ADC_DataAlign = ADC_DataAlign_Right;
+    859             adc_init.ADC_NbrOfChannel = 1;
+    860             ADC_Init(ADC1, &adc_init);
+    861             ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 1, ADC_SampleTime_13Cycles5);
+    862             ADC_Cmd(ADC1, ENABLE);
+    863             ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+    864             // I2C
+    865             i2c_init.I2C_Mode = I2C_Mode_I2C;
+    866             i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
+    867             i2c_init.I2C_OwnAddress1 = 0;
+    868             i2c_init.I2C_Ack = I2C_Ack_Enable;
+    869             i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    870             i2c_init.I2C_ClockSpeed = 100000;
+    871             I2C_Init((I2C_TypeDef *)I2C1, &i2c_init);
+    872             I2C_Cmd((I2C_TypeDef *)I2C1, ENABLE);
+    873             // TIM (PWM)
+    874             tim_timebase_init.TIM_Prescaler = (72000000 / 1000000) - 1; // set to 1MHz Counter Clock
+    875             tim_timebase_init.TIM_Period = 20000 - 1;               // set to 50Hz pulse with 1MHz Counter Clock
+    876             tim_timebase_init.TIM_ClockDivision = 0;
+    877             tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Down;
+    878             tim_timebase_init.TIM_RepetitionCounter;
+    879             TIM_TimeBaseInit(TIM4, &tim_timebase_init);
+    880             /* PIEZO: PWM1 Mode configuration: Channel3 */
+    881             tim_piezo_init.TIM_OCMode = TIM_OCMode_PWM1;
+    882             tim_piezo_init.TIM_OutputState = TIM_OutputState_Enable;
+    883             tim_piezo_init.TIM_Pulse = 500;
+    884             tim_piezo_init.TIM_OCPolarity = TIM_OCPolarity_High;
+    885             TIM_OC3Init(TIM4, &tim_piezo_init);
+    886             //TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Disable);
+    887             TIM_Cmd(TIM4, ENABLE);
+    888             /* MOTOR: PWM1 Mode configuration: Channel4 */
+    889             tim_motor_init.TIM_OCMode = TIM_OCMode_PWM1;
+    890             tim_motor_init.TIM_OutputState = TIM_OutputState_Enable;
+    891             tim_motor_init.TIM_Pulse = 1500; // 50 % duty cylce value
+    892             tim_motor_init.TIM_OCPolarity = TIM_OCPolarity_High;
+    893             //TIM_PWMIConfig(TIM4, &tim_motor_init);
+    894             TIM_OC4Init(TIM4, &tim_motor_init);
+    895             TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Disable);
+    896             TIM_ARRPreloadConfig(TIM4, ENABLE);
+    897             TIM_Cmd(TIM4, ENABLE);
+    898             // SPI
+    899             spi_init.SPI_Direction = SPI_Direction_1Line_Tx;
+    900             spi_init.SPI_Mode = SPI_Mode_Master;
+    901             spi_init.SPI_DataSize = SPI_DataSize_16b;
+    902             spi_init.SPI_CPOL = SPI_CPOL_Low;
+    903             spi_init.SPI_CPHA = SPI_CPHA_1Edge;
+    904             spi_init.SPI_NSS = SPI_NSS_Soft;
+    905             spi_init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;
+    906             spi_init.SPI_FirstBit = SPI_FirstBit_MSB;
+    907             spi_init.SPI_CRCPolynomial;
+    908             SPI_Init(SPI2, &spi_init);
+    909             SPI_Cmd(SPI2, ENABLE);
     910          }
 
-Errors: 5
+Errors: 2
 Warnings: 13

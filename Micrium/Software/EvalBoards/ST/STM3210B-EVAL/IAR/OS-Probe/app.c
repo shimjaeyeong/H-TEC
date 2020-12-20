@@ -85,8 +85,8 @@ const static int TIME_COUNT = 9; // 100ms * 10 = 1초
 const static int DELAY_TIME = 100;
 
 #if ((OS_PROBE_EN == DEF_ENABLED) &&  \
-	 (PROBE_COM_EN == DEF_ENABLED) && \
-	 (PROBE_COM_STAT_EN == DEF_ENABLED))
+    (PROBE_COM_EN == DEF_ENABLED) && \
+    (PROBE_COM_STAT_EN == DEF_ENABLED))
 static CPU_FP32 ProbeComRxPktSpd;
 static CPU_FP32 ProbeComTxPktSpd;
 static CPU_FP32 ProbeComTxSymSpd;
@@ -127,7 +127,7 @@ static void stopAll();
 static void initAll();
 
 #if ((PROBE_COM_EN == DEF_ENABLED) || \
-	 (OS_PROBE_EN == DEF_ENABLED))
+    (OS_PROBE_EN == DEF_ENABLED))
 static void InitProbe(void);
 #endif
 
@@ -150,86 +150,86 @@ static void ProbeCallback(void);
 
 int main(void)
 {
-	CPU_INT08U os_err;
+   CPU_INT08U os_err;
 
-	/* Disable all ints until we are ready to accept them.  */
-	BSP_IntDisAll();
+   /* Disable all ints until we are ready to accept them.  */
+   BSP_IntDisAll();
 
-	/* Initialize "uC/OS-II, The Real-Time Kernel".         */
-	OSInit();
+   /* Initialize "uC/OS-II, The Real-Time Kernel".         */
+   OSInit();
 
-	initAll();
+   initAll();
 
-	// Create Message Que, msg : 저장공간, 크기 : 10
-	temperQue = OSQCreate(msg, 10);
+   // Create Message Que, msg : 저장공간, 크기 : 10
+   temperQue = OSQCreate(msg, 10);
 
-	// Create Event Flag
-	flagGroup = OSFlagCreate(FLAG_INIT, &os_err);
+   // Create Event Flag
+   flagGroup = OSFlagCreate(FLAG_INIT, &os_err);
 
-	// Create semaphore
-	sem = OSSemCreate(0);
+   // Create semaphore
+   sem = OSSemCreate(0);
 
-	os_err = OSTaskCreateExt((void (*)(void *))detectTask,						   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
-							 (void *)0,											   // Task로 넘겨줄 인자
-							 (OS_STK *)&detectTaskStack[TASK_STK_SIZE - 1],		   // Task가 할당될 Stack의 Top을 가리키는 주소
-							 (INT8U)TASK_DETECT_PRIO,							   // Task의 우선 순위 (MPT)
-							 (INT16U)TASK_DETECT_PRIO,							   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
-							 (OS_STK *)&detectTaskStack,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
-							 (INT32U)TASK_STK_SIZE,								   // Task Stack의 크기를 의미
-							 (void *)0,											   // Task Control Block 활용시 사용
-							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
+   os_err = OSTaskCreateExt((void (*)(void *))detectTask,                     // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+                      (void *)0,                                    // Task로 넘겨줄 인자
+                      (OS_STK *)&detectTaskStack[TASK_STK_SIZE - 1],         // Task가 할당될 Stack의 Top을 가리키는 주소
+                      (INT8U)TASK_DETECT_PRIO,                        // Task의 우선 순위 (MPT)
+                      (INT16U)TASK_DETECT_PRIO,                        // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
+                      (OS_STK *)&detectTaskStack,                     // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
+                      (INT32U)TASK_STK_SIZE,                           // Task Stack의 크기를 의미
+                      (void *)0,                                    // Task Control Block 활용시 사용
+                      (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
 
-	os_err = OSTaskCreateExt((void (*)(void *))temperTask, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
-							 (void *)0,
-							 (OS_STK *)&temperatureTaskStack[TASK_STK_SIZE - 1],
-							 (INT8U)TASK_TEMPER_PRIO,
-							 (INT16U)TASK_TEMPER_PRIO,
-							 (OS_STK *)&temperatureTaskStack,
-							 (INT32U)TASK_STK_SIZE,
-							 (void *)0,
-							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+   os_err = OSTaskCreateExt((void (*)(void *))temperTask, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
+                      (void *)0,
+                      (OS_STK *)&temperatureTaskStack[TASK_STK_SIZE - 1],
+                      (INT8U)TASK_TEMPER_PRIO,
+                      (INT16U)TASK_TEMPER_PRIO,
+                      (OS_STK *)&temperatureTaskStack,
+                      (INT32U)TASK_STK_SIZE,
+                      (void *)0,
+                      (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void *))passTask, // 정상체온인 사람은 통과를 허가하는 Task
-							 (void *)0,
-							 (OS_STK *)&passTaskStack[TASK_STK_SIZE - 1],
-							 (INT8U)TASK_PASS_PRIO,
-							 (INT16U)TASK_PASS_PRIO,
-							 (OS_STK *)&passTaskStack,
-							 (INT32U)TASK_STK_SIZE,
-							 (void *)0,
-							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+   os_err = OSTaskCreateExt((void (*)(void *))passTask, // 정상체온인 사람은 통과를 허가하는 Task
+                      (void *)0,
+                      (OS_STK *)&passTaskStack[TASK_STK_SIZE - 1],
+                      (INT8U)TASK_PASS_PRIO,
+                      (INT16U)TASK_PASS_PRIO,
+                      (OS_STK *)&passTaskStack,
+                      (INT32U)TASK_STK_SIZE,
+                      (void *)0,
+                      (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void *))denyTask, // 비정상체온인 사람은 통과를 불허하는 Task
-							 (void *)0,
-							 (OS_STK *)&denyTaskStack[TASK_STK_SIZE - 1],
-							 (INT8U)TASK_DENY_PRIO,
-							 (INT16U)TASK_DENY_PRIO,
-							 (OS_STK *)&denyTaskStack,
-							 (INT32U)TASK_STK_SIZE,
-							 (void *)0,
-							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+   os_err = OSTaskCreateExt((void (*)(void *))denyTask, // 비정상체온인 사람은 통과를 불허하는 Task
+                      (void *)0,
+                      (OS_STK *)&denyTaskStack[TASK_STK_SIZE - 1],
+                      (INT8U)TASK_DENY_PRIO,
+                      (INT16U)TASK_DENY_PRIO,
+                      (OS_STK *)&denyTaskStack,
+                      (INT32U)TASK_STK_SIZE,
+                      (void *)0,
+                      (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void *))checkTask, // 알림 장치 작동 중지하는 Task
-							 (void *)0,
-							 (OS_STK *)&checkTaskStack[TASK_STK_SIZE - 1],
-							 (INT8U)TASK_CHECK_PRIO,
-							 (INT16U)TASK_CHECK_PRIO,
-							 (OS_STK *)&checkTaskStack,
-							 (INT32U)TASK_STK_SIZE,
-							 (void *)0,
-							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+   os_err = OSTaskCreateExt((void (*)(void *))checkTask, // 알림 장치 작동 중지하는 Task
+                      (void *)0,
+                      (OS_STK *)&checkTaskStack[TASK_STK_SIZE - 1],
+                      (INT8U)TASK_CHECK_PRIO,
+                      (INT16U)TASK_CHECK_PRIO,
+                      (OS_STK *)&checkTaskStack,
+                      (INT32U)TASK_STK_SIZE,
+                      (void *)0,
+                      (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
 #if (OS_TASK_NAME_SIZE >= 11)
-	OSTaskNameSet(TASK_DETECT_PRIO, (CPU_INT08U *)"Detect Task", &os_err);
-	OSTaskNameSet(TASK_TEMPER_PRIO, (CPU_INT08U *)"Temperature Task", &os_err);
-	OSTaskNameSet(TASK_PASS_PRIO, (CPU_INT08U *)"Pass Task", &os_err);
-	OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U *)"Deny Task", &os_err);
-	OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U *)"Check Task", &os_err);
+   OSTaskNameSet(TASK_DETECT_PRIO, (CPU_INT08U *)"Detect Task", &os_err);
+   OSTaskNameSet(TASK_TEMPER_PRIO, (CPU_INT08U *)"Temperature Task", &os_err);
+   OSTaskNameSet(TASK_PASS_PRIO, (CPU_INT08U *)"Pass Task", &os_err);
+   OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U *)"Deny Task", &os_err);
+   OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U *)"Check Task", &os_err);
 #endif
 
-	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
+   OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
 
-	return (0);
+   return (0);
 }
 
 /*
@@ -251,16 +251,16 @@ int main(void)
 // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
 static void detectTask(void *p)
 {
-	CPU_INT08U err;
+   CPU_INT08U err;
 
-	while (DEF_TRUE)
-	{
-		if (GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_0) != 0) // when human detected
-		{
-			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, &err);
-		}
-		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-	}
+   while (DEF_TRUE)
+   {
+      if (GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_0) != 0) // when human detected
+      {
+         OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, &err);
+      }
+      OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+   }
 }
 
 /*
@@ -281,73 +281,73 @@ static void detectTask(void *p)
 // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
 static void temperTask(void *p)
 {
-	INT8U err;
-	int temp;
-	int high = 39;
-	int low = 34;
-	while (DEF_TRUE)
-	{
-		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, &err);
-		temp = readTemperature();
-		if (temp > high) // when temperature is HIGH
-		{
-			OSQPost(temperQue, temp);
-			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, &err);
-		}
-		else if (temp < low)
-		{
-			OSQPost(temperQue, temp);
-			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, &err);
-		}
-		else
-		{
-			OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, &err);
-		}
+   INT8U err;
+   int temp;
+   int high = 39;
+   int low = 34;
+   while (DEF_TRUE)
+   {
+      OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, &err);
+      temp = readTemperature();
+      if (temp > high) // when temperature is HIGH
+      {
+         OSQPost(temperQue, temp);
+         OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, &err);
+      }
+      else if (temp < low)
+      {
+         OSQPost(temperQue, temp);
+         OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, &err);
+      }
+      else
+      {
+         OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, &err);
+      }
 
-		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-	}
+      OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+   }
 }
 
 static int readTemperature()
 {
-	// int high, low;
-	// int tmp = 0;
+   // int high, low;
+   // int tmp = 0;
 
-	// while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
-	// 	;
-	// I2C_GenerateSTART(I2C1, ENABLE);
-	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
-	// 	;
-	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Transmitter);
-	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
-	// 	;
-	// I2C_SendData(I2C1, 0x0);
-	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
-	// 	;
-	// I2C_GenerateSTOP(I2C1, ENABLE);
+   // while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
+   //    ;
+   // I2C_GenerateSTART(I2C1, ENABLE);
+   // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
+   //    ;
+   // I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Transmitter);
+   // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
+   //    ;
+   // I2C_SendData(I2C1, 0x0);
+   // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+   //    ;
+   // I2C_GenerateSTOP(I2C1, ENABLE);
 
-	// I2C_GenerateSTART(I2C1, ENABLE);
-	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
-	// 	;
-	// I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Receiver);
-	// while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
-	// 	;
-	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
-	// 	; /* Poll on RxNE */
-	// high = I2C_ReceiveData(I2C1);
-	// I2C_AcknowledgeConfig(I2C1, DISABLE);
-	// I2C_GenerateSTOP(I2C1, ENABLE);
+   // I2C_GenerateSTART(I2C1, ENABLE);
+   // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
+   //    ;
+   // I2C_Send7bitAddress(I2C1, addr, I2C_Direction_Receiver);
+   // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
+   //    ;
+   // while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
+   //    ; /* Poll on RxNE */
+   // high = I2C_ReceiveData(I2C1);
+   // I2C_AcknowledgeConfig(I2C1, DISABLE);
+   // I2C_GenerateSTOP(I2C1, ENABLE);
 
-	// while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
-	// 	; /* Poll on RxNE */
+   // while ((I2C_GetLastEvent(I2C1) & I2C_FLAG_RXNE) != I2C_FLAG_RXNE)
+   //    ; /* Poll on RxNE */
 
-	// low = I2C_ReceiveData(I2C1);
-	// I2C_AcknowledgeConfig(I2C1, ENABLE);
-	// tmp = (uint16_t)(high << 8);
+   // low = I2C_ReceiveData(I2C1);
+   // I2C_AcknowledgeConfig(I2C1, ENABLE);
+   // tmp = (uint16_t)(high << 8);
 
-	// tmp |= low;
-	// return tmp >> 7;
-	return 36;
+   // tmp |= low;
+   // return tmp >> 7;
+   return 36;
 }
 
 /*
@@ -368,26 +368,26 @@ static int readTemperature()
 // 정상체온인 사람은 통과를 허가하는 Task
 static void passTask(void *p)
 {
-	int err;
-	while (DEF_TRUE)
-	{
-		OSFlagPend(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
-		// dot-matrix
-		TODO("dot-matrix pass");
-		// piezo
-		GPIO_SetBits(GPIOB, GPIO_Pin_8);
-		// door
-		for (int i = TIM2->CCR1; i < 2300; i += 2) // 1500 -> 2300
-		{
-			TIM2->CCR1 = i;
-		}
+   int err;
+   while (DEF_TRUE)
+   {
+      OSFlagPend(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
+      // dot-matrix
+      TODO("dot-matrix pass");
+      // piezo
+      GPIO_SetBits(GPIOB, GPIO_Pin_8);
+      // door
+      for (int i = TIM2->CCR1; i < 2300; i += 2) // 1500 -> 2300
+      {
+         TIM2->CCR1 = i;
+      }
 
-		// stop setting
-		OSSemPend(sem, 0, (INT8U *)&err);
-		count = 1;
-		OSSemPost(sem);
-		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-	}
+      // stop setting
+      OSSemPend(sem, 0, (INT8U *)&err);
+      count = 1;
+      OSSemPost(sem);
+      OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+   }
 }
 
 /*
@@ -408,26 +408,26 @@ static void passTask(void *p)
 // 비정상체온인 사람은 통과를 불허하는 Task
 static void denyTask(void *p)
 {
-	int err;
-	int temp = 0;
-	while (DEF_TRUE)
-	{
-		OSFlagPend(flagGroup,
-				   FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW,
-				   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
-				   0,
-				   (INT8U *)&err);
-		temp = OSQPend(temperQue, 0, &err);
-		// dot-matrix
-		TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
-		// piezo
-		GPIO_SetBits(GPIOB, GPIO_Pin_8);
-		// Stop setting
-		OSSemPend(sem, 0, (INT8U *)&err);
-		count = 1;
-		OSSemPost(sem);
-		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-	}
+   int err;
+   int temp = 0;
+   while (DEF_TRUE)
+   {
+      OSFlagPend(flagGroup,
+               FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW,
+               OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
+               0,
+               (INT8U *)&err);
+      temp = OSQPend(temperQue, 0, &err);
+      // dot-matrix
+      TODO("dot-matrix deny"); // + 온도 출력 (가능하다면) ㅋㅋ
+      // piezo
+      GPIO_SetBits(GPIOB, GPIO_Pin_8);
+      // Stop setting
+      OSSemPend(sem, 0, (INT8U *)&err);
+      count = 1;
+      OSSemPost(sem);
+      OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+   }
 }
 
 /*
@@ -448,45 +448,45 @@ static void denyTask(void *p)
 // dot-matrix, piezo, motor를 1초 후 정지하도록 하는 Task
 static void checkTask(void *p)
 {
-	CPU_INT08U err;
-	int isStop = 0;
-	while (DEF_TRUE)
-	{
-		if (count != 0)
-		{
-			OSSemPend(sem, 0, &err);
-			if (count > TIME_COUNT)
-			{
-				isStop = 1; // Use flag / Don't do a lot of work in sem
-				count = 0;	// init time counter
-			}
-			count++;
-			OSSemPost(sem);
+   CPU_INT08U err;
+   int isStop = 0;
+   while (DEF_TRUE)
+   {
+      if (count != 0)
+      {
+         OSSemPend(sem, 0, &err);
+         if (count > TIME_COUNT)
+         {
+            isStop = 1; // Use flag / Don't do a lot of work in sem
+            count = 0;   // init time counter
+         }
+         count++;
+         OSSemPost(sem);
 
-			// STOP: Do out of sem
-			if (isStop == 1)
-			{
-				stopAll();
-				isStop = 0;
-			}
-		}
+         // STOP: Do out of sem
+         if (isStop == 1)
+         {
+            stopAll();
+            isStop = 0;
+         }
+      }
 
-		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-	}
+      OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+   }
 }
 
 // Stop all
 static void stopAll()
 {
-	// dot-matrix
+   // dot-matrix
 
-	// piezo
-	GPIO_ResetBits(GPIOB, GPIO_Pin_8);
-	// motor
-	for (int i = TIM2->CCR1; i > 1500; i -= 2) // 2300 -> 1500
-	{
-		TIM2->CCR1 = i;
-	}
+   // piezo
+   GPIO_ResetBits(GPIOB, GPIO_Pin_8);
+   // motor
+   for (int i = TIM2->CCR1; i > 1500; i -= 2) // 2300 -> 1500
+   {
+      TIM2->CCR1 = i;
+   }
 }
 /*
  *********************************************************************************************************
@@ -545,28 +545,28 @@ static void DispScr_TaskNames(void)
  */
 
 #if ((PROBE_COM_EN == DEF_ENABLED) || \
-	 (OS_PROBE_EN == DEF_ENABLED))
+    (OS_PROBE_EN == DEF_ENABLED))
 static void InitProbe(void)
 {
 #if (OS_PROBE_EN == DEF_ENABLED)
-	(void)ProbeCounts;
-	(void)ProbeB1;
+   (void)ProbeCounts;
+   (void)ProbeB1;
 
 #if ((PROBE_COM_EN == DEF_ENABLED) && \
-	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-	(void)ProbeComRxPktSpd;
-	(void)ProbeComTxPktSpd;
-	(void)ProbeComTxSymSpd;
-	(void)ProbeComTxSymByteSpd;
+    (PROBE_COM_STAT_EN == DEF_ENABLED))
+   (void)ProbeComRxPktSpd;
+   (void)ProbeComTxPktSpd;
+   (void)ProbeComTxSymSpd;
+   (void)ProbeComTxSymByteSpd;
 #endif
 
-	OSProbe_Init();
-	OSProbe_SetCallback(ProbeCallback);
-	OSProbe_SetDelay(250);
+   OSProbe_Init();
+   OSProbe_SetCallback(ProbeCallback);
+   OSProbe_SetDelay(250);
 #endif
 
 #if (PROBE_COM_EN == DEF_ENABLED)
-	ProbeCom_Init(); /* Initialize the uC/Probe communications module.       */
+   ProbeCom_Init(); /* Initialize the uC/Probe communications module.       */
 #endif
 }
 #endif
@@ -591,39 +591,39 @@ static void InitProbe(void)
 static void ProbeCallback(void)
 {
 #if ((PROBE_COM_EN == DEF_ENABLED) && \
-	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-	CPU_INT32U ctr_curr;
-	CPU_INT32U rxpkt_curr;
-	CPU_INT32U txpkt_curr;
-	CPU_INT32U sym_curr;
-	CPU_INT32U symbyte_curr;
+    (PROBE_COM_STAT_EN == DEF_ENABLED))
+   CPU_INT32U ctr_curr;
+   CPU_INT32U rxpkt_curr;
+   CPU_INT32U txpkt_curr;
+   CPU_INT32U sym_curr;
+   CPU_INT32U symbyte_curr;
 #endif
 
-	ProbeCounts++;
+   ProbeCounts++;
 
-	ProbeB1 = BSP_PB_GetStatus(1);
+   ProbeB1 = BSP_PB_GetStatus(1);
 
 #if ((PROBE_COM_EN == DEF_ENABLED) && \
-	 (PROBE_COM_STAT_EN == DEF_ENABLED))
-	ctr_curr = OSTime;
-	rxpkt_curr = ProbeCom_RxPktCtr;
-	txpkt_curr = ProbeCom_TxPktCtr;
-	sym_curr = ProbeCom_TxSymCtr;
-	symbyte_curr = ProbeCom_TxSymByteCtr;
+    (PROBE_COM_STAT_EN == DEF_ENABLED))
+   ctr_curr = OSTime;
+   rxpkt_curr = ProbeCom_RxPktCtr;
+   txpkt_curr = ProbeCom_TxPktCtr;
+   sym_curr = ProbeCom_TxSymCtr;
+   symbyte_curr = ProbeCom_TxSymByteCtr;
 
-	if ((ctr_curr - ProbeComCtrLast) >= OS_TICKS_PER_SEC)
-	{
-		ProbeComRxPktSpd = ((CPU_FP32)(rxpkt_curr - ProbeComRxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-		ProbeComTxPktSpd = ((CPU_FP32)(txpkt_curr - ProbeComTxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-		ProbeComTxSymSpd = ((CPU_FP32)(sym_curr - ProbeComTxSymLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
-		ProbeComTxSymByteSpd = ((CPU_FP32)(symbyte_curr - ProbeComTxSymByteLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+   if ((ctr_curr - ProbeComCtrLast) >= OS_TICKS_PER_SEC)
+   {
+      ProbeComRxPktSpd = ((CPU_FP32)(rxpkt_curr - ProbeComRxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+      ProbeComTxPktSpd = ((CPU_FP32)(txpkt_curr - ProbeComTxPktLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+      ProbeComTxSymSpd = ((CPU_FP32)(sym_curr - ProbeComTxSymLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
+      ProbeComTxSymByteSpd = ((CPU_FP32)(symbyte_curr - ProbeComTxSymByteLast) / (ctr_curr - ProbeComCtrLast)) * OS_TICKS_PER_SEC;
 
-		ProbeComCtrLast = ctr_curr;
-		ProbeComRxPktLast = rxpkt_curr;
-		ProbeComTxPktLast = txpkt_curr;
-		ProbeComTxSymLast = sym_curr;
-		ProbeComTxSymByteLast = symbyte_curr;
-	}
+      ProbeComCtrLast = ctr_curr;
+      ProbeComRxPktLast = rxpkt_curr;
+      ProbeComTxPktLast = txpkt_curr;
+      ProbeComTxSymLast = sym_curr;
+      ProbeComTxSymByteLast = symbyte_curr;
+   }
 #endif
 }
 #endif
@@ -672,8 +672,8 @@ static void ProbeCallback(void)
 void TaskCreateHook(OS_TCB *ptcb)
 {
 #if ((OS_PROBE_EN == DEF_ENABLED) && \
-	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
-	OSProbe_TaskCreateHook(ptcb);
+    (OS_PROBE_HOOKS_EN == DEF_ENABLED))
+   OSProbe_TaskCreateHook(ptcb);
 #endif
 }
 
@@ -691,7 +691,7 @@ void TaskCreateHook(OS_TCB *ptcb)
 
 void TaskDelHook(OS_TCB *ptcb)
 {
-	(void)ptcb;
+   (void)ptcb;
 }
 
 /*
@@ -749,8 +749,8 @@ void TaskStatHook(void)
 void TaskSwHook(void)
 {
 #if ((OS_PROBE_EN == DEF_ENABLED) && \
-	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
-	OSProbe_TaskSwHook();
+    (OS_PROBE_HOOKS_EN == DEF_ENABLED))
+   OSProbe_TaskSwHook();
 #endif
 }
 #endif
@@ -771,7 +771,7 @@ void TaskSwHook(void)
 #if OS_VERSION >= 204
 void TCBInitHook(OS_TCB *ptcb)
 {
-	(void)ptcb;
+   (void)ptcb;
 }
 #endif
 
@@ -791,8 +791,8 @@ void TCBInitHook(OS_TCB *ptcb)
 void TimeTickHook(void)
 {
 #if ((OS_PROBE_EN == DEF_ENABLED) && \
-	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
-	OSProbe_TickHook();
+    (OS_PROBE_HOOKS_EN == DEF_ENABLED))
+   OSProbe_TickHook();
 #endif
 }
 #endif
@@ -800,111 +800,111 @@ void TimeTickHook(void)
 
 static void initAll()
 {
-	ADC_InitTypeDef adc_init;
-	GPIO_InitTypeDef gpio_init;
-	I2C_InitTypeDef i2c_init;
-	TIM_TimeBaseInitTypeDef tim_timebase_init;
-	TIM_OCInitTypeDef tim_piezo_init;
-	TIM_OCInitTypeDef tim_motor_init;
-	SPI_InitTypeDef spi_init;
+   ADC_InitTypeDef adc_init;
+   GPIO_InitTypeDef gpio_init;
+   I2C_InitTypeDef i2c_init;
+   TIM_TimeBaseInitTypeDef tim_timebase_init;
+   TIM_OCInitTypeDef tim_piezo_init;
+   TIM_OCInitTypeDef tim_motor_init;
+   SPI_InitTypeDef spi_init;
 
-	// CLOCK
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+   // CLOCK
+   RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+   RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
+   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+   RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+   RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
 
-	// PIN
-	// ADC
-	gpio_init.GPIO_Pin = GPIO_Pin_0;
-	gpio_init.GPIO_Mode = GPIO_Mode_AIN;
-	GPIO_Init(GPIOB, &gpio_init);
-	// I2C
-	gpio_init.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
-	gpio_init.GPIO_Mode = GPIO_Mode_AF_OD;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB, &gpio_init);
-	// TIM (PWM)
-	// Piezo
-	gpio_init.GPIO_Pin = GPIO_Pin_8;
-	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB, &gpio_init);
-	// Motor
-	gpio_init.GPIO_Pin = GPIO_Pin_9;
-	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB, &gpio_init);
-	// SPI
-	GPIO_Init(GPIOB, &gpio_init);
-	gpio_init.GPIO_Pin = GPIO_Pin_12;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_Init(GPIOB, &gpio_init);
-	gpio_init.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB, &gpio_init);
-	GPIO_SetBits(GPIOB, GPIO_Pin_12); // check
+   // PIN
+   // ADC
+   gpio_init.GPIO_Pin = GPIO_Pin_0;
+   gpio_init.GPIO_Mode = GPIO_Mode_AIN;
+   GPIO_Init(GPIOB, &gpio_init);
+   // I2C
+   gpio_init.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
+   gpio_init.GPIO_Mode = GPIO_Mode_AF_OD;
+   gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+   GPIO_Init(GPIOB, &gpio_init);
+   // TIM (PWM)
+   // Piezo
+   gpio_init.GPIO_Pin = GPIO_Pin_8;
+   gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
+   gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+   GPIO_Init(GPIOB, &gpio_init);
+   // Motor
+   gpio_init.GPIO_Pin = GPIO_Pin_9;
+   gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
+   gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+   GPIO_Init(GPIOB, &gpio_init);
+   // SPI
+   GPIO_Init(GPIOB, &gpio_init);
+   gpio_init.GPIO_Pin = GPIO_Pin_12;
+   gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+   gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
+   GPIO_Init(GPIOB, &gpio_init);
+   gpio_init.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+   gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
+   gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+   GPIO_Init(GPIOB, &gpio_init);
+   GPIO_SetBits(GPIOB, GPIO_Pin_12); // check
 
-	// CONFIG
-	// ADC
-	adc_init.ADC_Mode = ADC_Mode_Independent;
-	adc_init.ADC_ScanConvMode = DISABLE;
-	adc_init.ADC_ContinuousConvMode = ENABLE;
-	adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
-	adc_init.ADC_DataAlign = ADC_DataAlign_Right;
-	adc_init.ADC_NbrOfChannel = 1;
-	ADC_Init(ADC1, &adc_init);
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 1, ADC_SampleTime_13Cycles5);
-	ADC_Cmd(ADC1, ENABLE);
-	ADC_SoftwareStartConvCmd(ADC1, ENABLE);
-	// I2C
-	i2c_init.I2C_Mode = I2C_Mode_I2C;
-	i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
-	i2c_init.I2C_OwnAddress1 = 0;
-	i2c_init.I2C_Ack = I2C_Ack_Enable;
-	i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-	i2c_init.I2C_ClockSpeed = 100000;
-	I2C_Init(I2C1, &i2c_init);
-	I2C_Cmd(I2C1, ENABLE);
-	// TIM (PWM)
-	tim_timebase_init.TIM_Prescaler = (72000000 / 1000000) - 1; // set to 1MHz Counter Clock
-	tim_timebase_init.TIM_Period = 20000 - 1;					// set to 50Hz pulse with 1MHz Counter Clock
-	tim_timebase_init.TIM_ClockDivision = 0;
-	tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Down;
-	tim_timebase_init.TIM_RepetitionCounter;
-	TIM_TimeBaseInit(TIM4, &tim_timebase_init);
-	/* PIEZO: PWM1 Mode configuration: Channel3 */
-	tim_piezo_init.TIM_OCMode = TIM_OCMODE_PWM1;
-	tim_piezo_init.TIM_OutputState = TIM_OUTPUTSTATE_Enable;
-	tim_piezo_init.TIM_Pulse = 500;
-	tim_piezo_init.TIM_OCPolarity = TIM_OCPolarity_High;
-	TIM_OC3Init(TIM4, &tim_piezo_init);
-	//TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Disable);
-	TIM_Cmd(TIM4, ENABLE);
-	/* MOTOR: PWM1 Mode configuration: Channel4 */
-	tim_motor_init.TIM_OCMode = TIM_OCMODE_PWM1;
-	tim_motor_init.TIM_OutputState = TIM_OUTPUTSTATE_Enable;
-	tim_motor_init.TIM_Pulse = 1500; // 50 % duty cylce value
-	tim_motor_init.TIM_OCPolarity = TIM_OCPolarity_High;
-	TIM_PWMIConfig(TIM4, &tim_motor_init);
-	TIM_OC4Init(TIM4, &tim_motor_init);
-	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Disable);
-	TIM_ARRPreloadConfig(TIM4, ENABLE);
-	TIM_Cmd(TIM4, ENABLE);
-	// SPI
-	spi_init.SPI_Direction = SPI_Direction_1Line_Tx;
-	spi_init.SPI_Mode = SPI_Mode_Master;
-	spi_init.SPI_DataSize = SPI_DataSize_16b;
-	spi_init.SPI_CPOL = SPI_CPOL_Low;
-	spi_init.SPI_CPHA = SPI_CPHA_1Edge;
-	spi_init.SPI_NSS = SPI_NSS_Soft;
-	spi_init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;
-	spi_init.SPI_FirstBit = SPI_FirstBit_MSB;
-	spi_init.SPI_CRCPolynomial;
-	SPI_Init(SPI2, &spi_init);
-	SPI_Cmd(SPI2, ENABLE);
+   // CONFIG
+   // ADC
+   adc_init.ADC_Mode = ADC_Mode_Independent;
+   adc_init.ADC_ScanConvMode = DISABLE;
+   adc_init.ADC_ContinuousConvMode = ENABLE;
+   adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+   adc_init.ADC_DataAlign = ADC_DataAlign_Right;
+   adc_init.ADC_NbrOfChannel = 1;
+   ADC_Init(ADC1, &adc_init);
+   ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 1, ADC_SampleTime_13Cycles5);
+   ADC_Cmd(ADC1, ENABLE);
+   ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+   // I2C
+   i2c_init.I2C_Mode = I2C_Mode_I2C;
+   i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
+   i2c_init.I2C_OwnAddress1 = 0;
+   i2c_init.I2C_Ack = I2C_Ack_Enable;
+   i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+   i2c_init.I2C_ClockSpeed = 100000;
+   I2C_Init((I2C_TypeDef *)I2C1, &i2c_init);
+   I2C_Cmd((I2C_TypeDef *)I2C1, ENABLE);
+   // TIM (PWM)
+   tim_timebase_init.TIM_Prescaler = (72000000 / 1000000) - 1; // set to 1MHz Counter Clock
+   tim_timebase_init.TIM_Period = 20000 - 1;               // set to 50Hz pulse with 1MHz Counter Clock
+   tim_timebase_init.TIM_ClockDivision = 0;
+   tim_timebase_init.TIM_CounterMode = TIM_CounterMode_Down;
+   tim_timebase_init.TIM_RepetitionCounter;
+   TIM_TimeBaseInit(TIM4, &tim_timebase_init);
+   /* PIEZO: PWM1 Mode configuration: Channel3 */
+   tim_piezo_init.TIM_OCMode = TIM_OCMode_PWM1;
+   tim_piezo_init.TIM_OutputState = TIM_OutputState_Enable;
+   tim_piezo_init.TIM_Pulse = 500;
+   tim_piezo_init.TIM_OCPolarity = TIM_OCPolarity_High;
+   TIM_OC3Init(TIM4, &tim_piezo_init);
+   //TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Disable);
+   TIM_Cmd(TIM4, ENABLE);
+   /* MOTOR: PWM1 Mode configuration: Channel4 */
+   tim_motor_init.TIM_OCMode = TIM_OCMode_PWM1;
+   tim_motor_init.TIM_OutputState = TIM_OutputState_Enable;
+   tim_motor_init.TIM_Pulse = 1500; // 50 % duty cylce value
+   tim_motor_init.TIM_OCPolarity = TIM_OCPolarity_High;
+   //TIM_PWMIConfig(TIM4, &tim_motor_init);
+   TIM_OC4Init(TIM4, &tim_motor_init);
+   TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Disable);
+   TIM_ARRPreloadConfig(TIM4, ENABLE);
+   TIM_Cmd(TIM4, ENABLE);
+   // SPI
+   spi_init.SPI_Direction = SPI_Direction_1Line_Tx;
+   spi_init.SPI_Mode = SPI_Mode_Master;
+   spi_init.SPI_DataSize = SPI_DataSize_16b;
+   spi_init.SPI_CPOL = SPI_CPOL_Low;
+   spi_init.SPI_CPHA = SPI_CPHA_1Edge;
+   spi_init.SPI_NSS = SPI_NSS_Soft;
+   spi_init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;
+   spi_init.SPI_FirstBit = SPI_FirstBit_MSB;
+   spi_init.SPI_CRCPolynomial;
+   SPI_Init(SPI2, &spi_init);
+   SPI_Cmd(SPI2, ENABLE);
 }
