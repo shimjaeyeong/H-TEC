@@ -229,12 +229,12 @@ int main(void)
 
 	BSP_Init();
 	OS_CPU_SysTickInit();
-	#if (OS_TASK_STAT_EN > 0)
-	OSStatInit();                                           /* Determine CPU capacity.                              */
+#if (OS_TASK_STAT_EN > 0)
+	OSStatInit(); /* Determine CPU capacity.                              */
 #endif
 
 #if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
-	(APP_OS_PROBE_EN == DEF_ENABLED))
+	 (APP_OS_PROBE_EN == DEF_ENABLED))
 	App_InitProbe();
 #endif
 
