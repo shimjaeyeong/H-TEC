@@ -59,10 +59,10 @@
 #define APP_TASK_USER_IF_STK_SIZE 256
 */
 #define TASK_DETECT_PRIO 2
-#define TASK_TEMPER_PRIO 1
-#define TASK_PASS_PRIO 7
-#define TASK_DENY_PRIO 8
-#define TASK_CHECK_PRIO 6
+#define TASK_TEMPER_PRIO 3
+#define TASK_PASS_PRIO 5
+#define TASK_DENY_PRIO 6
+#define TASK_CHECK_PRIO 1
 
 #define OS_PROBE_TASK_PRIO (OS_LOWEST_PRIO - 3)
 #define OS_TASK_TMR_PRIO (OS_LOWEST_PRIO - 2)
@@ -75,7 +75,7 @@
 */
 
 #define OS_PROBE_TASK_STK_SIZE 128
-#define TASK_STK_SIZE 128
+#define TASK_STK_SIZE 64
 
 /*
 *********************************************************************************************************

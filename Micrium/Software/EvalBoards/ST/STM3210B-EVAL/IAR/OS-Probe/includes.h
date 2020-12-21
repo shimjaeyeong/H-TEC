@@ -44,6 +44,7 @@
 
 #include  <stm32f10x_conf.h>
 #include  <stm32f10x_lib.h>
+#include  <stm32f10x_dma.h>
 
 
 #include  <app_cfg.h>
