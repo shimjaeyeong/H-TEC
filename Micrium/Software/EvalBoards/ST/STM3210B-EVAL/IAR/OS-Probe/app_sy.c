@@ -62,6 +62,7 @@ static OS_STK temperatureTaskStack[TASK_STK_SIZE];
 static OS_STK passTaskStack[TASK_STK_SIZE];
 static OS_STK denyTaskStack[TASK_STK_SIZE];
 static OS_STK checkTaskStack[TASK_STK_SIZE];
+static OS_STK displayTaskStack[TASK_STK_SIZE];
 
 // Message Que
 static OS_EVENT *temperQue;
@@ -117,6 +118,7 @@ static void temperTask(void *p);
 static void passTask(void *p);
 static void denyTask(void *p);
 static void checkTask(void *p);
+static void displayTask(void *p);
 
 static void App_DispScr_SignOn(void);
 static void DispScr_TaskNames(void);
@@ -218,12 +220,23 @@ int main(void)
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
+	os_err = OSTaskCreateExt((void (*)(void *))displayTask, // dot-matrix 표시하는 Task
+							 (void *)0,
+							 (OS_STK *)&displayTaskStack[TASK_STK_SIZE - 1],
+							 (INT8U)TASK_DISPLAY_PRIO,
+							 (INT16U)TASK_DISPLAY_PRIO,
+							 (OS_STK *)&displayTaskStack,
+							 (INT32U)TASK_STK_SIZE,
+							 (void *)0,
+							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+
 #if (OS_TASK_NAME_SIZE >= 11)
 	OSTaskNameSet(TASK_DETECT_PRIO, (CPU_INT08U *)"Detect Task", &os_err);
 	OSTaskNameSet(TASK_TEMPER_PRIO, (CPU_INT08U *)"Temperature Task", &os_err);
 	OSTaskNameSet(TASK_PASS_PRIO, (CPU_INT08U *)"Pass Task", &os_err);
 	OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U *)"Deny Task", &os_err);
 	OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U *)"Check Task", &os_err);
+	OSTaskNameSet(TASK_DISPLAY_PRIO, (CPU_INT08U *)"Display Task", &os_err);
 #endif
 
 	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
@@ -637,6 +650,34 @@ static void stopAll()
 		TIM2->CCR1 = i;
 	}
 }
+
+/*
+ *********************************************************************************************************
+ *                                            displayTask()
+ *
+ * Description : display with dot-matrix.
+ *
+ * Argument(s) : p
+ *
+ * Return(s)   : none.
+ *
+ * Caller(s)   : This is a task.
+ *
+ * Note(s)     : none.
+ *********************************************************************************************************
+ */
+// dot-matrix 출력
+static void displayTask(void *p)
+{
+	CPU_INT08U err;
+	int isStop = 0;
+	while (DEF_TRUE)
+	{
+		
+		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+	}
+}
+
 /*
  *********************************************************************************************************
  *                                          App_DispScr_SignOn()
