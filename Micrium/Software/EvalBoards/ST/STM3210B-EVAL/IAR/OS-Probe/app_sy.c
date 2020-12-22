@@ -44,6 +44,9 @@
  *********************************************************************************************************
  */
 
+#define MANUAL
+//#define AUTO
+
 /*
  *********************************************************************************************************
  *                                       LOCAL GLOBAL VARIABLES
@@ -78,35 +81,7 @@ static int check = 0;
 const static int DELAY_TIME = 1000;
 
 static int ADC_value = 0;
-/*
-static GPIO_TypeDef *orangeTypes[8] = {GPIOC, GPIOA, GPIOA, GPIOA, GPIOB, GPIOC, GPIOA, GPIOA};
-const static int orangePins[8] = {GPIO_Pin_7, GPIO_Pin_8, GPIO_Pin_11, GPIO_Pin_14, GPIO_Pin_1, GPIO_Pin_4, GPIO_Pin_5, GPIO_Pin_2};
 
-static GPIO_TypeDef *greenTypes[8] = {GPIOC, GPIOC, GPIOA, GPIOA, GPIOB, GPIOC, GPIOA, GPIOA};
-const static int greenPins[8] = {GPIO_Pin_6, GPIO_Pin_9, GPIO_Pin_10, GPIO_Pin_13, GPIO_Pin_2, GPIO_Pin_5, GPIO_Pin_6, GPIO_Pin_3};
-
-static GPIO_TypeDef *lineTypes[8] = {GPIOC, GPIOA, GPIOA, GPIOA, GPIOB, GPIOA, GPIOA, GPIOA};
-const static int linePins[8] = {GPIO_Pin_8, GPIO_Pin_9, GPIO_Pin_12, GPIO_Pin_15, GPIO_Pin_0, GPIO_Pin_7, GPIO_Pin_4, GPIO_Pin_1};
-
-const static char shapeX[8][8] = {
-	{1, 0, 0, 0, 0, 0, 0, 1},
-	{0, 1, 0, 0, 0, 0, 1, 0},
-	{0, 0, 1, 0, 0, 1, 0, 0},
-	{0, 0, 0, 1, 1, 0, 0, 0},
-	{0, 0, 0, 1, 1, 0, 0, 0},
-	{0, 0, 1, 0, 0, 1, 0, 0},
-	{0, 1, 0, 0, 0, 0, 1, 0},
-	{1, 0, 0, 0, 0, 0, 0, 1}};
-const static char shapeO[8][8] = {
-	{0, 0, 0, 1, 1, 0, 0, 0},
-	{0, 1, 1, 0, 0, 1, 1, 0},
-	{0, 1, 0, 0, 0, 0, 1, 0},
-	{1, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 1},
-	{0, 1, 0, 0, 0, 0, 1, 0},
-	{0, 1, 1, 0, 0, 1, 1, 0},
-	{1, 0, 0, 1, 1, 0, 0, 1}};
-*/
 #if ((APP_OS_PROBE_EN == DEF_ENABLED) &&  \
 	 (APP_PROBE_COM_EN == DEF_ENABLED) && \
 	 (PROBE_COM_STAT_EN == DEF_ENABLED))
@@ -295,15 +270,25 @@ static void detectTask(void *p)
 
 	while (DEF_TRUE)
 	{
-		int exist = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1);
-
-		if (exist != 0) // when human detected
+#ifdef AUTO
+		int val = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1);
+#endif
+#ifdef MANUAL
+		int val = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_7);
+#endif
+		if (val == Bit_RESET) // when human detected(auto) or touch button(manual)
 		{
 			OSFlagPost(flagGroup, (OS_FLAGS)FLAG_DETECT, OS_FLAG_SET, &err);
 		}
 		else
 		{
 			OSFlagPost(flagGroup, (OS_FLAGS)FLAG_DETECT_NOT, OS_FLAG_SET, &err);
+		}
+		// test
+		stopAlert();
+		if (val != 0)
+		{
+			stopNotice();
 		}
 
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
@@ -414,6 +399,7 @@ static void passTask(void *p)
 		OSFlagPend(flagGroup, (OS_FLAGS)(FLAG_DETECT + FLAG_TEMPER_NORMAL), OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 100, (INT8U *)&err);
 		startNotice();
 		stopAlert();
+
 		/*
 		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
 		int temp = (int)OSQPend(tempQue, 0, (INT8U *)&err);
@@ -425,11 +411,11 @@ static void passTask(void *p)
 		{
 			startNotice();
 		}
-		if (count == 0)
-		{
-			count = 1;
-		}
 		*/
+		//OSSemPend(sem, 0, (INT8U *)&err);
+		if (count == 0)
+			count = 1;
+		//OSSemPost(sem);
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
 }
@@ -494,7 +480,7 @@ static void checkTask(void *p)
 	stopNotice();
 	while (DEF_TRUE)
 	{
-                /*
+		/*
 		if (count != 0)
 		{
 			check++;
@@ -524,6 +510,7 @@ static void stopAlert()
 
 static void startAlert()
 {
+	stopNotice();
 	// LED
 	GPIO_SetBits(GPIOC, GPIO_Pin_12);
 	// piezo
@@ -537,6 +524,7 @@ static void stopNotice()
 
 static void startNotice()
 {
+	stopAlert();
 	GPIO_SetBits(GPIOC, GPIO_Pin_11);
 }
 /*
@@ -620,7 +608,6 @@ static void startTask(void *p)
 {
 	CPU_INT08U err;
 
-	BSP_Init();
 	OS_CPU_SysTickInit();
 
 	// Create Event Flag
@@ -632,11 +619,8 @@ static void startTask(void *p)
 	// Create semaphore
 	//sem = OSSemCreate(0);
 
-	while (DEF_TRUE)
-	{
-		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
-	}
-
+	stopAlert();
+	stopNotice();
 #if (OS_TASK_STAT_EN > 0)
 	OSStatInit(); /* Determine CPU capacity.                              */
 #endif
@@ -645,6 +629,11 @@ static void startTask(void *p)
 	 (APP_OS_PROBE_EN == DEF_ENABLED))
 	App_InitProbe();
 #endif
+
+	while (DEF_TRUE)
+	{
+		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+	}
 }
 
 /*
@@ -966,7 +955,7 @@ static void initAll()
 
 	// CLOCK
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
+	//RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
 	//RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
@@ -974,26 +963,23 @@ static void initAll()
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
 
 	// PIN
-	// ADC / 온도
-	gpio_init.GPIO_Pin = GPIO_Pin_0;
-	gpio_init.GPIO_Mode = GPIO_Mode_AIN;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB, &gpio_init);
-	// 인체 감지
+	// ADC - 인체 감지
 	gpio_init.GPIO_Pin = GPIO_Pin_1;
 	gpio_init.GPIO_Mode = GPIO_Mode_AIN;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &gpio_init);
-	// I2C
+	//
+	// I2C - 온도 센서
 	gpio_init.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
 	gpio_init.GPIO_Mode = GPIO_Mode_AF_OD;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &gpio_init);
-	// Piezo
+	// 부저
 	gpio_init.GPIO_Pin = GPIO_Pin_8;
 	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &gpio_init);
+	/*
 	// SPI
 	gpio_init.GPIO_Pin = GPIO_Pin_12;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
@@ -1003,15 +989,21 @@ static void initAll()
 	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &gpio_init);
+	*/
+	// touch
+	gpio_init.GPIO_Pin = GPIO_Pin_7;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOC, &gpio_init);
 
-	// light
+	// LED
 	gpio_init.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_12;
 	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOC, &gpio_init);
 
 	/*
-	// dot-matrix
+	// analog - dot-matrix
 	gpio_init.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
