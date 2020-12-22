@@ -37,12 +37,6 @@
  */
 
 #include <includes.h>
-#include <stm32f10x_gpio.h>
-#include <stm32f10x_rcc.h>
-#include <stm32f10x_i2c.h>
-#include <stm32f10x_adc.h>
-#include <stm32f10x_spi.h>
-#include <stm32f10x_tim.h>
 
 /*
  *********************************************************************************************************
@@ -62,26 +56,26 @@ static OS_STK temperatureTaskStack[TASK_STK_SIZE];
 static OS_STK passTaskStack[TASK_STK_SIZE];
 static OS_STK denyTaskStack[TASK_STK_SIZE];
 static OS_STK checkTaskStack[TASK_STK_SIZE];
-static OS_STK displayTaskStack[TASK_STK_SIZE];
-
-// Message Que
-static OS_EVENT *temperQue;
-static void *msg[10];
+static OS_STK startTaskStack[TASK_STK_SIZE];
 
 // Event Flags
 static OS_FLAG_GRP *flagGroup;
-const static OS_FLAGS FLAG_INIT = 0;
-const static OS_FLAGS FLAG_DETECT = 1;
-const static OS_FLAGS FLAG_DETECT_NOT = 2;
-const static OS_FLAGS FLAG_TEMPER_NORMAL = 4;
-const static OS_FLAGS FLAG_TEMPER_HIGH = 8;
-const static OS_FLAGS FLAG_TEMPER_LOW = 16;
+const static int FLAG_INIT = 0;
+const static int FLAG_DETECT = 1;
+const static int FLAG_DETECT_NOT = 2;
+const static int FLAG_TEMPER_NORMAL = 4;
+const static int FLAG_TEMPER_HIGH = 8;
+const static int FLAG_TEMPER_LOW = 16;
+
+// Que
+static OS_EVENT *tempQue;
+static void *tempBuffer[10];
 
 // time
-static OS_EVENT *sem;
+//static OS_EVENT *sem;
 static int count = 0;
 static int check = 0;
-const static int DELAY_TIME = 150;
+const static int DELAY_TIME = 1000;
 
 static int ADC_value = 0;
 /*
@@ -147,13 +141,16 @@ static void temperTask(void *p);
 static void passTask(void *p);
 static void denyTask(void *p);
 static void checkTask(void *p);
-static void displayTask(void *p);
+static void startTask(void *p);
 
 static void App_DispScr_SignOn(void);
 static void DispScr_TaskNames(void);
 
 static int readTemperature(void);
-static void stopAll();
+static void stopAlert();
+static void startAlert();
+static void stopNotice();
+static void startNotice();
 static void initAll();
 
 #if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
@@ -189,12 +186,6 @@ int main(void)
 	OSInit();
 
 	initAll();
-
-	// Create Message Que, msg : 저장공간, 크기 : 10
-	//temperQue = (OS_EVENT *)OSQCreate(msg, 10);
-
-	// Create semaphore
-	sem = OSSemCreate(0);
 
 	os_err = OSTaskCreateExt((void (*)(void *))detectTask,						   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
 							 (void *)0,											   // Task로 넘겨줄 인자
@@ -246,19 +237,15 @@ int main(void)
 							 (void *)0,
 							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-							 for(int i = 0; i < 300000; i++){
-			
-		}
-		GPIO_SetBits(GPIOB, GPIO_Pin_8);
-			GPIO_SetBits(GPIOC, GPIO_Pin_10);
-			for(int i = 0; i < 300000; i++){
-			
-		}
-		GPIO_ResetBits(GPIOB, GPIO_Pin_8);
-			GPIO_ResetBits(GPIOC, GPIO_Pin_10);
-			for(int i = 0; i < 300000; i++){
-			
-		}
+	os_err = OSTaskCreateExt((void (*)(void *))startTask, // 초기화 일회용 Task
+							 (void *)0,
+							 (OS_STK *)&startTaskStack[TASK_STK_SIZE - 1],
+							 (INT8U)TASK_START_PRIO,
+							 (INT16U)TASK_START_PRIO,
+							 (OS_STK *)startTaskStack,
+							 (INT32U)TASK_STK_SIZE,
+							 (void *)0,
+							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
 /*	os_err = OSTaskCreateExt((void (*)(void *))displayTask, // dot-matrix 표시하는 Task
 							 (void *)0,
@@ -276,6 +263,7 @@ int main(void)
 	OSTaskNameSet(TASK_PASS_PRIO, (CPU_INT08U *)"Pass Task", &os_err);
 	OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U *)"Deny Task", &os_err);
 	OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U *)"Check Task", &os_err);
+	OSTaskNameSet(TASK_START_PRIO, (CPU_INT08U *)"Start Task", &os_err);
 	//OSTaskNameSet(TASK_DISPLAY_PRIO, (CPU_INT08U *)"Display Task", &os_err);
 #endif
 
@@ -309,16 +297,15 @@ static void detectTask(void *p)
 	{
 		int exist = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1);
 
-		
-
 		if (exist != 0) // when human detected
 		{
-			OSFlagPost(flagGroup, FLAG_DETECT, OS_FLAG_SET, &err);
+			OSFlagPost(flagGroup, (OS_FLAGS)FLAG_DETECT, OS_FLAG_SET, &err);
 		}
 		else
 		{
-			OSFlagPost(flagGroup, FLAG_DETECT_NOT, OS_FLAG_SET, &err);
+			OSFlagPost(flagGroup, (OS_FLAGS)FLAG_DETECT_NOT, OS_FLAG_SET, &err);
 		}
+
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
 }
@@ -344,165 +331,63 @@ static void temperTask(void *p)
 {
 	INT8U err;
 	int temp;
-	int high = 39;
-	int low = 34;
+	int high = 40;
+	int low = 20;
 	while (DEF_TRUE)
 	{
-		temp = 50;		 //ADC_GetConversionValue(ADC1) / 50;
-		if (temp > high) // when temperature is HIGH
+		temp = 30; // readTemperature()
+
+		if (temp > high)
 		{
-			OSFlagPost(flagGroup, FLAG_TEMPER_HIGH, OS_FLAG_SET, &err);
+			OSFlagPost(flagGroup, (OS_FLAGS)FLAG_TEMPER_HIGH, OS_FLAG_SET, &err);
 		}
 		else if (temp < low)
 		{
-			OSFlagPost(flagGroup, FLAG_TEMPER_LOW, OS_FLAG_SET, &err);
+			OSFlagPost(flagGroup, (OS_FLAGS)FLAG_TEMPER_LOW, OS_FLAG_SET, &err);
 		}
 		else
 		{
-			OSFlagPost(flagGroup, FLAG_TEMPER_NORMAL, OS_FLAG_SET, &err);
+			OSFlagPost(flagGroup, (OS_FLAGS)FLAG_TEMPER_NORMAL, OS_FLAG_SET, &err);
 		}
 
+		//OSQPost(tempQue, (void *)temp);
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
 }
-void i2c_multi_read(int Device_Addr, int Reg, int *pBuffer, int NumByteToRead)
-
-{
-
-	/* While the bus is busy */
-
-	while (I2C_GetFlagStatus(((I2C_TypeDef *)I2C1_BASE), I2C_FLAG_BUSY))
-		;
-
-	/* Send START condition */
-
-	I2C_GenerateSTART(((I2C_TypeDef *)I2C1_BASE), ENABLE);
-
-	/* Test on EV5 and clear it */
-
-	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
-		;
-
-	/* Send slave address for write */
-
-	I2C_Send7bitAddress(((I2C_TypeDef *)I2C1_BASE), Device_Addr, I2C_Direction_Transmitter);
-
-	/* Test on EV6 and clear it */
-
-	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
-		;
-
-	/* Send the device internal address to read from: Only one byte address */
-
-	I2C_SendData(((I2C_TypeDef *)I2C1_BASE), Reg);
-
-	/* Test on EV8 and clear it */
-
-	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_BYTE_TRANSMITTED))
-		;
-
-	/* Send STOP condition */
-
-	I2C_GenerateSTOP(((I2C_TypeDef *)I2C1_BASE), ENABLE);
-
-	/********************************/
-
-	/* Send STRAT condition a second time */
-
-	I2C_GenerateSTART(((I2C_TypeDef *)I2C1_BASE), ENABLE);
-
-	/* Test on EV5 and clear it */
-
-	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
-		;
-
-	/* Send device address for read */
-
-	I2C_Send7bitAddress(((I2C_TypeDef *)I2C1_BASE), Device_Addr, I2C_Direction_Receiver);
-
-	/* Test on EV6 and clear it */
-
-	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
-		;
-
-	/* While there is data to be read */
-
-	while (NumByteToRead)
-
-	{
-
-		if (NumByteToRead == 1)
-
-		{
-
-			/* Disable Acknowledgement */
-
-			I2C_AcknowledgeConfig(((I2C_TypeDef *)I2C1_BASE), DISABLE);
-
-			/* Send STOP Condition */
-
-			I2C_GenerateSTOP(((I2C_TypeDef *)I2C1_BASE), ENABLE);
-		}
-
-		while ((I2C_GetLastEvent(((I2C_TypeDef *)I2C1_BASE)) & 0x0040) != 0x000040)
-			; /* Poll on RxNE */
-
-		/* Read a byte from the EEPROM */
-
-		*pBuffer = I2C_ReceiveData(((I2C_TypeDef *)I2C1_BASE));
-
-		/* Point to the next location where the byte read will be saved */
-
-		pBuffer++;
-
-		/* Decrement the read bytes counter */
-
-		NumByteToRead--;
-	}
-
-	/* Enable Acknowledgement to be ready for another reception */
-
-	I2C_AcknowledgeConfig(((I2C_TypeDef *)I2C1_BASE), ENABLE);
-}
-
 static int readTemperature()
 {
-	int state = 0;
-	I2C_GenerateSTART(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+	while (I2C_GetFlagStatus(((I2C_TypeDef *)I2C1_BASE), I2C_FLAG_BUSY))
+		I2C_GenerateSTART(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
+		;
 	I2C_Send7bitAddress(((I2C_TypeDef *)I2C1_BASE), 0x74, I2C_Direction_Transmitter);
 	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
-		state = I2C_GetLastEvent(((I2C_TypeDef *)I2C1_BASE));
-
+		;
 	I2C_SendData(((I2C_TypeDef *)I2C1_BASE), 0x07);
 	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_BYTE_TRANSMITTED))
-		state = I2C_GetLastEvent(((I2C_TypeDef *)I2C1_BASE));
-	//I2C_GenerateSTOP(((I2C_TypeDef *)I2C1_BASE), ENABLE); // check
-
-	I2C_GenerateSTART(((I2C_TypeDef *)I2C1_BASE), ENABLE);
-	//while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
-	//	; // check
-	//I2C_SendData(I2C1, 0x75);
-	I2C_Send7bitAddress(((I2C_TypeDef *)I2C1_BASE), 0x75, I2C_Direction_Transmitter);
-	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
-		state = I2C_GetLastEvent(((I2C_TypeDef *)I2C1_BASE));
-
-	int low = I2C_ReceiveData(((I2C_TypeDef *)I2C1_BASE));
-	I2C_AcknowledgeConfig(((I2C_TypeDef *)I2C1_BASE), ENABLE);
-
-	int high = I2C_ReceiveData(((I2C_TypeDef *)I2C1_BASE));
-	I2C_AcknowledgeConfig(((I2C_TypeDef *)I2C1_BASE), ENABLE);
-
-	int pec = I2C_GetPEC(((I2C_TypeDef *)I2C1_BASE));
+		;
 	I2C_GenerateSTOP(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+	I2C_GenerateSTART(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
+		;
+	I2C_Send7bitAddress(((I2C_TypeDef *)I2C1_BASE), 0x75, I2C_Direction_Receiver);
+	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
+		;
+	int low = I2C_ReceiveData(((I2C_TypeDef *)I2C1_BASE));
+	if (I2C_GetLastEvent((I2C_TypeDef *)I2C1_BASE) & 0x40 != 0x40)
+	{
+		int high = I2C_ReceiveData(((I2C_TypeDef *)I2C1_BASE));
+		if (high & 0x80 != 0)
+		{
+			return 20;
+		}
+		else
+		{
+			return (high << 8 + low) * 0.02 - 273.15;
+		}
+	}
 
-	if (high & 0x80 != 0)
-	{
-		return -1;
-	}
-	else
-	{
-		return (high << 8 + low) * 0.02 - 273.15;
-	}
+	I2C_AcknowledgeConfig(((I2C_TypeDef *)I2C1_BASE), ENABLE);
 }
 
 /*
@@ -526,17 +411,30 @@ static void passTask(void *p)
 	int err;
 	while (DEF_TRUE)
 	{
-		OSFlagPend(flagGroup, FLAG_DETECT + FLAG_TEMPER_NORMAL, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
-		//GPIO_SetBits(GPIOC, GPIO_Pin_11);
-		
-		
-
-		OSSemPend(sem, 0, (INT8U *)&err);
+		OSFlagPend(flagGroup, (OS_FLAGS)(FLAG_DETECT + FLAG_TEMPER_NORMAL), OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 100, (INT8U *)&err);
+		if (count == 0){
+                startNotice();
+		stopAlert();
+                //OSSemPend(sem, 0, (INT8U *)&err);
+		count = 1;
+		//OSSemPost(sem);
+                }
+		/*
+		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
+		int temp = (int)OSQPend(tempQue, 0, (INT8U *)&err);
+		if (temp > 40)
+		{
+			startAlert();
+		}
+		else if (temp > 30 && temp <= 40)
+		{
+			startNotice();
+		}
 		if (count == 0)
 		{
 			count = 1;
 		}
-		OSSemPost(sem);
+		*/
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
 }
@@ -560,31 +458,20 @@ static void passTask(void *p)
 static void denyTask(void *p)
 {
 	int err;
-	int temp = 0;
 	while (DEF_TRUE)
 	{
-		int flags =
-			OSFlagPend(flagGroup,
-					   FLAG_TEMPER_HIGH + FLAG_TEMPER_LOW + FLAG_DETECT_NOT,
-					   OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME,
-					   0,
-					   (INT8U *)&err);
-		if ((flags & FLAG_TEMPER_HIGH) != 0 && (flags & FLAG_DETECT_NOT) == 0)
-		{
-			GPIO_SetBits(GPIOC, GPIO_Pin_10);
-			// piezo
-			GPIO_SetBits(GPIOB, GPIO_Pin_8);
-		}
-		else if ((flags & FLAG_TEMPER_LOW) != 0 && (flags & FLAG_DETECT_NOT) == 0)
-		{
-			GPIO_SetBits(GPIOC, GPIO_Pin_10);
-			// piezo
-			GPIO_SetBits(GPIOB, GPIO_Pin_8);
-		}
-		OSSemPend(sem, 0, (INT8U *)&err);
-		if (count == 0)
-			count = 1;
-		OSSemPost(sem);
+		OSFlagPend(flagGroup,
+				   (OS_FLAGS)(FLAG_TEMPER_HIGH + FLAG_DETECT),
+				   OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME,
+				   100,
+				   (INT8U *)&err);
+                if (count == 0) {
+		startAlert();
+		stopNotice();
+		//OSSemPend(sem, 0, (INT8U *)&err);
+		count = 1;
+		//OSSemPost(sem);
+                }
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
 }
@@ -608,53 +495,54 @@ static void denyTask(void *p)
 static void checkTask(void *p)
 {
 	CPU_INT08U err;
-
-	BSP_Init();
-	OS_CPU_SysTickInit();
-#if (OS_TASK_STAT_EN > 0)
-	OSStatInit(); /* Determine CPU capacity.                              */
-#endif
-
-#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
-	 (APP_OS_PROBE_EN == DEF_ENABLED))
-	App_InitProbe();
-#endif
-
-	// Create Event Flag
-	flagGroup = OSFlagCreate(0, &err);
-
+	stopAlert();
+	stopNotice();
 	while (DEF_TRUE)
 	{
-		
 		if (count != 0)
 		{
-			OSSemPend(sem, 0, &err);
 			check++;
-			OSSemPost(sem);
-			if (check > 3000000)
+			if (check > 3)
 			{
-				stopAll();
-				OSSemPend(sem, 0, &err);
+				stopAlert();
+				stopNotice();
+				//OSSemPend(sem, 0, &err);
 				count = 0;
-				OSSemPost(sem);
+				//OSSemPost(sem);
 				check = 0;
 			}
 		}
 
-		OSTimeDlyHMSM(0, 0, 1, 0); // To run other tasks
+		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
 }
 
 // Stop all
-static void stopAll()
+static void stopAlert()
 {
 	// LED
-	GPIO_ResetBits(GPIOC, GPIO_Pin_11);
-	GPIO_ResetBits(GPIOC, GPIO_Pin_10);
+	GPIO_ResetBits(GPIOC, GPIO_Pin_12);
 	// piezo
 	GPIO_ResetBits(GPIOB, GPIO_Pin_8);
 }
 
+static void startAlert()
+{
+	// LED
+	GPIO_SetBits(GPIOC, GPIO_Pin_12);
+	// piezo
+	GPIO_SetBits(GPIOB, GPIO_Pin_8);
+}
+
+static void stopNotice()
+{
+	GPIO_ResetBits(GPIOC, GPIO_Pin_11);
+}
+
+static void startNotice()
+{
+	GPIO_SetBits(GPIOC, GPIO_Pin_11);
+}
 /*
  *********************************************************************************************************
  *                                            displayTask()
@@ -715,6 +603,54 @@ displayTask(void *p)
 	}
 }
 */
+
+/*
+ *********************************************************************************************************
+ *                                            startTask()
+ *
+ * Description : Init task.
+ *
+ * Argument(s) : p
+ *
+ * Return(s)   : none.
+ *
+ * Caller(s)   : This is a task.
+ *
+ * Note(s)     : none.
+ *********************************************************************************************************
+ */
+// 경고를 일정 시간 후 정지하도록 하는 Task
+static void startTask(void *p)
+{
+	CPU_INT08U err;
+
+	BSP_Init();
+	OS_CPU_SysTickInit();
+
+	// Create Event Flag
+	flagGroup = OSFlagCreate(0, &err);
+
+	// Create msg que
+	//tempQue = OSQCreate(&tempBuffer[0], 10);
+
+	// Create semaphore
+	//sem = OSSemCreate(0);
+
+	while (DEF_TRUE)
+	{
+		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
+	}
+
+#if (OS_TASK_STAT_EN > 0)
+	OSStatInit(); /* Determine CPU capacity.                              */
+#endif
+
+#if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
+	 (APP_OS_PROBE_EN == DEF_ENABLED))
+	App_InitProbe();
+#endif
+}
+
 /*
  *********************************************************************************************************
  *                                          App_DispScr_SignOn()
@@ -1073,7 +1009,7 @@ static void initAll()
 	GPIO_Init(GPIOB, &gpio_init);
 
 	// light
-	gpio_init.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_10;
+	gpio_init.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_12;
 	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOC, &gpio_init);
@@ -1108,10 +1044,10 @@ static void initAll()
 	adc_init.ADC_ContinuousConvMode = ENABLE;
 	adc_init.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
 	adc_init.ADC_DataAlign = ADC_DataAlign_Right;
-	adc_init.ADC_NbrOfChannel = 2;
+	adc_init.ADC_NbrOfChannel = 1;
 	ADC_Init(ADC1, &adc_init);
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 1, ADC_SampleTime_41Cycles5);
-	//ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE);
+	ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE);
 	ADC_Cmd(ADC1, ENABLE);
 
 	ADC_ResetCalibration(ADC1);
@@ -1131,6 +1067,7 @@ static void initAll()
 	i2c_init.I2C_ClockSpeed = 100000;
 	I2C_Init(((I2C_TypeDef *)I2C1_BASE), &i2c_init);
 	I2C_Cmd(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+	/*
 	// SPI
 	spi_init.SPI_Direction = SPI_Direction_1Line_Tx;
 	spi_init.SPI_Mode = SPI_Mode_Master;
@@ -1143,4 +1080,5 @@ static void initAll()
 	spi_init.SPI_CRCPolynomial;
 	SPI_Init(SPI2, &spi_init);
 	SPI_Cmd(SPI2, ENABLE);
+	*/
 }

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         12/Dec/2020  23:43:27
+# IAR ANSI C/C++ Compiler V8.50.9.278/W32 for ARM         22/Dec/2020  20:30:42
 # Copyright 1999-2020 IAR Systems AB.
 #
 #    Cpu mode             
@@ -8,7 +8,7 @@
 #    Source file       =
 #        D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
 #    Command line      =
-#        -f C:\Users\fabi8\AppData\Local\Temp\EW24E2.tmp
+#        -f C:\Users\fabi8\AppData\Local\Temp\EWED17.tmp
 #        (D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c -lCN
 #        D:\Develop\H-TEC\Micrium\Software\EvalBoards\ST\STM3210B-EVAL\IAR\OS-Probe\Flash\List
 #        -o
@@ -67,7 +67,7 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
      14          * LICENSING TERMS:
      15          * ---------------
      16          *   uC/OS-II is provided in source form for FREE evaluation, for educational use or for peaceful research.  
-     17          * If you plan on using  uC/OS-II  in a commercial product you need to contact Micriµm to properly license 
+     17          * If you plan on using  uC/OS-II  in a commercial product you need to contact Micriï¿½m to properly license 
      18          * its use in your product. We provide ALL the source code for your convenience and to help you experience 
      19          * uC/OS-II.   The fact that the  source is provided does  NOT  mean that you can use it without  paying a 
      20          * licensing fee.
@@ -111,8 +111,14 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
      58          */
      59          
      60          #if OS_Q_ACCEPT_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
      61          void  *OSQAccept (OS_EVENT *pevent, INT8U *perr)
      62          {
+   \                     OSQAccept: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x4605             MOV      R5,R0
+   \        0x4   0x460C             MOV      R4,R1
      63              void      *pmsg;
      64              OS_Q      *pq;
      65          #if OS_CRITICAL_METHOD == 3                      /* Allocate storage for CPU status register           */
@@ -131,24 +137,58 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
      78              }
      79          #endif
      80              if (pevent->OSEventType != OS_EVENT_TYPE_Q) {/* Validate event block type                          */
+   \        0x6   0x7828             LDRB     R0,[R5, #+0]
+   \        0x8   0x2802             CMP      R0,#+2
+   \        0xA   0xD003             BEQ.N    ??OSQAccept_0
      81                  *perr = OS_ERR_EVENT_TYPE;
+   \        0xC   0x2101             MOVS     R1,#+1
+   \        0xE   0x7021             STRB     R1,[R4, #+0]
      82                  return ((void *)0);
+   \       0x10   0x2000             MOVS     R0,#+0
+   \       0x12   0xBD32             POP      {R1,R4,R5,PC}
      83              }
      84              OS_ENTER_CRITICAL();
+   \                     ??OSQAccept_0: (+1)
+   \       0x14   0x....'....        BL       OS_CPU_SR_Save
      85              pq = (OS_Q *)pevent->OSEventPtr;             /* Point at queue control block                       */
+   \       0x18   0x686A             LDR      R2,[R5, #+4]
      86              if (pq->OSQEntries > 0) {                    /* See if any messages in the queue                   */
+   \       0x1A   0x8AD1             LDRH     R1,[R2, #+22]
+   \       0x1C   0xB171             CBZ.N    R1,??OSQAccept_1
      87                  pmsg = *pq->OSQOut++;                    /* Yes, extract oldest message from the queue         */
+   \       0x1E   0x6913             LDR      R3,[R2, #+16]
+   \       0x20   0x1D1B             ADDS     R3,R3,#+4
+   \       0x22   0x6113             STR      R3,[R2, #+16]
      88                  pq->OSQEntries--;                        /* Update the number of entries in the queue          */
+   \       0x24   0x1E49             SUBS     R1,R1,#+1
+   \       0x26   0xF853 0x5D04      LDR      R5,[R3, #-4]!
      89                  if (pq->OSQOut == pq->OSQEnd) {          /* Wrap OUT pointer if we are at the end of the queue */
+   \       0x2A   0x6913             LDR      R3,[R2, #+16]
+   \       0x2C   0x82D1             STRH     R1,[R2, #+22]
+   \       0x2E   0x6891             LDR      R1,[R2, #+8]
+   \       0x30   0x428B             CMP      R3,R1
+   \       0x32   0xBF04             ITT      EQ
+   \       0x34   0x6853             LDREQ    R3,[R2, #+4]
+   \       0x36   0x6113             STREQ    R3,[R2, #+16]
      90                      pq->OSQOut = pq->OSQStart;
      91                  }
      92                  *perr = OS_ERR_NONE;
+   \       0x38   0x2100             MOVS     R1,#+0
+   \       0x3A   0xE001             B.N      ??OSQAccept_2
      93              } else {
      94                  *perr = OS_ERR_Q_EMPTY;
+   \                     ??OSQAccept_1: (+1)
+   \       0x3C   0x211F             MOVS     R1,#+31
      95                  pmsg  = (void *)0;                       /* Queue is empty                                     */
+   \       0x3E   0x2500             MOVS     R5,#+0
+   \                     ??OSQAccept_2: (+1)
+   \       0x40   0x7021             STRB     R1,[R4, #+0]
      96              }
      97              OS_EXIT_CRITICAL();
+   \       0x42   0x....'....        BL       OS_CPU_SR_Restore
      98              return (pmsg);                               /* Return message received (or NULL)                  */
+   \       0x46   0x4628             MOV      R0,R5
+   \       0x48   0xBD32             POP      {R1,R4,R5,PC}    ;; return
      99          }
     100          #endif
     101          /*$PAGE*/
@@ -171,8 +211,13 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     118          *********************************************************************************************************
     119          */
     120          
+
+   \                                 In section .text, align 2, keep-with-next
     121          OS_EVENT  *OSQCreate (void **start, INT16U size)
     122          {
+   \                     OSQCreate: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x4688             MOV      R8,R1
     123              OS_EVENT  *pevent;
     124              OS_Q      *pq;
     125          #if OS_CRITICAL_METHOD == 3                      /* Allocate storage for CPU status register           */
@@ -182,42 +227,95 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     129          
     130          
     131              if (OSIntNesting > 0) {                      /* See if called from ISR ...                         */
+   \        0x6   0x....'....        LDR.W    R1,??DataTable4
+   \        0xA   0x4606             MOV      R6,R0
+   \        0xC   0x7808             LDRB     R0,[R1, #+0]
+   \        0xE   0xB108             CBZ.N    R0,??OSQCreate_0
     132                  return ((OS_EVENT *)0);                  /* ... can't CREATE from an ISR                       */
+   \       0x10   0x2000             MOVS     R0,#+0
+   \       0x12   0xE033             B.N      ??OSQCreate_1
     133              }
     134              OS_ENTER_CRITICAL();
+   \                     ??OSQCreate_0: (+1)
+   \       0x14   0x....'....        BL       OS_CPU_SR_Save
     135              pevent = OSEventFreeList;                    /* Get next free event control block                  */
+   \       0x18   0x....'....        LDR.W    R7,??DataTable4_1
+   \       0x1C   0x6839             LDR      R1,[R7, #+0]
+   \       0x1E   0x000C             MOVS     R4,R1
     136              if (OSEventFreeList != (OS_EVENT *)0) {      /* See if pool of free ECB pool was empty             */
+   \       0x20   0xBF1C             ITT      NE
+   \       0x22   0x6849             LDRNE    R1,[R1, #+4]
+   \       0x24   0x6039             STRNE    R1,[R7, #+0]
     137                  OSEventFreeList = (OS_EVENT *)OSEventFreeList->OSEventPtr;
     138              }
     139              OS_EXIT_CRITICAL();
+   \       0x26   0x....'....        BL       OS_CPU_SR_Restore
     140              if (pevent != (OS_EVENT *)0) {               /* See if we have an event control block              */
+   \       0x2A   0xB334             CBZ.N    R4,??OSQCreate_2
     141                  OS_ENTER_CRITICAL();
+   \       0x2C   0x....'....        BL       OS_CPU_SR_Save
     142                  pq = OSQFreeList;                        /* Get a free queue control block                     */
+   \       0x30   0x....'....        LDR.W    R1,??DataTable4_2
+   \       0x34   0x680A             LDR      R2,[R1, #+0]
+   \       0x36   0x0015             MOVS     R5,R2
     143                  if (pq != (OS_Q *)0) {                   /* Were we able to get a queue control block ?        */
+   \       0x38   0xD019             BEQ.N    ??OSQCreate_3
     144                      OSQFreeList            = OSQFreeList->OSQPtr; /* Yes, Adjust free list pointer to next free*/
+   \       0x3A   0x6812             LDR      R2,[R2, #+0]
+   \       0x3C   0x600A             STR      R2,[R1, #+0]
     145                      OS_EXIT_CRITICAL();
+   \       0x3E   0x....'....        BL       OS_CPU_SR_Restore
     146                      pq->OSQStart           = start;               /*      Initialize the queue                 */
     147                      pq->OSQEnd             = &start[size];
+   \       0x42   0xEB06 0x0188      ADD      R1,R6,R8, LSL #+2
+   \       0x46   0x60A9             STR      R1,[R5, #+8]
     148                      pq->OSQIn              = start;
     149                      pq->OSQOut             = start;
     150                      pq->OSQSize            = size;
     151                      pq->OSQEntries         = 0;
+   \       0x48   0x2000             MOVS     R0,#+0
+   \       0x4A   0x606E             STR      R6,[R5, #+4]
+   \       0x4C   0x60EE             STR      R6,[R5, #+12]
+   \       0x4E   0x612E             STR      R6,[R5, #+16]
+   \       0x50   0xF8A5 0x8014      STRH     R8,[R5, #+20]
+   \       0x54   0x82E8             STRH     R0,[R5, #+22]
     152                      pevent->OSEventType    = OS_EVENT_TYPE_Q;
+   \       0x56   0x2102             MOVS     R1,#+2
     153                      pevent->OSEventCnt     = 0;
     154                      pevent->OSEventPtr     = pq;
     155          #if OS_EVENT_NAME_SIZE > 1
     156                      pevent->OSEventName[0] = '?';                  /* Unknown name                             */
+   \       0x58   0x203F             MOVS     R0,#+63
+   \       0x5A   0x7021             STRB     R1,[R4, #+0]
+   \       0x5C   0x2200             MOVS     R2,#+0
+   \       0x5E   0x73E0             STRB     R0,[R4, #+15]
+   \       0x60   0x8122             STRH     R2,[R4, #+8]
     157                      pevent->OSEventName[1] = OS_ASCII_NUL;
+   \       0x62   0x7422             STRB     R2,[R4, #+16]
+   \       0x64   0x6065             STR      R5,[R4, #+4]
     158          #endif
     159                      OS_EventWaitListInit(pevent);                 /*      Initalize the wait list              */
+   \       0x66   0x4620             MOV      R0,R4
+   \       0x68   0x....'....        BL       OS_EventWaitListInit
+   \       0x6C   0xE005             B.N      ??OSQCreate_2
     160                  } else {
     161                      pevent->OSEventPtr = (void *)OSEventFreeList; /* No,  Return event control block on error  */
+   \                     ??OSQCreate_3: (+1)
+   \       0x6E   0x6839             LDR      R1,[R7, #+0]
+   \       0x70   0x6061             STR      R1,[R4, #+4]
     162                      OSEventFreeList    = pevent;
+   \       0x72   0x603C             STR      R4,[R7, #+0]
     163                      OS_EXIT_CRITICAL();
+   \       0x74   0x....'....        BL       OS_CPU_SR_Restore
     164                      pevent = (OS_EVENT *)0;
+   \       0x78   0x2400             MOVS     R4,#+0
     165                  }
     166              }
     167              return (pevent);
+   \                     ??OSQCreate_2: (+1)
+   \       0x7A   0x4620             MOV      R0,R4
+   \                     ??OSQCreate_1: (+1)
+   \       0x7C   0xE8BD 0x81F0      POP      {R4-R8,PC}       ;; return
     168          }
     169          /*$PAGE*/
     170          /*
@@ -262,8 +360,14 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     209          */
     210          
     211          #if OS_Q_DEL_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
     212          OS_EVENT  *OSQDel (OS_EVENT *pevent, INT8U opt, INT8U *perr)
     213          {
+   \                     OSQDel: (+1)
+   \        0x0   0xE92D 0x47F0      PUSH     {R4-R10,LR}
+   \        0x4   0x4605             MOV      R5,R0
+   \        0x6   0x468A             MOV      R10,R1
     214              BOOLEAN    tasks_waiting;
     215              OS_EVENT  *pevent_return;
     216              OS_Q      *pq;
@@ -283,27 +387,62 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     230              }
     231          #endif
     232              if (pevent->OSEventType != OS_EVENT_TYPE_Q) {          /* Validate event block type                */
+   \        0x8   0x7828             LDRB     R0,[R5, #+0]
+   \        0xA   0x2802             CMP      R0,#+2
+   \        0xC   0x4690             MOV      R8,R2
+   \        0xE   0xD001             BEQ.N    ??OSQDel_0
     233                  *perr = OS_ERR_EVENT_TYPE;
+   \       0x10   0x2101             MOVS     R1,#+1
+   \       0x12   0xE004             B.N      ??OSQDel_1
     234                  return (pevent);
     235              }
     236              if (OSIntNesting > 0) {                                /* See if called from ISR ...               */
+   \                     ??OSQDel_0: (+1)
+   \       0x14   0x....'....        LDR.W    R2,??DataTable4
+   \       0x18   0x7810             LDRB     R0,[R2, #+0]
+   \       0x1A   0xB118             CBZ.N    R0,??OSQDel_2
     237                  *perr = OS_ERR_DEL_ISR;                            /* ... can't DELETE from an ISR             */
+   \       0x1C   0x210F             MOVS     R1,#+15
+   \                     ??OSQDel_1: (+1)
+   \       0x1E   0xF888 0x1000      STRB     R1,[R8, #+0]
     238                  return (pevent);
+   \       0x22   0xE032             B.N      ??OSQDel_3
     239              }
     240              OS_ENTER_CRITICAL();
+   \                     ??OSQDel_2: (+1)
+   \       0x24   0x....'....        BL       OS_CPU_SR_Save
     241              if (pevent->OSEventGrp != 0) {                         /* See if any tasks waiting on queue        */
+   \       0x28   0x7AAC             LDRB     R4,[R5, #+10]
+   \       0x2A   0x4681             MOV      R9,R0
+   \       0x2C   0xB104             CBZ.N    R4,??OSQDel_4
+   \       0x2E   0x2401             MOVS     R4,#+1
     242                  tasks_waiting = OS_TRUE;                           /* Yes                                      */
     243              } else {
     244                  tasks_waiting = OS_FALSE;                          /* No                                       */
     245              }
     246              switch (opt) {
+   \                     ??OSQDel_4: (+1)
+   \       0x30   0xF1BA 0x0F00      CMP      R10,#+0
+   \       0x34   0x....'....        LDR.W    R6,??DataTable4_1
+   \       0x38   0x....'....        LDR.W    R7,??DataTable4_2
+   \       0x3C   0xD003             BEQ.N    ??OSQDel_5
+   \       0x3E   0xF1BA 0x0F01      CMP      R10,#+1
+   \       0x42   0xD00F             BEQ.N    ??CrossCallReturnLabel_2
+   \       0x44   0xE01C             B.N      ??OSQDel_6
     247                  case OS_DEL_NO_PEND:                               /* Delete queue only if no task waiting     */
     248                       if (tasks_waiting == OS_FALSE) {
+   \                     ??OSQDel_5: (+1)
+   \       0x46   0xB934             CBNZ.N   R4,??OSQDel_7
     249          #if OS_EVENT_NAME_SIZE > 1
     250                           pevent->OSEventName[0] = '?';             /* Unknown name                             */
+   \       0x48   0x203F             MOVS     R0,#+63
+   \       0x4A   0x73E8             STRB     R0,[R5, #+15]
     251                           pevent->OSEventName[1] = OS_ASCII_NUL;
+   \       0x4C   0x2100             MOVS     R1,#+0
+   \       0x4E   0x7429             STRB     R1,[R5, #+16]
     252          #endif
     253                           pq                     = (OS_Q *)pevent->OSEventPtr;  /* Return OS_Q to free list     */
+   \       0x50   0x....'....        BL       ?Subroutine1
     254                           pq->OSQPtr             = OSQFreeList;
     255                           OSQFreeList            = pq;
     256                           pevent->OSEventType    = OS_EVENT_TYPE_UNUSED;
@@ -312,23 +451,40 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     259                           OSEventFreeList        = pevent;          /* Get next free event control block        */
     260                           OS_EXIT_CRITICAL();
     261                           *perr                  = OS_ERR_NONE;
+   \                     ??CrossCallReturnLabel_1: (+1)
+   \       0x54   0xE011             B.N      ??OSQDel_8
     262                           pevent_return          = (OS_EVENT *)0;   /* Queue has been deleted                   */
     263                       } else {
     264                           OS_EXIT_CRITICAL();
+   \                     ??OSQDel_7: (+1)
+   \       0x56   0x....'....        BL       OS_CPU_SR_Restore
     265                           *perr                  = OS_ERR_TASK_WAITING;
+   \       0x5A   0x2049             MOVS     R0,#+73
     266                           pevent_return          = pevent;
+   \       0x5C   0xE013             B.N      ??OSQDel_9
     267                       }
     268                       break;
     269          
     270                  case OS_DEL_ALWAYS:                                /* Always delete the queue                  */
     271                       while (pevent->OSEventGrp != 0) {             /* Ready ALL tasks waiting for queue        */
     272                           (void)OS_EventTaskRdy(pevent, (void *)0, OS_STAT_Q, OS_STAT_PEND_OK);
+   \                     ??OSQDel_10: (+1)
+   \       0x5E   0x2300             MOVS     R3,#+0
+   \       0x60   0x....'....        BL       ??Subroutine2_0
     273                       }
+   \                     ??CrossCallReturnLabel_2: (+1)
+   \       0x64   0x7AA8             LDRB     R0,[R5, #+10]
+   \       0x66   0x2800             CMP      R0,#+0
+   \       0x68   0xD1F9             BNE.N    ??OSQDel_10
     274          #if OS_EVENT_NAME_SIZE > 1
     275                       pevent->OSEventName[0] = '?';                 /* Unknown name                             */
+   \       0x6A   0x213F             MOVS     R1,#+63
     276                       pevent->OSEventName[1] = OS_ASCII_NUL;
+   \       0x6C   0x7428             STRB     R0,[R5, #+16]
+   \       0x6E   0x73E9             STRB     R1,[R5, #+15]
     277          #endif
     278                       pq                     = (OS_Q *)pevent->OSEventPtr;   /* Return OS_Q to free list        */
+   \       0x70   0x....'....        BL       ?Subroutine1
     279                       pq->OSQPtr             = OSQFreeList;
     280                       OSQFreeList            = pq;
     281                       pevent->OSEventType    = OS_EVENT_TYPE_UNUSED;
@@ -337,20 +493,59 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     284                       OSEventFreeList        = pevent;              /* Get next free event control block        */
     285                       OS_EXIT_CRITICAL();
     286                       if (tasks_waiting == OS_TRUE) {               /* Reschedule only if task(s) were waiting  */
+   \                     ??CrossCallReturnLabel_0: (+1)
+   \       0x74   0xB10C             CBZ.N    R4,??OSQDel_8
     287                           OS_Sched();                               /* Find highest priority task ready to run  */
+   \       0x76   0x....'....        BL       OS_Sched
     288                       }
     289                       *perr                  = OS_ERR_NONE;
+   \                     ??OSQDel_8: (+1)
+   \       0x7A   0x2000             MOVS     R0,#+0
     290                       pevent_return          = (OS_EVENT *)0;       /* Queue has been deleted                   */
+   \       0x7C   0x2500             MOVS     R5,#+0
     291                       break;
+   \       0x7E   0xE002             B.N      ??OSQDel_9
     292          
     293                  default:
     294                       OS_EXIT_CRITICAL();
+   \                     ??OSQDel_6: (+1)
+   \       0x80   0x....'....        BL       OS_CPU_SR_Restore
     295                       *perr                  = OS_ERR_INVALID_OPT;
+   \       0x84   0x2007             MOVS     R0,#+7
     296                       pevent_return          = pevent;
     297                       break;
+   \                     ??OSQDel_9: (+1)
+   \       0x86   0xF888 0x0000      STRB     R0,[R8, #+0]
     298              }
     299              return (pevent_return);
+   \                     ??OSQDel_3: (+1)
+   \       0x8A   0x4628             MOV      R0,R5
+   \       0x8C   0xE8BD 0x87F0      POP      {R4-R10,PC}      ;; return
     300          }
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine1: (+1)
+   \        0x0   0x6868             LDR      R0,[R5, #+4]
+   \        0x2   0x6839             LDR      R1,[R7, #+0]
+   \        0x4   0x6001             STR      R1,[R0, #+0]
+   \        0x6   0x6038             STR      R0,[R7, #+0]
+   \        0x8   0x2000             MOVS     R0,#+0
+   \        0xA   0x7028             STRB     R0,[R5, #+0]
+   \        0xC   0x6832             LDR      R2,[R6, #+0]
+   \        0xE   0x606A             STR      R2,[R5, #+4]
+   \       0x10   0x8128             STRH     R0,[R5, #+8]
+   \       0x12   0x6035             STR      R5,[R6, #+0]
+   \       0x14   0x4648             MOV      R0,R9
+   \       0x16   0x....'....        B.W      OS_CPU_SR_Restore
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine2: (+1)
+   \        0x0   0x2302             MOVS     R3,#+2
+   \                     ??Subroutine2_0: (+1)
+   \        0x2   0x2204             MOVS     R2,#+4
+   \        0x4   0x2100             MOVS     R1,#+0
+   \        0x6   0x4628             MOV      R0,R5
+   \        0x8   0x....'....        B.W      OS_EventTaskRdy
     301          #endif
     302          
     303          /*$PAGE*/
@@ -374,8 +569,13 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     321          */
     322          
     323          #if OS_Q_FLUSH_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
     324          INT8U  OSQFlush (OS_EVENT *pevent)
     325          {
+   \                     OSQFlush: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x4604             MOV      R4,R0
     326              OS_Q      *pq;
     327          #if OS_CRITICAL_METHOD == 3                           /* Allocate storage for CPU status register      */
     328              OS_CPU_SR  cpu_sr = 0;
@@ -392,12 +592,23 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     339              }
     340          #endif
     341              OS_ENTER_CRITICAL();
+   \        0x4   0x....'....        BL       OS_CPU_SR_Save
     342              pq             = (OS_Q *)pevent->OSEventPtr;      /* Point to queue storage structure              */
+   \        0x8   0x6861             LDR      R1,[R4, #+4]
     343              pq->OSQIn      = pq->OSQStart;
+   \        0xA   0x684A             LDR      R2,[R1, #+4]
     344              pq->OSQOut     = pq->OSQStart;
+   \        0xC   0x684B             LDR      R3,[R1, #+4]
+   \        0xE   0x60CA             STR      R2,[R1, #+12]
+   \       0x10   0x610B             STR      R3,[R1, #+16]
     345              pq->OSQEntries = 0;
+   \       0x12   0x2200             MOVS     R2,#+0
+   \       0x14   0x82CA             STRH     R2,[R1, #+22]
     346              OS_EXIT_CRITICAL();
+   \       0x16   0x....'....        BL       OS_CPU_SR_Restore
     347              return (OS_ERR_NONE);
+   \       0x1A   0x2000             MOVS     R0,#+0
+   \       0x1C   0xBD10             POP      {R4,PC}          ;; return
     348          }
     349          #endif
     350          
@@ -438,8 +649,14 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     385          *********************************************************************************************************
     386          */
     387          
+
+   \                                 In section .text, align 2, keep-with-next
     388          void  *OSQPend (OS_EVENT *pevent, INT16U timeout, INT8U *perr)
     389          {
+   \                     OSQPend: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x4604             MOV      R4,R0
+   \        0x6   0x460E             MOV      R6,R1
     390              void      *pmsg;
     391              OS_Q      *pq;
     392          #if OS_CRITICAL_METHOD == 3                      /* Allocate storage for CPU status register           */
@@ -458,64 +675,168 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     405              }
     406          #endif
     407              if (pevent->OSEventType != OS_EVENT_TYPE_Q) {/* Validate event block type                          */
+   \        0x8   0x7820             LDRB     R0,[R4, #+0]
+   \        0xA   0x2802             CMP      R0,#+2
+   \        0xC   0x4615             MOV      R5,R2
+   \        0xE   0xBF18             IT       NE
+   \       0x10   0x2101             MOVNE    R1,#+1
     408                  *perr = OS_ERR_EVENT_TYPE;
+   \       0x12   0xD108             BNE.N    ??OSQPend_0
     409                  return ((void *)0);
     410              }
     411              if (OSIntNesting > 0) {                      /* See if called from ISR ...                         */
+   \       0x14   0x....             LDR.N    R2,??DataTable4
+   \       0x16   0x7810             LDRB     R0,[R2, #+0]
+   \       0x18   0xB108             CBZ.N    R0,??OSQPend_1
     412                  *perr = OS_ERR_PEND_ISR;                 /* ... can't PEND from an ISR                         */
+   \       0x1A   0x2102             MOVS     R1,#+2
+   \       0x1C   0xE003             B.N      ??OSQPend_0
     413                  return ((void *)0);
     414              }
     415              if (OSLockNesting > 0) {                     /* See if called with scheduler locked ...            */
+   \                     ??OSQPend_1: (+1)
+   \       0x1E   0x....             LDR.N    R2,??DataTable4_3
+   \       0x20   0x7810             LDRB     R0,[R2, #+0]
+   \       0x22   0xB118             CBZ.N    R0,??OSQPend_2
     416                  *perr = OS_ERR_PEND_LOCKED;              /* ... can't PEND when locked                         */
+   \       0x24   0x210D             MOVS     R1,#+13
+   \                     ??OSQPend_0: (+1)
+   \       0x26   0x7029             STRB     R1,[R5, #+0]
     417                  return ((void *)0);
+   \       0x28   0x2000             MOVS     R0,#+0
+   \       0x2A   0xE053             B.N      ??OSQPend_3
     418              }
     419              OS_ENTER_CRITICAL();
+   \                     ??OSQPend_2: (+1)
+   \       0x2C   0x....'....        BL       OS_CPU_SR_Save
     420              pq = (OS_Q *)pevent->OSEventPtr;             /* Point at queue control block                       */
+   \       0x30   0x6861             LDR      R1,[R4, #+4]
+   \       0x32   0x4680             MOV      R8,R0
     421              if (pq->OSQEntries > 0) {                    /* See if any messages in the queue                   */
+   \       0x34   0x8AC8             LDRH     R0,[R1, #+22]
+   \       0x36   0xB188             CBZ.N    R0,??OSQPend_4
     422                  pmsg = *pq->OSQOut++;                    /* Yes, extract oldest message from the queue         */
+   \       0x38   0x690A             LDR      R2,[R1, #+16]
+   \       0x3A   0x1D12             ADDS     R2,R2,#+4
+   \       0x3C   0x610A             STR      R2,[R1, #+16]
     423                  pq->OSQEntries--;                        /* Update the number of entries in the queue          */
+   \       0x3E   0x1E40             SUBS     R0,R0,#+1
+   \       0x40   0xF852 0x4D04      LDR      R4,[R2, #-4]!
     424                  if (pq->OSQOut == pq->OSQEnd) {          /* Wrap OUT pointer if we are at the end of the queue */
+   \       0x44   0x690A             LDR      R2,[R1, #+16]
+   \       0x46   0x82C8             STRH     R0,[R1, #+22]
+   \       0x48   0x6888             LDR      R0,[R1, #+8]
+   \       0x4A   0x4282             CMP      R2,R0
+   \       0x4C   0xBF04             ITT      EQ
+   \       0x4E   0x684A             LDREQ    R2,[R1, #+4]
+   \       0x50   0x610A             STREQ    R2,[R1, #+16]
     425                      pq->OSQOut = pq->OSQStart;
     426                  }
     427                  OS_EXIT_CRITICAL();
+   \       0x52   0x....'....        BL       ?Subroutine4
     428                  *perr = OS_ERR_NONE;
+   \                     ??CrossCallReturnLabel_13: (+1)
+   \       0x56   0x2000             MOVS     R0,#+0
+   \       0x58   0x7028             STRB     R0,[R5, #+0]
     429                  return (pmsg);                           /* Return message received                            */
+   \       0x5A   0xE03A             B.N      ??OSQPend_5
     430              }
     431              OSTCBCur->OSTCBStat     |= OS_STAT_Q;        /* Task will have to pend for a message to be posted  */
+   \                     ??OSQPend_4: (+1)
+   \       0x5C   0x....             LDR.N    R7,??DataTable4_4
+   \       0x5E   0x6838             LDR      R0,[R7, #+0]
+   \       0x60   0xF890 0x1030      LDRB     R1,[R0, #+48]
+   \       0x64   0xF041 0x0104      ORR      R1,R1,#0x4
+   \       0x68   0xF880 0x1030      STRB     R1,[R0, #+48]
     432              OSTCBCur->OSTCBStatPend  = OS_STAT_PEND_OK;
+   \       0x6C   0x2000             MOVS     R0,#+0
+   \       0x6E   0x6839             LDR      R1,[R7, #+0]
+   \       0x70   0xF881 0x0031      STRB     R0,[R1, #+49]
     433              OSTCBCur->OSTCBDly       = timeout;          /* Load timeout into TCB                              */
     434              OS_EventTaskWait(pevent);                    /* Suspend task until event or timeout occurs         */
+   \       0x74   0x4620             MOV      R0,R4
+   \       0x76   0x683A             LDR      R2,[R7, #+0]
+   \       0x78   0x85D6             STRH     R6,[R2, #+46]
+   \       0x7A   0x....'....        BL       OS_EventTaskWait
     435              OS_EXIT_CRITICAL();
+   \       0x7E   0x....'....        BL       ?Subroutine4
     436              OS_Sched();                                  /* Find next highest priority task ready to run       */
+   \                     ??CrossCallReturnLabel_12: (+1)
+   \       0x82   0x....'....        BL       OS_Sched
     437              OS_ENTER_CRITICAL();
+   \       0x86   0x....'....        BL       OS_CPU_SR_Save
+   \       0x8A   0x4606             MOV      R6,R0
     438              switch (OSTCBCur->OSTCBStatPend) {                /* See if we timed-out or aborted                */
+   \       0x8C   0x6838             LDR      R0,[R7, #+0]
+   \       0x8E   0xF100 0x0124      ADD      R1,R0,#+36
+   \       0x92   0x7B4A             LDRB     R2,[R1, #+13]
+   \       0x94   0xB112             CBZ.N    R2,??OSQPend_6
+   \       0x96   0x2A02             CMP      R2,#+2
+   \       0x98   0xD003             BEQ.N    ??OSQPend_7
+   \       0x9A   0xE005             B.N      ??OSQPend_8
     439                  case OS_STAT_PEND_OK:                         /* Extract message from TCB (Put there by QPost) */
     440                       pmsg =  OSTCBCur->OSTCBMsg;
+   \                     ??OSQPend_6: (+1)
+   \       0x9C   0x680C             LDR      R4,[R1, #+0]
     441                      *perr =  OS_ERR_NONE;
+   \       0x9E   0x2000             MOVS     R0,#+0
     442                       break;
+   \       0xA0   0xE007             B.N      ??OSQPend_9
     443          
     444                  case OS_STAT_PEND_ABORT:
     445                       pmsg = (void *)0;
+   \                     ??OSQPend_7: (+1)
+   \       0xA2   0x2400             MOVS     R4,#+0
     446                      *perr =  OS_ERR_PEND_ABORT;               /* Indicate that we aborted                      */
+   \       0xA4   0x200E             MOVS     R0,#+14
     447                       break;
+   \       0xA6   0xE004             B.N      ??OSQPend_9
     448          
     449                  case OS_STAT_PEND_TO:
     450                  default:
     451                       OS_EventTaskRemove(OSTCBCur, pevent);
+   \                     ??OSQPend_8: (+1)
+   \       0xA8   0x4621             MOV      R1,R4
+   \       0xAA   0x....'....        BL       OS_EventTaskRemove
     452                       pmsg = (void *)0;
+   \       0xAE   0x2400             MOVS     R4,#+0
     453                      *perr =  OS_ERR_TIMEOUT;                  /* Indicate that we didn't get event within TO   */
+   \       0xB0   0x200A             MOVS     R0,#+10
     454                       break;
+   \                     ??OSQPend_9: (+1)
+   \       0xB2   0x7028             STRB     R0,[R5, #+0]
     455              }
     456              OSTCBCur->OSTCBStat          =  OS_STAT_RDY;      /* Set   task  status to ready                   */
+   \       0xB4   0x2000             MOVS     R0,#+0
+   \       0xB6   0x6839             LDR      R1,[R7, #+0]
+   \       0xB8   0xF881 0x0030      STRB     R0,[R1, #+48]
     457              OSTCBCur->OSTCBStatPend      =  OS_STAT_PEND_OK;  /* Clear pend  status                            */
+   \       0xBC   0x2200             MOVS     R2,#+0
+   \       0xBE   0x6838             LDR      R0,[R7, #+0]
+   \       0xC0   0xF880 0x2031      STRB     R2,[R0, #+49]
     458              OSTCBCur->OSTCBEventPtr      = (OS_EVENT  *)0;    /* Clear event pointers                          */
+   \       0xC4   0x6838             LDR      R0,[R7, #+0]
+   \       0xC6   0x61C2             STR      R2,[R0, #+28]
     459          #if (OS_EVENT_MULTI_EN > 0)
     460              OSTCBCur->OSTCBEventMultiPtr = (OS_EVENT **)0;
+   \       0xC8   0x6202             STR      R2,[R0, #+32]
     461          #endif
     462              OSTCBCur->OSTCBMsg           = (void      *)0;    /* Clear  received message                       */
+   \       0xCA   0x6242             STR      R2,[R0, #+36]
     463              OS_EXIT_CRITICAL();
+   \       0xCC   0x4630             MOV      R0,R6
+   \       0xCE   0x....'....        BL       OS_CPU_SR_Restore
     464              return (pmsg);                                    /* Return received message                       */
+   \                     ??OSQPend_5: (+1)
+   \       0xD2   0x4620             MOV      R0,R4
+   \                     ??OSQPend_3: (+1)
+   \       0xD4   0xE8BD 0x81F0      POP      {R4-R8,PC}       ;; return
     465          }
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine4: (+1)
+   \        0x0   0x4640             MOV      R0,R8
+   \        0x2   0x....'....        B.W      OS_CPU_SR_Restore
     466          /*$PAGE*/
     467          /*
     468          *********************************************************************************************************
@@ -550,8 +871,14 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     497          */
     498          
     499          #if OS_Q_PEND_ABORT_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
     500          INT8U  OSQPendAbort (OS_EVENT *pevent, INT8U opt, INT8U *perr)
     501          {
+   \                     OSQPendAbort: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x4605             MOV      R5,R0
+   \        0x6   0x460E             MOV      R6,R1
     502              INT8U      nbr_tasks;
     503          #if OS_CRITICAL_METHOD == 3                                /* Allocate storage for CPU status register */
     504              OS_CPU_SR  cpu_sr = 0;
@@ -569,34 +896,77 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     516              }
     517          #endif
     518              if (pevent->OSEventType != OS_EVENT_TYPE_Q) {          /* Validate event block type                */
+   \        0x8   0x7828             LDRB     R0,[R5, #+0]
+   \        0xA   0x2802             CMP      R0,#+2
+   \        0xC   0x4614             MOV      R4,R2
+   \        0xE   0xD003             BEQ.N    ??OSQPendAbort_0
     519                  *perr = OS_ERR_EVENT_TYPE;
+   \       0x10   0x2101             MOVS     R1,#+1
+   \       0x12   0x7021             STRB     R1,[R4, #+0]
     520                  return (0);
+   \       0x14   0x2000             MOVS     R0,#+0
+   \       0x16   0xE01D             B.N      ??OSQPendAbort_1
     521              }
     522              OS_ENTER_CRITICAL();
+   \                     ??OSQPendAbort_0: (+1)
+   \       0x18   0x....'....        BL       OS_CPU_SR_Save
+   \       0x1C   0x4680             MOV      R8,R0
     523              if (pevent->OSEventGrp != 0) {                         /* See if any task waiting on queue?        */
+   \       0x1E   0x7AA8             LDRB     R0,[R5, #+10]
+   \       0x20   0xB1A0             CBZ.N    R0,??OSQPendAbort_2
     524                  nbr_tasks = 0;
+   \       0x22   0x2700             MOVS     R7,#+0
     525                  switch (opt) {
+   \       0x24   0x2E01             CMP      R6,#+1
+   \       0x26   0xD106             BNE.N    ??OSQPendAbort_3
     526                      case OS_PEND_OPT_BROADCAST:                    /* Do we need to abort ALL waiting tasks?   */
     527                           while (pevent->OSEventGrp != 0) {         /* Yes, ready ALL tasks waiting on queue    */
     528                               (void)OS_EventTaskRdy(pevent, (void *)0, OS_STAT_Q, OS_STAT_PEND_ABORT);
+   \                     ??OSQPendAbort_4: (+1)
+   \       0x28   0x....'....        BL       ?Subroutine2
     529                               nbr_tasks++;
     530                           }
+   \                     ??CrossCallReturnLabel_4: (+1)
+   \       0x2C   0x7AA8             LDRB     R0,[R5, #+10]
+   \       0x2E   0x1C7F             ADDS     R7,R7,#+1
+   \       0x30   0x2800             CMP      R0,#+0
+   \       0x32   0xD1F9             BNE.N    ??OSQPendAbort_4
+   \       0x34   0xE002             B.N      ??OSQPendAbort_5
     531                           break;
     532                         
     533                      case OS_PEND_OPT_NONE:
     534                      default:                                       /* No,  ready HPT       waiting on queue    */
     535                           (void)OS_EventTaskRdy(pevent, (void *)0, OS_STAT_Q, OS_STAT_PEND_ABORT);
+   \                     ??OSQPendAbort_3: (+1)
+   \       0x36   0x....'....        BL       ?Subroutine2
     536                           nbr_tasks++;
+   \                     ??CrossCallReturnLabel_3: (+1)
+   \       0x3A   0x2701             MOVS     R7,#+1
     537                           break;
     538                  }
     539                  OS_EXIT_CRITICAL();
+   \                     ??OSQPendAbort_5: (+1)
+   \       0x3C   0x....'....        BL       ?Subroutine4
     540                  OS_Sched();                                        /* Find HPT ready to run                    */
+   \                     ??CrossCallReturnLabel_11: (+1)
+   \       0x40   0x....'....        BL       OS_Sched
     541                  *perr = OS_ERR_PEND_ABORT;
+   \       0x44   0x200E             MOVS     R0,#+14
+   \       0x46   0x7020             STRB     R0,[R4, #+0]
     542                  return (nbr_tasks);
+   \       0x48   0xB2F8             UXTB     R0,R7
+   \       0x4A   0xE003             B.N      ??OSQPendAbort_1
     543              }
     544              OS_EXIT_CRITICAL();
+   \                     ??OSQPendAbort_2: (+1)
+   \       0x4C   0x....'....        BL       ?Subroutine4
     545              *perr = OS_ERR_NONE;
+   \                     ??CrossCallReturnLabel_10: (+1)
+   \       0x50   0x2000             MOVS     R0,#+0
+   \       0x52   0x7020             STRB     R0,[R4, #+0]
     546              return (0);                                            /* No tasks waiting on queue                */
+   \                     ??OSQPendAbort_1: (+1)
+   \       0x54   0xE8BD 0x81F0      POP      {R4-R8,PC}       ;; return
     547          }
     548          #endif
     549          
@@ -621,8 +991,14 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     568          */
     569          
     570          #if OS_Q_POST_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
     571          INT8U  OSQPost (OS_EVENT *pevent, void *pmsg)
     572          {
+   \                     OSQPost: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x4606             MOV      R6,R0
+   \        0x4   0x460C             MOV      R4,R1
     573              OS_Q      *pq;
     574          #if OS_CRITICAL_METHOD == 3                            /* Allocate storage for CPU status register     */
     575              OS_CPU_SR  cpu_sr = 0;
@@ -636,29 +1012,89 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     583              }
     584          #endif
     585              if (pevent->OSEventType != OS_EVENT_TYPE_Q) {      /* Validate event block type                    */
+   \        0x6   0x7830             LDRB     R0,[R6, #+0]
+   \        0x8   0x2802             CMP      R0,#+2
+   \        0xA   0xD001             BEQ.N    ??OSQPost_0
     586                  return (OS_ERR_EVENT_TYPE);
+   \        0xC   0x2001             MOVS     R0,#+1
+   \        0xE   0xBD70             POP      {R4-R6,PC}
     587              }
     588              OS_ENTER_CRITICAL();
+   \                     ??OSQPost_0: (+1)
+   \       0x10   0x....'....        BL       OS_CPU_SR_Save
+   \       0x14   0x4605             MOV      R5,R0
     589              if (pevent->OSEventGrp != 0) {                     /* See if any task pending on queue             */
+   \       0x16   0x7AB0             LDRB     R0,[R6, #+10]
+   \       0x18   0xB130             CBZ.N    R0,??OSQPost_1
     590                                                                 /* Ready highest priority task waiting on event */
     591                  (void)OS_EventTaskRdy(pevent, pmsg, OS_STAT_Q, OS_STAT_PEND_OK);
+   \       0x1A   0x....'....        BL       ?Subroutine5
     592                  OS_EXIT_CRITICAL();
+   \                     ??CrossCallReturnLabel_15: (+1)
+   \       0x1E   0x....'....        BL       ?Subroutine3
     593                  OS_Sched();                                    /* Find highest priority task ready to run      */
+   \                     ??CrossCallReturnLabel_9: (+1)
+   \       0x22   0x....'....        BL       OS_Sched
     594                  return (OS_ERR_NONE);
+   \       0x26   0xE014             B.N      ??CrossCallReturnLabel_8
     595              }
     596              pq = (OS_Q *)pevent->OSEventPtr;                   /* Point to queue control block                 */
+   \                     ??OSQPost_1: (+1)
+   \       0x28   0x6870             LDR      R0,[R6, #+4]
     597              if (pq->OSQEntries >= pq->OSQSize) {               /* Make sure queue is not full                  */
+   \       0x2A   0x8AC1             LDRH     R1,[R0, #+22]
+   \       0x2C   0x8A82             LDRH     R2,[R0, #+20]
+   \       0x2E   0x4291             CMP      R1,R2
+   \       0x30   0xD300             BCC.N    ??OSQPost_2
     598                  OS_EXIT_CRITICAL();
+   \       0x32   0x....             B.N      ?Subroutine0
     599                  return (OS_ERR_Q_FULL);
     600              }
     601              *pq->OSQIn++ = pmsg;                               /* Insert message into queue                    */
+   \                     ??OSQPost_2: (+1)
+   \       0x34   0x68C2             LDR      R2,[R0, #+12]
+   \       0x36   0x1D12             ADDS     R2,R2,#+4
+   \       0x38   0x60C2             STR      R2,[R0, #+12]
     602              pq->OSQEntries++;                                  /* Update the nbr of entries in the queue       */
+   \       0x3A   0x1C49             ADDS     R1,R1,#+1
+   \       0x3C   0xF842 0x4D04      STR      R4,[R2, #-4]!
+   \       0x40   0x82C1             STRH     R1,[R0, #+22]
     603              if (pq->OSQIn == pq->OSQEnd) {                     /* Wrap IN ptr if we are at end of queue        */
+   \       0x42   0x6882             LDR      R2,[R0, #+8]
+   \       0x44   0x68C1             LDR      R1,[R0, #+12]
+   \       0x46   0x4291             CMP      R1,R2
+   \       0x48   0xBF04             ITT      EQ
+   \       0x4A   0x6841             LDREQ    R1,[R0, #+4]
+   \       0x4C   0x60C1             STREQ    R1,[R0, #+12]
     604                  pq->OSQIn = pq->OSQStart;
     605              }
     606              OS_EXIT_CRITICAL();
+   \       0x4E   0x....'....        BL       ?Subroutine3
     607              return (OS_ERR_NONE);
+   \                     ??CrossCallReturnLabel_8: (+1)
+   \       0x52   0x2000             MOVS     R0,#+0
+   \       0x54   0xBD70             POP      {R4-R6,PC}       ;; return
     608          }
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine5: (+1)
+   \        0x0   0x2300             MOVS     R3,#+0
+   \        0x2   0x2204             MOVS     R2,#+4
+   \        0x4   0x4621             MOV      R1,R4
+   \        0x6   0x4630             MOV      R0,R6
+   \        0x8   0x....'....        B.W      OS_EventTaskRdy
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine3: (+1)
+   \        0x0   0x4628             MOV      R0,R5
+   \        0x2   0x....'....        B.W      OS_CPU_SR_Restore
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine0: (+1)
+   \        0x0   0x....'....        BL       ?Subroutine3
+   \                     ??CrossCallReturnLabel_5: (+1)
+   \        0x4   0x201E             MOVS     R0,#+30
+   \        0x6   0xBD70             POP      {R4-R6,PC}
     609          #endif
     610          /*$PAGE*/
     611          /*
@@ -683,8 +1119,14 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     630          */
     631          
     632          #if OS_Q_POST_FRONT_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
     633          INT8U  OSQPostFront (OS_EVENT *pevent, void *pmsg)
     634          {
+   \                     OSQPostFront: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x4606             MOV      R6,R0
+   \        0x4   0x460C             MOV      R4,R1
     635              OS_Q      *pq;
     636          #if OS_CRITICAL_METHOD == 3                           /* Allocate storage for CPU status register      */
     637              OS_CPU_SR  cpu_sr = 0;
@@ -698,29 +1140,68 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     645              }
     646          #endif
     647              if (pevent->OSEventType != OS_EVENT_TYPE_Q) {     /* Validate event block type                     */
+   \        0x6   0x7830             LDRB     R0,[R6, #+0]
+   \        0x8   0x2802             CMP      R0,#+2
+   \        0xA   0xD001             BEQ.N    ??OSQPostFront_0
     648                  return (OS_ERR_EVENT_TYPE);
+   \        0xC   0x2001             MOVS     R0,#+1
+   \        0xE   0xBD70             POP      {R4-R6,PC}
     649              }
     650              OS_ENTER_CRITICAL();
+   \                     ??OSQPostFront_0: (+1)
+   \       0x10   0x....'....        BL       OS_CPU_SR_Save
+   \       0x14   0x4605             MOV      R5,R0
     651              if (pevent->OSEventGrp != 0) {                    /* See if any task pending on queue              */
+   \       0x16   0x7AB0             LDRB     R0,[R6, #+10]
+   \       0x18   0xB130             CBZ.N    R0,??OSQPostFront_1
     652                                                                /* Ready highest priority task waiting on event  */
     653                  (void)OS_EventTaskRdy(pevent, pmsg, OS_STAT_Q, OS_STAT_PEND_OK);
+   \       0x1A   0x....'....        BL       ?Subroutine5
     654                  OS_EXIT_CRITICAL();
+   \                     ??CrossCallReturnLabel_14: (+1)
+   \       0x1E   0x....'....        BL       ?Subroutine3
     655                  OS_Sched();                                   /* Find highest priority task ready to run       */
+   \                     ??CrossCallReturnLabel_7: (+1)
+   \       0x22   0x....'....        BL       OS_Sched
     656                  return (OS_ERR_NONE);
+   \       0x26   0xE013             B.N      ??CrossCallReturnLabel_6
     657              }
     658              pq = (OS_Q *)pevent->OSEventPtr;                  /* Point to queue control block                  */
+   \                     ??OSQPostFront_1: (+1)
+   \       0x28   0x6870             LDR      R0,[R6, #+4]
     659              if (pq->OSQEntries >= pq->OSQSize) {              /* Make sure queue is not full                   */
+   \       0x2A   0x8AC1             LDRH     R1,[R0, #+22]
+   \       0x2C   0x8A82             LDRH     R2,[R0, #+20]
+   \       0x2E   0x4291             CMP      R1,R2
+   \       0x30   0xD300             BCC.N    ??OSQPostFront_2
     660                  OS_EXIT_CRITICAL();
+   \       0x32   0x....             B.N      ?Subroutine0
     661                  return (OS_ERR_Q_FULL);
     662              }
     663              if (pq->OSQOut == pq->OSQStart) {                 /* Wrap OUT ptr if we are at the 1st queue entry */
+   \                     ??OSQPostFront_2: (+1)
+   \       0x34   0x6902             LDR      R2,[R0, #+16]
+   \       0x36   0x6843             LDR      R3,[R0, #+4]
+   \       0x38   0x429A             CMP      R2,R3
+   \       0x3A   0xBF04             ITT      EQ
+   \       0x3C   0x6882             LDREQ    R2,[R0, #+8]
+   \       0x3E   0x6102             STREQ    R2,[R0, #+16]
     664                  pq->OSQOut = pq->OSQEnd;
     665              }
     666              pq->OSQOut--;
+   \       0x40   0x6902             LDR      R2,[R0, #+16]
     667              *pq->OSQOut = pmsg;                               /* Insert message into queue                     */
+   \       0x42   0xF842 0x4D04      STR      R4,[R2, #-4]!
     668              pq->OSQEntries++;                                 /* Update the nbr of entries in the queue        */
+   \       0x46   0x1C49             ADDS     R1,R1,#+1
+   \       0x48   0x82C1             STRH     R1,[R0, #+22]
     669              OS_EXIT_CRITICAL();
+   \       0x4A   0x6102             STR      R2,[R0, #+16]
+   \       0x4C   0x....'....        BL       ?Subroutine3
     670              return (OS_ERR_NONE);
+   \                     ??CrossCallReturnLabel_6: (+1)
+   \       0x50   0x2000             MOVS     R0,#+0
+   \       0x52   0xBD70             POP      {R4-R6,PC}       ;; return
     671          }
     672          #endif
     673          /*$PAGE*/
@@ -754,8 +1235,14 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     701          */
     702          
     703          #if OS_Q_POST_OPT_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
     704          INT8U  OSQPostOpt (OS_EVENT *pevent, void *pmsg, INT8U opt)
     705          {
+   \                     OSQPostOpt: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x4607             MOV      R7,R0
+   \        0x4   0x460D             MOV      R5,R1
     706              OS_Q      *pq;
     707          #if OS_CRITICAL_METHOD == 3                           /* Allocate storage for CPU status register      */
     708              OS_CPU_SR  cpu_sr = 0;
@@ -769,44 +1256,120 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     716              }
     717          #endif
     718              if (pevent->OSEventType != OS_EVENT_TYPE_Q) {     /* Validate event block type                     */
+   \        0x6   0x7838             LDRB     R0,[R7, #+0]
+   \        0x8   0x2802             CMP      R0,#+2
+   \        0xA   0x4616             MOV      R6,R2
+   \        0xC   0xD001             BEQ.N    ??OSQPostOpt_0
     719                  return (OS_ERR_EVENT_TYPE);
+   \        0xE   0x2001             MOVS     R0,#+1
+   \       0x10   0xBDF2             POP      {R1,R4-R7,PC}
     720              }
     721              OS_ENTER_CRITICAL();
+   \                     ??OSQPostOpt_0: (+1)
+   \       0x12   0x....'....        BL       OS_CPU_SR_Save
+   \       0x16   0x4604             MOV      R4,R0
     722              if (pevent->OSEventGrp != 0x00) {                 /* See if any task pending on queue              */
+   \       0x18   0x7AB8             LDRB     R0,[R7, #+10]
+   \       0x1A   0xB188             CBZ.N    R0,??OSQPostOpt_1
     723                  if ((opt & OS_POST_OPT_BROADCAST) != 0x00) {  /* Do we need to post msg to ALL waiting tasks ? */
+   \       0x1C   0x07F0             LSLS     R0,R6,#+31
+   \       0x1E   0xD505             BPL.N    ??OSQPostOpt_2
     724                      while (pevent->OSEventGrp != 0) {         /* Yes, Post to ALL tasks waiting on queue       */
     725                          (void)OS_EventTaskRdy(pevent, pmsg, OS_STAT_Q, OS_STAT_PEND_OK);
+   \                     ??OSQPostOpt_3: (+1)
+   \       0x20   0x....'....        BL       ?Subroutine6
     726                      }
+   \                     ??CrossCallReturnLabel_17: (+1)
+   \       0x24   0x7AB8             LDRB     R0,[R7, #+10]
+   \       0x26   0x2800             CMP      R0,#+0
+   \       0x28   0xD1FA             BNE.N    ??OSQPostOpt_3
+   \       0x2A   0xE001             B.N      ??CrossCallReturnLabel_16
     727                  } else {                                      /* No,  Post to HPT waiting on queue             */
     728                      (void)OS_EventTaskRdy(pevent, pmsg, OS_STAT_Q, OS_STAT_PEND_OK);
+   \                     ??OSQPostOpt_2: (+1)
+   \       0x2C   0x....'....        BL       ?Subroutine6
     729                  }
     730                  OS_EXIT_CRITICAL();
+   \                     ??CrossCallReturnLabel_16: (+1)
+   \       0x30   0x4620             MOV      R0,R4
+   \       0x32   0x....'....        BL       OS_CPU_SR_Restore
     731                  if ((opt & OS_POST_OPT_NO_SCHED) == 0) {	  /* See if scheduler needs to be invoked          */
+   \       0x36   0x0770             LSLS     R0,R6,#+29
+   \       0x38   0xD425             BMI.N    ??OSQPostOpt_4
     732                      OS_Sched();                               /* Find highest priority task ready to run       */
+   \       0x3A   0x....'....        BL       OS_Sched
     733                  }
     734                  return (OS_ERR_NONE);
+   \       0x3E   0xE022             B.N      ??OSQPostOpt_4
     735              }
     736              pq = (OS_Q *)pevent->OSEventPtr;                  /* Point to queue control block                  */
+   \                     ??OSQPostOpt_1: (+1)
+   \       0x40   0x6878             LDR      R0,[R7, #+4]
     737              if (pq->OSQEntries >= pq->OSQSize) {              /* Make sure queue is not full                   */
+   \       0x42   0x8AC1             LDRH     R1,[R0, #+22]
+   \       0x44   0x8A82             LDRH     R2,[R0, #+20]
+   \       0x46   0x4291             CMP      R1,R2
+   \       0x48   0xD304             BCC.N    ??OSQPostOpt_5
     738                  OS_EXIT_CRITICAL();
+   \       0x4A   0x4620             MOV      R0,R4
+   \       0x4C   0x....'....        BL       OS_CPU_SR_Restore
     739                  return (OS_ERR_Q_FULL);
+   \       0x50   0x201E             MOVS     R0,#+30
+   \       0x52   0xBDF2             POP      {R1,R4-R7,PC}
     740              }
+   \                     ??OSQPostOpt_5: (+1)
+   \       0x54   0x6902             LDR      R2,[R0, #+16]
     741              if ((opt & OS_POST_OPT_FRONT) != 0x00) {          /* Do we post to the FRONT of the queue?         */
+   \       0x56   0x07B6             LSLS     R6,R6,#+30
+   \       0x58   0x4613             MOV      R3,R2
+   \       0x5A   0xD506             BPL.N    ??OSQPostOpt_6
     742                  if (pq->OSQOut == pq->OSQStart) {             /* Yes, Post as LIFO, Wrap OUT pointer if we ... */
+   \       0x5C   0x6847             LDR      R7,[R0, #+4]
+   \       0x5E   0x42BA             CMP      R2,R7
+   \       0x60   0xBF08             IT       EQ
+   \       0x62   0x6883             LDREQ    R3,[R0, #+8]
     743                      pq->OSQOut = pq->OSQEnd;                  /*      ... are at the 1st queue entry           */
     744                  }
     745                  pq->OSQOut--;
     746                  *pq->OSQOut = pmsg;                           /*      Insert message into queue                */
+   \       0x64   0xF843 0x5D04      STR      R5,[R3, #-4]!
+   \       0x68   0xE007             B.N      ??OSQPostOpt_7
     747              } else {                                          /* No,  Post as FIFO                             */
     748                  *pq->OSQIn++ = pmsg;                          /*      Insert message into queue                */
+   \                     ??OSQPostOpt_6: (+1)
+   \       0x6A   0x68C6             LDR      R6,[R0, #+12]
+   \       0x6C   0x6035             STR      R5,[R6, #+0]
+   \       0x6E   0x1D32             ADDS     R2,R6,#+4
     749                  if (pq->OSQIn == pq->OSQEnd) {                /*      Wrap IN ptr if we are at end of queue    */
+   \       0x70   0x6885             LDR      R5,[R0, #+8]
+   \       0x72   0x42AA             CMP      R2,R5
+   \       0x74   0xBF08             IT       EQ
+   \       0x76   0x6842             LDREQ    R2,[R0, #+4]
     750                      pq->OSQIn = pq->OSQStart;
+   \       0x78   0x60C2             STR      R2,[R0, #+12]
     751                  }
     752              }
     753              pq->OSQEntries++;                                 /* Update the nbr of entries in the queue        */
+   \                     ??OSQPostOpt_7: (+1)
+   \       0x7A   0x1C49             ADDS     R1,R1,#+1
+   \       0x7C   0x6103             STR      R3,[R0, #+16]
+   \       0x7E   0x82C1             STRH     R1,[R0, #+22]
     754              OS_EXIT_CRITICAL();
+   \       0x80   0x4620             MOV      R0,R4
+   \       0x82   0x....'....        BL       OS_CPU_SR_Restore
     755              return (OS_ERR_NONE);
+   \                     ??OSQPostOpt_4: (+1)
+   \       0x86   0x2000             MOVS     R0,#+0
+   \       0x88   0xBDF2             POP      {R1,R4-R7,PC}    ;; return
     756          }
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     ?Subroutine6: (+1)
+   \        0x0   0x2300             MOVS     R3,#+0
+   \        0x2   0x2204             MOVS     R2,#+4
+   \        0x4   0x4629             MOV      R1,R5
+   \        0x6   0x4638             MOV      R0,R7
+   \        0x8   0x....'....        B.W      OS_EventTaskRdy
     757          #endif
     758          /*$PAGE*/
     759          /*
@@ -828,8 +1391,14 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     775          */
     776          
     777          #if OS_Q_QUERY_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
     778          INT8U  OSQQuery (OS_EVENT *pevent, OS_Q_DATA *p_q_data)
     779          {
+   \                     OSQQuery: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x4605             MOV      R5,R0
+   \        0x4   0x460C             MOV      R4,R1
     780              OS_Q      *pq;
     781              INT8U      i;
     782          #if OS_LOWEST_PRIO <= 63
@@ -854,25 +1423,58 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     801              }
     802          #endif
     803              if (pevent->OSEventType != OS_EVENT_TYPE_Q) {      /* Validate event block type                    */
+   \        0x6   0x7828             LDRB     R0,[R5, #+0]
+   \        0x8   0x2802             CMP      R0,#+2
+   \        0xA   0xD001             BEQ.N    ??OSQQuery_0
     804                  return (OS_ERR_EVENT_TYPE);
+   \        0xC   0x2001             MOVS     R0,#+1
+   \        0xE   0xBD70             POP      {R4-R6,PC}
     805              }
     806              OS_ENTER_CRITICAL();
+   \                     ??OSQQuery_0: (+1)
+   \       0x10   0x....'....        BL       OS_CPU_SR_Save
+   \       0x14   0x4601             MOV      R1,R0
     807              p_q_data->OSEventGrp = pevent->OSEventGrp;         /* Copy message queue wait list                 */
+   \       0x16   0x7AA8             LDRB     R0,[R5, #+10]
+   \       0x18   0x7320             STRB     R0,[R4, #+12]
     808              psrc                 = &pevent->OSEventTbl[0];
+   \       0x1A   0xF105 0x020B      ADD      R2,R5,#+11
     809              pdest                = &p_q_data->OSEventTbl[0];
+   \       0x1E   0xF104 0x0308      ADD      R3,R4,#+8
     810              for (i = 0; i < OS_EVENT_TBL_SIZE; i++) {
+   \       0x22   0x2004             MOVS     R0,#+4
     811                  *pdest++ = *psrc++;
+   \                     ??OSQQuery_1: (+1)
+   \       0x24   0xF812 0x6B01      LDRB     R6,[R2], #+1
+   \       0x28   0xF803 0x6B01      STRB     R6,[R3], #+1
     812              }
+   \       0x2C   0x1E40             SUBS     R0,R0,#+1
+   \       0x2E   0xD1F9             BNE.N    ??OSQQuery_1
     813              pq = (OS_Q *)pevent->OSEventPtr;
+   \       0x30   0x686A             LDR      R2,[R5, #+4]
     814              if (pq->OSQEntries > 0) {
+   \       0x32   0x8AD0             LDRH     R0,[R2, #+22]
+   \       0x34   0x2800             CMP      R0,#+0
+   \       0x36   0xBF1A             ITTE     NE
+   \       0x38   0x6913             LDRNE    R3,[R2, #+16]
+   \       0x3A   0x681B             LDRNE    R3,[R3, #+0]
+   \       0x3C   0x2300             MOVEQ    R3,#+0
     815                  p_q_data->OSMsg = *pq->OSQOut;                 /* Get next message to return if available      */
     816              } else {
     817                  p_q_data->OSMsg = (void *)0;
+   \       0x3E   0x6023             STR      R3,[R4, #+0]
     818              }
     819              p_q_data->OSNMsgs = pq->OSQEntries;
+   \       0x40   0x80A0             STRH     R0,[R4, #+4]
     820              p_q_data->OSQSize = pq->OSQSize;
+   \       0x42   0x8A90             LDRH     R0,[R2, #+20]
+   \       0x44   0x80E0             STRH     R0,[R4, #+6]
     821              OS_EXIT_CRITICAL();
+   \       0x46   0x4608             MOV      R0,R1
+   \       0x48   0x....'....        BL       OS_CPU_SR_Restore
     822              return (OS_ERR_NONE);
+   \       0x4C   0x2000             MOVS     R0,#+0
+   \       0x4E   0xBD70             POP      {R4-R6,PC}       ;; return
     823          }
     824          #endif                                                 /* OS_Q_QUERY_EN                                */
     825          
@@ -892,8 +1494,12 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     839          *********************************************************************************************************
     840          */
     841          
+
+   \                                 In section .text, align 2, keep-with-next
     842          void  OS_QInit (void)
     843          {
+   \                     OS_QInit: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
     844          #if OS_MAX_QS == 1
     845              OSQFreeList         = &OSQTbl[0];                /* Only ONE queue!                                */
     846              OSQFreeList->OSQPtr = (OS_Q *)0;
@@ -907,23 +1513,144 @@ D:\Develop\H-TEC\Micrium\Software\uCOS-II\Source\os_q.c
     854          
     855          
     856              OS_MemClr((INT8U *)&OSQTbl[0], sizeof(OSQTbl));  /* Clear the queue table                          */
+   \        0x2   0x....             LDR.N    R4,??DataTable4_5
+   \        0x4   0x21C0             MOVS     R1,#+192
+   \        0x6   0x4620             MOV      R0,R4
+   \        0x8   0x....'....        BL       OS_MemClr
     857              pq1 = &OSQTbl[0];
+   \        0xC   0x4621             MOV      R1,R4
     858              pq2 = &OSQTbl[1];
+   \        0xE   0xF104 0x0218      ADD      R2,R4,#+24
     859              for (i = 0; i < (OS_MAX_QS - 1); i++) {          /* Init. list of free QUEUE control blocks        */
+   \       0x12   0x2007             MOVS     R0,#+7
     860                  pq1->OSQPtr = pq2;
+   \                     ??OS_QInit_0: (+1)
+   \       0x14   0xF841 0x2B18      STR      R2,[R1], #+24
     861                  pq1++;
     862                  pq2++;
+   \       0x18   0x3218             ADDS     R2,R2,#+24
     863              }
+   \       0x1A   0x1E40             SUBS     R0,R0,#+1
+   \       0x1C   0xD1FA             BNE.N    ??OS_QInit_0
     864              pq1->OSQPtr = (OS_Q *)0;
+   \       0x1E   0x6008             STR      R0,[R1, #+0]
     865              OSQFreeList = &OSQTbl[0];
+   \       0x20   0x....             LDR.N    R1,??DataTable4_2
+   \       0x22   0x600C             STR      R4,[R1, #+0]
     866          #endif
     867          }
+   \       0x24   0xBD10             POP      {R4,PC}          ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4:
+   \        0x0   0x....'....        DC32     OSIntNesting
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_1:
+   \        0x0   0x....'....        DC32     OSEventFreeList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_2:
+   \        0x0   0x....'....        DC32     OSQFreeList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_3:
+   \        0x0   0x....'....        DC32     OSLockNesting
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_4:
+   \        0x0   0x....'....        DC32     OSTCBCur
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_5:
+   \        0x0   0x....'....        DC32     OSQTbl
     868          #endif                                               /* OS_Q_EN                                        */
 
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      16   OSQAccept
+        16   -> OS_CPU_SR_Restore
+        16   -> OS_CPU_SR_Save
+      24   OSQCreate
+        24   -> OS_CPU_SR_Restore
+        24   -> OS_CPU_SR_Save
+        24   -> OS_EventWaitListInit
+      32   OSQDel
+        32   -> OS_CPU_SR_Restore
+        32   -> OS_CPU_SR_Save
+        32   -> OS_EventTaskRdy
+        32   -> OS_Sched
+       8   OSQFlush
+         8   -> OS_CPU_SR_Restore
+         8   -> OS_CPU_SR_Save
+      24   OSQPend
+        24   -> OS_CPU_SR_Restore
+        24   -> OS_CPU_SR_Save
+        24   -> OS_EventTaskRemove
+        24   -> OS_EventTaskWait
+        24   -> OS_Sched
+      24   OSQPendAbort
+        24   -> OS_CPU_SR_Restore
+        24   -> OS_CPU_SR_Save
+        24   -> OS_EventTaskRdy
+        24   -> OS_Sched
+      16   OSQPost
+        16   -> OS_CPU_SR_Restore
+        16   -> OS_CPU_SR_Save
+        16   -> OS_EventTaskRdy
+        16   -> OS_Sched
+      16   OSQPostFront
+        16   -> OS_CPU_SR_Restore
+        16   -> OS_CPU_SR_Save
+        16   -> OS_EventTaskRdy
+        16   -> OS_Sched
+      24   OSQPostOpt
+        24   -> OS_CPU_SR_Restore
+        24   -> OS_CPU_SR_Save
+        24   -> OS_EventTaskRdy
+        24   -> OS_Sched
+      16   OSQQuery
+        16   -> OS_CPU_SR_Restore
+        16   -> OS_CPU_SR_Save
+       8   OS_QInit
+         8   -> OS_MemClr
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable4
+       4  ??DataTable4_1
+       4  ??DataTable4_2
+       4  ??DataTable4_3
+       4  ??DataTable4_4
+       4  ??DataTable4_5
+       8  ?Subroutine0
+      26  ?Subroutine1
+      12  ?Subroutine2
+       6  ?Subroutine3
+       6  ?Subroutine4
+      12  ?Subroutine5
+      12  ?Subroutine6
+      74  OSQAccept
+     128  OSQCreate
+     144  OSQDel
+      30  OSQFlush
+     216  OSQPend
+      88  OSQPendAbort
+      86  OSQPost
+      84  OSQPostFront
+     138  OSQPostOpt
+      80  OSQQuery
+      38  OS_QInit
 
  
+ 1'212 bytes in section .text
  
- 0 bytes of memory
+ 1'212 bytes of CODE memory
 
 Errors: none
 Warnings: none
