@@ -664,7 +664,7 @@
                 </option>
                 <option>
                     <name>OCOutputOverride</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
@@ -1020,7 +1020,7 @@
                 </option>
                 <option>
                     <name>IlinkTrustzoneImportLibraryOut</name>
-                    <state>###Unitialized###</state>
+                    <state>STM3210B-EVAL-OS-Probe-v5_import_lib.o</state>
                 </option>
                 <option>
                     <name>OILinkExtraOption</name>
@@ -1331,7 +1331,7 @@
         <group>
             <name>Port</name>
             <file>
-                <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu.h</name>
+                <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\arm-cortex-m3\Generic\IAR\os_cpu.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_a.asm</name>

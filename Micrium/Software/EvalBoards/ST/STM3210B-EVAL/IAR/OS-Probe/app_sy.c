@@ -64,7 +64,7 @@ static OS_STK checkTaskStack[TASK_STK_SIZE];
 static OS_STK startTaskStack[TASK_STK_SIZE];
 
 // Event Flags
-static OS_FLAG_GRP* flagGroup;
+static OS_FLAG_GRP *flagGroup;
 const static int FLAG_INIT = 0;
 const static int FLAG_DETECT = 1;
 const static int FLAG_DETECT_NOT = 2;
@@ -72,17 +72,8 @@ const static int FLAG_TEMPER_NORMAL = 4;
 const static int FLAG_TEMPER_HIGH = 8;
 const static int FLAG_TEMPER_LOW = 16;
 
-// Que
-static OS_EVENT* tempQue;
-static void* tempBuffer[10];
-
-// Que Message
-static  OS_EVENT* App_QDist;
-static  void* QMsg[5];
-
-
 // time
-// static OS_EVENT *sem;
+static OS_EVENT *sem;
 static int count = 0;
 static int check = 0;
 static int read = 0;
@@ -118,13 +109,13 @@ static CPU_BOOLEAN App_ProbeB1;
  *********************************************************************************************************
  */
 
- // Task function
-static void detectTask(void* p);
-static void temperTask(void* p);
-static void passTask(void* p);
-static void denyTask(void* p);
-static void checkTask(void* p);
-static void startTask(void* p);
+// Task function
+static void detectTask(void *p);
+static void temperTask(void *p);
+static void passTask(void *p);
+static void denyTask(void *p);
+static void checkTask(void *p);
+static void startTask(void *p);
 
 static void App_DispScr_SignOn(void);
 static void DispScr_TaskNames(void);
@@ -135,7 +126,6 @@ static void startAlert();
 static void stopNotice();
 static void startNotice();
 static void initAll();
-
 
 #if ((APP_PROBE_COM_EN == DEF_ENABLED) || \
 	 (APP_OS_PROBE_EN == DEF_ENABLED))
@@ -171,84 +161,73 @@ int main(void)
 
 	initAll();
 
-	os_err = OSTaskCreateExt((void (*)(void*))detectTask,						   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
-		(void*)0,											   // Task로 넘겨줄 인자
-		(OS_STK*)&detectTaskStack[TASK_STK_SIZE - 1],		   // Task가 할당될 Stack의 Top을 가리키는 주소
-		(INT8U)TASK_DETECT_PRIO,							   // Task의 우선 순위 (MPT)
-		(INT16U)TASK_DETECT_PRIO,							   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
-		(OS_STK*)&detectTaskStack,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
-		(INT32U)TASK_STK_SIZE,								   // Task Stack의 크기를 의미
-		(void*)0,											   // Task Control Block 활용시 사용
-		(INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
+	os_err = OSTaskCreateExt((void (*)(void *))detectTask,						   // Task가 수행할 함수, 사람의 존재 유/무를 알려주는 Task
+							 (void *)0,											   // Task로 넘겨줄 인자
+							 (OS_STK *)&detectTaskStack[TASK_STK_SIZE - 1],		   // Task가 할당될 Stack의 Top을 가리키는 주소
+							 (INT8U)TASK_DETECT_PRIO,							   // Task의 우선 순위 (MPT)
+							 (INT16U)TASK_DETECT_PRIO,							   // Task를 지칭하는 유일한 식별자, Task 갯수의 극복을 위해서 사용할 예정, 현재는 우선 순위와 같게끔 설정
+							 (OS_STK *)&detectTaskStack,						   // Task가 할당될 Stack의 마지막을 가리키는 주소, Stack 검사용으로 사용
+							 (INT32U)TASK_STK_SIZE,								   // Task Stack의 크기를 의미
+							 (void *)0,											   // Task Control Block 활용시 사용
+							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK)); // Task 생성 옵션
 
-	os_err = OSTaskCreateExt((void (*)(void*))temperTask, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
-		(void*)0,
-		(OS_STK*)&temperatureTaskStack[TASK_STK_SIZE - 1],
-		(INT8U)TASK_TEMPER_PRIO,
-		(INT16U)TASK_TEMPER_PRIO,
-		(OS_STK*)&temperatureTaskStack,
-		(INT32U)TASK_STK_SIZE,
-		(void*)0,
-		(INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+	os_err = OSTaskCreateExt((void (*)(void *))temperTask, // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
+							 (void *)0,
+							 (OS_STK *)&temperatureTaskStack[TASK_STK_SIZE - 1],
+							 (INT8U)TASK_TEMPER_PRIO,
+							 (INT16U)TASK_TEMPER_PRIO,
+							 (OS_STK *)&temperatureTaskStack,
+							 (INT32U)TASK_STK_SIZE,
+							 (void *)0,
+							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void*))passTask, // 정상체온인 사람은 통과를 허가하는 Task
-		(void*)0,
-		(OS_STK*)&passTaskStack[TASK_STK_SIZE - 1],
-		(INT8U)TASK_PASS_PRIO,
-		(INT16U)TASK_PASS_PRIO,
-		(OS_STK*)&passTaskStack,
-		(INT32U)TASK_STK_SIZE,
-		(void*)0,
-		(INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+	os_err = OSTaskCreateExt((void (*)(void *))passTask, // 정상체온인 사람은 통과를 허가하는 Task
+							 (void *)0,
+							 (OS_STK *)&passTaskStack[TASK_STK_SIZE - 1],
+							 (INT8U)TASK_PASS_PRIO,
+							 (INT16U)TASK_PASS_PRIO,
+							 (OS_STK *)&passTaskStack,
+							 (INT32U)TASK_STK_SIZE,
+							 (void *)0,
+							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void*))denyTask, // 비정상체온인 사람은 통과를 불허하는 Task
-		(void*)0,
-		(OS_STK*)&denyTaskStack[TASK_STK_SIZE - 1],
-		(INT8U)TASK_DENY_PRIO,
-		(INT16U)TASK_DENY_PRIO,
-		(OS_STK*)&denyTaskStack,
-		(INT32U)TASK_STK_SIZE,
-		(void*)0,
-		(INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+	os_err = OSTaskCreateExt((void (*)(void *))denyTask, // 비정상체온인 사람은 통과를 불허하는 Task
+							 (void *)0,
+							 (OS_STK *)&denyTaskStack[TASK_STK_SIZE - 1],
+							 (INT8U)TASK_DENY_PRIO,
+							 (INT16U)TASK_DENY_PRIO,
+							 (OS_STK *)&denyTaskStack,
+							 (INT32U)TASK_STK_SIZE,
+							 (void *)0,
+							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void*))checkTask, // 알림 장치 작동 중지하는 Task
-		(void*)0,
-		(OS_STK*)&checkTaskStack[TASK_STK_SIZE - 1],
-		(INT8U)TASK_CHECK_PRIO,
-		(INT16U)TASK_CHECK_PRIO,
-		(OS_STK*)&checkTaskStack,
-		(INT32U)TASK_STK_SIZE,
-		(void*)0,
-		(INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+	os_err = OSTaskCreateExt((void (*)(void *))checkTask, // 알림 장치 작동 중지하는 Task
+							 (void *)0,
+							 (OS_STK *)&checkTaskStack[TASK_STK_SIZE - 1],
+							 (INT8U)TASK_CHECK_PRIO,
+							 (INT16U)TASK_CHECK_PRIO,
+							 (OS_STK *)&checkTaskStack,
+							 (INT32U)TASK_STK_SIZE,
+							 (void *)0,
+							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void*))startTask, // 초기화 일회용 Task
-		(void*)0,
-		(OS_STK*)&startTaskStack[TASK_STK_SIZE - 1],
-		(INT8U)TASK_START_PRIO,
-		(INT16U)TASK_START_PRIO,
-		(OS_STK*)startTaskStack,
-		(INT32U)TASK_STK_SIZE,
-		(void*)0,
-		(INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
+	os_err = OSTaskCreateExt((void (*)(void *))startTask, // 초기화 Task
+							 (void *)0,
+							 (OS_STK *)&startTaskStack[TASK_STK_SIZE - 1],
+							 (INT8U)TASK_START_PRIO,
+							 (INT16U)TASK_START_PRIO,
+							 (OS_STK *)startTaskStack,
+							 (INT32U)TASK_STK_SIZE,
+							 (void *)0,
+							 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	/*	os_err = OSTaskCreateExt((void (*)(void *))displayTask, // dot-matrix 표시하는 Task
-								 (void *)0,
-								 (OS_STK *)&displayTaskStack[TASK_STK_SIZE - 1],
-								 (INT8U)TASK_DISPLAY_PRIO,
-								 (INT16U)TASK_DISPLAY_PRIO,
-								 (OS_STK *)&displayTaskStack,
-								 (INT32U)TASK_STK_SIZE,
-								 (void *)0,
-								 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
-	*/
 #if (OS_TASK_NAME_SIZE >= 11)
-	OSTaskNameSet(TASK_DETECT_PRIO, (CPU_INT08U*)"Detect Task", &os_err);
-	OSTaskNameSet(TASK_TEMPER_PRIO, (CPU_INT08U*)"Temperature Task", &os_err);
-	OSTaskNameSet(TASK_PASS_PRIO, (CPU_INT08U*)"Pass Task", &os_err);
-	OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U*)"Deny Task", &os_err);
-	OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U*)"Check Task", &os_err);
-	OSTaskNameSet(TASK_START_PRIO, (CPU_INT08U*)"Start Task", &os_err);
-	//OSTaskNameSet(TASK_DISPLAY_PRIO, (CPU_INT08U *)"Display Task", &os_err);
+	OSTaskNameSet(TASK_DETECT_PRIO, (CPU_INT08U *)"Detect Task", &os_err);
+	OSTaskNameSet(TASK_TEMPER_PRIO, (CPU_INT08U *)"Temperature Task", &os_err);
+	OSTaskNameSet(TASK_PASS_PRIO, (CPU_INT08U *)"Pass Task", &os_err);
+	OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U *)"Deny Task", &os_err);
+	OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U *)"Check Task", &os_err);
+	OSTaskNameSet(TASK_START_PRIO, (CPU_INT08U *)"Start Task", &os_err);
 #endif
 
 	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
@@ -272,8 +251,8 @@ int main(void)
  *********************************************************************************************************
  */
 
- // 상황 감지 Task
-static void detectTask(void* p)
+// 상황 감지 Task
+static void detectTask(void *p)
 {
 	CPU_INT08U err;
 
@@ -284,7 +263,7 @@ static void detectTask(void* p)
 		val = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1);
 #endif
 #ifdef MANUAL
-		val = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_9); //GPIO_ReadInputData(GPIOC) & 0x80;
+		val = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_9);
 
 #endif
 		if (val != 0) // when human detected(auto) or touch button(manual)
@@ -295,7 +274,6 @@ static void detectTask(void* p)
 		{
 			OSFlagPost(flagGroup, (OS_FLAGS)FLAG_DETECT_NOT, OS_FLAG_SET, &err);
 		}
-
 
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
@@ -317,8 +295,8 @@ static void detectTask(void* p)
  *********************************************************************************************************
  */
 
- // 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
-static void temperTask(void* p)
+// 사람의 온도를 측정하여 통과할지 말지를 결정하는 Task
+static void temperTask(void *p)
 {
 	INT8U err;
 	int temp;
@@ -326,7 +304,8 @@ static void temperTask(void* p)
 	int low = 30;
 	while (DEF_TRUE)
 	{
-		if (read == 0) {
+		if (read == 0)
+		{
 			temp = readTemperature();
 
 			if (temp > high)
@@ -344,7 +323,8 @@ static void temperTask(void* p)
 
 			read++;
 		}
-		else if (read > 3) {
+		else if (read > 3)
+		{
 			read = 0;
 		}
 		//OSQPost(tempQue, (void *)temp);
@@ -353,27 +333,27 @@ static void temperTask(void* p)
 }
 static int readTemperature()
 {
-	while (I2C_GetFlagStatus(((I2C_TypeDef*)I2C1_BASE), I2C_FLAG_BUSY))
-		I2C_GenerateSTART(((I2C_TypeDef*)I2C1_BASE), ENABLE);
-	while (!I2C_CheckEvent(((I2C_TypeDef*)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
+	while (I2C_GetFlagStatus(((I2C_TypeDef *)I2C1_BASE), I2C_FLAG_BUSY))
+		I2C_GenerateSTART(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
 		;
-	I2C_Send7bitAddress(((I2C_TypeDef*)I2C1_BASE), 0x74, I2C_Direction_Transmitter);
-	while (!I2C_CheckEvent(((I2C_TypeDef*)I2C1_BASE), I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
+	I2C_Send7bitAddress(((I2C_TypeDef *)I2C1_BASE), 0x74, I2C_Direction_Transmitter);
+	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
 		;
-	I2C_SendData(((I2C_TypeDef*)I2C1_BASE), 0x07);
-	while (!I2C_CheckEvent(((I2C_TypeDef*)I2C1_BASE), I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+	I2C_SendData(((I2C_TypeDef *)I2C1_BASE), 0x07);
+	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_BYTE_TRANSMITTED))
 		;
-	I2C_GenerateSTOP(((I2C_TypeDef*)I2C1_BASE), ENABLE);
-	I2C_GenerateSTART(((I2C_TypeDef*)I2C1_BASE), ENABLE);
-	while (!I2C_CheckEvent(((I2C_TypeDef*)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
+	I2C_GenerateSTOP(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+	I2C_GenerateSTART(((I2C_TypeDef *)I2C1_BASE), ENABLE);
+	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_MODE_SELECT))
 		;
-	I2C_Send7bitAddress(((I2C_TypeDef*)I2C1_BASE), 0x75, I2C_Direction_Receiver);
-	while (!I2C_CheckEvent(((I2C_TypeDef*)I2C1_BASE), I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
+	I2C_Send7bitAddress(((I2C_TypeDef *)I2C1_BASE), 0x75, I2C_Direction_Receiver);
+	while (!I2C_CheckEvent(((I2C_TypeDef *)I2C1_BASE), I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
 		;
-	int low = I2C_ReceiveData(((I2C_TypeDef*)I2C1_BASE));
-	if (I2C_GetLastEvent((I2C_TypeDef*)I2C1_BASE) & 0x40 != 0x40)
+	int low = I2C_ReceiveData(((I2C_TypeDef *)I2C1_BASE));
+	if (I2C_GetLastEvent((I2C_TypeDef *)I2C1_BASE) & 0x40 != 0x40)
 	{
-		int high = I2C_ReceiveData(((I2C_TypeDef*)I2C1_BASE));
+		int high = I2C_ReceiveData(((I2C_TypeDef *)I2C1_BASE));
 		if (high & 0x80 != 0)
 		{
 			return 20; // Need Delay / return default
@@ -384,7 +364,7 @@ static int readTemperature()
 		}
 	}
 
-	I2C_AcknowledgeConfig(((I2C_TypeDef*)I2C1_BASE), ENABLE);
+	I2C_AcknowledgeConfig(((I2C_TypeDef *)I2C1_BASE), ENABLE);
 }
 
 /*
@@ -402,20 +382,20 @@ static int readTemperature()
  * Note(s)     : none.
  *********************************************************************************************************
  */
- // 정상체온인 사람은 통과를 허가하는 Task
-static void passTask(void* p)
+// 정상체온인 사람은 통과를 허가하는 Task
+static void passTask(void *p)
 {
 	int err;
 	while (DEF_TRUE)
 	{
-		OSFlagPend(flagGroup, (OS_FLAGS)(FLAG_DETECT + FLAG_TEMPER_NORMAL), OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 100, (INT8U*)&err);
+		OSFlagPend(flagGroup, (OS_FLAGS)(FLAG_DETECT + FLAG_TEMPER_NORMAL), OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 100, (INT8U *)&err);
 		startNotice();
 		stopAlert();
 
-		//OSSemPend(sem, 0, (INT8U *)&err);
+		OSSemPend(sem, 0, (INT8U *)&err);
 		if (count == 0)
 			count = 1;
-		//OSSemPost(sem);
+		OSSemPost(sem);
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
 }
@@ -435,24 +415,24 @@ static void passTask(void* p)
  * Note(s)     : none.
  *********************************************************************************************************
  */
- // 비정상체온인 사람은 통과를 불허하는 Task
-static void denyTask(void* p)
+// 비정상체온인 사람은 통과를 불허하는 Task
+static void denyTask(void *p)
 {
 	int err;
 	while (DEF_TRUE)
 	{
 		OSFlagPend(flagGroup,
-			(OS_FLAGS)(FLAG_TEMPER_HIGH + FLAG_DETECT),
-			OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME,
-			100,
-			(INT8U*)&err);
+				   (OS_FLAGS)(FLAG_TEMPER_HIGH + FLAG_DETECT),
+				   OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME,
+				   100,
+				   (INT8U *)&err);
 		startAlert();
 		stopNotice();
 
-		//OSSemPend(sem, 0, (INT8U *)&err);
+		OSSemPend(sem, 0, (INT8U *)&err);
 		if (count == 0)
 			count = 1;
-		//OSSemPost(sem);
+		OSSemPost(sem);
 
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
@@ -473,8 +453,8 @@ static void denyTask(void* p)
  * Note(s)     : none.
  *********************************************************************************************************
  */
- // 경고를 일정 시간 후 정지하도록 하는 Task
-static void checkTask(void* p)
+// 경고를 일정 시간 후 정지하도록 하는 Task
+static void checkTask(void *p)
 {
 	CPU_INT08U err;
 	stopAlert();
@@ -490,9 +470,9 @@ static void checkTask(void* p)
 				stopAlert();
 				stopNotice();
 
-				//OSSemPend(sem, 0, &err);
+				OSSemPend(sem, 0, &err);
 				count = 0;
-				//OSSemPost(sem);
+				OSSemPost(sem);
 				check = 0;
 			}
 		}
@@ -530,8 +510,7 @@ static void startNotice()
 	GPIO_SetBits(GPIOC, GPIO_Pin_11);
 }
 
-
- /*
+/*
   *********************************************************************************************************
   *                                            startTask()
   *
@@ -546,8 +525,8 @@ static void startNotice()
   * Note(s)     : none.
   *********************************************************************************************************
   */
-  // 경고를 일정 시간 후 정지하도록 하는 Task
-static void startTask(void* p)
+// 경고를 일정 시간 후 정지하도록 하는 Task
+static void startTask(void *p)
 {
 	CPU_INT08U err;
 
@@ -556,11 +535,8 @@ static void startTask(void* p)
 	// Create Event Flag
 	flagGroup = OSFlagCreate(0, &err);
 
-	// Create msg que
-	tempQue = OSQCreate(&tempBuffer[0], 10);
-
 	// Create semaphore
-	//sem = OSSemCreate(0);
+	sem = OSSemCreate(0);
 
 	stopAlert();
 	stopNotice();
@@ -739,7 +715,7 @@ static void App_ProbeCallback(void)
  *********************************************************************************************************
  */
 
- /*
+/*
   *********************************************************************************************************
   *********************************************************************************************************
   *                                          uC/OS-II APP HOOKS
@@ -748,7 +724,7 @@ static void App_ProbeCallback(void)
   */
 
 #if (OS_APP_HOOKS_EN > 0)
-  /*
+/*
    *********************************************************************************************************
    *                                      TASK CREATION HOOK (APPLICATION)
    *
@@ -760,7 +736,7 @@ static void App_ProbeCallback(void)
    *********************************************************************************************************
    */
 
-void App_TaskCreateHook(OS_TCB* ptcb)
+void App_TaskCreateHook(OS_TCB *ptcb)
 {
 #if ((APP_OS_PROBE_EN == DEF_ENABLED) && \
 	 (OS_PROBE_HOOKS_EN == DEF_ENABLED))
@@ -780,7 +756,7 @@ void App_TaskCreateHook(OS_TCB* ptcb)
  *********************************************************************************************************
  */
 
-void App_TaskDelHook(OS_TCB* ptcb)
+void App_TaskDelHook(OS_TCB *ptcb)
 {
 	(void)ptcb;
 }
@@ -860,7 +836,7 @@ void App_TaskSwHook(void)
  */
 
 #if OS_VERSION >= 204
-void App_TCBInitHook(OS_TCB* ptcb)
+void App_TCBInitHook(OS_TCB *ptcb)
 {
 	(void)ptcb;
 }
@@ -905,34 +881,27 @@ static void initAll()
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
 
-	// PIN
-	// ADC - 인체 감지
+// PIN
+// ADC - 인체 감지
+#ifdef AUTO
 	gpio_init.GPIO_Pin = GPIO_Pin_1;
 	gpio_init.GPIO_Mode = GPIO_Mode_AIN;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &gpio_init);
-	//
-	// I2C - 온도 센서
+#endif
+// I2C - 온도 센서
+#ifdef MANUAL
 	gpio_init.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
 	gpio_init.GPIO_Mode = GPIO_Mode_AF_OD;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &gpio_init);
+#endif
 	// 부저
 	gpio_init.GPIO_Pin = GPIO_Pin_8;
 	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &gpio_init);
-	/*
-	// SPI
-	gpio_init.GPIO_Pin = GPIO_Pin_12;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_Init(GPIOB, &gpio_init);
-	gpio_init.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB, &gpio_init);
-	*/
+
 	// touch
 	gpio_init.GPIO_Pin = GPIO_Pin_9;
 	gpio_init.GPIO_Mode = GPIO_Mode_IN_FLOATING;
@@ -945,31 +914,8 @@ static void initAll()
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOC, &gpio_init);
 
-	/*
-	// analog - dot-matrix
-	gpio_init.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_Init(GPIOA, &gpio_init);
-
-	gpio_init.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_0;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_Init(GPIOB, &gpio_init);
-
-	gpio_init.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_Init(GPIOC, &gpio_init);
-*/
-/*
-GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
-GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-GPIO_Init(GPIOD, &GPIO_InitStructure);
-*/
-// CONFIG
-// ADC
+	// CONFIG
+	// ADC
 	adc_init.ADC_Mode = ADC_Mode_Independent;
 	adc_init.ADC_ScanConvMode = ENABLE;
 	adc_init.ADC_ContinuousConvMode = ENABLE;
@@ -996,20 +942,6 @@ GPIO_Init(GPIOD, &GPIO_InitStructure);
 	i2c_init.I2C_Ack = I2C_Ack_Enable;
 	i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
 	i2c_init.I2C_ClockSpeed = 100000;
-	I2C_Init(((I2C_TypeDef*)I2C1_BASE), &i2c_init);
-	I2C_Cmd(((I2C_TypeDef*)I2C1_BASE), ENABLE);
-	/*
-	// SPI
-	spi_init.SPI_Direction = SPI_Direction_1Line_Tx;
-	spi_init.SPI_Mode = SPI_Mode_Master;
-	spi_init.SPI_DataSize = SPI_DataSize_16b;
-	spi_init.SPI_CPOL = SPI_CPOL_Low;
-	spi_init.SPI_CPHA = SPI_CPHA_1Edge;
-	spi_init.SPI_NSS = SPI_NSS_Soft;
-	spi_init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;
-	spi_init.SPI_FirstBit = SPI_FirstBit_MSB;
-	spi_init.SPI_CRCPolynomial;
-	SPI_Init(SPI2, &spi_init);
-	SPI_Cmd(SPI2, ENABLE);
-	*/
+	I2C_Init(((I2C_TypeDef *)I2C1_BASE), &i2c_init);
+	I2C_Cmd(((I2C_TypeDef *)I2C1_BASE), ENABLE);
 }

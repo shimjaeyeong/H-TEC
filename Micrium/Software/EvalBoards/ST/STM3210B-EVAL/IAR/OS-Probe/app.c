@@ -72,17 +72,9 @@ const static int FLAG_TEMPER_NORMAL = 4;
 const static int FLAG_TEMPER_HIGH = 8;
 const static int FLAG_TEMPER_LOW = 16;
 
-// Que
-static OS_EVENT* tempQue;
-static void* tempBuffer[10];
-
-// Que Message
-static  OS_EVENT* App_QDist;
-static  void* QMsg[5];
-
 
 // time
-// static OS_EVENT *sem;
+static OS_EVENT *sem;
 static int count = 0;
 static int check = 0;
 static int read = 0;
@@ -221,7 +213,7 @@ int main(void)
 		(void*)0,
 		(INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	os_err = OSTaskCreateExt((void (*)(void*))startTask, // 초기화 일회용 Task
+	os_err = OSTaskCreateExt((void (*)(void*))startTask, // 초기화 Task
 		(void*)0,
 		(OS_STK*)&startTaskStack[TASK_STK_SIZE - 1],
 		(INT8U)TASK_START_PRIO,
@@ -231,16 +223,6 @@ int main(void)
 		(void*)0,
 		(INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
 
-	/*	os_err = OSTaskCreateExt((void (*)(void *))displayTask, // dot-matrix 표시하는 Task
-								 (void *)0,
-								 (OS_STK *)&displayTaskStack[TASK_STK_SIZE - 1],
-								 (INT8U)TASK_DISPLAY_PRIO,
-								 (INT16U)TASK_DISPLAY_PRIO,
-								 (OS_STK *)&displayTaskStack,
-								 (INT32U)TASK_STK_SIZE,
-								 (void *)0,
-								 (INT16U)(OS_TASK_OPT_STK_CLR | OS_TASK_OPT_STK_CHK));
-	*/
 #if (OS_TASK_NAME_SIZE >= 11)
 	OSTaskNameSet(TASK_DETECT_PRIO, (CPU_INT08U*)"Detect Task", &os_err);
 	OSTaskNameSet(TASK_TEMPER_PRIO, (CPU_INT08U*)"Temperature Task", &os_err);
@@ -248,7 +230,6 @@ int main(void)
 	OSTaskNameSet(TASK_DENY_PRIO, (CPU_INT08U*)"Deny Task", &os_err);
 	OSTaskNameSet(TASK_CHECK_PRIO, (CPU_INT08U*)"Check Task", &os_err);
 	OSTaskNameSet(TASK_START_PRIO, (CPU_INT08U*)"Start Task", &os_err);
-	//OSTaskNameSet(TASK_DISPLAY_PRIO, (CPU_INT08U *)"Display Task", &os_err);
 #endif
 
 	OSStart(); /* Start multitasking (i.e. give control to uC/OS-II).  */
@@ -284,7 +265,7 @@ static void detectTask(void* p)
 		val = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1);
 #endif
 #ifdef MANUAL
-		val = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_9); //GPIO_ReadInputData(GPIOC) & 0x80;
+		val = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_9);
 
 #endif
 		if (val != 0) // when human detected(auto) or touch button(manual)
@@ -347,7 +328,6 @@ static void temperTask(void* p)
 		else if (read > 3) {
 			read = 0;
 		}
-		//OSQPost(tempQue, (void *)temp);
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
 }
@@ -412,22 +392,10 @@ static void passTask(void* p)
 		startNotice();
 		stopAlert();
 
-		/*
-		OSFlagPend(flagGroup, FLAG_DETECT, OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME, 0, (INT8U *)&err);
-		int temp = (int)OSQPend(tempQue, 0, (INT8U *)&err);
-		if (temp > 40)
-		{
-			startAlert();
-		}
-		else if (temp > 30 && temp <= 40)
-		{
-			startNotice();
-		}
-		*/
-		//OSSemPend(sem, 0, (INT8U *)&err);
+		OSSemPend(sem, 0, (INT8U *)&err);
 		if (count == 0)
 			count = 1;
-		//OSSemPost(sem);
+		OSSemPost(sem);
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
 }
@@ -460,10 +428,11 @@ static void denyTask(void* p)
 			(INT8U*)&err);
 		startAlert();
 		stopNotice();
-		//OSSemPend(sem, 0, (INT8U *)&err);
+
+		OSSemPend(sem, 0, (INT8U *)&err);
 		if (count == 0)
 			count = 1;
-		//OSSemPost(sem);
+		OSSemPost(sem);
 
 		OSTimeDlyHMSM(0, 0, 0, DELAY_TIME); // To run other tasks
 	}
@@ -500,9 +469,10 @@ static void checkTask(void* p)
 			{
 				stopAlert();
 				stopNotice();
-				//OSSemPend(sem, 0, &err);
+
+				OSSemPend(sem, 0, &err);
 				count = 0;
-				//OSSemPost(sem);
+				OSSemPost(sem);
 				check = 0;
 			}
 		}
@@ -539,66 +509,7 @@ static void startNotice()
 	stopAlert();
 	GPIO_SetBits(GPIOC, GPIO_Pin_11);
 }
-/*
- *********************************************************************************************************
- *                                            displayTask()
- *
- * Description : display with dot-matrix.
- *
- * Argument(s) : p
- *
- * Return(s)   : none.
- *
- * Caller(s)   : This is a task.
- *
- * Note(s)     : none.
- *********************************************************************************************************
- */
- /*
- // dot-matrix 출력
- static void
- displayTask(void *p)
- {
-	 CPU_INT08U err;
-	 int color = 0; // green
-	 int shape = 0; // O
-	 while (DEF_TRUE)
-	 {
-		 GPIO_SetBits(GPIOC, GPIO_Pin_6);
-		 GPIO_SetBits(GPIOC, GPIO_Pin_8);
 
-		 for (int i = 0; i < 8; i++)
-		 {
-			 GPIO_SetBits(lineTypes[i], linePins[i]);
-			 for (int j = 0; j < 8; j++)
-			 {
-				 GPIO_SetBits(orangeTypes[i], orangePins[j]);
-
-				 if (shape == 0 && shapeO[i][j] == 1)
-				 {
-
-					 GPIO_SetBits(orangeTypes[j], orangePins[j]);
-				 }
-				 else if (shape == 1 && shapeX[i][j] == 1)
-				 {
-
-					 GPIO_SetBits(orangeTypes[j], orangePins[j]);
-				 }
-				 else
-				 {
-					 //GPIO_ResetBits(orangeTypes[j], orangePins[j]);
-					 //GPIO_ResetBits(greenTypes[j], greenPins[j]);
-				 }
-
-			 }
-
-			 GPIO_ResetBits(lineTypes[i], linePins[i]);
-		 }
-
-		 OSTimeDlyHMSM(0, 0, 0, 30); // To run other tasks
-	 }
- }
- */
 
  /*
   *********************************************************************************************************
@@ -625,11 +536,8 @@ static void startTask(void* p)
 	// Create Event Flag
 	flagGroup = OSFlagCreate(0, &err);
 
-	// Create msg que
-	tempQue = OSQCreate(&tempBuffer[0], 10);
-
 	// Create semaphore
-	//sem = OSSemCreate(0);
+	sem = OSSemCreate(0);
 
 	stopAlert();
 	stopNotice();
@@ -976,32 +884,25 @@ static void initAll()
 
 	// PIN
 	// ADC - 인체 감지
+	#ifdef AUTO
 	gpio_init.GPIO_Pin = GPIO_Pin_1;
 	gpio_init.GPIO_Mode = GPIO_Mode_AIN;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &gpio_init);
-	//
+	#endif
 	// I2C - 온도 센서
+	#ifdef MANUAL
 	gpio_init.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
 	gpio_init.GPIO_Mode = GPIO_Mode_AF_OD;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &gpio_init);
+	#endif
 	// 부저
 	gpio_init.GPIO_Pin = GPIO_Pin_8;
 	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &gpio_init);
-	/*
-	// SPI
-	gpio_init.GPIO_Pin = GPIO_Pin_12;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_Init(GPIOB, &gpio_init);
-	gpio_init.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-	gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB, &gpio_init);
-	*/
+	
 	// touch
 	gpio_init.GPIO_Pin = GPIO_Pin_9;
 	gpio_init.GPIO_Mode = GPIO_Mode_IN_FLOATING;
@@ -1014,31 +915,8 @@ static void initAll()
 	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOC, &gpio_init);
 
-	/*
-	// analog - dot-matrix
-	gpio_init.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_Init(GPIOA, &gpio_init);
-
-	gpio_init.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_0;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_Init(GPIOB, &gpio_init);
-
-	gpio_init.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
-	gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-	gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_Init(GPIOC, &gpio_init);
-*/
-/*
-GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
-GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-GPIO_Init(GPIOD, &GPIO_InitStructure);
-*/
 // CONFIG
-// ADC
+	// ADC
 	adc_init.ADC_Mode = ADC_Mode_Independent;
 	adc_init.ADC_ScanConvMode = ENABLE;
 	adc_init.ADC_ContinuousConvMode = ENABLE;
@@ -1067,18 +945,4 @@ GPIO_Init(GPIOD, &GPIO_InitStructure);
 	i2c_init.I2C_ClockSpeed = 100000;
 	I2C_Init(((I2C_TypeDef*)I2C1_BASE), &i2c_init);
 	I2C_Cmd(((I2C_TypeDef*)I2C1_BASE), ENABLE);
-	/*
-	// SPI
-	spi_init.SPI_Direction = SPI_Direction_1Line_Tx;
-	spi_init.SPI_Mode = SPI_Mode_Master;
-	spi_init.SPI_DataSize = SPI_DataSize_16b;
-	spi_init.SPI_CPOL = SPI_CPOL_Low;
-	spi_init.SPI_CPHA = SPI_CPHA_1Edge;
-	spi_init.SPI_NSS = SPI_NSS_Soft;
-	spi_init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;
-	spi_init.SPI_FirstBit = SPI_FirstBit_MSB;
-	spi_init.SPI_CRCPolynomial;
-	SPI_Init(SPI2, &spi_init);
-	SPI_Cmd(SPI2, ENABLE);
-	*/
 }
