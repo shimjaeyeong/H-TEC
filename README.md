@@ -1,7 +1,8 @@
 # H-TEC
 고열 출입 확인 기술
 (High Temperature Entrance Checking Technique)  
-![시연 영상](/htec.mp4)
+![시연 영상](https://raw.githubusercontent.com/LeeSeungYun1020/H-TEC/main/htec.mp4)
+
 
 ## 보고서
 ![1](/report/report1024_1.png)
