@@ -1,25 +1,27 @@
 # H-TEC
-(High Temperature Entrance Checking Technique)
+고열 출입 확인 기술
+(High Temperature Entrance Checking Technique)  
+![시연 영상](/htec.mp4)
 
-## 사용 센서
-적외선 온도 센서  
-인체 감지 센서  
-피에조  
-dot-matrix  
-서보모터  
+## 보고서
+![1](/report/report1024_1.png)
+![2](/report/report1024_2.png)
+![3](/report/report1024_3.png)
+![4](/report/report1024_4.png)
+![5](/report/report1024_5.png)
+![6](/report/report1024_6.png)
+![7](/report/report1024_7.png)
+![8](/report/report1024_8.png)
+![9](/report/report1024_9.png)
+![10](/report/report1024_10.png)
+![11](/report/report1024_11.png)
+![12](/report/report1024_12.png)
+![13](/report/report1024_13.png)
+![14](/report/report1024_14.png)
+![15](/report/report1024_15.png)
 
-## 시나리오
-사람이 온다 – 인체감지센서  
-온도를 측정한다 – 적외선온도센서  
-if 온도가 37 이상 {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;경고 – 피에조, dot-matrix    
-} else {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;알림 – dot-matrix    
-&nbsp;&nbsp;&nbsp;&nbsp;문 열림 – 서보 모터    
-}    
 
-
-## 참고 자료
+## 추가 참고 자료
 - Datasheet - STM32D102x8 STM32F102xB - https://www.st.com/resource/en/datasheet/stm32f102c8.pdf
 - JK전자와 함께하는 ARM 완전정복(6)-2 - http://www.ntrexgo.com/archives/21271
 - 얼렁뚱땅 임베디드 개발자 되기 - https://m.blog.naver.com/PostView.nhn?blogId=sm6787&logNo=220310055043
